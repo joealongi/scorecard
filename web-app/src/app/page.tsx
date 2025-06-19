@@ -10,11 +10,11 @@ export default function Home() {
       <p className="text-md lg:text-lg font-extralight subpixel-antialiased">
         Pin Point Score is a golf application through and through, designed to
         help you keep track of your golf game from tee box to green. Whether
-        you're a seasoned golfer or just starting out, this app is your perfect
-        companion on the course. With its user-friendly interface and powerful
-        features, Pin Point Score makes it easy to record your scores, analyze
-        your performance, and improve your game. Say goodbye to paper scorecards
-        and hello to a smarter way to play golf!
+        you&apos;re a seasoned golfer or just starting out, this app is your
+        perfect companion on the course. With its user-friendly interface and
+        powerful features, Pin Point Score makes it easy to record your scores,
+        analyze your performance, and improve your game. Say goodbye to paper
+        scorecards and hello to a smarter way to play golf!
       </p>
       <p className="copyright mt-8 text-xs">
         © {new Date().getFullYear()} Pin Point Score. All rights reserved.
