@@ -1,10 +1,12 @@
 import Link from "next/link";
 
-import Logo from "./Logo";
+import { Button } from "@/components/ui/button";
 
-export default function Footer() {
+import Logo from "@/components/custom/Logo";
+
+export default function Navar() {
   return (
-    <footer className="mb-16">
+    <nav className="mb-16">
       <ul className="flex flex-row space-x-6 md:space-x-9 space-y-0 mx-auto mt-3 font-sm">
         <li className="flex items-center self-center transition-all">
           <Link rel="noopener noreferrer" target="_self" href="/">
@@ -22,21 +24,16 @@ export default function Footer() {
           </Link>
         </li>
         <li className="flex items-center self-center transition-all">
-          <Link rel="noopener noreferrer" target="_self" href="/">
+          <Link rel="noopener noreferrer" target="_self" href="/leaderboard">
             Leaderboard
           </Link>
         </li>
         <li className="flex items-center self-center justify-self-end ml-auto transition-all">
-          <Link
-            className="button py-3 px-3 md:px-9"
-            rel="noopener noreferrer"
-            target="_self"
-            href="/"
-          >
+          <Button className="button py-3 px-3 md:px-9" variant="outline">
             Download
-          </Link>
+          </Button>
         </li>
       </ul>
-    </footer>
+    </nav>
   );
 }

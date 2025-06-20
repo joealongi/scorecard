@@ -1,9 +1,6 @@
-import Navbar from "./components/Navbar";
-
-export default function Home() {
+export default function Page() {
   return (
     <section>
-      <Navbar />
       <h1 className="mx-auto text-3xl md:text-6xl font-light subpixel-antialiased">
         Pin Point Score
       </h1>
@@ -18,9 +15,6 @@ export default function Home() {
         powerful features, Pin Point Score makes it easy to record your scores,
         analyze your performance, and improve your game. Say goodbye to paper
         scorecards and hello to a smarter way to play golf!
-      </p>
-      <p className="my-9 text-xs copyright">
-        © {new Date().getFullYear()} Pin Point Score. All rights reserved.
       </p>
     </section>
   );

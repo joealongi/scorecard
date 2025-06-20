@@ -1,5 +1,7 @@
 /* eslint-disable @next/next/no-page-custom-font */
 import "./globals.css";
+import Navbar from "@/components/custom/Navbar";
+import Footer from "@/components/custom/Footer";
 
 export default function RootLayout({
   children,
@@ -65,7 +67,9 @@ export default function RootLayout({
       </head>
       <body className="max-w-6xl mt-[9vh] mx-9 xl:mx-auto">
         <main className="flex flex-col flex-auto min-w-0 mt-3 px-3 md:px-0">
+          <Navbar />
           {children}
+          <Footer />
         </main>
       </body>
     </html>
