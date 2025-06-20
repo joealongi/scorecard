@@ -63,8 +63,8 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="max-w-xl mt-[9vh] mx-9 lg:mx-auto">
-        <main className="flex flex-col flex-auto min-w-0 mt-6 px-2 md:px-0">
+      <body className="max-w-6xl mt-[9vh] mx-9 xl:mx-auto">
+        <main className="flex flex-col flex-auto min-w-0 mt-3 px-3 md:px-0">
           {children}
         </main>
       </body>

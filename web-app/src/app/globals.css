@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+/* Layout */
+
 body,
 html {
   color: #008000;
@@ -9,6 +11,8 @@ html {
 ::selection {
   background: #008000;
 }
+
+/* Typography */
 
 h1,
 h2,
@@ -29,6 +33,29 @@ p {
 h3 {
   color: #008000;
 }
+
+a,
+a > p,
+a > svg {
+  color: #fff;
+}
+
+a:hover,
+a > p:hover {
+  color: #008000;
+}
+
+.button {
+  color: #fff;
+  background-color: #008000;
+}
+
+.button:hover {
+  color: #008000;
+  background-color: #fff;
+}
+
+/* Navigation */
 
 .copyright {
   color: #fff;
