@@ -19,7 +19,7 @@ export default function Navar() {
           </Link>
         </li>
         <li className="flex items-center self-center transition-all">
-          <Link rel="noopener noreferrer" target="_self" href="/">
+          <Link rel="noopener noreferrer" target="_self" href="/about">
             About
           </Link>
         </li>
