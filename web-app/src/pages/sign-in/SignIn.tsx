@@ -63,7 +63,7 @@ export const SignIn: React.FC = () => {
           Sign In
         </h1>
         <h3 className="my-3 md:my-9 mx-auto text-xl md:text-3xl font-light subpixel-antialiased">
-          Welcome back! Please sign in to your account.
+          Welcome back! Sign in to your account.
         </h3>
         <form onSubmit={handleSubmit}>
           <div className="my-3 md:my-9 mx-auto">
