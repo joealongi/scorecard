@@ -1,6 +1,6 @@
 {
   "globalHeaders": {
-    "Access-Control-Allow-Origin": "https://pinpointscoreus.ciamlogin.com",
+    "Access-Control-Allow-Origin": "https://pinpointscore.golf",
     "Access-Control-Allow-Methods": "POST, GET, OPTIONS"
   },
   "responseOverrides": {
