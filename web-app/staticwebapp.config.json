@@ -1,7 +1,7 @@
 {
   "routes": [
     {
-      "route": "http://thankful-forest-091768f0f.6.azurestaticapps.net",
+      "route": "https://thankful-forest-091768f0f.6.azurestaticapps.net",
       "methods": [
         "get",
         "head",
@@ -17,7 +17,7 @@
       "statusCode": 301
     },
     {
-      "route": "https://thankful-forest-091768f0f.6.azurestaticapps.net",
+      "route": "https://thankful-forest-091768f0f.6.azurestaticapps.net/",
       "methods": [
         "get",
         "head",
@@ -61,8 +61,7 @@
         "trace",
         "patch"
       ],
-      "rewrite": "https://pinpointscoreus.ciamlogin.com/fad70461-1a4e-4a46-83bc-d0c1f93d9098%22/",
-      "statusCode": 301
+      "rewrite": "https://pinpointscoreus.ciamlogin.com/fad70461-1a4e-4a46-83bc-d0c1f93d9098%22/"
     }
   ]
 }
