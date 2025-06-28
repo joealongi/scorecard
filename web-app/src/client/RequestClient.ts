@@ -4,13 +4,7 @@ export const postRequest = async (endpoint: string, payloadExt: unknown) => {
   try {
     const body = new URLSearchParams(payloadExt as Record<string, string>);
     const baseurl = import.meta.env.VITE_BASE_API_URL ?? "";
-    console.log("------baseurl", baseurl);
-    console.log("------endpoint", endpoint);
-    console.log("------body", body?.toString());
     const { data } = await axios.post(baseurl + endpoint, body, {
-      method: "post",
-      url: baseurl + endpoint,
-      allowAbsoluteUrls: true,
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
       },
