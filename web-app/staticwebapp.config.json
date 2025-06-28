@@ -13,7 +13,6 @@
         "trace",
         "patch"
       ],
-      "rewrite": "https://pinpointscore.golf",
       "redirect": "https://pinpointscore.golf",
       "statusCode": 301
     },
@@ -30,7 +29,6 @@
         "trace",
         "patch"
       ],
-      "rewrite": "https://pinpointscore.golf",
       "redirect": "https://pinpointscore.golf",
       "statusCode": 301
     },
@@ -47,7 +45,6 @@
         "trace",
         "patch"
       ],
-      "rewrite": "https://pinpointscore.golf",
       "redirect": "https://pinpointscore.golf",
       "statusCode": 301
     },
