@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-import PinPointScore from "/pinpointscore.svg";
+import PinPointScore from "../assets/pinpointscore.svg";
 
 export default function Navbar() {
   return (
