@@ -1,4 +1,11 @@
 {
+  "globalHeaders": {
+    "Access-Control-Allow-Origin": [
+      "https://pinpointscore.golf",
+      "https://pinpointscoreus.ciamlogin.com"
+    ],
+    "Access-Control-Allow-Methods": "POST, GET, OPTIONS"
+  },
   "routes": [
     {
       "route": "https://thankful-forest-091768f0f.6.azurestaticapps.net",
