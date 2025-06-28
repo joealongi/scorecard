@@ -24,6 +24,22 @@
       "statusCode": 301
     },
     {
+      "route": "https://pinpointscore.golf/404",
+      "methods": [
+        "get",
+        "head",
+        "post",
+        "put",
+        "delete",
+        "connect",
+        "options",
+        "trace",
+        "patch"
+      ],
+      "redirect": "https://pinpointscore.golf",
+      "statusCode": 301
+    },
+    {
       "route": "*.azurestaticapps.net",
       "methods": [
         "get",
@@ -38,21 +54,6 @@
       ],
       "redirect": "https://pinpointscore.golf",
       "statusCode": 301
-    },
-    {
-      "route": " https://pinpointscore.golf/%22https://pinpointscoreus.ciamlogin.com/fad70461-1a4e-4a46-83bc-d0c1f93d9098%22/*",
-      "methods": [
-        "get",
-        "post",
-        "head",
-        "put",
-        "delete",
-        "connect",
-        "options",
-        "trace",
-        "patch"
-      ],
-      "rewrite": "https://pinpointscoreus.ciamlogin.com/fad70461-1a4e-4a46-83bc-d0c1f93d9098%22/"
     }
   ]
 }
