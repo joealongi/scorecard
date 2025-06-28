@@ -1,0 +1,71 @@
+{
+  "routes": [
+    {
+      "route": "http://thankful-forest-091768f0f.6.azurestaticapps.net",
+      "methods": [
+        "get",
+        "head",
+        "post",
+        "put",
+        "delete",
+        "connect",
+        "options",
+        "trace",
+        "patch"
+      ],
+      "rewrite": "https://pinpointscore.golf",
+      "redirect": "https://pinpointscore.golf",
+      "statusCode": 301
+    },
+    {
+      "route": "https://thankful-forest-091768f0f.6.azurestaticapps.net",
+      "methods": [
+        "get",
+        "head",
+        "post",
+        "put",
+        "delete",
+        "connect",
+        "options",
+        "trace",
+        "patch"
+      ],
+      "rewrite": "https://pinpointscore.golf",
+      "redirect": "https://pinpointscore.golf",
+      "statusCode": 301
+    },
+    {
+      "route": "*.azurestaticapps.net",
+      "methods": [
+        "get",
+        "post",
+        "head",
+        "put",
+        "delete",
+        "connect",
+        "options",
+        "trace",
+        "patch"
+      ],
+      "rewrite": "https://pinpointscore.golf",
+      "redirect": "https://pinpointscore.golf",
+      "statusCode": 301
+    },
+    {
+      "route": " https://pinpointscore.golf/%22https://pinpointscoreus.ciamlogin.com/fad70461-1a4e-4a46-83bc-d0c1f93d9098%22/*",
+      "methods": [
+        "get",
+        "post",
+        "head",
+        "put",
+        "delete",
+        "connect",
+        "options",
+        "trace",
+        "patch"
+      ],
+      "rewrite": "https://pinpointscoreus.ciamlogin.com/fad70461-1a4e-4a46-83bc-d0c1f93d9098%22/",
+      "statusCode": 301
+    }
+  ]
+}
