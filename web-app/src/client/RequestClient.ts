@@ -1,7 +1,7 @@
 import type { ErrorResponseType } from "./ResponseTypes";
 
 export const postRequest = async (url: string, payloadExt: unknown) => {
-  const body = new URLSearchParams(payloadExt as unknown);
+  const body = new URLSearchParams(payloadExt as Record<string, string>);
 
   const response = await fetch(url, {
     method: "POST",

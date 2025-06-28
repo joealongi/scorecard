@@ -29,6 +29,7 @@ export const SignUpChallenge: React.FC = () => {
       setIsloading(true);
       const res = await signUpSubmitOTP({ continuation_token, oob: code });
       navigate("/signup/completed");
+      return res;
     } catch (err) {
       setError(
         "An error occurred during sign up " +
