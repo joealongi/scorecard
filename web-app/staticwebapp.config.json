@@ -1,7 +1,8 @@
 {
   "globalHeaders": {
-    "Access-Control-Allow-Origin": "https://pinpointscore.golf",
-    "Access-Control-Allow-Methods": "POST, GET, OPTIONS"
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type, Authorization"
   },
   "responseOverrides": {
     "400": {
