@@ -1,4 +1,3 @@
-import { CLIENT_ID, ENV } from "../config";
 import { postRequest } from "./RequestClient";
 import type {
   ChallengeForm,
@@ -17,11 +16,14 @@ export const signupStart = async (payload: SignUpFormPassword) => {
     }),
     username: payload.username,
     password: payload.password,
-    client_id: CLIENT_ID,
+    client_id: import.meta.env.VITE_CLIENT_ID ?? "",
     challenge_type: "password oob redirect",
   };
 
-  return await postRequest(ENV.urlSignupStart, payloadExt);
+  return await postRequest(
+    `${import.meta.env.VITE_BASE_API_URL ?? ""}/signup/v1.0/start`,
+    payloadExt
+  );
 };
 
 //handle selecting an authentication method
@@ -29,22 +31,28 @@ export const signupChallenge = async (
   payload: ChallengeForm
 ): Promise<ChallengeResponse> => {
   const payloadExt: SignUpChallengeRequest = {
-    client_id: CLIENT_ID,
+    client_id: import.meta.env.VITE_CLIENT_ID ?? "",
     challenge_type: "password oob redirect",
     continuation_token: payload.continuation_token,
   };
 
-  return await postRequest(ENV.urlSignupChallenge, payloadExt);
+  return await postRequest(
+    `${import.meta.env.VITE_BASE_API_URL ?? ""}/signup/v1.0/challenge`,
+    payloadExt
+  );
 };
 
 //handle submit one-time passcode
 export const signUpSubmitOTP = async (payload: ChallengeForm) => {
   const payloadExt = {
-    client_id: CLIENT_ID,
+    client_id: import.meta.env.VITE_CLIENT_ID ?? "",
     continuation_token: payload.continuation_token,
     oob: payload.oob,
     grant_type: "oob",
   };
 
-  return await postRequest(ENV.urlSignupContinue, payloadExt);
+  return await postRequest(
+    `${import.meta.env.VITE_BASE_API_URL ?? ""}/signup/v1.0/continue`,
+    payloadExt
+  );
 };

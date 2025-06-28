@@ -1,4 +1,3 @@
-import { CLIENT_ID, ENV } from "../config";
 import { postRequest } from "./RequestClient";
 import type {
   ChallengeForm,
@@ -16,11 +15,14 @@ import type {
 export const resetStart = async ({ username }: { username: string }) => {
   const payloadExt: ResetPasswordStartRequest = {
     username,
-    client_id: CLIENT_ID,
+    client_id: import.meta.env.VITE_CLIENT_ID ?? "",
     challenge_type: "password oob redirect",
   };
 
-  return await postRequest(ENV.urlResetPwdStart, payloadExt);
+  return await postRequest(
+    `${import.meta.env.VITE_BASE_API_URL ?? ""}/resetpassword/v1.0/start`,
+    payloadExt
+  );
 };
 
 export const resetChallenge = async ({
@@ -30,44 +32,58 @@ export const resetChallenge = async ({
 }): Promise<ChallengeResponse> => {
   const payloadExt: ChallengeRequest = {
     continuation_token,
-    client_id: CLIENT_ID,
+    client_id: import.meta.env.VITE_CLIENT_ID ?? "",
     challenge_type: "oob redirect",
   };
 
-  return await postRequest(ENV.urlResetPwdChallenge, payloadExt);
+  return await postRequest(
+    `${import.meta.env.VITE_BASE_API_URL ?? ""}/resetpassword/v1.0/challenge`,
+    payloadExt
+  );
 };
 
 export const resetSubmitOTP = async (
   payload: ChallengeForm
 ): Promise<ChallengeResetResponse> => {
   const payloadExt = {
-    client_id: CLIENT_ID,
+    client_id: import.meta.env.VITE_CLIENT_ID ?? "",
     continuation_token: payload.continuation_token,
     oob: payload.oob,
     grant_type: "oob",
   };
 
-  return await postRequest(ENV.urlResetPwdContinue, payloadExt);
+  return await postRequest(
+    `${import.meta.env.VITE_BASE_API_URL ?? ""}/resetpassword/v1.0/continue`,
+    payloadExt
+  );
 };
 
 export const resetSubmitNewPassword = async (
   payload: ResetPasswordSubmitForm
 ): Promise<ResetPasswordSubmitResponse> => {
   const payloadExt: ResetPasswordSubmitRequest = {
-    client_id: CLIENT_ID,
+    client_id: import.meta.env.VITE_CLIENT_ID ?? "",
     continuation_token: payload.continuation_token,
     new_password: payload.new_password,
   };
 
-  return await postRequest(ENV.urlResetPwdSubmit, payloadExt);
+  return await postRequest(
+    `${import.meta.env.VITE_BASE_API_URL ?? ""}/resetpassword/v1.0/submit`,
+    payloadExt
+  );
 };
 
 export const resetPoll = async (
   continuation_token: string
 ): Promise<ChallengeResetResponse> => {
   const payloadExt = {
-    client_id: CLIENT_ID,
+    client_id: import.meta.env.VITE_CLIENT_ID ?? "",
     continuation_token,
   };
-  return await postRequest(ENV.urlResetPwdPollComp, payloadExt);
+  return await postRequest(
+    `${
+      import.meta.env.VITE_BASE_API_URL ?? ""
+    }/resetpassword/v1.0/poll_completion`,
+    payloadExt
+  );
 };

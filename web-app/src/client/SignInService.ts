@@ -1,4 +1,3 @@
-import { CLIENT_ID, ENV } from "../config";
 import { postRequest } from "./RequestClient";
 import type {
   ChallengeRequest,
@@ -11,11 +10,14 @@ import type { TokenResponseType } from "./ResponseTypes";
 export const signInStart = async ({ username }: { username: string }) => {
   const payloadExt: SignInStartRequest = {
     username,
-    client_id: CLIENT_ID,
+    client_id: import.meta.env.VITE_CLIENT_ID ?? "",
     challenge_type: "password oob redirect",
   };
 
-  return await postRequest(ENV.urlOauthInit, payloadExt);
+  return await postRequest(
+    `${import.meta.env.VITE_BASE_API_URL ?? ""}/oauth2/v2.0/initiate`,
+    payloadExt
+  );
 };
 
 export const signInChallenge = async ({
@@ -25,11 +27,14 @@ export const signInChallenge = async ({
 }) => {
   const payloadExt: ChallengeRequest = {
     continuation_token,
-    client_id: CLIENT_ID,
+    client_id: import.meta.env.VITE_CLIENT_ID ?? "",
     challenge_type: "password oob redirect",
   };
 
-  return await postRequest(ENV.urlOauthChallenge, payloadExt);
+  return await postRequest(
+    `${import.meta.env.VITE_BASE_API_URL ?? ""}/oauth2/v2.0/challenge`,
+    payloadExt
+  );
 };
 
 export const signInTokenRequest = async (
@@ -37,7 +42,7 @@ export const signInTokenRequest = async (
 ): Promise<TokenResponseType> => {
   const payloadExt: TokenRequestType = {
     ...request,
-    client_id: CLIENT_ID,
+    client_id: import.meta.env.VITE_CLIENT_ID ?? "",
     challenge_type: "password oob redirect",
     scope: "openid offline_access",
   };
@@ -50,5 +55,8 @@ export const signInTokenRequest = async (
     payloadExt.oob = request.oob;
   }
 
-  return await postRequest(ENV.urlOauthToken, payloadExt);
+  return await postRequest(
+    `${import.meta.env.VITE_BASE_API_URL ?? ""}/oauth2/v2.0/token`,
+    payloadExt
+  );
 };
