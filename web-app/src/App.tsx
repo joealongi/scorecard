@@ -5,6 +5,8 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 function App() {
+  console.log("----VITE_BASE_API_URL", import.meta.env.VITE_BASE_API_URL);
+  console.log("----VITE_REDIRECT_URI", import.meta.env.VITE_REDIRECT_URI);
   return (
     <>
       <BrowserRouter>
