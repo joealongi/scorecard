@@ -20,6 +20,7 @@ export const AppRoutes = () => {
       <Route path="/signup/completed" element={<SignUpCompleted />} />
       <Route path="/reset" element={<ResetPassword />} />
       {/* <Route path="/user" element={<UserInfo />} /> */}
+      <Route path="*" element={<Home />} />
     </Routes>
   );
 };
