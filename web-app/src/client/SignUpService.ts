@@ -20,10 +20,7 @@ export const signupStart = async (payload: SignUpFormPassword) => {
     challenge_type: "password oob redirect",
   };
 
-  return await postRequest(
-    `${import.meta.env.VITE_BASE_API_URL ?? ""}/signup/v1.0/start`,
-    payloadExt
-  );
+  return await postRequest(`/signup/v1.0/start`, payloadExt);
 };
 
 //handle selecting an authentication method
@@ -36,10 +33,7 @@ export const signupChallenge = async (
     continuation_token: payload.continuation_token,
   };
 
-  return await postRequest(
-    `${import.meta.env.VITE_BASE_API_URL ?? ""}/signup/v1.0/challenge`,
-    payloadExt
-  );
+  return await postRequest(`/signup/v1.0/challenge`, payloadExt);
 };
 
 //handle submit one-time passcode
@@ -51,8 +45,5 @@ export const signUpSubmitOTP = async (payload: ChallengeForm) => {
     grant_type: "oob",
   };
 
-  return await postRequest(
-    `${import.meta.env.VITE_BASE_API_URL ?? ""}/signup/v1.0/continue`,
-    payloadExt
-  );
+  return await postRequest(`/signup/v1.0/continue`, payloadExt);
 };

@@ -1,33 +1,20 @@
-import type { ErrorResponseType } from "./ResponseTypes";
+import axios from "axios";
 
-export const postRequest = async (url: string, payloadExt: unknown) => {
-  const body = new URLSearchParams(payloadExt as Record<string, string>);
-
-  const response = await fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body,
-  });
-
-  if (!response.ok) {
-    try {
-      const errorData: ErrorResponseType = await response.json();
-      throw errorData;
-    } catch (jsonError) {
-      console.error("Failed to parse error response:", jsonError);
-      const errorData = {
-        error: response.status,
-        description: response.statusText,
-        codes: [],
-        timestamp: "",
-        trace_id: "",
-        correlation_id: "",
-      };
-      throw errorData;
-    }
+export const postRequest = async (endpoint: string, payloadExt: unknown) => {
+  try {
+    const body = new URLSearchParams(payloadExt as Record<string, string>);
+    const baseurl = import.meta.env.VITE_BASE_API_URL ?? "";
+    console.log("------baseurl", baseurl);
+    console.log("------endpoint", endpoint);
+    console.log("------body", body?.toString());
+    const { data } = await axios.post(baseurl + endpoint, body, {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    });
+    return data;
+  } catch (error) {
+    console.log("Error posting request", error);
+    throw error;
   }
-
-  return await response.json();
 };

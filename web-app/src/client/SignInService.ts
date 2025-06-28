@@ -14,10 +14,7 @@ export const signInStart = async ({ username }: { username: string }) => {
     challenge_type: "password oob redirect",
   };
 
-  return await postRequest(
-    `${import.meta.env.VITE_BASE_API_URL ?? ""}/oauth2/v2.0/initiate`,
-    payloadExt
-  );
+  return await postRequest(`/oauth2/v2.0/initiate`, payloadExt);
 };
 
 export const signInChallenge = async ({
@@ -31,10 +28,7 @@ export const signInChallenge = async ({
     challenge_type: "password oob redirect",
   };
 
-  return await postRequest(
-    `${import.meta.env.VITE_BASE_API_URL ?? ""}/oauth2/v2.0/challenge`,
-    payloadExt
-  );
+  return await postRequest(`/oauth2/v2.0/challenge`, payloadExt);
 };
 
 export const signInTokenRequest = async (
@@ -55,8 +49,5 @@ export const signInTokenRequest = async (
     payloadExt.oob = request.oob;
   }
 
-  return await postRequest(
-    `${import.meta.env.VITE_BASE_API_URL ?? ""}/oauth2/v2.0/token`,
-    payloadExt
-  );
+  return await postRequest(`/oauth2/v2.0/token`, payloadExt);
 };
