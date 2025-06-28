@@ -17,22 +17,6 @@
       "statusCode": 301
     },
     {
-      "route": "https://thankful-forest-091768f0f.6.azurestaticapps.net/",
-      "methods": [
-        "get",
-        "head",
-        "post",
-        "put",
-        "delete",
-        "connect",
-        "options",
-        "trace",
-        "patch"
-      ],
-      "redirect": "https://pinpointscore.golf",
-      "statusCode": 301
-    },
-    {
       "route": "*.azurestaticapps.net",
       "methods": [
         "get",
