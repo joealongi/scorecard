@@ -8,6 +8,9 @@ export const postRequest = async (endpoint: string, payloadExt: unknown) => {
     console.log("------endpoint", endpoint);
     console.log("------body", body?.toString());
     const { data } = await axios.post(baseurl + endpoint, body, {
+      method: "post",
+      url: baseurl + endpoint,
+      allowAbsoluteUrls: true,
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
       },
