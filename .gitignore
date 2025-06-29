@@ -138,8 +138,8 @@ out/
 /.nb-gradle/
 
 ### VS Code ###
-.vscode/
-.vscode
+
+
 */.vscode
 
 ### Python ###
