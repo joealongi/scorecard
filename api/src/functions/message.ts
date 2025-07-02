@@ -17,7 +17,7 @@ export async function message(
 }
 
 app.http("message", {
-  methods: ["GET", "POST"],
+  methods: ["GET", "HEAD", "POST", "OPTIONS"],
   authLevel: "anonymous",
   handler: message,
 });

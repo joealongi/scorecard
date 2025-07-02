@@ -42,7 +42,7 @@ export async function postproxy(
 }
 
 app.http("postproxy", {
-  methods: ["POST"],
+  methods: ["GET", "HEAD", "POST", "OPTIONS"],
   authLevel: "anonymous",
   handler: postproxy,
 });
