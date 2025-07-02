@@ -32,7 +32,7 @@ export async function postproxy(
     const endpoint = req?.body?.data?.endpoint;
     const body = req?.body?.data?.body;
     const data = await postrequest(baseurl, endpoint, body);
-    return { body: { req, data } };
+    return { body: JSON.stringify({ req: req, data: data }) };
   } catch (error) {
     console.log("Error proxying posting request in Azure", error);
     return null;
