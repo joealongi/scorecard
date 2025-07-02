@@ -1,0 +1,1 @@
+Run: ts-node index.ts
