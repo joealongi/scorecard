@@ -18,11 +18,11 @@ import axios from "axios";
 
 export const postRequest = async (endpoint: string, payloadExt: unknown) => {
   try {
-    const body = new URLSearchParams(payloadExt as Record<string, string>);
+    const proxybaseurl = import.meta.env.VITE_BASE_API_URL ?? "";
     const baseurl = import.meta.env.VITE_AZURE_API_URL ?? "";
     const { data } = await axios.post(
-      baseurl + endpoint,
-      { baseurl, endpoint, body },
+      baseurl,
+      { proxybaseurl: proxybaseurl, endpoint: endpoint, body: payloadExt },
       {
         headers: {
           "Content-Type": "application/json",
