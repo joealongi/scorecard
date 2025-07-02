@@ -1,32 +1,28 @@
-#!/bin/bash
-FROM node:current-alpine AS builder
+# ---- Build Stage ----
+    FROM node:20-alpine AS build
 
-# Create app directory
-WORKDIR /app
+    WORKDIR /usr/app
+    
+    COPY package*.json ./
 
-# Install app dependencies
-COPY package*.json ./
+    RUN npm install
+    
+    COPY . ./
 
-RUN npm ci
-
-COPY . .
-
-RUN npm run build
-
-FROM node:current-alpine
-
-ENV NODE_ENV=production
-USER node
-
-# Create app directory
-WORKDIR /app
-
-# Install app dependencies
-COPY package*.json ./
-
-RUN npm ci --production
-
-COPY --from=builder /app/dist ./dist
-
-EXPOSE 8080
-CMD [ "node", "dist/index.js" ]
+    RUN npm run build
+    
+    # ---- Production Stage ----
+    FROM node:20-alpine
+    
+    WORKDIR /usr/app
+    
+    COPY --from=build /usr/app/package*.json ./
+    COPY --from=build /usr/app/node_modules ./node_modules
+    COPY --from=build /usr/app/dist ./dist
+    
+    ENV NODE_ENV=production
+    ENV PORT=8080
+    
+    EXPOSE 8080
+    
+    CMD [ "node", "dist/index.js" ]
