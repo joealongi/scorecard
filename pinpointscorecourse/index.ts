@@ -10,7 +10,7 @@ const app = express();
 // Add JSON body parsing middleware
 app.use(express.json());
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT ?? 8080;
 
 app.get("/", (request: Request, response: Response) => {
   response.status(200).send("Hello World");
