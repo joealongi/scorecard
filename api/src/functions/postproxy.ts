@@ -7,11 +7,7 @@ import {
 
 import axios from "axios";
 
-const postrequest = async (
-  baseurl: string,
-  endpoint: string,
-  body: Object<any>
-) => {
+const postrequest = async (baseurl: string, endpoint: string, body: any) => {
   try {
     const { data } = await axios.post(baseurl + endpoint, body, {
       headers: {
