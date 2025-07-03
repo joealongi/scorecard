@@ -1,6 +1,12 @@
 import axios from "axios";
 
 export const postRequest = async (endpoint: string, payloadExt: unknown) => {
+  console.log("Received request to proxy:", {
+    proxy: import.meta.env.VITE_PROXY_URL,
+    base: import.meta.env.VITE_BASE_API_URL,
+    endpoint: endpoint,
+  });
+
   try {
     const base = import.meta.env.VITE_BASE_API_URL ?? "";
     const body = new URLSearchParams(payloadExt as Record<string, string>);
