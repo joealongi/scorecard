@@ -18,35 +18,32 @@ const corsOptions = {
 
 // Add JSON body parsing middleware
 app.use(express.json());
+app.use(cors(corsOptions));
 
 const PORT = process.env.PORT ?? 8080;
 
-app.get("/", cors(corsOptions), (request: Request, response: Response) => {
+app.get("/", (request: Request, response: Response) => {
   response.status(200).send("Hello World");
 });
 
-app.post(
-  "/proxy",
-  cors(corsOptions),
-  async (request: Request<any>, response: Response<any>) => {
-    try {
-      console.log("Received request to proxy:", request.body);
-      const baseurl = request?.body?.baseurl;
-      const endpoint = request?.body?.endpoint;
-      const body = request?.body?.body;
-      console.log("Received request to proxy:", {
-        baseurl,
-        endpoint,
-        body,
-      });
-      const resp = await post(baseurl, endpoint, body);
-      response.status(200).send({ resp });
-    } catch (error) {
-      console.log("Error proxying post request", error);
-      response.status(400).send({ error: "Not" });
-    }
+app.post("/proxy", async (request: Request<any>, response: Response<any>) => {
+  try {
+    console.log("Received request to proxy:", request.body);
+    const baseurl = request?.body?.baseurl;
+    const endpoint = request?.body?.endpoint;
+    const body = request?.body?.body;
+    console.log("Received request to proxy:", {
+      baseurl,
+      endpoint,
+      body,
+    });
+    const resp = await post(baseurl, endpoint, body);
+    response.status(200).send({ resp });
+  } catch (error) {
+    console.log("Error proxying post request", error);
+    response.status(400).send({ error: "Not" });
   }
-);
+});
 
 app
   .listen(PORT, () => {
