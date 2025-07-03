@@ -29,15 +29,15 @@ app.get("/", (request: Request, response: Response) => {
 app.post("/proxy", async (request: Request<any>, response: Response<any>) => {
   try {
     console.log("Received request to proxy:", request.body);
-    const baseurl = request?.body?.baseurl;
+    const base = request?.body?.base;
     const endpoint = request?.body?.endpoint;
     const body = request?.body?.body;
     console.log("Received request to proxy:", {
-      baseurl,
+      base,
       endpoint,
       body,
     });
-    const resp = await post(baseurl, endpoint, body);
+    const resp = await post(base, endpoint, body);
     response.status(200).send({ resp });
   } catch (error) {
     console.log("Error proxying post request", error);

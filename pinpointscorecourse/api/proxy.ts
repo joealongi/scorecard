@@ -1,8 +1,8 @@
 import axios from "axios";
 
-export const post = async (baseurl: string, endpoint: string, body: any) => {
+export const post = async (base: string, endpoint: string, body: any) => {
   try {
-    const { data } = await axios.post(baseurl + endpoint, body, {
+    const { data } = await axios.post(`${base + endpoint}`, body, {
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
       },

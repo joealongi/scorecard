@@ -48,8 +48,8 @@ jobs:
         env: # Add environment variables here
           VITE_CLIENT_ID: ${{ secrets.VITE_CLIENT_ID }}
           VITE_BASE_API_URL: ${{ secrets.VITE_BASE_API_URL }}
+          VITE_PROXY_URL: ${{ secrets.VITE_AZURE_API_URL }}
           VITE_REDIRECT_URI: ${{ secrets.VITE_REDIRECT_URI }}
-          VITE_AZURE_API_URL: ${{ secrets.VITE_AZURE_API_URL }}
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
     runs-on: ubuntu-latest
