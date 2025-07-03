@@ -29,11 +29,13 @@ jobs:
           password: ${{ secrets.AzureAppService_ContainerPassword_c20c5c06d0744cfcbb68fec7d75d38d9 }}
 
       - name: Build and push container image to registry
+
         uses: docker/build-push-action@v3
         with:
           push: true
           tags: pinpointscore.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_665704a1cd834ca78c9d065ca7c3d7b0 }}/pinpointscore/course:${{ github.sha }}
           file: ./pinpointscorecourse/Dockerfile
+          context: ./pinpointscorecourse
 
   deploy:
     runs-on: ubuntu-latest
