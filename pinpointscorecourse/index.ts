@@ -1,31 +1,50 @@
 import express, { Request, Response } from "express";
 import dotenv from "dotenv";
 import cors from "cors";
+import path from "path";
 
 import { post } from "./api/proxy";
 
-// configures dotenv to work in your application
+// ENV Configuration
 dotenv.config();
 const app = express();
 
-// Add CORS middleware to allow requests from the specified origin
-const corsOptions = {
-  origin: ["https://pinpointscore.golf", "http://localhost:5173"],
-  preflightContinue: false,
-  methods: "GET,POST,OPTIONS",
-  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-};
+// Allowlist Middleware
+if (process.env.NODE_ENV !== "development") {
+  app.use((request, response, next) => {
+    if (
+      request?.hostname?.includes("pinpointscore.golf") ||
+      request?.hostname?.includes("course.pinpointscore.golf")
+    ) {
+      next();
+    } else {
+      response.status(400).send();
+    }
+  });
+}
 
-// Add JSON body parsing middleware
+// CORS Middleware
+app.use(
+  cors({
+    origin: ["https://pinpointscore.golf", "http://localhost:5173"],
+    preflightContinue: false,
+    methods: "GET,POST,OPTIONS",
+    optionsSuccessStatus: 200,
+  })
+);
+
+// JSON Parsing Middleware
 app.use(express.json());
-app.use(cors(corsOptions));
 
-const PORT = process.env.PORT ?? 8080;
+// Static File Serving Middleware
+app.use(express.static("public"));
 
+// Health Check Endpoint
 app.get("/", (request: Request, response: Response) => {
-  response.status(200).send("Hello World");
+  response.status(200).sendFile(path.join(__dirname, "/index.html"));
 });
 
+// Proxy Endpoint
 app.post("/proxy", async (request: Request<any>, response: Response<any>) => {
   try {
     console.log("Received request to proxy:", request.body);
@@ -45,9 +64,10 @@ app.post("/proxy", async (request: Request<any>, response: Response<any>) => {
   }
 });
 
+// Application Start
 app
-  .listen(PORT, () => {
-    console.log("Server running at PORT: ", PORT);
+  .listen(process.env.PORT ?? 8080, () => {
+    console.log("Server running at PORT: ", process.env.PORT ?? 8080);
   })
   .on("error", (error) => {
     // gracefully handle error
