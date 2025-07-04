@@ -6,7 +6,6 @@ export const postRequest = async (endpoint: string, body: unknown) => {
     base: import.meta.env.VITE_BASE_API_URL,
     endpoint: endpoint,
   });
-
   try {
     const base = import.meta.env.VITE_BASE_API_URL ?? "";
     const proxy = import.meta.env.VITE_PROXY_URL ?? "";
