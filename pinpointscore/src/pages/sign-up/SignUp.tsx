@@ -42,6 +42,20 @@ export const SignUp: React.FC = () => {
         username: email,
         password,
       });
+      if (res1?.error === "user_already_exists") {
+        setError(
+          "An error occurred during sign up, it looks like you have an account with this email address."
+        );
+        setIsloading(false);
+        return;
+      }
+      if (res1?.error === "invalid_grant") {
+        setError(
+          "An error occurred during sign up, your new password is not complex enough."
+        );
+        setIsloading(false);
+        return;
+      }
       const res2 = await signupChallenge({
         continuation_token: res1.continuation_token,
       });

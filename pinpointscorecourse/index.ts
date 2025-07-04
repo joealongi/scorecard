@@ -10,7 +10,7 @@ const app = express();
 
 // Add CORS middleware to allow requests from the specified origin
 const corsOptions = {
-  origin: "https://pinpointscore.golf",
+  origin: ["https://pinpointscore.golf", "http://localhost:5173"],
   preflightContinue: false,
   methods: "GET,POST,OPTIONS",
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
@@ -32,16 +32,16 @@ app.post("/proxy", async (request: Request<any>, response: Response<any>) => {
     const base = request?.body?.base;
     const endpoint = request?.body?.endpoint;
     const body = request?.body?.body;
-    console.log("Received request to proxy:", {
-      base,
-      endpoint,
-      body,
-    });
     const resp = await post(base, endpoint, body);
-    response.status(200).send({ resp });
-  } catch (error) {
-    console.log("Error proxying post request", error);
-    response.status(400).send({ error: "Not" });
+    if (resp) {
+      response.status(200).send({ ...resp });
+    }
+    response.status(400).send();
+  } catch (error: any) {
+    if (error?.response?.data) {
+      response.status(400).send({ ...error?.response?.data });
+    }
+    response.status(400).send();
   }
 });
 
