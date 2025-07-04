@@ -74,7 +74,7 @@ export const SignUp: React.FC = () => {
   return (
     <>
       <section className="sign-up-form">
-        <h1 className="mx-auto text-3xl md:text-6xl font-light subpixel-antialiased">
+        <h1 className="mx-auto text-3xl md:text-6xl font-light subpixel-antialiased text-neutral-300">
           Sign Up
         </h1>
         <h3 className="my-3 md:my-9 mx-auto text-xl md:text-3xl font-light subpixel-antialiased">
@@ -84,12 +84,12 @@ export const SignUp: React.FC = () => {
           <div className="my-3 md:my-9 mx-auto">
             <Fieldset className="space-y-6">
               <Field>
-                <Label className="text-sm/6 font-medium text-white">
+                <Label className="text-base font-medium text-white">
                   Username:
                 </Label>
                 <Input
                   className={clsx(
-                    "mt-3 block w-full border-none bg-white/5 px-3 py-1.5 text-sm/6 text-white",
+                    "mt-3 block w-full border-none bg-white/5 px-3 py-1.5 text-base text-white",
                     "focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-white/25"
                   )}
                   value={username}
@@ -98,12 +98,12 @@ export const SignUp: React.FC = () => {
                 />
               </Field>
               <Field>
-                <Label className="text-sm/6 font-medium text-white">
+                <Label className="text-base font-medium text-white">
                   Email:
                 </Label>
                 <Input
                   className={clsx(
-                    "mt-3 block w-full border-none bg-white/5 px-3 py-1.5 text-sm/6 text-white",
+                    "mt-3 block w-full border-none bg-white/5 px-3 py-1.5 text-base text-white",
                     "focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-white/25"
                   )}
                   value={email}
@@ -112,12 +112,12 @@ export const SignUp: React.FC = () => {
                 />
               </Field>
               <Field>
-                <Label className="text-sm/6 font-medium text-white">
+                <Label className="text-base font-medium text-white">
                   First Name:
                 </Label>
                 <Input
                   className={clsx(
-                    "mt-3 block w-full border-none bg-white/5 px-3 py-1.5 text-sm/6 text-white",
+                    "mt-3 block w-full border-none bg-white/5 px-3 py-1.5 text-base text-white",
                     "focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-white/25"
                   )}
                   value={name}
@@ -126,12 +126,12 @@ export const SignUp: React.FC = () => {
                 />
               </Field>
               <Field>
-                <Label className="text-sm/6 font-medium text-white">
+                <Label className="text-base font-medium text-white">
                   Last Name:
                 </Label>
                 <Input
                   className={clsx(
-                    "mt-3 block w-full border-none bg-white/5 px-3 py-1.5 text-sm/6 text-white",
+                    "mt-3 block w-full border-none bg-white/5 px-3 py-1.5 text-base text-white",
                     "focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-white/25"
                   )}
                   value={surname}
@@ -140,12 +140,12 @@ export const SignUp: React.FC = () => {
                 />
               </Field>
               <Field>
-                <Label className="text-sm/6 font-medium text-white">
+                <Label className="text-base font-medium text-white">
                   Password:
                 </Label>
                 <Input
                   className={clsx(
-                    "mt-3 block w-full border-none bg-white/5 px-3 py-1.5 text-sm/6 text-white",
+                    "mt-3 block w-full border-none bg-white/5 px-3 py-1.5 text-base text-white",
                     "focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-white/25"
                   )}
                   value={password}
@@ -156,7 +156,10 @@ export const SignUp: React.FC = () => {
               </Field>
               {error && <div className="error">{error}</div>}
               {isLoading && <div className="warning">Sending request...</div>}
-              <Button className="button py-3 px-3 md:px-9" type="submit">
+              <Button
+                className="block w-full mx-auto p-3 text-center text-neutral-800 bg-lime-600 hover:text-neutral-900 hover:bg-neutral-300 transition-all cursor-pointer"
+                type="submit"
+              >
                 Create Account
               </Button>
             </Fieldset>

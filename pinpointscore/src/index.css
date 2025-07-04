@@ -6,6 +6,7 @@ body,
 html {
   color: oklch(0.65 0.18 132);
   background-color: oklch(0.2 0 0);
+  font-family: "Titillium Web", sans-serif;
 }
 
 ::selection {
@@ -14,52 +15,8 @@ html {
 
 /* Typography */
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-a,
-p,
-p > a,
-nav > a {
-  color: oklch(0.87 0 0);
-  font-family: "Titillium Web", sans-serif;
-}
-
 h3 {
   color: oklch(0.65 0.18 132);
-}
-
-a:hover {
-  color: oklch(0.65 0.18 132);
-}
-
-.button {
-  cursor: pointer;
-  color: oklch(0.2 0 0);
-  background-color: oklch(0.65 0.18 132);
-  border-color: oklch(0.65 0.18 132);
-}
-
-.button:hover {
-  color: oklch(0.2 0 0);
-  background-color: oklch(0.87 0 0);
-  border-color: oklch(0.87 0 0);
-}
-
-.button-alt {
-  cursor: pointer;
-  color: oklch(0.2 0 0);
-  background-color: oklch(0.87 0 0);
-  border-color: oklch(0.87 0 0);
-}
-
-.button-alt:hover {
-  color: oklch(0.2 0 0);
-  background-color: oklch(0.65 0.18 132);
-  border-color: oklch(0.65 0.18 132);
 }
 
 /* Copyright */

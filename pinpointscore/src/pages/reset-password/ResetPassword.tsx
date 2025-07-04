@@ -130,12 +130,12 @@ export const ResetPassword: React.FC = () => {
               <div className="my-3 md:my-9 mx-auto">
                 <Fieldset className="space-y-6">
                   <Field>
-                    <Label className="text-sm/6 font-medium text-white">
+                    <Label className="text-base font-medium text-white">
                       Username:
                     </Label>
                     <Input
                       className={clsx(
-                        "mt-3 block w-full border-none bg-white/5 px-3 py-1.5 text-sm/6 text-white",
+                        "mt-3 block w-full border-none bg-white/5 px-3 py-1.5 text-base text-white",
                         "focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-white/25"
                       )}
                       type="text"
@@ -148,7 +148,10 @@ export const ResetPassword: React.FC = () => {
                   {isLoading && (
                     <div className="warning">Sending request...</div>
                   )}
-                  <Button className="button py-3 px-3 md:px-9" type="submit">
+                  <Button
+                    className="block w-full mx-auto p-3 text-center text-neutral-800 bg-lime-600 hover:text-neutral-900 hover:bg-neutral-300 transition-all cursor-pointer"
+                    type="submit"
+                  >
                     Reset Password
                   </Button>
                 </Fieldset>
@@ -170,12 +173,12 @@ export const ResetPassword: React.FC = () => {
               <div className="my-3 md:my-9 mx-auto">
                 <Fieldset className="space-y-6">
                   <Field>
-                    <Label className="text-sm/6 font-medium text-white">
+                    <Label className="text-base font-medium text-white">
                       One Time Code:
                     </Label>
                     <Input
                       className={clsx(
-                        "mt-3 block w-full border-none bg-white/5 px-3 py-1.5 text-sm/6 text-white",
+                        "mt-3 block w-full border-none bg-white/5 px-3 py-1.5 text-base text-white",
                         "focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-white/25"
                       )}
                       type="text"
@@ -189,7 +192,10 @@ export const ResetPassword: React.FC = () => {
                   {isLoading && (
                     <div className="warning">Sending request...</div>
                   )}
-                  <Button className="button py-3 px-3 md:px-9" type="submit">
+                  <Button
+                    className="block w-full mx-auto p-3 text-center text-neutral-800 bg-lime-600 hover:text-neutral-900 hover:bg-neutral-300 transition-all cursor-pointer"
+                    type="submit"
+                  >
                     Submit Code
                   </Button>
                 </Fieldset>
@@ -210,12 +216,12 @@ export const ResetPassword: React.FC = () => {
               <div className="my-3 md:my-9 mx-auto">
                 <Fieldset className="space-y-6">
                   <Field>
-                    <Label className="text-sm/6 font-medium text-white">
+                    <Label className="text-base font-medium text-white">
                       New Password:
                     </Label>
                     <Input
                       className={clsx(
-                        "mt-3 block w-full border-none bg-white/5 px-3 py-1.5 text-sm/6 text-white",
+                        "mt-3 block w-full border-none bg-white/5 px-3 py-1.5 text-base text-white",
                         "focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-white/25"
                       )}
                       type="password"
@@ -228,7 +234,10 @@ export const ResetPassword: React.FC = () => {
                   {isLoading && (
                     <div className="warning">Sending request...</div>
                   )}
-                  <Button className="button py-3 px-3 md:px-9" type="submit">
+                  <Button
+                    className="block w-full mx-auto p-3 text-center text-neutral-800 bg-lime-600 hover:text-neutral-900 hover:bg-neutral-300 transition-all cursor-pointer"
+                    type="submit"
+                  >
                     Create New Password
                   </Button>
                 </Fieldset>
@@ -250,7 +259,7 @@ export const ResetPassword: React.FC = () => {
                 rel="noopener noreferrer"
                 target="_self"
                 to="/signin"
-                className="button-alt py-3 px-3 md:px-9"
+                className="block w-full mx-auto p-3 text-center text-neutral-800 bg-lime-600 hover:text-neutral-900 hover:bg-neutral-300 transition-all cursor-pointer"
               >
                 Sign In
               </Link>

@@ -8,7 +8,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <main className="max-w-6xl mt-[9vh] mx-9 xl:mx-auto">
+        <main className="max-w-6xl mt-9 mx-9 xl:mx-auto ">
           <div className="flex flex-col flex-auto min-w-0 mt-3 px-3 md:px-0">
             <Navbar />
             <AppRoutes />
