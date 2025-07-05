@@ -20,37 +20,21 @@ export default function Navbar() {
     // Close the menu when clicking or moving the mouse outside of it
     const main = document?.querySelector("#main");
     if (main) {
+      // Desktop
       main.addEventListener("mouseenter", () => {
         setOpen(false);
       });
       main.addEventListener("click", () => {
         setOpen(false);
       });
-      main.addEventListener("mousedown", () => {
-        setOpen(false);
-      });
-      main.addEventListener("mouseup", () => {
-        setOpen(false);
-      });
-    }
-    // Close the menu when the mouse leaves or clicks the menu wrapper
-    const wrapper = document?.querySelector("#menu");
-    if (wrapper) {
-      wrapper.addEventListener("mouseleave", () => {
-        setOpen(false);
-      });
-      wrapper.addEventListener("mouseout", () => {
-        setOpen(false);
-      });
-      wrapper.addEventListener("click", () => {
-        setOpen(false);
-      });
-      wrapper.addEventListener("mousedown", () => {
-        setOpen(false);
-      });
-      wrapper.addEventListener("mouseup", () => {
-        setOpen(false);
-      });
+
+      // // Mobile
+      // main.addEventListener("touchstart", () => {
+      //   setOpen(false);
+      // });
+      // main.addEventListener("touchend", () => {
+      //   setOpen(false);
+      // });
     }
 
     return () => {
