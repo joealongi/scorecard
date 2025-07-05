@@ -13,7 +13,7 @@ export default function NavListHorizontal({
     <React.Fragment>
       <li>
         <Link
-          className="flex flex-col flex-auto justify-self-start w-full mx-auto p-3 text-center text-neutral-300  hover:text-lime-600  transition-all"
+          className="flex flex-col flex-auto justify-self-start w-full mx-auto p-3 text-xl text-center text-neutral-300  hover:text-lime-600  transition-all"
           rel="noopener noreferrer"
           target="_self"
           to="/"
@@ -23,7 +23,7 @@ export default function NavListHorizontal({
       </li>
       <li>
         <Link
-          className="flex flex-col flex-auto justify-self-start w-full mx-auto p-3 text-center text-neutral-300  hover:text-lime-600  transition-all"
+          className="flex flex-col flex-auto justify-self-start w-full mx-auto p-3 text-xl text-center text-neutral-300  hover:text-lime-600  transition-all"
           rel="noopener noreferrer"
           target="_self"
           to="/about"

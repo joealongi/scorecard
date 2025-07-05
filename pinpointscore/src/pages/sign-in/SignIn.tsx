@@ -69,9 +69,7 @@ export const SignIn: React.FC = () => {
           <div className="my-3 md:my-9 mx-auto">
             <Fieldset className="space-y-6">
               <Field>
-                <Label className="text-base font-medium text-white">
-                  Email:
-                </Label>
+                <Label className="text-lg font-medium text-white">Email:</Label>
                 <Input
                   className={clsx(
                     "mt-3 block w-full border-none bg-white/5 px-3 py-1.5 text-base text-white",
@@ -83,7 +81,7 @@ export const SignIn: React.FC = () => {
                 />
               </Field>
               <Field>
-                <Label className="text-base font-medium text-white">
+                <Label className="text-lg font-medium text-white">
                   Password:
                 </Label>
                 <Input
@@ -100,7 +98,7 @@ export const SignIn: React.FC = () => {
               {error && <div className="error">{error}</div>}
               {isLoading && <div className="warning">Sending request...</div>}
               <Button
-                className="block w-full mx-auto p-3 text-center font-bold text-neutral-800 bg-lime-600 hover:text-neutral-900 hover:bg-neutral-300 transition-all cursor-pointer"
+                className="block w-full mx-auto p-3 text-xl text-center font-bold text-neutral-800 bg-lime-600 hover:text-neutral-900 hover:bg-neutral-300 transition-all cursor-pointer"
                 type="submit"
               >
                 Sign In

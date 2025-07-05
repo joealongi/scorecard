@@ -26,7 +26,7 @@ export default function Navbar() {
 
   return (
     <React.Fragment>
-      <nav className="block relative mb-9 invisible hidden md:visible md:block">
+      <nav className="block relative mb-[9vh] invisible hidden md:visible md:block">
         <ul className="flex flex-row items-center self-center mx-auto space-x-3">
           <li className="flex flex-col justify-self-start mr-9">
             <Link rel="noopener noreferrer" target="_self" to="/">
@@ -42,7 +42,7 @@ export default function Navbar() {
           <NavListHorizontal authenticated={authenticated} />
         </ul>
       </nav>
-      <nav className="block relative mb-9 md:invisible md:hidden">
+      <nav className="block relative mb-[9vh] md:invisible md:hidden">
         <ul className="flex flex-row justify-center items-center self-center">
           <li className="flex flex-col flex-auto justify-self-start">
             <Link rel="noopener noreferrer" target="_self" to="/">
