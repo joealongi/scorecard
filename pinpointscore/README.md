@@ -71,5 +71,5 @@ export default tseslint.config([
 Remove files in gitignore that you want to keep in the repository:
 
 ```bash
-git rm --cached .
+git rm -r --cached .
 ```
