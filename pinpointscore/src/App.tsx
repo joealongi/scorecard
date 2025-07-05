@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import { AppRoutes } from "./AppRoutes";
 
 import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+import Copyright from "./components/Copyright";
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
           <div className="flex flex-col flex-auto min-w-0 mt-3 px-3 md:px-0">
             <Navbar />
             <AppRoutes />
-            <Footer />
+            <Copyright />
           </div>
         </main>
       </BrowserRouter>

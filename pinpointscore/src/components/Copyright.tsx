@@ -1,10 +1,10 @@
 import * as React from "react";
 
-export default function Footer() {
+export default function Copyright() {
   return (
     <React.Fragment>
-      <footer className="absolute bottom-9 block mt-auto text-xs uppercase text-neutral-300">
-        <p className="flex flex-col md:flex-row flex-auto my-3 text-xs subpixel-antialiased font-light text-left uppercase">
+      <footer className="absolute bottom-9 block mt-auto text-xs subpixel-antialiased font-light text-left uppercase text-neutral-300 transition-all">
+        <p className="flex flex-col md:flex-row flex-auto my-3">
           <span>
             © {new Date()?.getFullYear()} Availing Inc. All rights
             reserved.{" "}
@@ -12,7 +12,7 @@ export default function Footer() {
           <span className="mx-3 invisible md:visible">|</span>
           <span>
             <a
-              className="transition-all text-xs subpixel-antialiased font-light text-left uppercase"
+              className=""
               rel="noopener noreferrer"
               target="_blank"
               href="https://availing.io/privacy"
@@ -23,7 +23,7 @@ export default function Footer() {
           <span className="mx-3 invisible md:visible">|</span>
           <span>
             <a
-              className="transition-all text-xs subpixel-antialiased font-light text-left uppercase"
+              className=""
               rel="noopener noreferrer"
               target="_blank"
               href="mailto:contact@availing.io"
