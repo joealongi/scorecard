@@ -55,7 +55,7 @@ export default function Navbar() {
               />
             </Link>
           </li>
-          <li className="flex flex-col justify-self-end">
+          <li className="flex flex-col justify-self-end  bg-neutral-800">
             <Link
               rel="noopener noreferrer"
               target="_self"
@@ -63,8 +63,8 @@ export default function Navbar() {
               onClick={() => setToggle(!toggle)}
             >
               <img
+                className="m-1 p-1"
                 src={PinpointscoreMenu}
-                className="menu"
                 alt="Pinpointscore menu"
                 height={30}
                 width={30}
