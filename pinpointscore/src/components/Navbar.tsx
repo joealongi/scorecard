@@ -20,21 +20,12 @@ export default function Navbar() {
     // Close the menu when clicking or moving the mouse outside of it
     const main = document?.querySelector("#main");
     if (main) {
-      // Desktop
       main.addEventListener("mouseenter", () => {
         setOpen(false);
       });
       main.addEventListener("click", () => {
         setOpen(false);
       });
-
-      // // Mobile
-      // main.addEventListener("touchstart", () => {
-      //   setOpen(false);
-      // });
-      // main.addEventListener("touchend", () => {
-      //   setOpen(false);
-      // });
     }
 
     return () => {
@@ -96,7 +87,7 @@ export default function Navbar() {
           {open ? (
             <div
               id="menu"
-              className="absolute h-auto w-full mt-3 py-3 px-3 bg-neutral-900 shadow-xl transition-all"
+              className="z-30 absolute h-auto w-full mt-3 py-3 px-3 bg-neutral-900 shadow-xl transition-all"
             >
               <ul className="flex flex-col space-y-3 mx-auto">
                 <NavList
