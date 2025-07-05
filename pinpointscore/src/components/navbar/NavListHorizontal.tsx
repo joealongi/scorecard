@@ -31,6 +31,16 @@ export default function NavListHorizontal({
           About
         </Link>
       </li>
+      <li>
+        <Link
+          className="flex flex-col flex-auto justify-self-start w-full mx-auto p-3 text-xl text-center text-neutral-300  hover:text-lime-600  transition-all"
+          rel="noopener noreferrer"
+          target="_self"
+          to="/dashboard"
+        >
+          Dashboard
+        </Link>
+      </li>
       <li className="flex flex-col flex-auto justify-self-end"></li>
       {authenticated ? (
         <React.Fragment></React.Fragment>

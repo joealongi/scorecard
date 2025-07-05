@@ -1,3 +1,5 @@
+import * as React from "react";
+
 import { BrowserRouter } from "react-router-dom";
 import { AppRoutes } from "./AppRoutes";
 
@@ -6,7 +8,7 @@ import Footer from "./components/Footer";
 
 function App() {
   return (
-    <>
+    <React.Fragment>
       <BrowserRouter>
         <main className="max-w-6xl mt-9 mx-9 xl:mx-auto ">
           <div className="flex flex-col flex-auto min-w-0 mt-3 px-3 md:px-0">
@@ -16,7 +18,7 @@ function App() {
           </div>
         </main>
       </BrowserRouter>
-    </>
+    </React.Fragment>
   );
 }
 

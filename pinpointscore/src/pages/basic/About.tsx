@@ -1,6 +1,8 @@
+import * as React from "react";
+
 export default function About() {
   return (
-    <>
+    <React.Fragment>
       <section>
         <h1 className="mx-auto text-3xl md:text-6xl font-bold subpixel-antialiased text-neutral-300">
           About
@@ -15,6 +17,6 @@ export default function About() {
           scorecards and hello to a smarter way to play golf!
         </p>
       </section>
-    </>
+    </React.Fragment>
   );
 }

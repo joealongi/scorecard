@@ -44,8 +44,7 @@ export const SignIn: React.FC = () => {
         grant_type: "password",
         password: password,
       });
-      // navigate("/user", { state: res3 });
-      navigate("/", { state: res3 });
+      navigate("/dashboard", { state: res3 });
     } catch (err) {
       console.log("Submitting sign in form", err);
       setError(

@@ -36,6 +36,17 @@ export default function NavListVertical({
             About
           </Link>
         </li>
+        <li>
+          <Link
+            className="block w-full mx-auto p-3 text-center text-neutral-300 bg-neutral-600 hover:text-neutral-900 hover:bg-neutral-300 transition-all"
+            rel="noopener noreferrer"
+            target="_self"
+            to="/about"
+            onClick={() => handleToggle()}
+          >
+            Dashboard
+          </Link>
+        </li>
         <hr />
         {authenticated ? (
           <React.Fragment></React.Fragment>

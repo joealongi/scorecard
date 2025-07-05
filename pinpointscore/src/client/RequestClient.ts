@@ -16,7 +16,7 @@ export const postRequest = async (endpoint: string, body: unknown) => {
         headers: {
           "Content-Type": "application/json",
         },
-      }
+      },
     );
     return data;
   } catch (error) {
