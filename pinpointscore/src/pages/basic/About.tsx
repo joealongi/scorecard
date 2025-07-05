@@ -2,10 +2,10 @@ export default function About() {
   return (
     <>
       <section>
-        <h1 className="mx-auto text-3xl md:text-6xl font-light subpixel-antialiased text-neutral-300">
+        <h1 className="mx-auto text-3xl md:text-6xl font-bold subpixel-antialiased text-neutral-300">
           About
         </h1>
-        <p className="my-3 md:my-9 mx-auto text-md md:text-lg font-extralight subpixel-antialiased">
+        <p className="my-3 md:my-9 mx-auto text-xl md:text-3xl font-extralight subpixel-antialiased">
           Pinpointscore is a golf application through and through, designed to
           help you keep track of your golf game from tee box to green. Whether
           you&apos;re a seasoned golfer or just starting out, this app is your

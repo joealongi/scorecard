@@ -33,9 +33,11 @@ export default function NavListHorizontal({
       </li>
       <li className="flex flex-col flex-auto justify-self-end"></li>
       {authenticated ? (
+        <React.Fragment></React.Fragment>
+      ) : (
         <li>
           <Link
-            className="block w-full mx-auto py-3 px-9 text-center text-neutral-900 bg-neutral-300  hover:bg-lime-600 transition-all"
+            className="block w-full mx-auto py-3 px-9 text-center text-neutral-900 bg-neutral-300  hover:bg-lime-600 transition-all font-bold"
             rel="noopener noreferrer"
             target="_self"
             to="/signup"
@@ -43,18 +45,16 @@ export default function NavListHorizontal({
             Sign Up
           </Link>
         </li>
-      ) : (
-        <React.Fragment></React.Fragment>
       )}
       {authenticated ? (
         <li className="flex flex-col justify-self-end">
           <Link
             rel="noopener noreferrer"
             target="_self"
-            to="/signin"
-            className="block w-full mx-auto py-3 px-9 text-center text-neutral-800 bg-lime-600 hover:text-neutral-900 hover:bg-neutral-300 transition-all"
+            to="/"
+            className="block w-full mx-auto py-3 px-9 text-center text-neutral-800 bg-lime-600 hover:text-neutral-900 hover:bg-neutral-300 transition-all font-bold"
           >
-            Sign In
+            Sign Out
           </Link>
         </li>
       ) : (
@@ -62,10 +62,10 @@ export default function NavListHorizontal({
           <Link
             rel="noopener noreferrer"
             target="_self"
-            to="/"
-            className="block w-full mx-auto py-3 px-9 text-center text-neutral-800 bg-lime-600 hover:text-neutral-900 hover:bg-neutral-300 transition-all"
+            to="/signin"
+            className="block w-full mx-auto py-3 px-9 text-center text-neutral-800 bg-lime-600 hover:text-neutral-900 hover:bg-neutral-300 transition-all font-bold"
           >
-            Sign Out
+            Sign In
           </Link>
         </li>
       )}

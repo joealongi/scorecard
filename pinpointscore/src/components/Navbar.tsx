@@ -18,8 +18,8 @@ export default function Navbar() {
   React.useEffect(() => {
     const authentication = false;
     return () => {
-      if (!authentication) {
-        setAuthenticated(false);
+      if (authentication) {
+        setAuthenticated(true);
       }
     };
   }, []);
