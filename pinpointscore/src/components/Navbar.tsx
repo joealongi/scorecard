@@ -4,8 +4,7 @@ import { Link } from "react-router-dom";
 
 import Pinpointscore from "../assets/pinpointscore.svg";
 import PinpointscoreMenu from "../assets/pinpointscore-menu.svg";
-import NavListHorizontal from "./navbar/NavListHorizontal";
-import NavListVertical from "./navbar/NavListVertical";
+import NavList from "./navbar/NavList";
 
 export default function Navbar() {
   const [authenticated, setAuthenticated] = React.useState(false);
@@ -39,7 +38,7 @@ export default function Navbar() {
               />
             </Link>
           </li>
-          <NavListHorizontal authenticated={authenticated} />
+          <NavList authenticated={authenticated} handleToggle={handleToggle} />
         </ul>
       </nav>
       <nav className="block relative mb-[9vh] md:invisible md:hidden">
@@ -74,10 +73,12 @@ export default function Navbar() {
         </ul>
         {toggle ? (
           <div className="absolute h-auto w-full mt-3 py-3 px-3 bg-neutral-900 shadow-xl transition-all">
-            <NavListVertical
-              authenticated={authenticated}
-              handleToggle={handleToggle}
-            />
+            <ul className="flex flex-col space-y-3 mx-auto">
+              <NavList
+                authenticated={authenticated}
+                handleToggle={handleToggle}
+              />
+            </ul>
           </div>
         ) : (
           <React.Fragment></React.Fragment>
