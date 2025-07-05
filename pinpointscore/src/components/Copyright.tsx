@@ -3,7 +3,7 @@ import * as React from "react";
 export default function Copyright() {
   return (
     <React.Fragment>
-      <footer className="absolute bottom-9 block mt-auto text-xs subpixel-antialiased font-light text-left uppercase text-neutral-300">
+      <footer className="relative sm:absolute bottom-0 sm:bottom-9 block mt-[9vh] sm:mt-auto text-xs subpixel-antialiased font-light text-left uppercase text-neutral-300">
         <p className="flex flex-col md:flex-row flex-auto my-3">
           <span>
             © {new Date()?.getFullYear()} Availing Inc. All rights

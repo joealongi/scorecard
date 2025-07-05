@@ -4,9 +4,11 @@ export default function About() {
   return (
     <React.Fragment>
       <section>
+        {/* Todo: Make this a component */}
         <h1 className="mx-auto text-3xl md:text-6xl font-bold subpixel-antialiased text-neutral-300">
           About
         </h1>
+        {/* Todo: Make this a component */}
         <p className="my-3 md:my-9 mx-auto text-xl md:text-3xl font-extralight subpixel-antialiased">
           Pinpointscore is a golf application through and through, designed to
           help you keep track of your golf game from tee box to green. Whether
