@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 
 interface NavListProps {
   authenticated: boolean;
-  handleToggle: () => void;
+  handleOpen: () => void;
 }
 
 export default function NavList({
   authenticated,
-  handleToggle,
+  handleOpen,
 }: Readonly<NavListProps>) {
   return (
     <React.Fragment>
@@ -19,7 +19,7 @@ export default function NavList({
           rel="noopener noreferrer"
           target="_self"
           to="/"
-          onClick={() => handleToggle()}
+          onClick={() => handleOpen()}
         >
           Home
         </Link>
@@ -30,7 +30,7 @@ export default function NavList({
           rel="noopener noreferrer"
           target="_self"
           to="/about"
-          onClick={() => handleToggle()}
+          onClick={() => handleOpen()}
         >
           About
         </Link>
@@ -44,7 +44,7 @@ export default function NavList({
             rel="noopener noreferrer"
             target="_self"
             to="/dashboard"
-            onClick={() => handleToggle()}
+            onClick={() => handleOpen()}
           >
             Dashboard
           </Link>
@@ -60,7 +60,7 @@ export default function NavList({
             rel="noopener noreferrer"
             target="_self"
             to="/signup"
-            onClick={() => handleToggle()}
+            onClick={() => handleOpen()}
           >
             Sign Up
           </Link>
@@ -73,7 +73,7 @@ export default function NavList({
             target="_self"
             to="/"
             className="block w-full mx-auto py-3 px-9 text-center text-neutral-800 bg-lime-600 hover:text-neutral-900 hover:bg-neutral-300 transition-all font-bold"
-            onClick={() => handleToggle()}
+            onClick={() => handleOpen()}
           >
             Sign Out
           </Link>
@@ -85,7 +85,7 @@ export default function NavList({
             target="_self"
             to="/signin"
             className="block w-full mx-auto py-3 px-9 text-center text-neutral-800 bg-lime-600 hover:text-neutral-900 hover:bg-neutral-300 transition-all font-bold"
-            onClick={() => handleToggle()}
+            onClick={() => handleOpen()}
           >
             Sign In
           </Link>

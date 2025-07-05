@@ -8,14 +8,51 @@ import NavList from "./navbar/NavList";
 
 export default function Navbar() {
   const [authenticated, setAuthenticated] = React.useState(false);
-  const [toggle, setToggle] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
 
-  const handleToggle = () => {
-    setToggle(!toggle);
+  const handleOpen = () => {
+    setOpen(!open);
   };
 
   React.useEffect(() => {
     const authentication = false;
+
+    // Close the menu when clicking or moving the mouse outside of it
+    const main = document?.querySelector("#main");
+    if (main) {
+      main.addEventListener("mouseenter", () => {
+        setOpen(false);
+      });
+      main.addEventListener("click", () => {
+        setOpen(false);
+      });
+      main.addEventListener("mousedown", () => {
+        setOpen(false);
+      });
+      main.addEventListener("mouseup", () => {
+        setOpen(false);
+      });
+    }
+    // Close the menu when the mouse leaves or clicks the menu wrapper
+    const wrapper = document?.querySelector("#menu");
+    if (wrapper) {
+      wrapper.addEventListener("mouseleave", () => {
+        setOpen(false);
+      });
+      wrapper.addEventListener("mouseout", () => {
+        setOpen(false);
+      });
+      wrapper.addEventListener("click", () => {
+        setOpen(false);
+      });
+      wrapper.addEventListener("mousedown", () => {
+        setOpen(false);
+      });
+      wrapper.addEventListener("mouseup", () => {
+        setOpen(false);
+      });
+    }
+
     return () => {
       if (authentication) {
         setAuthenticated(true);
@@ -38,7 +75,7 @@ export default function Navbar() {
               />
             </Link>
           </li>
-          <NavList authenticated={authenticated} handleToggle={handleToggle} />
+          <NavList authenticated={authenticated} handleOpen={handleOpen} />
         </ul>
       </nav>
       <nav className="block relative mb-[9vh] md:invisible md:hidden">
@@ -59,7 +96,7 @@ export default function Navbar() {
               rel="noopener noreferrer"
               target="_self"
               to="/"
-              onClick={() => setToggle(!toggle)}
+              onClick={handleOpen}
             >
               <img
                 className="m-1 p-1"
@@ -71,18 +108,23 @@ export default function Navbar() {
             </Link>
           </li>
         </ul>
-        {toggle ? (
-          <div className="absolute h-auto w-full mt-3 py-3 px-3 bg-neutral-900 shadow-xl transition-all">
-            <ul className="flex flex-col space-y-3 mx-auto">
-              <NavList
-                authenticated={authenticated}
-                handleToggle={handleToggle}
-              />
-            </ul>
-          </div>
-        ) : (
-          <React.Fragment></React.Fragment>
-        )}
+        <div id="menu-wrapper" className="block relative">
+          {open ? (
+            <div
+              id="menu"
+              className="absolute h-auto w-full mt-3 py-3 px-3 bg-neutral-900 shadow-xl transition-all"
+            >
+              <ul className="flex flex-col space-y-3 mx-auto">
+                <NavList
+                  authenticated={authenticated}
+                  handleOpen={handleOpen}
+                />
+              </ul>
+            </div>
+          ) : (
+            <React.Fragment></React.Fragment>
+          )}
+        </div>
       </nav>
     </React.Fragment>
   );
