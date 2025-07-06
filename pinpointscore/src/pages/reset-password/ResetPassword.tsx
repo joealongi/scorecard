@@ -120,7 +120,7 @@ export const ResetPassword: React.FC = () => {
         {/* Collect username to initiate password reset flow */}
         {step === 1 && (
           <section className="reset-password-form">
-            <h1 className="mx-auto text-3xl md:text-6xl font-bold subpixel-antialiased">
+            <h1 className="mx-auto text-3xl md:text-6xl font-bold subpixel-antialiased text-neutral-300">
               Reset Password
             </h1>
             <h3 className="my-3 md:my-9 mx-auto text-xl md:text-3xl font-light subpixel-antialiased">
@@ -130,7 +130,7 @@ export const ResetPassword: React.FC = () => {
               <div className="my-3 md:my-9 mx-auto">
                 <Fieldset className="space-y-6">
                   <Field>
-                    <Label className="text-lg font-medium text-white">
+                    <Label className="mx-auto text-lg font-medium subpixel-antialiased text-neutral-300">
                       Username:
                     </Label>
                     <Input
@@ -162,7 +162,7 @@ export const ResetPassword: React.FC = () => {
         {/* Collect OTP */}
         {step === 2 && (
           <section className="reset-password-form">
-            <h1 className="mx-auto text-3xl md:text-6xl font-bold subpixel-antialiased">
+            <h1 className="mx-auto text-3xl md:text-6xl font-bold subpixel-antialiased text-neutral-300">
               Reset Password
             </h1>
             <h3 className="my-3 md:my-9 mx-auto text-xl md:text-3xl font-light subpixel-antialiased">
@@ -173,7 +173,7 @@ export const ResetPassword: React.FC = () => {
               <div className="my-3 md:my-9 mx-auto">
                 <Fieldset className="space-y-6">
                   <Field>
-                    <Label className="text-lg font-medium text-white">
+                    <Label className="mx-auto text-lg font-medium subpixel-antialiased text-neutral-300">
                       One Time Code:
                     </Label>
                     <Input
@@ -206,7 +206,7 @@ export const ResetPassword: React.FC = () => {
         {/* Collect new password */}
         {step === 3 && (
           <section className="reset-password-form">
-            <h1 className="mx-auto text-3xl md:text-6xl font-bold subpixel-antialiased">
+            <h1 className="mx-auto text-3xl md:text-6xl font-bold subpixel-antialiased text-neutral-300">
               Reset Password
             </h1>
             <h3 className="my-3 md:my-9 mx-auto text-xl md:text-3xl font-light subpixel-antialiased">
@@ -216,7 +216,7 @@ export const ResetPassword: React.FC = () => {
               <div className="my-3 md:my-9 mx-auto">
                 <Fieldset className="space-y-6">
                   <Field>
-                    <Label className="text-lg font-medium text-white">
+                    <Label className="mx-auto text-lg font-medium subpixel-antialiased text-neutral-300">
                       New Password:
                     </Label>
                     <Input
@@ -248,7 +248,7 @@ export const ResetPassword: React.FC = () => {
         {/* Report success after password reset is successful */}
         {step === 4 && (
           <section className="sign-up-form">
-            <h1 className="mx-auto text-3xl md:text-6xl font-bold subpixel-antialiased">
+            <h1 className="mx-auto text-3xl md:text-6xl font-bold subpixel-antialiased text-neutral-300">
               Reset Password
             </h1>
             <h3 className="my-3 md:my-9 mx-auto text-xl md:text-3xl font-light subpixel-antialiased">

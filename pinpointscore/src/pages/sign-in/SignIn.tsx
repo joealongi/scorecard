@@ -58,7 +58,7 @@ export const SignIn: React.FC = () => {
   return (
     <>
       <section className="sign-in-form">
-        <h1 className="mx-auto text-3xl md:text-6xl font-bold subpixel-antialiased text-neutral-300">
+        <h1 className="mx-auto text-3xl md:text-6xl font-bold subpixel-antialiased text-neutral-300 text-neutral-300">
           Sign In
         </h1>
         <h3 className="my-3 md:my-9 mx-auto text-xl md:text-3xl font-light subpixel-antialiased">
@@ -68,7 +68,9 @@ export const SignIn: React.FC = () => {
           <div className="my-3 md:my-9 mx-auto">
             <Fieldset className="space-y-6">
               <Field>
-                <Label className="text-lg font-medium text-white">Email:</Label>
+                <Label className="mx-auto text-lg font-medium subpixel-antialiased text-neutral-300">
+                  Email:
+                </Label>
                 <Input
                   className={clsx(
                     "mt-3 block w-full border-none bg-white/5 px-3 py-1.5 text-base text-white",
@@ -80,7 +82,7 @@ export const SignIn: React.FC = () => {
                 />
               </Field>
               <Field>
-                <Label className="text-lg font-medium text-white">
+                <Label className="mx-auto text-lg font-medium subpixel-antialiased text-neutral-300">
                   Password:
                 </Label>
                 <Input

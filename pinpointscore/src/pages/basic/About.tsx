@@ -5,7 +5,7 @@ export default function About() {
     <React.Fragment>
       <section>
         {/* Todo: Make this a component */}
-        <h1 className="mx-auto text-3xl md:text-6xl font-bold subpixel-antialiased text-neutral-300">
+        <h1 className="mx-auto text-3xl md:text-6xl font-bold subpixel-antialiased text-neutral-300 text-neutral-300">
           About
         </h1>
         {/* Todo: Make this a component */}
