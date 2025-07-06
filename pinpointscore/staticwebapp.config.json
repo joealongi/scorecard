@@ -1,4 +1,8 @@
 {
+  "navigationFallback": {
+    "rewrite": "index.html",
+    "exclude": ["/images/*.{png,jpg,gif,ico}", "/*.{css,scss,js}"]
+  },
   "responseOverrides": {
     "400": {
       "redirect": "https://pinpointscore.golf",
