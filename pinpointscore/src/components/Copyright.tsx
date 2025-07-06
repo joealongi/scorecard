@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import { Link } from "react-router-dom";
+
 export default function Copyright() {
   return (
     <React.Fragment>
@@ -11,25 +13,25 @@ export default function Copyright() {
           </span>
           <span className="mx-3 invisible md:visible">|</span>
           <span>
-            <a
+            <Link
               className="hover:text-neutral-600 transition-all"
               rel="noopener noreferrer"
               target="_blank"
-              href="https://availing.io/privacy"
+              to="https://availing.io/privacy"
             >
               Privacy policy
-            </a>
+            </Link>
           </span>
           <span className="mx-3 invisible md:visible">|</span>
           <span>
-            <a
+            <Link
               className="hover:text-neutral-600 transition-all"
               rel="noopener noreferrer"
               target="_blank"
-              href="mailto:contact@availing.io"
+              to="mailto:contact@availing.io"
             >
               contact@availing.io
-            </a>
+            </Link>
           </span>
         </p>
       </footer>
