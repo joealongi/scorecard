@@ -68,6 +68,11 @@ app.post("/proxy", async (request: Request<any>, response: Response<any>) => {
   }
 });
 
+// 404 / Match All - Last Endpoint Ever
+app.get("*", (request: Request, response: Response) => {
+  response.status(404).sendFile(path.join(__dirname, "/index.html"));
+});
+
 // Application Start
 app
   .listen(process.env.PORT ?? 8080, () => {
