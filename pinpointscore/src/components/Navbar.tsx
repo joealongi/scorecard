@@ -20,10 +20,15 @@ export default function Navbar() {
     // Close the menu when clicking or moving the mouse outside of it
     const main = document?.querySelector("#main");
     if (main) {
+      // Desktop
       main.addEventListener("mouseenter", () => {
         setOpen(false);
       });
       main.addEventListener("click", () => {
+        setOpen(false);
+      });
+      // Mobile
+      main.addEventListener("touchmove", () => {
         setOpen(false);
       });
     }
