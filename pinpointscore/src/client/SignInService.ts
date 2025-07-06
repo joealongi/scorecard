@@ -1,4 +1,4 @@
-import { postRequest } from "./RequestClient";
+import { postRequest } from "../functions/request";
 import type {
   ChallengeRequest,
   SignInStartRequest,
@@ -32,7 +32,7 @@ export const signInChallenge = async ({
 };
 
 export const signInTokenRequest = async (
-  request: TokenSignInType,
+  request: TokenSignInType
 ): Promise<TokenResponseType> => {
   const payloadExt: TokenRequestType = {
     ...request,
