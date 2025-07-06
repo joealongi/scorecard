@@ -51,7 +51,6 @@ app.get("/", (request: Request, response: Response) => {
 // Proxy Endpoint
 app.post("/proxy", async (request: Request<any>, response: Response<any>) => {
   try {
-    console.log("Received request to proxy:", request.body);
     const base = request?.body?.base;
     const endpoint = request?.body?.endpoint;
     const body = request?.body?.body;
