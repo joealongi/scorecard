@@ -9,27 +9,6 @@ import { post } from "./api/proxy";
 dotenv.config();
 const app = express();
 
-// CORS Middleware  - Before Allowlist
-app.use(
-  cors({
-    origin: ["https://pinpointscore.golf", "http://localhost:5173"],
-    preflightContinue: false,
-    methods: "GET,POST,OPTIONS",
-    optionsSuccessStatus: 200,
-  })
-);
-
-// JSON Parsing Middleware  - Before Allowlist
-app.use(express.json());
-
-// Static File Serving Middleware  - Before Allowlist
-app.use(express.static("public"));
-
-// Health Check Endpoint - Before Allowlist
-app.get("/", (request: Request, response: Response) => {
-  response.status(200).sendFile(path.join(__dirname, "/index.html"));
-});
-
 // Allowlist Middleware
 if (process.env.NODE_ENV !== "development") {
   app.use((request, response, next) => {
@@ -43,6 +22,27 @@ if (process.env.NODE_ENV !== "development") {
     }
   });
 }
+
+// CORS Middleware
+app.use(
+  cors({
+    origin: ["https://pinpointscore.golf", "http://localhost:5173"],
+    preflightContinue: false,
+    methods: "GET,POST,OPTIONS",
+    optionsSuccessStatus: 200,
+  })
+);
+
+// JSON Parsing Middleware
+app.use(express.json());
+
+// Static File Serving Middleware
+app.use(express.static("public"));
+
+// Health Check Endpoint
+app.get("/", (request: Request, response: Response) => {
+  response.status(200).sendFile(path.join(__dirname, "/index.html"));
+});
 
 // Proxy Endpoint
 app.post("/proxy", async (request: Request<any>, response: Response<any>) => {
