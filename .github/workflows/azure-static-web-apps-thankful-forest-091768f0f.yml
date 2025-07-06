@@ -50,6 +50,8 @@ jobs:
           VITE_BASE_API_URL: ${{ secrets.VITE_BASE_API_URL }}
           VITE_PROXY_URL: ${{ secrets.VITE_PROXY_URL }}
           VITE_REDIRECT_URI: ${{ secrets.VITE_REDIRECT_URI }}
+          VITE_PUBLIC_KEY: ${{ secrets.VITE_PUBLIC_KEY }}
+          VITE_PRIVATE_KEY: ${{ secrets.VITE_PRIVATE_KEY }}
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
     runs-on: ubuntu-latest
