@@ -28,11 +28,7 @@ if (process.env.NODE_ENV !== "development") {
 // CORS Middleware
 app.use(
   cors({
-    origin: [
-      "https://pinpointscore.golf",
-      "https://course.pinpointscore.golf",
-      "http://localhost:5173",
-    ],
+    origin: ["https://pinpointscore.golf", "http://localhost:5173"],
     preflightContinue: false,
     methods: "GET,POST,OPTIONS",
     optionsSuccessStatus: 200,
