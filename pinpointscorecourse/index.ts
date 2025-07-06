@@ -4,6 +4,7 @@ import cors from "cors";
 import path from "path";
 
 import { post } from "./api/proxy";
+import { decrypt } from "./utils/security";
 
 // ENV Configuration
 dotenv.config();
@@ -53,9 +54,16 @@ app.get("/", (request: Request, response: Response) => {
 // Proxy Endpoint
 app.post("/proxy", async (request: Request<any>, response: Response<any>) => {
   try {
-    const base = request?.body?.base;
-    const endpoint = request?.body?.endpoint;
-    const body = request?.body?.body;
+    const base64 = Buffer.from(request?.body?.encrypted, "base64");
+    const decrypted = await decrypt(
+      base64.buffer.slice(
+        base64.byteOffset,
+        base64.byteOffset + base64.byteLength
+      )
+    );
+    const base = decrypted?.base;
+    const endpoint = decrypted?.endpoint;
+    const body = decrypted?.body;
     const resp = await post(base, endpoint, body);
     if (resp) {
       response.status(200).send({ ...resp });
