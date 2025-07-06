@@ -28,7 +28,11 @@ if (process.env.NODE_ENV !== "development") {
 // CORS Middleware
 app.use(
   cors({
-    origin: ["https://pinpointscore.golf", "http://localhost:5173"],
+    origin: [
+      "https://pinpointscore.golf",
+      "https://course.pinpointscore.golf",
+      "http://localhost:5173",
+    ],
     preflightContinue: false,
     methods: "GET,POST,OPTIONS",
     optionsSuccessStatus: 200,
@@ -63,11 +67,6 @@ app.post("/proxy", async (request: Request<any>, response: Response<any>) => {
     }
     response.status(400).send();
   }
-});
-
-// 404 / Match All - Last Endpoint Ever
-app.get("*", (request: Request, response: Response) => {
-  response.status(404).sendFile(path.join(__dirname, "/index.html"));
 });
 
 // Application Start
