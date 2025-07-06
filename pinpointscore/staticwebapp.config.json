@@ -49,6 +49,10 @@
       ],
       "redirect": "https://pinpointscore.golf",
       "statusCode": 301
+    },
+    {
+      "route": "/about",
+      "rewrite": "https://pinpointscore.golf/about"
     }
   ]
 }
