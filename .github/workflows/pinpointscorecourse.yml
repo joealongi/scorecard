@@ -36,6 +36,9 @@ jobs:
           tags: pinpointscore.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_665704a1cd834ca78c9d065ca7c3d7b0 }}/pinpointscore/course:${{ github.sha }}
           file: ./pinpointscorecourse/Dockerfile
           context: ./pinpointscorecourse
+          build-args: |
+            PUBLIC_KEY=${{ secrets.VITE_PUBLIC_KEY }}
+            PRIVATE_KEY=${{ secrets.VITE_PRIVATE_KEY }}
 
   deploy:
     runs-on: ubuntu-latest
