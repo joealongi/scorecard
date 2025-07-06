@@ -1,6 +1,6 @@
 // User.tsx
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router";
 import { parseJwt } from "../../client/Utils";
 
 export const UserInfo: React.FC = () => {

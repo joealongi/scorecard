@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router";
 
 import Pinpointscore from "../assets/pinpointscore.svg";
 import PinpointscoreMenu from "../assets/pinpointscore-menu.svg";
@@ -40,7 +40,7 @@ export default function Navbar() {
       <nav className="relative hidden invisible mb-0 md:block md:visible md:mb-[9vh]">
         <ul className="flex flex-row items-center self-center mx-auto space-x-3">
           <li className="flex flex-col justify-self-start mr-9">
-            <Link rel="noopener noreferrer" target="_self" to="/">
+            <NavLink rel="noopener noreferrer" target="_self" to="/">
               <img
                 src={Pinpointscore}
                 className="logo"
@@ -48,7 +48,7 @@ export default function Navbar() {
                 height={30}
                 width={30}
               />
-            </Link>
+            </NavLink>
           </li>
           <NavList authenticated={authenticated} handleOpen={handleOpen} />
         </ul>
@@ -56,7 +56,7 @@ export default function Navbar() {
       <nav className="relative block visible mb-[9vh] md:hidden md:invisible md:mb-0">
         <ul className="flex flex-row justify-center items-center self-center">
           <li className="flex flex-col flex-auto justify-self-start">
-            <Link rel="noopener noreferrer" target="_self" to="/">
+            <NavLink rel="noopener noreferrer" target="_self" to="/">
               <img
                 src={Pinpointscore}
                 className="logo"
@@ -64,10 +64,10 @@ export default function Navbar() {
                 height={30}
                 width={30}
               />
-            </Link>
+            </NavLink>
           </li>
           <li className="flex flex-col justify-self-end  bg-neutral-800">
-            <Link
+            <NavLink
               rel="noopener noreferrer"
               target="_self"
               to="/"
@@ -80,7 +80,7 @@ export default function Navbar() {
                 height={30}
                 width={30}
               />
-            </Link>
+            </NavLink>
           </li>
         </ul>
         <div id="menu-wrapper" className="block relative">

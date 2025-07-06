@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router";
 
 interface NavListProps {
   authenticated: boolean;
@@ -14,7 +14,7 @@ export default function NavList({
   return (
     <React.Fragment>
       <li>
-        <Link
+        <NavLink
           className="block md:flex md:flex-col md:flex-auto md:justify-self-start w-full mx-auto p-3 text-xl text-center text-neutral-300  hover:text-lime-600  transition-all"
           rel="noopener noreferrer"
           target="_self"
@@ -22,10 +22,10 @@ export default function NavList({
           onClick={() => handleOpen()}
         >
           Home
-        </Link>
+        </NavLink>
       </li>
       <li>
-        <Link
+        <NavLink
           className="block md:flex md:flex-col md:flex-auto md:justify-self-start w-full mx-auto p-3 text-xl text-center text-neutral-300  hover:text-lime-600  transition-all"
           rel="noopener noreferrer"
           target="_self"
@@ -33,13 +33,13 @@ export default function NavList({
           onClick={() => handleOpen()}
         >
           About
-        </Link>
+        </NavLink>
       </li>
       {authenticated ? (
         <React.Fragment></React.Fragment>
       ) : (
         <li>
-          <Link
+          <NavLink
             className="block md:flex md:flex-col md:flex-auto md:justify-self-start w-full mx-auto p-3 text-xl text-center text-neutral-300  hover:text-lime-600  transition-all"
             rel="noopener noreferrer"
             target="_self"
@@ -47,7 +47,7 @@ export default function NavList({
             onClick={() => handleOpen()}
           >
             Dashboard
-          </Link>
+          </NavLink>
         </li>
       )}
       <li className="flex flex-col flex-auto justify-self-end"></li>
@@ -55,7 +55,7 @@ export default function NavList({
         <React.Fragment></React.Fragment>
       ) : (
         <li>
-          <Link
+          <NavLink
             className="block w-full mx-auto py-3 px-9 text-center text-neutral-900 bg-neutral-300  hover:bg-lime-600 transition-all font-bold"
             rel="noopener noreferrer"
             target="_self"
@@ -63,12 +63,12 @@ export default function NavList({
             onClick={() => handleOpen()}
           >
             Sign Up
-          </Link>
+          </NavLink>
         </li>
       )}
       {authenticated ? (
         <li className="flex flex-col justify-self-end">
-          <Link
+          <NavLink
             rel="noopener noreferrer"
             target="_self"
             to="/"
@@ -76,11 +76,11 @@ export default function NavList({
             onClick={() => handleOpen()}
           >
             Sign Out
-          </Link>
+          </NavLink>
         </li>
       ) : (
         <li className="flex flex-col justify-self-end">
-          <Link
+          <NavLink
             rel="noopener noreferrer"
             target="_self"
             to="/signin"
@@ -88,7 +88,7 @@ export default function NavList({
             onClick={() => handleOpen()}
           >
             Sign In
-          </Link>
+          </NavLink>
         </li>
       )}
     </React.Fragment>

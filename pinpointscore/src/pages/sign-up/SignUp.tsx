@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 import { signupChallenge, signupStart } from "../../client/SignUpService";
 import type { ErrorResponseType } from "../../client/ResponseTypes";
@@ -44,14 +44,14 @@ export const SignUp: React.FC = () => {
       });
       if (res1?.error === "user_already_exists") {
         setError(
-          "An error occurred during sign up, it looks like you have an account with this email address.",
+          "An error occurred during sign up, it looks like you have an account with this email address."
         );
         setIsloading(false);
         return;
       }
       if (res1?.error === "invalid_grant") {
         setError(
-          "An error occurred during sign up, your new password is not complex enough.",
+          "An error occurred during sign up, your new password is not complex enough."
         );
         setIsloading(false);
         return;
@@ -64,7 +64,7 @@ export const SignUp: React.FC = () => {
       console.log("Submitting sign up form", err);
       setError(
         "An error occurred during sign up " +
-          (err as ErrorResponseType).error_description,
+          (err as ErrorResponseType).error_description
       );
     } finally {
       setIsloading(false);
@@ -90,7 +90,7 @@ export const SignUp: React.FC = () => {
                 <Input
                   className={clsx(
                     "mt-3 block w-full border-none bg-white/5 px-3 py-1.5 text-base text-white",
-                    "focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-white/25",
+                    "focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-white/25"
                   )}
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
@@ -102,7 +102,7 @@ export const SignUp: React.FC = () => {
                 <Input
                   className={clsx(
                     "mt-3 block w-full border-none bg-white/5 px-3 py-1.5 text-base text-white",
-                    "focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-white/25",
+                    "focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-white/25"
                   )}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -116,7 +116,7 @@ export const SignUp: React.FC = () => {
                 <Input
                   className={clsx(
                     "mt-3 block w-full border-none bg-white/5 px-3 py-1.5 text-base text-white",
-                    "focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-white/25",
+                    "focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-white/25"
                   )}
                   value={name}
                   onChange={(e) => setName(e.target.value)}
@@ -130,7 +130,7 @@ export const SignUp: React.FC = () => {
                 <Input
                   className={clsx(
                     "mt-3 block w-full border-none bg-white/5 px-3 py-1.5 text-base text-white",
-                    "focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-white/25",
+                    "focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-white/25"
                   )}
                   value={surname}
                   onChange={(e) => setSurname(e.target.value)}
@@ -144,7 +144,7 @@ export const SignUp: React.FC = () => {
                 <Input
                   className={clsx(
                     "mt-3 block w-full border-none bg-white/5 px-3 py-1.5 text-base text-white",
-                    "focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-white/25",
+                    "focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-white/25"
                   )}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}

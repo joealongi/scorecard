@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router";
 
 export const SignUpCompleted: React.FC = () => {
   return (
@@ -13,14 +13,14 @@ export const SignUpCompleted: React.FC = () => {
           Your account has been successfully created!
         </h3>
         <div className="my-3 md:my-9 mx-auto">
-          <Link
+          <NavLink
             rel="noopener noreferrer"
             target="_self"
             to="/signin"
             className="block w-full mx-auto p-3 text-xl text-center font-bold text-neutral-800 bg-lime-600 hover:text-neutral-900 hover:bg-neutral-300 transition-all cursor-pointer"
           >
             Sign In
-          </Link>
+          </NavLink>
         </div>
       </section>
     </>
