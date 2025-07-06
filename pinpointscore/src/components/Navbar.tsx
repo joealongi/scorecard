@@ -75,7 +75,7 @@ export default function Navbar() {
             <NavLink
               rel="noopener noreferrer"
               target="_self"
-              to="/"
+              to="#"
               onClick={handleOpen}
             >
               <img
