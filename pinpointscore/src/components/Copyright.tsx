@@ -28,6 +28,17 @@ export default function Copyright() {
               className="hover:text-neutral-600 transition-all"
               rel="noopener noreferrer"
               target="_blank"
+              to="https://status.availing.io/"
+            >
+              Service monitor
+            </Link>
+          </span>
+          <span className="mx-3 invisible md:visible">|</span>
+          <span>
+            <Link
+              className="hover:text-neutral-600 transition-all"
+              rel="noopener noreferrer"
+              target="_self"
               to="mailto:contact@availing.io"
             >
               contact@availing.io
