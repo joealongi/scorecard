@@ -18,6 +18,7 @@ COPY --from=build /app/package*.json ./
 COPY --from=build /app/node_modules ./node_modules
 COPY --from=build /app/dist ./dist
 
+# Builds with these then references from the Azure environment variables
 ARG PUBLIC_KEY
 ARG PRIVATE_KEY
 
