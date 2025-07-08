@@ -14,12 +14,12 @@ export const decrypt = async (ciphertext: ArrayBuffer): Promise<any> => {
         hash: "SHA-256",
       },
       false,
-      ["decrypt"],
+      ["decrypt"]
     );
     const decrypted = await crypto?.subtle?.decrypt(
       { name: "RSA-OAEP" },
       privateKey,
-      ciphertext,
+      ciphertext
     );
     const decoder = new TextDecoder();
     const decoded = decoder?.decode(decrypted);

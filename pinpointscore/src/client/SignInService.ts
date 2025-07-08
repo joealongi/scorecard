@@ -32,7 +32,7 @@ export const signInChallenge = async ({
 };
 
 export const signInTokenRequest = async (
-  request: TokenSignInType,
+  request: TokenSignInType
 ): Promise<TokenResponseType> => {
   const payloadExt: TokenRequestType = {
     ...request,

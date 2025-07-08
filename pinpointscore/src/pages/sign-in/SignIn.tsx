@@ -48,7 +48,7 @@ export const SignIn: React.FC = () => {
     } catch (err) {
       console.log("Submitting sign in form", err);
       setError(
-        "An error has occured " + (err as ErrorResponseType).error_description,
+        "An error has occured " + (err as ErrorResponseType).error_description
       );
     } finally {
       setIsloading(false);
@@ -74,7 +74,7 @@ export const SignIn: React.FC = () => {
                 <Input
                   className={clsx(
                     "mt-3 block w-full border-none bg-white/5 px-3 py-1.5 text-base text-white",
-                    "focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-white/25",
+                    "focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-white/25"
                   )}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -88,7 +88,7 @@ export const SignIn: React.FC = () => {
                 <Input
                   className={clsx(
                     "mt-3 block w-full border-none bg-white/5 px-3 py-1.5 text-base text-white",
-                    "focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-white/25",
+                    "focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-white/25"
                   )}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
