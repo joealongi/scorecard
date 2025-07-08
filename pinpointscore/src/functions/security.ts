@@ -1,5 +1,5 @@
 export const encrypt = async (
-  payload: object
+  payload: object,
 ): Promise<ArrayBuffer | undefined> => {
   try {
     const ppk = import.meta.env.VITE_PUBLIC_KEY ?? "";
@@ -8,7 +8,7 @@ export const encrypt = async (
       .replace("-----END PUBLIC KEY-----", "")
       .replace(/\s/g, "");
     const binaryDer = Uint8Array?.from(window?.atob(contents), (c) =>
-      c.charCodeAt(0)
+      c.charCodeAt(0),
     );
     const publicKey = await window?.crypto?.subtle?.importKey(
       "spki",
@@ -18,14 +18,14 @@ export const encrypt = async (
         hash: "SHA-256",
       },
       false,
-      ["encrypt"]
+      ["encrypt"],
     );
     const encoder = new TextEncoder();
     const encoded = encoder.encode(JSON.stringify(payload));
     const ciphertext = await window?.crypto?.subtle?.encrypt(
       { name: "RSA-OAEP" },
       publicKey,
-      encoded
+      encoded,
     );
     return ciphertext;
   } catch (error) {
@@ -41,7 +41,7 @@ export const decrypt = async (ciphertext: ArrayBuffer): Promise<any> => {
       .replace("-----END PRIVATE KEY-----", "")
       .replace(/\s/g, "");
     const binaryDer = Uint8Array?.from(window?.atob(contents), (c) =>
-      c.charCodeAt(0)
+      c.charCodeAt(0),
     );
     const privateKey = await window?.crypto?.subtle?.importKey(
       "pkcs8",
@@ -51,12 +51,12 @@ export const decrypt = async (ciphertext: ArrayBuffer): Promise<any> => {
         hash: "SHA-256",
       },
       false,
-      ["decrypt"]
+      ["decrypt"],
     );
     const decrypted = await window?.crypto?.subtle?.decrypt(
       { name: "RSA-OAEP" },
       privateKey,
-      ciphertext
+      ciphertext,
     );
     const decoder = new TextDecoder();
     const decoded = decoder?.decode(decrypted);
@@ -91,16 +91,16 @@ export const generate = async () => {
         hash: "SHA-256",
       },
       true,
-      ["encrypt", "decrypt"]
+      ["encrypt", "decrypt"],
     );
 
     // Extract Public
     const exportedPublic = await window?.crypto?.subtle?.exportKey(
       "spki",
-      keyPair.publicKey
+      keyPair.publicKey,
     );
     const exportedPublicAsString = String?.fromCharCode(
-      ...new Uint8Array(exportedPublic)
+      ...new Uint8Array(exportedPublic),
     );
     const exportedPublicAsBase64 = window?.btoa(exportedPublicAsString);
     obj["public"] =
@@ -109,10 +109,10 @@ export const generate = async () => {
     // Extract Private
     const exportedPrivate = await window?.crypto?.subtle?.exportKey(
       "pkcs8",
-      keyPair.privateKey
+      keyPair.privateKey,
     );
     const exportedPrivateAsString = String?.fromCharCode(
-      ...new Uint8Array(exportedPrivate)
+      ...new Uint8Array(exportedPrivate),
     );
     const exportedPrivateAsBase64 = window?.btoa(exportedPrivateAsString);
     obj["private"] =

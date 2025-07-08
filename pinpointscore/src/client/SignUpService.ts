@@ -25,7 +25,7 @@ export const signupStart = async (payload: SignUpFormPassword) => {
 
 //handle selecting an authentication method
 export const signupChallenge = async (
-  payload: ChallengeForm
+  payload: ChallengeForm,
 ): Promise<ChallengeResponse> => {
   const payloadExt: SignUpChallengeRequest = {
     client_id: import.meta.env.VITE_CLIENT_ID ?? "",

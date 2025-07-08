@@ -21,7 +21,7 @@ export const resetStart = async ({ username }: { username: string }) => {
 
   return await postRequest(
     `${import.meta.env.VITE_BASE_API_URL ?? ""}/resetpassword/v1.0/start`,
-    payloadExt
+    payloadExt,
   );
 };
 
@@ -38,12 +38,12 @@ export const resetChallenge = async ({
 
   return await postRequest(
     `${import.meta.env.VITE_BASE_API_URL ?? ""}/resetpassword/v1.0/challenge`,
-    payloadExt
+    payloadExt,
   );
 };
 
 export const resetSubmitOTP = async (
-  payload: ChallengeForm
+  payload: ChallengeForm,
 ): Promise<ChallengeResetResponse> => {
   const payloadExt = {
     client_id: import.meta.env.VITE_CLIENT_ID ?? "",
@@ -54,12 +54,12 @@ export const resetSubmitOTP = async (
 
   return await postRequest(
     `${import.meta.env.VITE_BASE_API_URL ?? ""}/resetpassword/v1.0/continue`,
-    payloadExt
+    payloadExt,
   );
 };
 
 export const resetSubmitNewPassword = async (
-  payload: ResetPasswordSubmitForm
+  payload: ResetPasswordSubmitForm,
 ): Promise<ResetPasswordSubmitResponse> => {
   const payloadExt: ResetPasswordSubmitRequest = {
     client_id: import.meta.env.VITE_CLIENT_ID ?? "",
@@ -69,12 +69,12 @@ export const resetSubmitNewPassword = async (
 
   return await postRequest(
     `${import.meta.env.VITE_BASE_API_URL ?? ""}/resetpassword/v1.0/submit`,
-    payloadExt
+    payloadExt,
   );
 };
 
 export const resetPoll = async (
-  continuation_token: string
+  continuation_token: string,
 ): Promise<ChallengeResetResponse> => {
   const payloadExt = {
     client_id: import.meta.env.VITE_CLIENT_ID ?? "",
@@ -84,6 +84,6 @@ export const resetPoll = async (
     `${
       import.meta.env.VITE_BASE_API_URL ?? ""
     }/resetpassword/v1.0/poll_completion`,
-    payloadExt
+    payloadExt,
   );
 };
