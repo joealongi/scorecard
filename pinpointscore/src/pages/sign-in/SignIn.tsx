@@ -17,7 +17,6 @@ export const SignIn: React.FC = () => {
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [isLoading, setIsloading] = useState<boolean>(false);
-
   const navigate = useNavigate();
   const validateEmail = (email: string): boolean => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

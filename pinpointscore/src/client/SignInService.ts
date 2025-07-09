@@ -14,7 +14,10 @@ export const signInStart = async (username: string) => {
     challenge_type: "password oob redirect",
   };
 
-  return await postRequest(`/oauth2/v2.0/initiate`, payloadExt);
+  return await postRequest(
+    `/oauth2/v2.0/initiate`,
+    payloadExt as unknown as { [key: string]: unknown }
+  );
 };
 
 export const signInChallenge = async (continuation_token: string) => {
@@ -24,7 +27,13 @@ export const signInChallenge = async (continuation_token: string) => {
     challenge_type: "password oob redirect",
   };
 
-  return await postRequest(`/oauth2/v2.0/challenge`, payloadExt);
+  return await postRequest(
+    `/oauth2/v2.0/challenge`,
+    payloadExt as unknown as {
+      [key: string]: unknown;
+      continuation_token?: string;
+    }
+  );
 };
 
 export const signInTokenRequest = async (
@@ -45,5 +54,11 @@ export const signInTokenRequest = async (
     payloadExt.oob = request.oob;
   }
 
-  return await postRequest(`/oauth2/v2.0/token`, payloadExt);
+  return await postRequest(
+    `/oauth2/v2.0/token`,
+    payloadExt as unknown as {
+      [key: string]: unknown;
+      continuation_token?: string;
+    }
+  );
 };

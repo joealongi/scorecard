@@ -33,7 +33,13 @@ export const signupChallenge = async (
     continuation_token: payload.continuation_token,
   };
 
-  return await postRequest(`/signup/v1.0/challenge`, payloadExt);
+  return await postRequest(
+    `/signup/v1.0/challenge`,
+    payloadExt as unknown as {
+      [key: string]: unknown;
+      continuation_token?: string;
+    }
+  );
 };
 
 //handle submit one-time passcode

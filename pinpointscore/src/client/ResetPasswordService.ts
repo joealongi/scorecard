@@ -21,7 +21,7 @@ export const resetStart = async ({ username }: { username: string }) => {
 
   return await postRequest(
     `${import.meta.env.VITE_BASE_API_URL ?? ""}/resetpassword/v1.0/start`,
-    payloadExt
+    payloadExt as unknown as { [key: string]: unknown }
   );
 };
 
@@ -38,7 +38,7 @@ export const resetChallenge = async ({
 
   return await postRequest(
     `${import.meta.env.VITE_BASE_API_URL ?? ""}/resetpassword/v1.0/challenge`,
-    payloadExt
+    payloadExt as unknown as { [key: string]: unknown }
   );
 };
 
@@ -69,7 +69,7 @@ export const resetSubmitNewPassword = async (
 
   return await postRequest(
     `${import.meta.env.VITE_BASE_API_URL ?? ""}/resetpassword/v1.0/submit`,
-    payloadExt
+    payloadExt as unknown as { [key: string]: unknown }
   );
 };
 

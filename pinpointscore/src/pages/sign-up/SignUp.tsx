@@ -21,7 +21,6 @@ export const SignUp: React.FC = () => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(String(email).toLowerCase());
   };
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!name || !surname || !email) {
@@ -32,7 +31,6 @@ export const SignUp: React.FC = () => {
       setError("Invalid email format");
       return;
     }
-
     setError("");
     try {
       setIsloading(true);
