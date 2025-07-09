@@ -23,6 +23,7 @@ export interface ChallengeResponse {
 }
 
 export interface TokenResponseType {
+  error: string;
   token_type: string;
   scope: string;
   expires_in: number;

@@ -59,17 +59,22 @@ app.get("/", (request: Request, response: Response) => {
 // Proxy Endpoint
 app.post("/proxy", async (request: Request<any>, response: Response<any>) => {
   try {
-    const base64 = Buffer.from(request?.body?.encrypted, "base64");
+    const obj: any = {};
+    if (request?.body?.continuation_token) {
+      obj["continuation_token"] = request?.body?.continuation_token;
+    }
+    const base64 = Buffer.from(request?.body?.packaged, "base64");
     const decrypted = await decrypt(
       base64.buffer.slice(
         base64.byteOffset,
         base64.byteOffset + base64.byteLength
       )
     );
-    const base = decrypted?.base;
-    const endpoint = decrypted?.endpoint;
-    const body = decrypted?.body;
-    const resp = await post(base, endpoint, body);
+    const base = await decrypted?.base;
+    const endpoint = await decrypted?.endpoint;
+    const body = await decrypted?.body;
+    const payload = { ...obj, ...body };
+    const resp = await post(base, endpoint, payload);
     if (resp) {
       response.status(200).send({ ...resp });
     }

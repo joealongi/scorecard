@@ -7,9 +7,9 @@ import type {
 } from "./RequestTypes";
 import type { TokenResponseType } from "./ResponseTypes";
 
-export const signInStart = async ({ username }: { username: string }) => {
+export const signInStart = async (username: string) => {
   const payloadExt: SignInStartRequest = {
-    username,
+    username: username,
     client_id: import.meta.env.VITE_CLIENT_ID ?? "",
     challenge_type: "password oob redirect",
   };
@@ -17,13 +17,9 @@ export const signInStart = async ({ username }: { username: string }) => {
   return await postRequest(`/oauth2/v2.0/initiate`, payloadExt);
 };
 
-export const signInChallenge = async ({
-  continuation_token,
-}: {
-  continuation_token: string;
-}) => {
+export const signInChallenge = async (continuation_token: string) => {
   const payloadExt: ChallengeRequest = {
-    continuation_token,
+    continuation_token: continuation_token,
     client_id: import.meta.env.VITE_CLIENT_ID ?? "",
     challenge_type: "password oob redirect",
   };

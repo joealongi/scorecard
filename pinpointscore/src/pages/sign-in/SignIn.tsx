@@ -25,33 +25,36 @@ export const SignIn: React.FC = () => {
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!validateEmail(email)) {
-      setError("Invalid email format");
-      return;
-    }
-    setError("");
-    setIsloading(true);
     try {
-      const res1 = await signInStart({
-        username: email,
-      });
-      const res2 = await signInChallenge({
-        continuation_token: res1.continuation_token,
-      });
-      const res3 = await signInTokenRequest({
-        continuation_token: res2.continuation_token,
-        grant_type: "password",
-        password: password,
-      });
-      navigate("/dashboard", { state: res3 });
+      e.preventDefault();
+      if (!validateEmail(email)) {
+        setError("Invalid email format");
+        return;
+      }
+      setError("");
+      setIsloading(true);
+      const start = await signInStart(email);
+      if (start?.continuation_token) {
+        const challenge = await signInChallenge(
+          await start?.continuation_token
+        );
+        if (challenge?.continuation_token) {
+          const token = await signInTokenRequest({
+            continuation_token: await challenge?.continuation_token,
+            grant_type: "password",
+            password: password,
+          });
+          if (token) {
+            navigate("/dashboard", { state: token });
+            setIsloading(false);
+          }
+        }
+      }
     } catch (err) {
-      console.log("Submitting sign in form", err);
+      console.log("Error submitting sign in form");
       setError(
         "An error has occured " + (err as ErrorResponseType).error_description
       );
-    } finally {
-      setIsloading(false);
     }
   };
 

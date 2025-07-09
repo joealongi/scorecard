@@ -2,22 +2,35 @@ import axios from "axios";
 
 import { encrypt, envelope } from "./security";
 
-export const postRequest = async (endpoint: string, body: unknown) => {
+export const postRequest = async (
+  endpoint: string,
+  body: { [key: string]: unknown; continuation_token?: string }
+) => {
   try {
-    const base = import.meta.env.VITE_BASE_API_URL ?? "";
-    const proxy = import.meta.env.VITE_PROXY_URL ?? "";
-    const encrypted = await encrypt({
-      base: base,
-      endpoint: endpoint,
-      body: body,
-    });
+    const obj = {
+      payload: {
+        base: import.meta.env.VITE_BASE_API_URL ?? "",
+        endpoint: endpoint,
+        body: body,
+      },
+      continuation_token: "",
+    };
+    if (body?.continuation_token) {
+      obj["continuation_token"] = body?.continuation_token;
+      delete body["continuation_token"];
+    }
+    const encrypted = await encrypt(obj?.payload);
     if (!encrypted) {
-      throw new Error("Error posting request");
+      throw new Error("Encryption failed: encrypted payload is undefined.");
     }
     const packaged = await envelope(encrypted);
+    const proxy = import.meta.env.VITE_PROXY_URL ?? "";
     const { data } = await axios.post(
       proxy,
-      { encrypted: packaged },
+      {
+        packaged: packaged,
+        continuation_token: obj?.continuation_token,
+      },
       {
         headers: {
           "Content-Type": "application/json",
@@ -26,7 +39,7 @@ export const postRequest = async (endpoint: string, body: unknown) => {
     );
     return data;
   } catch (error) {
-    console.log("Error posting request", error);
+    console.log("Error posting request");
     return error;
   }
 };
