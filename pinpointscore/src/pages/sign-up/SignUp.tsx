@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router";
 
 import { signupChallenge, signupStart } from "../../client/SignUpService";
-import type { ErrorResponseType } from "../../client/ResponseTypes";
 
 import { Field, Fieldset, Input, Label, Button } from "@headlessui/react";
 import clsx from "clsx";
@@ -54,14 +53,12 @@ export const SignUp: React.FC = () => {
         continuation_token: res1.continuation_token,
       });
       navigate("/signup/challenge", { state: { ...res2 } });
-    } catch (err) {
-      console.log("Submitting sign up form", err);
-      setError(
-        "An error occurred during sign up " +
-          (err as ErrorResponseType).error_description
-      );
-    } finally {
       setIsloading(false);
+    } catch (err) {
+      console.log("Error submitting sign up form");
+      setError("The putt just missed the hole, please try again.");
+      setIsloading(false);
+      return err;
     }
   };
 

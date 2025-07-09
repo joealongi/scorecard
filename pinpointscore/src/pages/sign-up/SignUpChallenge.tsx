@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 
 import { signUpSubmitOTP } from "../../client/SignUpService";
-import type { ErrorResponseType } from "../../client/ResponseTypes";
 
 import { Field, Fieldset, Input, Label, Button } from "@headlessui/react";
 import clsx from "clsx";
@@ -26,14 +25,13 @@ export const SignUpChallenge: React.FC = () => {
       setIsloading(true);
       const res = await signUpSubmitOTP({ continuation_token, oob: code });
       navigate("/signup/completed");
+      setIsloading(false);
       return res;
     } catch (err) {
-      setError(
-        "An error occurred during sign up " +
-          (err as ErrorResponseType).error_description
-      );
-    } finally {
+      console.log("Error submitting sign up form challenge");
+      setError("The putt just missed the hole, please try again.");
       setIsloading(false);
+      return err;
     }
   };
 

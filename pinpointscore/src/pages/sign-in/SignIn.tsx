@@ -7,7 +7,6 @@ import {
   signInChallenge,
   signInTokenRequest,
 } from "../../client/SignInService";
-import type { ErrorResponseType } from "../../client/ResponseTypes";
 
 import { Field, Fieldset, Input, Label, Button } from "@headlessui/react";
 import clsx from "clsx";
@@ -43,6 +42,11 @@ export const SignIn: React.FC = () => {
             grant_type: "password",
             password: password,
           });
+          if (token?.error === "invalid_grant") {
+            setError("Invalid username or password.");
+            setIsloading(false);
+            return;
+          }
           if (token) {
             navigate("/dashboard", { state: token });
             setIsloading(false);
@@ -51,9 +55,9 @@ export const SignIn: React.FC = () => {
       }
     } catch (err) {
       console.log("Error submitting sign in form");
-      setError(
-        "An error has occured " + (err as ErrorResponseType).error_description
-      );
+      setError("The putt just missed the hole, please try again.");
+      setIsloading(false);
+      return err;
     }
   };
 

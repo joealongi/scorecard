@@ -105,12 +105,10 @@ export const ResetPassword: React.FC = () => {
       });
       setStep(4);
     } catch (err) {
-      setError(
-        "An error occurred while submitting the new password " +
-          (err as ErrorResponseType).error_description
-      );
-    } finally {
+      console.log("Error submitting new password");
+      setError("The putt just missed the hole, please try again.");
       setIsloading(false);
+      return err;
     }
   };
 
