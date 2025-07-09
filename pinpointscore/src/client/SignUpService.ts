@@ -20,7 +20,13 @@ export const signupStart = async (payload: SignUpFormPassword) => {
     challenge_type: "password oob redirect",
   };
 
-  return await postRequest(`/signup/v1.0/start`, payloadExt);
+  return await postRequest(
+    `/signup/v1.0/start`,
+    payloadExt as unknown as {
+      [key: string]: unknown;
+      continuation_token?: string;
+    }
+  );
 };
 
 //handle selecting an authentication method
