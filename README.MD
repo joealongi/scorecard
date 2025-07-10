@@ -1,5 +1,5 @@
 # Teebox
-React web application for Pinpointscore.
+###### React web application for Pinpointscore.
 
 Remove files in gitignore that you want to keep in the repository:
 
@@ -10,7 +10,7 @@ git rm -r --cached .
 ---
 
 # Course
-TypeScript Node proxy server for Pinpointscore.
+###### TypeScript Node proxy server for Pinpointscore.
 
 Run: 
 ts-node index.ts
@@ -35,7 +35,7 @@ docker run -d -p 8080:8080 pinpointscore.azurecr.io/pinpointscore/course
 ---
 
 # Clubhouse
-Spring Boot Java backend application for Pinpointscore.
+###### Spring Boot Java backend application for Pinpointscore.
 
 https://learn.microsoft.com/en-us/java/openjdk/download#openjdk-21
 
@@ -49,4 +49,4 @@ Start the application:
 ---
 
 # Caddy
-React Native mobile application for Pinpointscore.
+###### React Native mobile application for Pinpointscore.
