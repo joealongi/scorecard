@@ -48,7 +48,7 @@ export const SignIn: React.FC = () => {
             return;
           }
           if (token) {
-            navigate("/dashboard", { state: token });
+            navigate("/scoreboard", { state: token });
             setIsloading(false);
           }
         }

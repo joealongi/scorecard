@@ -43,10 +43,10 @@ export default function NavList({
             className="block md:flex md:flex-col md:flex-auto md:justify-self-start w-full mx-auto p-3 text-xl text-center text-neutral-300  hover:text-lime-600  transition-all"
             rel="noopener noreferrer"
             target="_self"
-            to="/dashboard"
+            to="/scoreboard"
             onClick={() => handleOpen()}
           >
-            Dashboard
+            Scoreboard
           </NavLink>
         </li>
       )}

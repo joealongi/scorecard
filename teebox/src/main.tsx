@@ -6,7 +6,7 @@ import "./index.css";
 import App from "./App.tsx";
 import Home from "./pages/basic/Home";
 import About from "./pages/basic/About";
-import Dashboard from "./pages/basic/Dashboard";
+import Scoreboard from "./pages/basic/Scoreboard";
 import { SignIn } from "./pages/sign-in/SignIn";
 // import { UserInfo } from "./pages/user/UserInfo";
 import { SignUp } from "./pages/sign-up/SignUp";
@@ -35,10 +35,10 @@ createRoot(document.getElementById("root")!).render(
           }
         />
         <Route
-          path="/dashboard"
+          path="/scoreboard"
           element={
             <App>
-              <Dashboard />
+              <Scoreboard />
             </App>
           }
         />
