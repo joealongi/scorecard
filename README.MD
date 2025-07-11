@@ -46,6 +46,19 @@ Start the application:
 ./gradlew bootRun
 ```
 
+Build:
+```bash
+./gradlew build && java -jar build/libs/pinpointscore-clubhouse-1.0.0.jar
+```
+
+Docker:
+```bash
+docker build --build-arg JAR_FILE=build/libs/\*.jar -t pinpointscore/clubhouse .
+docker tag pinpointscore/clubhouse pinpointscore.azurecr.io/pinpointscore/clubhouse:latest
+docker push pinpointscore.azurecr.io/pinpointscore/clubhouse:latest
+./gradlew bootBuildImage --imageName=pinpointscore/clubhouse
+```
+
 ---
 
 # Caddy
