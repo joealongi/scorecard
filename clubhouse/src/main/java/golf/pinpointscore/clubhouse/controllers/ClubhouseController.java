@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class ClubhouseController {
 
     @GetMapping(path="/")
-    public @ResponseBody String SpringReactTypeScriptREST() {
+    public @ResponseBody String Clubhouse() {
 
-        return "Pinpointscore";
+        return "Pinpointscore - Clubhouse";
 
     }
 
