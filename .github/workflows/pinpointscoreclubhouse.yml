@@ -33,7 +33,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: pinpointscore.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_cdbc2386ab544d6a82e7b920f95bced4 }}/pinpointscore/pinpointscore/clubhouse:${{ github.sha }}
+          tags: pinpointscore.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_cdbc2386ab544d6a82e7b920f95bced4 }}/pinpointscore/clubhouse:${{ github.sha }}
           file: ./clubhouse/Dockerfile
           context: ./clubhouse
 
@@ -52,4 +52,4 @@ jobs:
           app-name: "pinpointscoreclubhouse"
           slot-name: "production"
           publish-profile: ${{ secrets.AzureAppService_PublishProfile_7eeed3fe80714404b057bcd24fc7c604 }}
-          images: "pinpointscore.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_cdbc2386ab544d6a82e7b920f95bced4 }}/pinpointscore/pinpointscore/clubhouse:${{ github.sha }}"
+          images: "pinpointscore.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_cdbc2386ab544d6a82e7b920f95bced4 }}/pinpointscore/clubhouse:${{ github.sha }}"
