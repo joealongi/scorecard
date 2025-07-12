@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: pinpointscorecourse
+name: pinpointscoreclubhouse
 
 on:
   push:
@@ -25,17 +25,16 @@ jobs:
         uses: docker/login-action@v2
         with:
           registry: https://pinpointscore.azurecr.io/
-          username: ${{ secrets.AzureAppService_ContainerUsername_665704a1cd834ca78c9d065ca7c3d7b0 }}
-          password: ${{ secrets.AzureAppService_ContainerPassword_c20c5c06d0744cfcbb68fec7d75d38d9 }}
+          username: ${{ secrets.AzureAppService_ContainerUsername_f71f71c1491e41a19bede93457ee00c1 }}
+          password: ${{ secrets.AzureAppService_ContainerPassword_c3fd52a41aa14e1e966a28bb6900a6b1 }}
 
       - name: Build and push container image to registry
-
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: pinpointscore.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_665704a1cd834ca78c9d065ca7c3d7b0 }}/pinpointscore/course:${{ github.sha }}
-          file: ./course/Dockerfile
-          context: ./course
+          tags: pinpointscore.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_f71f71c1491e41a19bede93457ee00c1 }}/pinpointscore/clubhouse:${{ github.sha }}
+          file: ./clubhouse/Dockerfile
+          context: ./clubhouse
 
   deploy:
     runs-on: ubuntu-latest
@@ -49,7 +48,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: "pinpointscorecourse"
+          app-name: "pinpointscoreclubhouse"
           slot-name: "production"
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_34b8cf546ffd41e8a160f3a52eeb6019 }}
-          images: "pinpointscore.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_665704a1cd834ca78c9d065ca7c3d7b0 }}/pinpointscore/course:${{ github.sha }}"
+          publish-profile: ${{ secrets.AzureAppService_PublishProfile_e0bfe20eb0ea4ad4b0fe4be3dc6afce6 }}
+          images: "pinpointscore.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_f71f71c1491e41a19bede93457ee00c1 }}/pinpointscore/clubhouse:${{ github.sha }}"
