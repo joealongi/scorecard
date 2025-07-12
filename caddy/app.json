@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "mobile-app",
-    "slug": "mobile-app",
+    "name": "pinpointscorecaddy",
+    "slug": "pinpointscorecaddy",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "mobileapp",
+    "scheme": "pinpointscorecaddy",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
@@ -37,6 +37,13 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "owner": "heyitsjoealongi",
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "d068a4f7-cf12-4b8e-8446-3ddb120e1f8d"
+      }
     }
   }
 }
