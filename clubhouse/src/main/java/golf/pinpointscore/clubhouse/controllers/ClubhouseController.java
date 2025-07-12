@@ -13,7 +13,7 @@ public class ClubhouseController {
     @GetMapping(path="/")
     public @ResponseBody String Clubhouse() {
 
-        return "Pinpointscore - Clubhouse";
+        return "Pinpointscore";
 
     }
 

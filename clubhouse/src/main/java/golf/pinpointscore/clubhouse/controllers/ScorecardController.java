@@ -1,5 +1,8 @@
 package golf.pinpointscore.clubhouse.controllers;
 
+import java.sql.Timestamp;
+import java.util.List;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -9,20 +12,31 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import golf.pinpointscore.clubhouse.entities.ScorecardEntity;
 import golf.pinpointscore.clubhouse.repositories.ScorecardRepository;
+import golf.pinpointscore.clubhouse.services.ScorecardService;
 
 public class ScorecardController {
 
     private final ScorecardRepository scorecardRepository;
+    private final ScorecardService scorecardService;
 
-    ScorecardController(ScorecardRepository scorecardRepository) {
+    ScorecardController(ScorecardRepository scorecardRepository, ScorecardService scorecardService) {
         this.scorecardRepository = scorecardRepository;
+        this.scorecardService = scorecardService;
     }
 
-    // Get a scorecard by userId
-    @GetMapping("/scorecards/user/{userId}")
-    ScorecardEntity getScorecardByUserId(@PathVariable Long userId) {
+    // Get all scorecards by userId
+    @GetMapping("/scorecards/{userId}")
+    List<ScorecardEntity> getScorecardsByUserId(@PathVariable int userId) {
 
-        return scorecardRepository.findById(userId).orElse(null);
+        return scorecardRepository.findByUserId(userId);
+
+    }
+
+    // Get a scorecard by userId and timestamp
+    @GetMapping("/scorecards/{userId}/{timestamp}")
+    List<ScorecardEntity> getScorecardsByUserId(@PathVariable int userId, @PathVariable Timestamp timestamp) {
+
+        return scorecardService.getScorecardsByUserIdAndTimestamp(userId, timestamp);
 
     }
 
