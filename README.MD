@@ -62,7 +62,7 @@ az acr login --name pinpointscore
 
 Build:
 ```bash
-./gradlew build && java -jar build/libs/pinpointscore-clubhouse-1.0.0.jar
+./gradlew build && java -jar build/libs/pinpointscore-clubhouse.jar
 ```
 
 Docker:
@@ -70,7 +70,7 @@ Docker:
 docker build -t pinpointscore/clubhouse .
 docker tag pinpointscore/clubhouse pinpointscore.azurecr.io/pinpointscore/pinpointscore/clubhouse:latest
 docker push pinpointscore.azurecr.io/pinpointscore/pinpointscore/clubhouse:latest
-./gradlew bootBuildImage --imageName=pinpointscore.azurecr.io/pinpointscore/pinpointscore/clubhouse
+docker run -p 8080:8080 pinpointscore.azurecr.io/pinpointscore/pinpointscore/clubhouse:latest
 ```
 
 ## Clubhouse - Database
