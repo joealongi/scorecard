@@ -2,9 +2,18 @@
 ###### React web application for Pinpointscore.
 
 Remove files in gitignore that you want to keep in the repository:
-
 ```bash
 git rm -r --cached .
+```
+
+Install dependencies:
+```bash
+npm install
+```
+
+Start the app:
+```bash
+npm run dev
 ```
 
 ---
@@ -64,6 +73,8 @@ docker push pinpointscore.azurecr.io/pinpointscore/clubhouse:latest
 ./gradlew bootBuildImage --imageName=pinpointscore/clubhouse
 ```
 
+## Clubhouse - Database
+
 Add user to the database:
 ```sql
 INSERT INTO dbo.user_entity (submitted, updated, user_id, user_name, user_first_name, user_last_name, user_email, user_country, user_city, user_course, user_handicap) 
@@ -112,3 +123,15 @@ WHERE user_id = 1;
 
 # Caddy
 ###### React Native mobile application for Pinpointscore.
+
+Start the app
+
+Install dependencies:
+```bash
+npm install
+```
+
+Start the app:
+```bash
+npx expo start
+```
