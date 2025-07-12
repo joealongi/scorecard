@@ -26,7 +26,6 @@ az acr login --name pinpointscore
 Docker:
 ```bash
 docker build -t pinpointscore/course .
-docker build -t pinpointscore/course .
 docker tag pinpointscore/course pinpointscore.azurecr.io/pinpointscore/course:latest
 docker push pinpointscore.azurecr.io/pinpointscore/course:latest
 docker run -d -p 8080:8080 pinpointscore.azurecr.io/pinpointscore/course
@@ -59,7 +58,7 @@ Build:
 
 Docker:
 ```bash
-docker build --build-arg JAR_FILE=build/libs/\*.jar -t pinpointscore/clubhouse .
+docker build -t pinpointscore/clubhouse .
 docker tag pinpointscore/clubhouse pinpointscore.azurecr.io/pinpointscore/clubhouse:latest
 docker push pinpointscore.azurecr.io/pinpointscore/clubhouse:latest
 ./gradlew bootBuildImage --imageName=pinpointscore/clubhouse
