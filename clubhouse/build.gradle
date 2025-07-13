@@ -1,7 +1,14 @@
+buildscript {
+  repositories {
+    mavenCentral()
+  }
+}
+
 plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.5.3'
 	id 'io.spring.dependency-management' version '1.1.7'
+	id "io.sentry.jvm.gradle" version "5.8.0"
 }
 
 group = 'golf.pinpointscore'
@@ -11,6 +18,17 @@ java {
 	toolchain {
 		languageVersion = JavaLanguageVersion.of(21)
 	}
+}
+
+sentry {
+  // Generates a JVM (Java, Kotlin, etc.) source bundle and uploads your source code to Sentry.
+  // This enables source context, allowing you to see your source
+  // code as part of your stack traces in Sentry.
+  includeSourceContext = true
+
+  org = "availinginc"
+  projectName = "pinpointscore-course"
+  authToken = System.getenv("SENTRY_AUTH_TOKEN")
 }
 
 configurations {
