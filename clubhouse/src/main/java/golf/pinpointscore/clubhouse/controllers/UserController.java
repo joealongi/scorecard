@@ -6,11 +6,14 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import golf.pinpointscore.clubhouse.entities.UserEntity;
 import golf.pinpointscore.clubhouse.repositories.ScorecardRepository;
 import golf.pinpointscore.clubhouse.repositories.UserRepository;
-
+@RestController
+@RequestMapping(path="/user")
 public class UserController {
 
     private final UserRepository userRepository;
@@ -22,7 +25,7 @@ public class UserController {
     }
 
     // Get a user by userId
-    @GetMapping("/users/{userId}")
+    @GetMapping(path="/{userId}", produces = "application/json")
     UserEntity getUserById(@PathVariable Long userId) {
 
         return userRepository.findById(userId).orElse(null);
@@ -30,7 +33,7 @@ public class UserController {
     }
 
     // Create a new user
-    @PostMapping("/users")
+    @PostMapping(path="/", produces = "application/json")
     UserEntity newUser(@RequestBody UserEntity newUser) {
 
         return userRepository.save(newUser);
@@ -38,7 +41,7 @@ public class UserController {
     }
 
     // Update a user by userId
-    @PatchMapping("/users/{userId}")
+    @PatchMapping(path="/{userId}", produces = "application/json")
     UserEntity updateUser(@RequestBody UserEntity newUser, @PathVariable Long userId) {
 
         return userRepository.findById(userId)
@@ -53,7 +56,7 @@ public class UserController {
     }
 
     // Delete a user and their scorecards by userId
-    @DeleteMapping("/users/{userId}")
+    @DeleteMapping(path="/{userId}", produces = "application/json")
     UserEntity deleteUser(@PathVariable Long userId) {
         
         userRepository.deleteById(userId);

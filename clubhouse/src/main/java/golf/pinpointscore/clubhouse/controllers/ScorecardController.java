@@ -9,11 +9,15 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import golf.pinpointscore.clubhouse.entities.ScorecardEntity;
 import golf.pinpointscore.clubhouse.repositories.ScorecardRepository;
 import golf.pinpointscore.clubhouse.services.ScorecardService;
 
+@RestController
+@RequestMapping(path="/scorecard")
 public class ScorecardController {
 
     private final ScorecardRepository scorecardRepository;
@@ -25,7 +29,7 @@ public class ScorecardController {
     }
 
     // Get all scorecards by userId
-    @GetMapping("/scorecards/{userId}")
+    @RequestMapping(path="/{userId}", produces = "application/json")
     List<ScorecardEntity> getScorecardsByUserId(@PathVariable int userId) {
 
         return scorecardRepository.findByUserId(userId);
@@ -33,7 +37,7 @@ public class ScorecardController {
     }
 
     // Get a scorecard by userId and timestamp
-    @GetMapping("/scorecards/{userId}/{timestamp}")
+    @GetMapping(path="/{userId}/{timestamp}", produces = "application/json")
     List<ScorecardEntity> getScorecardsByUserId(@PathVariable int userId, @PathVariable Timestamp timestamp) {
 
         return scorecardService.getScorecardsByUserIdAndTimestamp(userId, timestamp);
@@ -41,7 +45,7 @@ public class ScorecardController {
     }
 
     // Create a new scorecard
-    @PostMapping("/scorecards")
+    @PostMapping(path="/", produces = "application/json")
     ScorecardEntity newScorecard(@RequestBody ScorecardEntity newScorecard) {
 
         return scorecardRepository.save(newScorecard);
@@ -49,7 +53,7 @@ public class ScorecardController {
     }
 
     // Update an existing scorecard by userId
-    @PatchMapping("/scorecards/{userId}")
+    @PatchMapping(path="/{userId}", produces = "application/json")
     ScorecardEntity updateScorecard(@RequestBody ScorecardEntity newScorecard, @PathVariable Long userId) {
 
         return scorecardRepository.findById(userId).map(scorecard -> {
@@ -63,7 +67,7 @@ public class ScorecardController {
     }
 
     // Delete a scorecard by userId
-    @DeleteMapping("/scorecards/user/{userId}")
+    @DeleteMapping(path="/user/{userId}", produces = "application/json")
     ScorecardEntity deleteScorecard(@PathVariable Long userId) {
 
         scorecardRepository.deleteById(userId);

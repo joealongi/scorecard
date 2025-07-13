@@ -3,12 +3,15 @@ package golf.pinpointscore.clubhouse.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import golf.pinpointscore.clubhouse.entities.ScorecardEntity;
 import golf.pinpointscore.clubhouse.entities.UserEntity;
 import golf.pinpointscore.clubhouse.models.ScoreboardModel;
 import golf.pinpointscore.clubhouse.repositories.ScorecardRepository;
 import golf.pinpointscore.clubhouse.repositories.UserRepository;
 
+@Service
 public class ScoreboardService {
 
     private final ScorecardRepository scorecardRepository;

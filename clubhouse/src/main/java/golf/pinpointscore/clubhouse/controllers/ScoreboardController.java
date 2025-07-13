@@ -4,10 +4,14 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import golf.pinpointscore.clubhouse.models.ScoreboardModel;
 import golf.pinpointscore.clubhouse.services.ScoreboardService;
 
+@RestController
+@RequestMapping(path="/scoreboard")
 public class ScoreboardController {
 
     private final ScoreboardService scoreboardService;
@@ -17,7 +21,7 @@ public class ScoreboardController {
     }
 
     // Get the scoreboard
-    @GetMapping("/scoreboard")
+    @GetMapping(path="/", produces = "application/json")
     List<ScoreboardModel> getScoreboard() {
 
         return scoreboardService.getScoreboard();
@@ -25,7 +29,7 @@ public class ScoreboardController {
     }
 
     // Get the scoreboard limited by amount
-    @GetMapping("/scoreboard/{amount}")
+    @GetMapping(path="/{amount}", produces = "application/json")
     List<ScoreboardModel> getScoreboardLimited(@PathVariable int amount) {
 
         return scoreboardService.getScoreboardLimited(amount);
