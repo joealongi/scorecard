@@ -15,7 +15,7 @@ export default function NavList({
     <React.Fragment>
       <li>
         <NavLink
-          className="block md:flex md:flex-col md:flex-auto md:justify-self-start w-full mx-auto p-3 text-xl text-center text-neutral-300  hover:text-lime-600  transition-all"
+          className="block md:flex md:flex-col md:flex-auto md:justify-self-start w-full mx-auto p-3 text-xl text-neutral-300 hover:text-lime-600 text-center subpixel-antialiased transition-all"
           rel="noopener noreferrer"
           target="_self"
           to="/"
@@ -26,7 +26,7 @@ export default function NavList({
       </li>
       <li>
         <NavLink
-          className="block md:flex md:flex-col md:flex-auto md:justify-self-start w-full mx-auto p-3 text-xl text-center text-neutral-300  hover:text-lime-600  transition-all"
+          className="block md:flex md:flex-col md:flex-auto md:justify-self-start w-full mx-auto p-3 text-xl text-neutral-300 hover:text-lime-600 text-center subpixel-antialiased transition-all"
           rel="noopener noreferrer"
           target="_self"
           to="/about"
@@ -40,7 +40,7 @@ export default function NavList({
       ) : (
         <li>
           <NavLink
-            className="block md:flex md:flex-col md:flex-auto md:justify-self-start w-full mx-auto p-3 text-xl text-center text-neutral-300  hover:text-lime-600  transition-all"
+            className="block md:flex md:flex-col md:flex-auto md:justify-self-start w-full mx-auto p-3 text-xl text-neutral-300 hover:text-lime-600 text-center subpixel-antialiased transition-all"
             rel="noopener noreferrer"
             target="_self"
             to="/scoreboard"
@@ -56,7 +56,7 @@ export default function NavList({
       ) : (
         <li>
           <NavLink
-            className="block w-full mx-auto py-3 px-9 text-center text-neutral-900 bg-neutral-300  hover:bg-lime-600 transition-all font-bold"
+            className="block w-full mx-auto py-3 px-9 font-bold text-neutral-950 bg-neutral-300 hover:bg-lime-600 text-center subpixel-antialiased transition-all cursor-pointer"
             rel="noopener noreferrer"
             target="_self"
             to="/signup"
@@ -72,7 +72,7 @@ export default function NavList({
             rel="noopener noreferrer"
             target="_self"
             to="/"
-            className="block w-full mx-auto py-3 px-9 text-center text-neutral-800 bg-lime-600 hover:text-neutral-900 hover:bg-neutral-300 transition-all font-bold"
+            className="block w-full mx-auto py-3 px-9 font-bold text-neutral-950 bg-lime-600 hover:text-neutral-950 hover:bg-neutral-300 text-center subpixel-antialiased transition-all cursor-pointer"
             onClick={() => handleOpen()}
           >
             Sign Out
@@ -84,7 +84,7 @@ export default function NavList({
             rel="noopener noreferrer"
             target="_self"
             to="/signin"
-            className="block w-full mx-auto py-3 px-9 text-center text-neutral-800 bg-lime-600 hover:text-neutral-900 hover:bg-neutral-300 transition-all font-bold"
+            className="block w-full mx-auto py-3 px-9 font-bold text-neutral-950 bg-lime-600 hover:text-neutral-950 hover:bg-neutral-300 text-center subpixel-antialiased transition-all cursor-pointer"
             onClick={() => handleOpen()}
           >
             Sign In

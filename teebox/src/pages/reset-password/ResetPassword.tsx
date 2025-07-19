@@ -147,7 +147,7 @@ export const ResetPassword: React.FC = () => {
                     <div className="warning">Sending request...</div>
                   )}
                   <Button
-                    className="block w-full mx-auto p-3 text-xl text-center font-bold text-neutral-800 bg-lime-600 hover:text-neutral-900 hover:bg-neutral-300 transition-all cursor-pointer"
+                    className="block w-full mx-auto p-3 text-xl text-center font-bold text-neutral-950 bg-lime-600 hover:text-neutral-950 hover:bg-neutral-300 transition-all cursor-pointer"
                     type="submit"
                   >
                     Reset Password
@@ -191,7 +191,7 @@ export const ResetPassword: React.FC = () => {
                     <div className="warning">Sending request...</div>
                   )}
                   <Button
-                    className="block w-full mx-auto p-3 text-xl text-center font-bold text-neutral-800 bg-lime-600 hover:text-neutral-900 hover:bg-neutral-300 transition-all cursor-pointer"
+                    className="block w-full mx-auto p-3 text-xl text-center font-bold text-neutral-950 bg-lime-600 hover:text-neutral-950 hover:bg-neutral-300 transition-all cursor-pointer"
                     type="submit"
                   >
                     Submit Code
@@ -233,7 +233,7 @@ export const ResetPassword: React.FC = () => {
                     <div className="warning">Sending request...</div>
                   )}
                   <Button
-                    className="block w-full mx-auto p-3 text-xl text-center font-bold text-neutral-800 bg-lime-600 hover:text-neutral-900 hover:bg-neutral-300 transition-all cursor-pointer"
+                    className="block w-full mx-auto p-3 text-xl text-center font-bold text-neutral-950 bg-lime-600 hover:text-neutral-950 hover:bg-neutral-300 transition-all cursor-pointer"
                     type="submit"
                   >
                     Create New Password
@@ -257,7 +257,7 @@ export const ResetPassword: React.FC = () => {
                 rel="noopener noreferrer"
                 target="_self"
                 to="/signin"
-                className="block w-full mx-auto p-3 text-xl text-center font-bold text-neutral-800 bg-lime-600 hover:text-neutral-900 hover:bg-neutral-300 transition-all cursor-pointer"
+                className="block w-full mx-auto p-3 text-xl text-center font-bold text-neutral-950 bg-lime-600 hover:text-neutral-950 hover:bg-neutral-300 transition-all cursor-pointer"
               >
                 Sign In
               </NavLink>
