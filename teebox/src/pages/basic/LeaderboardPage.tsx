@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import LeaderboardComponent from "../../components/LeaderboardComponent";
-import LeaderboardItemComponent from "../../components/leaderboard/LeaderboardItemComponent";
+import LeaderboardMobileComponent from "../../components/LeaderboarMobileComponent";
 
 import { getRequest } from "../../functions/request";
 
@@ -68,11 +68,24 @@ export default function LeaderboardPage() {
           You will see your golf game here soon, including your scores, stats,
           and course information.
         </p>
-        <LeaderboardComponent />
         {leaderboard?.length > 0 ? (
           leaderboard.map((item, index) => (
-            <LeaderboardItemComponent
-              key={index}
+            <LeaderboardComponent
+              key={`leaderboard-${item?.userId}-${index}`}
+              userRank={item?.userRank}
+              userName={item?.userName}
+              golfCourse={item?.golfCourse}
+              totalScore={item?.totalScore}
+              userScores={item?.userScores}
+            />
+          ))
+        ) : (
+          <React.Fragment></React.Fragment>
+        )}
+        {leaderboard?.length > 0 ? (
+          leaderboard.map((item, index) => (
+            <LeaderboardMobileComponent
+              key={`leaderboard-${item?.userId}-${index}`}
               userRank={item?.userRank}
               userName={item?.userName}
               golfCourse={item?.golfCourse}
