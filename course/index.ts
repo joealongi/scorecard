@@ -5,8 +5,8 @@ import cors from "cors";
 import { get, post, idp } from "./api/proxy";
 import { decrypt } from "./utils/security";
 
-// ENV Configuration
-dotenv.config();
+// ENVX Configuration
+require("@dotenvx/dotenvx").config();
 
 // Invoke Express Server
 const app = express();

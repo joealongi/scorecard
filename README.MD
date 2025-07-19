@@ -141,91 +141,91 @@ npx expo start
 ###### Mobile friendly scoreboard
 ```
 // <React.Fragment>
-//   <ul class="avalinginc-theme-container z-0 flex flex-row flex-auto justify-center items-center mt-3">
-//     <li class="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-xl font-bold text-neutral-300 bg-lime-600 text-left border-1 border-neutral-950 subpixel-antialiased">
+//   <ul className="avalinginc-theme-container z-0 flex flex-row flex-auto justify-center items-center mt-3">
+//     <li className="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-xl font-bold text-neutral-300 bg-lime-600 text-left border-1 border-neutral-950 subpixel-antialiased">
 //       Hole
 //     </li>
-//     <li class="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-xl font-bold text-neutral-300 bg-lime-600 text-left border-l-1 border-neutral-950 subpixel-antialiased">
+//     <li className="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-xl font-bold text-neutral-300 bg-lime-600 text-left border-l-1 border-neutral-950 subpixel-antialiased">
 //       Score
 //     </li>
 //   </ul>
-//   <ul class="avalinginc-theme-container z-0 flex flex-row flex-auto justify-center items-center">
-//     <li class="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base font-bold text-neutral-950 bg-neutral-300 text-center border-1 border-t-0  border-neutral-950 subpixel-antialiased">
+//   <ul className="avalinginc-theme-container z-0 flex flex-row flex-auto justify-center items-center">
+//     <li className="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base font-bold text-neutral-950 bg-neutral-300 text-center border-1 border-t-0  border-neutral-950 subpixel-antialiased">
 //       1
 //     </li>
-//     <li class="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base text-neutral-950 bg-neutral-300 text-center border-1 border-t-0 border-l-0 border-neutral-950 subpixel-antialiased">
+//     <li className="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base text-neutral-950 bg-neutral-300 text-center border-1 border-t-0 border-l-0 border-neutral-950 subpixel-antialiased">
 //       4
 //     </li>
 //   </ul>
-//   <ul class="avalinginc-theme-container z-0 flex flex-row flex-auto justify-center items-center">
-//     <li class="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base font-bold text-neutral-950 bg-neutral-300 text-center border-1 border-t-0  border-neutral-950 subpixel-antialiased">
+//   <ul className="avalinginc-theme-container z-0 flex flex-row flex-auto justify-center items-center">
+//     <li className="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base font-bold text-neutral-950 bg-neutral-300 text-center border-1 border-t-0  border-neutral-950 subpixel-antialiased">
 //       2
 //     </li>
-//     <li class="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base text-neutral-950 bg-neutral-300 text-center border-1 border-t-0 border-l-0 border-neutral-950 subpixel-antialiased">
+//     <li className="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base text-neutral-950 bg-neutral-300 text-center border-1 border-t-0 border-l-0 border-neutral-950 subpixel-antialiased">
 //       4
 //     </li>
 //   </ul>
-//   <ul class="avalinginc-theme-container z-0 flex flex-row flex-auto justify-center items-center">
-//     <li class="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base font-bold text-neutral-950 bg-neutral-300 text-center border-1 border-t-0  border-neutral-950 subpixel-antialiased">
+//   <ul className="avalinginc-theme-container z-0 flex flex-row flex-auto justify-center items-center">
+//     <li className="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base font-bold text-neutral-950 bg-neutral-300 text-center border-1 border-t-0  border-neutral-950 subpixel-antialiased">
 //       3
 //     </li>
-//     <li class="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base text-neutral-950 bg-neutral-300 text-center border-1 border-t-0 border-l-0 border-neutral-950 subpixel-antialiased">
+//     <li className="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base text-neutral-950 bg-neutral-300 text-center border-1 border-t-0 border-l-0 border-neutral-950 subpixel-antialiased">
 //       4
 //     </li>
 //   </ul>
-//   <ul class="avalinginc-theme-container z-0 flex flex-row flex-auto justify-center items-center">
-//     <li class="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base font-bold text-neutral-950 bg-neutral-300 text-center border-1 border-t-0  border-neutral-950 subpixel-antialiased">
+//   <ul className="avalinginc-theme-container z-0 flex flex-row flex-auto justify-center items-center">
+//     <li className="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base font-bold text-neutral-950 bg-neutral-300 text-center border-1 border-t-0  border-neutral-950 subpixel-antialiased">
 //       4
 //     </li>
-//     <li class="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base text-neutral-950 bg-neutral-300 text-center border-1 border-t-0 border-l-0 border-neutral-950 subpixel-antialiased">
+//     <li className="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base text-neutral-950 bg-neutral-300 text-center border-1 border-t-0 border-l-0 border-neutral-950 subpixel-antialiased">
 //       4
 //     </li>
 //   </ul>
-//   <ul class="avalinginc-theme-container z-0 flex flex-row flex-auto justify-center items-center">
-//     <li class="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base font-bold text-neutral-950 bg-neutral-300 text-center border-1 border-t-0  border-neutral-950 subpixel-antialiased">
+//   <ul className="avalinginc-theme-container z-0 flex flex-row flex-auto justify-center items-center">
+//     <li className="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base font-bold text-neutral-950 bg-neutral-300 text-center border-1 border-t-0  border-neutral-950 subpixel-antialiased">
 //       5
 //     </li>
-//     <li class="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base text-neutral-950 bg-neutral-300 text-center border-1 border-t-0 border-l-0 border-neutral-950 subpixel-antialiased">
+//     <li className="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base text-neutral-950 bg-neutral-300 text-center border-1 border-t-0 border-l-0 border-neutral-950 subpixel-antialiased">
 //       4
 //     </li>
 //   </ul>
-//   <ul class="avalinginc-theme-container z-0 flex flex-row flex-auto justify-center items-center">
-//     <li class="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base font-bold text-neutral-950 bg-neutral-300 text-center border-1 border-t-0  border-neutral-950 subpixel-antialiased">
+//   <ul className="avalinginc-theme-container z-0 flex flex-row flex-auto justify-center items-center">
+//     <li className="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base font-bold text-neutral-950 bg-neutral-300 text-center border-1 border-t-0  border-neutral-950 subpixel-antialiased">
 //       1
 //     </li>
-//     <li class="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base text-neutral-950 bg-neutral-300 text-center border-1 border-t-0 border-l-0 border-neutral-950 subpixel-antialiased">
+//     <li className="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base text-neutral-950 bg-neutral-300 text-center border-1 border-t-0 border-l-0 border-neutral-950 subpixel-antialiased">
 //       6
 //     </li>
 //   </ul>
-//   <ul class="avalinginc-theme-container z-0 flex flex-row flex-auto justify-center items-center">
-//     <li class="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base font-bold text-neutral-950 bg-neutral-300 text-center border-1 border-t-0  border-neutral-950 subpixel-antialiased">
+//   <ul className="avalinginc-theme-container z-0 flex flex-row flex-auto justify-center items-center">
+//     <li className="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base font-bold text-neutral-950 bg-neutral-300 text-center border-1 border-t-0  border-neutral-950 subpixel-antialiased">
 //       7
 //     </li>
-//     <li class="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base text-neutral-950 bg-neutral-300 text-center border-1 border-t-0 border-l-0 border-neutral-950 subpixel-antialiased">
+//     <li className="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base text-neutral-950 bg-neutral-300 text-center border-1 border-t-0 border-l-0 border-neutral-950 subpixel-antialiased">
 //       4
 //     </li>
 //   </ul>
-//   <ul class="avalinginc-theme-container z-0 flex flex-row flex-auto justify-center items-center">
-//     <li class="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base font-bold text-neutral-950 bg-neutral-300 text-center border-1 border-t-0  border-neutral-950 subpixel-antialiased">
+//   <ul className="avalinginc-theme-container z-0 flex flex-row flex-auto justify-center items-center">
+//     <li className="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base font-bold text-neutral-950 bg-neutral-300 text-center border-1 border-t-0  border-neutral-950 subpixel-antialiased">
 //       8
 //     </li>
-//     <li class="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base text-neutral-950 bg-neutral-300 text-center border-1 border-t-0 border-l-0 border-neutral-950 subpixel-antialiased">
+//     <li className="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base text-neutral-950 bg-neutral-300 text-center border-1 border-t-0 border-l-0 border-neutral-950 subpixel-antialiased">
 //       4
 //     </li>
 //   </ul>
-//   <ul class="avalinginc-theme-container z-0 flex flex-row flex-auto justify-center items-center">
-//     <li class="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base font-bold text-neutral-950 bg-neutral-300 text-center border-1 border-t-0  border-neutral-950 subpixel-antialiased">
+//   <ul className="avalinginc-theme-container z-0 flex flex-row flex-auto justify-center items-center">
+//     <li className="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base font-bold text-neutral-950 bg-neutral-300 text-center border-1 border-t-0  border-neutral-950 subpixel-antialiased">
 //       9
 //     </li>
-//     <li class="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base text-neutral-950 bg-neutral-300 text-center border-1 border-t-0 border-l-0 border-neutral-950 subpixel-antialiased">
+//     <li className="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base text-neutral-950 bg-neutral-300 text-center border-1 border-t-0 border-l-0 border-neutral-950 subpixel-antialiased">
 //       4
 //     </li>
 //   </ul>
-//   <ul class="avalinginc-theme-container z-0 flex flex-row flex-auto justify-center items-center">
-//     <li class="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base font-bold text-neutral-950 bg-neutral-300 text-center border-1 border-t-0  border-neutral-950 subpixel-antialiased">
+//   <ul className="avalinginc-theme-container z-0 flex flex-row flex-auto justify-center items-center">
+//     <li className="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base font-bold text-neutral-950 bg-neutral-300 text-center border-1 border-t-0  border-neutral-950 subpixel-antialiased">
 //       10
 //     </li>
-//     <li class="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base text-neutral-950 bg-neutral-300 text-center border-1 border-t-0 border-l-0 border-neutral-950 subpixel-antialiased">
+//     <li className="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base text-neutral-950 bg-neutral-300 text-center border-1 border-t-0 border-l-0 border-neutral-950 subpixel-antialiased">
 //       4
 //     </li>
 //   </ul>
