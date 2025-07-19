@@ -13,7 +13,7 @@ type LeaderboardItemAdjusted = {
   golfCourse: string;
   holesPlayed: number;
   totalScore: number;
-  scoreboardScore: number[];
+  scoreboardScore: number;
   userRank: number;
   userScores: number[];
 };
@@ -32,7 +32,11 @@ export default function LeaderboardPage() {
       if (obj?.scoreboard) {
         if (Array?.isArray(obj?.scoreboard)) {
           obj.scoreboard?.forEach((item, index) => {
-            obj.scoreboard![index]["userRank"] = index + 1;
+            if (item?.scoreboardScore > 0) {
+              obj.scoreboard![index]["userRank"] = item?.scoreboardScore;
+            } else {
+              obj.scoreboard![index]["userRank"] = index + 1;
+            }
             obj.scoreboard![index]["userScores"] = [
               4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,
             ];

@@ -61,7 +61,7 @@ export default function LeaderboardItemComponent({
               </li>
               {userScores?.map((item, index) => (
                 <li
-                  key={index}
+                  key={`hole-${item}-${index}`}
                   className="flex flex-col flex-auto justify-self-start min-w-[5%] max-w-[5%] p-3 text-xl font-bold text-neutral-950 bg-lime-600 text-center border-l-1 border-neutral-950 subpixel-antialiased"
                 >
                   {index + 1}
@@ -74,7 +74,7 @@ export default function LeaderboardItemComponent({
               </li>
               {userScores?.map((item, index) => (
                 <li
-                  key={index}
+                  key={`score-${item}-${index}`}
                   className="flex flex-col flex-auto justify-self-start min-w-[5%] max-w-[5%] p-3 text-xl text-neutral-950 bg-neutral-300 text-center border-l-1 border-neutral-950 subpixel-antialiased"
                 >
                   {item}
