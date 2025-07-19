@@ -5,11 +5,24 @@ import LeaderboardMobileComponent from "../../components/LeaderboarMobileCompone
 
 import { getRequest } from "../../functions/request";
 
-type LeaderboardItemAdjusted = {
+import initialLeaderboardData from "../../data/leaderboard.json";
+
+type LeaderboardRow = {
   userId: number;
-  submitted: EpochTimeStamp;
+  submitted: string;
   userName: string;
-  userHandicap: 0;
+  userHandicap: number;
+  golfCourse: string;
+  holesPlayed: number;
+  totalScore: number;
+  scoreboardScore: number;
+};
+
+type LeaderboardRowAdjusted = {
+  userId: number;
+  submitted: string;
+  userName: string;
+  userHandicap: number;
   golfCourse: string;
   holesPlayed: number;
   totalScore: number;
@@ -20,29 +33,55 @@ type LeaderboardItemAdjusted = {
 
 export default function LeaderboardPage() {
   const [leaderboard, setLeaderboard] = React.useState<
-    LeaderboardItemAdjusted[]
+    LeaderboardRowAdjusted[]
   >([]);
 
   // Handle leaderboard
   const handleLeaderboard = async () => {
     try {
-      const obj: { scoreboard?: LeaderboardItemAdjusted[] } = {};
+      // Request initial
+      const initial = initialLeaderboardData;
+
+      // Set base url
       const base = import.meta.env.VITE_CLUBHOUSE_BASE_API_URL ?? "";
-      obj["scoreboard"] = await getRequest(base, `/scoreboard/`);
-      if (obj?.scoreboard) {
-        if (Array?.isArray(obj?.scoreboard)) {
-          obj.scoreboard?.forEach((item, index) => {
-            if (item?.scoreboardScore > 0) {
-              obj.scoreboard![index]["userRank"] = item?.scoreboardScore;
-            } else {
-              obj.scoreboard![index]["userRank"] = index + 1;
-            }
-            obj.scoreboard![index]["userScores"] = [
-              4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,
-            ];
-          });
-        }
-        setLeaderboard(obj?.scoreboard);
+
+      // Request response
+      const response = await getRequest(base, `/scoreboard/`);
+      if (initial?.length > 0 && response?.length > 0) {
+        // Create leaderboard rows
+        response.forEach((item: LeaderboardRow, index: number) => {
+          // Handle current object differentiation
+          const row: LeaderboardRowAdjusted = {
+            userRank: 0,
+            userScores: [],
+            ...item,
+          };
+          if (item?.scoreboardScore > 0) {
+            row.userRank = item?.scoreboardScore;
+          } else {
+            row.userRank = index + 1;
+          }
+          row.userScores = [
+            4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,
+          ];
+
+          // Update or add row to initial
+          if (initial?.[index]) {
+            initial[index] = row;
+          } else {
+            initial.push(row);
+          }
+        });
+      }
+
+      // Sort the leaderboard by userRank
+      const sorted = initial.slice().sort((a, b) => a.userRank - b.userRank);
+      if (sorted?.length > 0) {
+        // Set the leaderboard
+        setLeaderboard(sorted);
+      } else if (initial?.length > 0) {
+        // Set the placeholder leaderboard
+        setLeaderboard(initial);
       }
     } catch (error) {
       console.error("Error loading leaderboard");

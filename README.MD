@@ -162,3 +162,5 @@ npx expo start
 {/* Intro Todo: Make this a component */}
 {/* P Todo: Make this a component */}
 ```
+
+###### Lighten inputs
