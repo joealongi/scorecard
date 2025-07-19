@@ -1,5 +1,6 @@
 package golf.pinpointscore.clubhouse.controllers;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -13,7 +14,8 @@ import golf.pinpointscore.clubhouse.entities.UserEntity;
 import golf.pinpointscore.clubhouse.repositories.ScorecardRepository;
 import golf.pinpointscore.clubhouse.repositories.UserRepository;
 @RestController
-@RequestMapping(path="/user")
+@RequestMapping(path="/user", produces="application/json")
+@CrossOrigin(origins="*")
 public class UserController {
 
     private final UserRepository userRepository;

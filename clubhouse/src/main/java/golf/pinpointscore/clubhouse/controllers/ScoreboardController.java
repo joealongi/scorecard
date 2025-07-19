@@ -2,6 +2,7 @@ package golf.pinpointscore.clubhouse.controllers;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +12,8 @@ import golf.pinpointscore.clubhouse.models.ScoreboardModel;
 import golf.pinpointscore.clubhouse.services.ScoreboardService;
 
 @RestController
-@RequestMapping(path="/scoreboard")
+@RequestMapping(path="/scoreboard", produces="application/json")
+@CrossOrigin(origins="*")
 public class ScoreboardController {
 
     private final ScoreboardService scoreboardService;
@@ -21,7 +23,7 @@ public class ScoreboardController {
     }
 
     // Get the scoreboard
-    @GetMapping(path="/", produces = "application/json")
+    @GetMapping("/")
     List<ScoreboardModel> getScoreboard() {
 
         return scoreboardService.getScoreboard();
@@ -29,7 +31,7 @@ public class ScoreboardController {
     }
 
     // Get the scoreboard limited by amount
-    @GetMapping(path="/{amount}", produces = "application/json")
+    @GetMapping("/{amount}")
     List<ScoreboardModel> getScoreboardLimited(@PathVariable int amount) {
 
         return scoreboardService.getScoreboardLimited(amount);

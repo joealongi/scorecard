@@ -17,7 +17,7 @@ public class ScoreboardService {
     private final ScorecardRepository scorecardRepository;
     private final UserRepository userRepository;
 
-    ScoreboardService(ScorecardRepository scorecardRepository, UserRepository userRepository) {
+    public ScoreboardService(ScorecardRepository scorecardRepository, UserRepository userRepository) {
         this.scorecardRepository = scorecardRepository;
         this.userRepository = userRepository;
     }
@@ -33,7 +33,7 @@ public class ScoreboardService {
         scorecards.forEach(scorecard -> {
 
             // Fetch the user associated with the scorecard
-            UserEntity user = userRepository.findById((long) scorecard.getUserId()).orElse(null);
+            UserEntity user = userRepository.findByUserId((int) scorecard.getUserId());
 
             // For each scorecard, create a ScoreboardModel entry
             int userId = scorecard.getUserId();
@@ -72,11 +72,8 @@ public class ScoreboardService {
 
 	public List<ScoreboardModel> getScoreboardLimited(int amount) {
 
-        // Initialize the scorecard and user repositories
-        ScoreboardService scoreboardService = new ScoreboardService(scorecardRepository, userRepository);
-        
         // Get the full scoreboard
-        List<ScoreboardModel> scoreboard = scoreboardService.getScoreboard();
+        List<ScoreboardModel> scoreboard = this.getScoreboard();
 
         // Sort the scoreboard by scoreboard score in ascending order
         scoreboard.sort((a, b) -> Integer.compare(a.getScoreboardScore(), b.getScoreboardScore()));
