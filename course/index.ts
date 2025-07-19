@@ -1,9 +1,8 @@
 import express, { Request, Response } from "express";
 import dotenv from "dotenv";
 import cors from "cors";
-import path from "path";
 
-import { post } from "./api/proxy";
+import { get, post, idp } from "./api/proxy";
 import { decrypt } from "./utils/security";
 
 // ENV Configuration
@@ -13,7 +12,7 @@ dotenv.config();
 const app = express();
 
 // Redirect Middleware and CORS Middleware for Production
-if (process.env.NODE_ENV !== null && process.env.NODE_ENV == "development") {
+if (process.env.NODE_ENV !== null && process.env.NODE_ENV === "development") {
   // CORS Middleware
   app.use(
     cors({
@@ -69,32 +68,114 @@ app.get("/", (request: Request, response: Response) => {
     .setHeader("Content-Type", "text/html");
 });
 
-// Proxy Endpoint
-app.post("/proxy", async (request: Request<any>, response: Response<any>) => {
+// GET Endpoint
+app.post("/get", async (request: Request<any>, response: Response<any>) => {
+  try {
+    const obj: any = {};
+    if (request?.body?.packaged) {
+      const base64 = Buffer.from(request?.body?.packaged, "base64");
+      const decrypted = await decrypt(
+        base64.buffer.slice(
+          base64.byteOffset,
+          base64.byteOffset + base64.byteLength
+        )
+      );
+      obj["base"] = await decrypted?.base;
+      obj["endpoint"] = await decrypted?.endpoint;
+    } else if (
+      process.env.NODE_ENV !== null &&
+      process.env.NODE_ENV === "development"
+    ) {
+      obj["base"] = await request?.body?.base;
+      obj["endpoint"] = await request?.body?.endpoint;
+    }
+    const resp = await get(obj?.base, obj?.endpoint);
+    if (resp) {
+      response.status(200).send(resp);
+    }
+    response.status(400).send();
+  } catch (error: any) {
+    if (error?.response?.data) {
+      response.status(400).send(error?.response?.data);
+    }
+    response.status(400).send();
+  }
+});
+
+// POST Endpoint
+app.post("/post", async (request: Request<any>, response: Response<any>) => {
+  try {
+    const obj: any = {};
+    if (request?.body?.packaged) {
+      const base64 = Buffer.from(request?.body?.packaged, "base64");
+      const decrypted = await decrypt(
+        base64.buffer.slice(
+          base64.byteOffset,
+          base64.byteOffset + base64.byteLength
+        )
+      );
+      obj["base"] = await decrypted?.base;
+      obj["endpoint"] = await decrypted?.endpoint;
+      obj["body"] = await decrypted?.body;
+      obj["payload"] = { ...obj, ...decrypted?.body };
+    } else if (
+      process.env.NODE_ENV !== null &&
+      process.env.NODE_ENV === "development"
+    ) {
+      obj["base"] = await request?.body?.base;
+      obj["endpoint"] = await request?.body?.endpoint;
+      obj["body"] = await request?.body?.body;
+      obj["payload"] = { ...obj, ...request?.body?.body };
+    }
+    const resp = await post(obj?.base, obj?.endpoint, obj?.payload);
+    if (resp) {
+      response.status(200).send(resp);
+    }
+    response.status(400).send();
+  } catch (error: any) {
+    if (error?.response?.data) {
+      response.status(400).send(error?.response?.data);
+    }
+    response.status(400).send();
+  }
+});
+
+// IDP Endpoint
+app.post("/idp", async (request: Request<any>, response: Response<any>) => {
   try {
     const obj: any = {};
     if (request?.body?.continuation_token) {
       obj["continuation_token"] = request?.body?.continuation_token;
     }
-    const base64 = Buffer.from(request?.body?.packaged, "base64");
-    const decrypted = await decrypt(
-      base64.buffer.slice(
-        base64.byteOffset,
-        base64.byteOffset + base64.byteLength
-      )
-    );
-    const base = await decrypted?.base;
-    const endpoint = await decrypted?.endpoint;
-    const body = await decrypted?.body;
-    const payload = { ...obj, ...body };
-    const resp = await post(base, endpoint, payload);
+    if (request?.body?.packaged) {
+      const base64 = Buffer.from(request?.body?.packaged, "base64");
+      const decrypted = await decrypt(
+        base64.buffer.slice(
+          base64.byteOffset,
+          base64.byteOffset + base64.byteLength
+        )
+      );
+      obj["base"] = await decrypted?.base;
+      obj["endpoint"] = await decrypted?.endpoint;
+      obj["body"] = await decrypted?.body;
+      obj["payload"] = { ...obj, ...decrypted?.body };
+    } else if (
+      process.env.NODE_ENV !== null &&
+      process.env.NODE_ENV === "development"
+    ) {
+      obj["base"] = await request?.body?.base;
+      obj["endpoint"] = await request?.body?.endpoint;
+      obj["body"] = await request?.body?.body;
+      obj["payload"] = { ...obj, ...request?.body?.body };
+    }
+    const resp = await idp(obj?.base, obj?.endpoint, obj?.payload);
     if (resp) {
-      response.status(200).send({ ...resp });
+      response.status(200).send(resp);
     }
     response.status(400).send();
   } catch (error: any) {
     if (error?.response?.data) {
-      response.status(400).send({ ...error?.response?.data });
+      response.status(400).send(error?.response?.data);
     }
     response.status(400).send();
   }
@@ -102,8 +183,8 @@ app.post("/proxy", async (request: Request<any>, response: Response<any>) => {
 
 // Application Start
 app
-  .listen(process.env.PORT ?? 8080, () => {
-    console.log("Server running at PORT: ", process.env.PORT ?? 8080);
+  .listen(process.env.PORT ?? 4040, () => {
+    console.log("Server running at PORT: ", process.env.PORT ?? 4040);
   })
   .on("error", (error) => {
     // gracefully handle error

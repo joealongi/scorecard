@@ -1,4 +1,4 @@
-import { postRequest } from "../functions/request";
+import { idpRequest } from "../functions/request";
 import type {
   ChallengeForm,
   SignUpChallengeRequest,
@@ -19,8 +19,7 @@ export const signupStart = async (payload: SignUpFormPassword) => {
     client_id: import.meta.env.VITE_CLIENT_ID ?? "",
     challenge_type: "password oob redirect",
   };
-
-  return await postRequest(
+  return await idpRequest(
     `/signup/v1.0/start`,
     payloadExt as unknown as {
       [key: string]: unknown;
@@ -38,8 +37,7 @@ export const signupChallenge = async (
     challenge_type: "password oob redirect",
     continuation_token: payload.continuation_token,
   };
-
-  return await postRequest(
+  return await idpRequest(
     `/signup/v1.0/challenge`,
     payloadExt as unknown as {
       [key: string]: unknown;
@@ -56,6 +54,5 @@ export const signUpSubmitOTP = async (payload: ChallengeForm) => {
     oob: payload.oob,
     grant_type: "oob",
   };
-
-  return await postRequest(`/signup/v1.0/continue`, payloadExt);
+  return await idpRequest(`/signup/v1.0/continue`, payloadExt);
 };

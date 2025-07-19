@@ -47,8 +47,11 @@ jobs:
           ###### End of Repository/Build Configurations ######
         env: # Add environment variables here
           VITE_CLIENT_ID: ${{ secrets.VITE_CLIENT_ID }}
-          VITE_BASE_API_URL: ${{ secrets.VITE_BASE_API_URL }}
-          VITE_PROXY_URL: ${{ secrets.VITE_PROXY_URL }}
+          VITE_CLUBHOUSE_BASE_API_URL: ${{ secrets.VITE_CLUBHOUSE_BASE_API_URL }}
+          VITE_IDP_BASE_API_URL: ${{ secrets.VITE_IDP_BASE_API_URL }}
+          VITE_PROXY_GET_URL: ${{ secrets.VITE_PROXY_GET_URL }}
+          VITE_PROXY_POST_URL: ${{ secrets.VITE_PROXY_POST_URL }}
+          VITE_PROXY_IDP_URL: ${{ secrets.VITE_PROXY_IDP_URL }}
           VITE_REDIRECT_URI: ${{ secrets.VITE_REDIRECT_URI }}
           VITE_PUBLIC_KEY: ${{ secrets.VITE_PUBLIC_KEY }}
           VITE_PRIVATE_KEY: ${{ secrets.VITE_PRIVATE_KEY }}

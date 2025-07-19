@@ -1,6 +1,6 @@
 import * as React from "react";
 
-export default function Leaderboard() {
+export default function LeaderboardComponent() {
   return (
     <React.Fragment>
       <section class="my-1 border-1 border-neutral-950">

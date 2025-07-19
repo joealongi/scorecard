@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { Link } from "react-router";
 
-export default function Copyright() {
+export default function CopyrightComponent() {
   return (
     <React.Fragment>
       <footer className="relative block mt-[9vh] text-xs subpixel-antialiased font-light text-left uppercase text-neutral-300">

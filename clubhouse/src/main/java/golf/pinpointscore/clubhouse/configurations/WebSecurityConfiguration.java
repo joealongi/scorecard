@@ -34,7 +34,7 @@ public class WebSecurityConfiguration {
 
         CorsConfiguration configuration = new CorsConfiguration();
         if(System.getenv("SPRING_PROFILES_ACTIVE") != null && System.getenv("SPRING_PROFILES_ACTIVE").equals("development")) {
-            configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173", "http://localhost:4000", "http://localhost:8080"));
+            configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173", "http://localhost:4040", "http://localhost:8080"));
         } else {
             configuration.setAllowedOrigins(Arrays.asList("https://pinpointscore.golf", "https://course.pinpointscore.golf", "https://clubhouse.pinpointscore.golf"));
         }

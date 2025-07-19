@@ -66,15 +66,15 @@ yarn-error.log*
 application-local.properties
 */application-local.properties
 *application-local.properties
-application-dev.properties
-*/application-dev.properties
-*application-dev.properties
-application-test.properties
-*/application-test.properties
-*application-test.properties
-application-prod.properties
-*/application-prod.properties
-*application-prod.properties
+application-development.properties
+*/application-development.properties
+*application-development.properties
+application-testing.properties
+*/application-testing.properties
+*application-testing.properties
+application-production.properties
+*/application-production.properties
+*application-production.properties
 
 ### Server Env Files ###
 /nodemon.json

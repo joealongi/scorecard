@@ -1,4 +1,4 @@
-import { postRequest } from "../functions/request";
+import { idpRequest } from "../functions/request";
 import type {
   ChallengeRequest,
   SignInStartRequest,
@@ -13,8 +13,7 @@ export const signInStart = async (username: string) => {
     client_id: import.meta.env.VITE_CLIENT_ID ?? "",
     challenge_type: "password oob redirect",
   };
-
-  return await postRequest(
+  return await idpRequest(
     `/oauth2/v2.0/initiate`,
     payloadExt as unknown as { [key: string]: unknown }
   );
@@ -26,8 +25,7 @@ export const signInChallenge = async (continuation_token: string) => {
     client_id: import.meta.env.VITE_CLIENT_ID ?? "",
     challenge_type: "password oob redirect",
   };
-
-  return await postRequest(
+  return await idpRequest(
     `/oauth2/v2.0/challenge`,
     payloadExt as unknown as {
       [key: string]: unknown;
@@ -45,16 +43,13 @@ export const signInTokenRequest = async (
     challenge_type: "password oob redirect",
     scope: "openid offline_access",
   };
-
   if (request.grant_type === "password") {
     payloadExt.password = request.password;
   }
-
   if (request.grant_type === "oob") {
     payloadExt.oob = request.oob;
   }
-
-  return await postRequest(
+  return await idpRequest(
     `/oauth2/v2.0/token`,
     payloadExt as unknown as {
       [key: string]: unknown;

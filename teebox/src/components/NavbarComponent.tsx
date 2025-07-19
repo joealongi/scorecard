@@ -4,9 +4,9 @@ import { NavLink } from "react-router";
 
 import Pinpointscore from "../assets/pinpointscore.svg";
 import PinpointscoreMenu from "../assets/pinpointscore-menu.svg";
-import NavList from "./navbar/NavList";
+import NavList from "./navbar/NavListComponent";
 
-export default function Navbar() {
+export default function NavbarComponent() {
   const [authenticated, setAuthenticated] = React.useState(false);
   const [open, setOpen] = React.useState<boolean>(false);
 

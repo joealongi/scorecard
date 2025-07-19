@@ -23,6 +23,7 @@ public class ScoreboardService {
     }
 
     public List<ScoreboardModel> getScoreboard(){
+        
         // Initialize an empty list to hold the scoreboard models
         List<ScoreboardModel> scoreboard = new ArrayList<>();
 

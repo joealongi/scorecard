@@ -51,7 +51,7 @@ https://start.spring.io/#!type=gradle-project&language=java&platformVersion=3.5.
 
 Start the application:
 ```bash
-./gradlew bootRun
+./gradlew bootRun --args='--spring.profiles.active=development'
 ```
 
 Azure CR:
@@ -134,4 +134,124 @@ npm install
 Start the app:
 ```bash
 npx expo start
+```
+
+# TODO:
+
+###### Mobile friendly scoreboard
+
+// <React.Fragment>
+//   <ul class="avalinginc-theme-container z-0 flex flex-row flex-auto justify-center items-center mt-3">
+//     <li class="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-xl font-bold text-neutral-300 bg-lime-600 text-left border-1 border-neutral-950 subpixel-antialiased">
+//       Hole
+//     </li>
+//     <li class="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-xl font-bold text-neutral-300 bg-lime-600 text-left border-l-1 border-neutral-950 subpixel-antialiased">
+//       Score
+//     </li>
+//   </ul>
+//   <ul class="avalinginc-theme-container z-0 flex flex-row flex-auto justify-center items-center">
+//     <li class="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base font-bold text-neutral-950 bg-neutral-300 text-center border-1 border-t-0  border-neutral-950 subpixel-antialiased">
+//       1
+//     </li>
+//     <li class="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base text-neutral-950 bg-neutral-300 text-center border-1 border-t-0 border-l-0 border-neutral-950 subpixel-antialiased">
+//       4
+//     </li>
+//   </ul>
+//   <ul class="avalinginc-theme-container z-0 flex flex-row flex-auto justify-center items-center">
+//     <li class="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base font-bold text-neutral-950 bg-neutral-300 text-center border-1 border-t-0  border-neutral-950 subpixel-antialiased">
+//       2
+//     </li>
+//     <li class="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base text-neutral-950 bg-neutral-300 text-center border-1 border-t-0 border-l-0 border-neutral-950 subpixel-antialiased">
+//       4
+//     </li>
+//   </ul>
+//   <ul class="avalinginc-theme-container z-0 flex flex-row flex-auto justify-center items-center">
+//     <li class="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base font-bold text-neutral-950 bg-neutral-300 text-center border-1 border-t-0  border-neutral-950 subpixel-antialiased">
+//       3
+//     </li>
+//     <li class="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base text-neutral-950 bg-neutral-300 text-center border-1 border-t-0 border-l-0 border-neutral-950 subpixel-antialiased">
+//       4
+//     </li>
+//   </ul>
+//   <ul class="avalinginc-theme-container z-0 flex flex-row flex-auto justify-center items-center">
+//     <li class="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base font-bold text-neutral-950 bg-neutral-300 text-center border-1 border-t-0  border-neutral-950 subpixel-antialiased">
+//       4
+//     </li>
+//     <li class="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base text-neutral-950 bg-neutral-300 text-center border-1 border-t-0 border-l-0 border-neutral-950 subpixel-antialiased">
+//       4
+//     </li>
+//   </ul>
+//   <ul class="avalinginc-theme-container z-0 flex flex-row flex-auto justify-center items-center">
+//     <li class="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base font-bold text-neutral-950 bg-neutral-300 text-center border-1 border-t-0  border-neutral-950 subpixel-antialiased">
+//       5
+//     </li>
+//     <li class="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base text-neutral-950 bg-neutral-300 text-center border-1 border-t-0 border-l-0 border-neutral-950 subpixel-antialiased">
+//       4
+//     </li>
+//   </ul>
+//   <ul class="avalinginc-theme-container z-0 flex flex-row flex-auto justify-center items-center">
+//     <li class="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base font-bold text-neutral-950 bg-neutral-300 text-center border-1 border-t-0  border-neutral-950 subpixel-antialiased">
+//       1
+//     </li>
+//     <li class="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base text-neutral-950 bg-neutral-300 text-center border-1 border-t-0 border-l-0 border-neutral-950 subpixel-antialiased">
+//       6
+//     </li>
+//   </ul>
+//   <ul class="avalinginc-theme-container z-0 flex flex-row flex-auto justify-center items-center">
+//     <li class="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base font-bold text-neutral-950 bg-neutral-300 text-center border-1 border-t-0  border-neutral-950 subpixel-antialiased">
+//       7
+//     </li>
+//     <li class="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base text-neutral-950 bg-neutral-300 text-center border-1 border-t-0 border-l-0 border-neutral-950 subpixel-antialiased">
+//       4
+//     </li>
+//   </ul>
+//   <ul class="avalinginc-theme-container z-0 flex flex-row flex-auto justify-center items-center">
+//     <li class="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base font-bold text-neutral-950 bg-neutral-300 text-center border-1 border-t-0  border-neutral-950 subpixel-antialiased">
+//       8
+//     </li>
+//     <li class="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base text-neutral-950 bg-neutral-300 text-center border-1 border-t-0 border-l-0 border-neutral-950 subpixel-antialiased">
+//       4
+//     </li>
+//   </ul>
+//   <ul class="avalinginc-theme-container z-0 flex flex-row flex-auto justify-center items-center">
+//     <li class="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base font-bold text-neutral-950 bg-neutral-300 text-center border-1 border-t-0  border-neutral-950 subpixel-antialiased">
+//       9
+//     </li>
+//     <li class="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base text-neutral-950 bg-neutral-300 text-center border-1 border-t-0 border-l-0 border-neutral-950 subpixel-antialiased">
+//       4
+//     </li>
+//   </ul>
+//   <ul class="avalinginc-theme-container z-0 flex flex-row flex-auto justify-center items-center">
+//     <li class="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base font-bold text-neutral-950 bg-neutral-300 text-center border-1 border-t-0  border-neutral-950 subpixel-antialiased">
+//       10
+//     </li>
+//     <li class="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-base text-neutral-950 bg-neutral-300 text-center border-1 border-t-0 border-l-0 border-neutral-950 subpixel-antialiased">
+//       4
+//     </li>
+//   </ul>
+// </React.Fragment>
+
+###### Create a leaderboard page that displays the top golfers based on their scores.
+- Need to update java and db
+- Write algorithm to calculate the leaderboard based on scores overall (par - score)
+- Create ranking table that runs as a result of a job to optimize performance
+```
+// TODO: Sort the leaderboard by rank
+// type LeaderboardItem = {
+//   rank: number;
+//   username: string;
+//   course: string;
+//   total: number;
+//   scores: number[];
+// };
+```
+
+###### Create components for pages
+- Create react components for each page
+```
+{/* H1 Todo: Make this a component */}
+{/* H2 Todo: Make this a component */}
+{/* H3 Todo: Make this a component */}
+{/* Intro Todo: Make this a component */}
+{/* P Todo: Make this a component */}
 ```

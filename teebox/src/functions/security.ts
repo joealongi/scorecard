@@ -29,7 +29,8 @@ export const encrypt = async (
     );
     return ciphertext;
   } catch (error) {
-    console.error("Error encrypting data", error);
+    console.error("Error encrypting data");
+    return error as ArrayBuffer | undefined;
   }
 };
 
@@ -62,7 +63,8 @@ export const decrypt = async (ciphertext: ArrayBuffer): Promise<any> => {
     const decoded = decoder?.decode(decrypted);
     return JSON.parse(decoded);
   } catch (error) {
-    console.error("Error decrypting data", error);
+    console.error("Error decrypting data");
+    return error;
   }
 };
 
@@ -76,7 +78,8 @@ export const envelope = async (buffer: ArrayBuffer) => {
     const encoded = window?.btoa(obj?.["binary"]);
     return encoded;
   } catch (error) {
-    console.error("Error enveloping data", error);
+    console.error("Error enveloping data");
+    return error;
   }
 };
 
@@ -120,6 +123,7 @@ export const generate = async () => {
 
     return obj;
   } catch (error) {
-    console.error("Error generating keys", error);
+    console.error("Error generating keys");
+    return error;
   }
 };

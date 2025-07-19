@@ -3,8 +3,8 @@ import * as React from "react";
 import * as Sentry from "@sentry/react";
 import { useNavigate } from "react-router";
 
-import Navbar from "./components/Navbar";
-import Copyright from "./components/Copyright";
+import NavbarComponent from "./components/NavbarComponent";
+import CopyrightComponent from "./components/CopyrightComponent";
 
 export default function App({
   children,
@@ -55,9 +55,9 @@ export default function App({
     <React.Fragment>
       <main id="main" className="z-0 max-w-6xl m-9 xl:mx-auto">
         <div className="flex flex-col flex-auto min-w-0 mt-3 px-3 md:px-0">
-          <Navbar />
+          <NavbarComponent />
           {children}
-          <Copyright />
+          <CopyrightComponent />
         </div>
       </main>
     </React.Fragment>

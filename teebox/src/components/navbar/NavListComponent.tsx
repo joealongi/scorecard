@@ -2,15 +2,15 @@ import * as React from "react";
 
 import { NavLink } from "react-router";
 
-interface NavListProps {
+interface NavListComponentProps {
   authenticated: boolean;
   handleOpen: () => void;
 }
 
-export default function NavList({
+export default function NavListComponent({
   authenticated,
   handleOpen,
-}: Readonly<NavListProps>) {
+}: Readonly<NavListComponentProps>) {
   return (
     <React.Fragment>
       <li>
@@ -43,10 +43,10 @@ export default function NavList({
             className="block md:flex md:flex-col md:flex-auto md:justify-self-start w-full mx-auto p-3 text-xl text-neutral-300 hover:text-lime-600 text-center subpixel-antialiased transition-all"
             rel="noopener noreferrer"
             target="_self"
-            to="/scoreboard"
+            to="/leaderboard"
             onClick={() => handleOpen()}
           >
-            Scoreboard
+            Leaderboard
           </NavLink>
         </li>
       )}

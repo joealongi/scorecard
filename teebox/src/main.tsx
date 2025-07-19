@@ -4,9 +4,9 @@ import { BrowserRouter, Routes, Route } from "react-router";
 import "./index.css";
 
 import App from "./App.tsx";
-import Home from "./pages/basic/Home";
-import About from "./pages/basic/About";
-import Scoreboard from "./pages/basic/Scoreboard";
+import HomePage from "./pages/basic/HomePage.tsx";
+import AboutPage from "./pages/basic/AboutPage.tsx";
+import LeaderboardPage from "./pages/basic/LeaderboardPage.tsx";
 import { SignIn } from "./pages/sign-in/SignIn";
 // import { UserInfo } from "./pages/user/UserInfo";
 import { SignUp } from "./pages/sign-up/SignUp";
@@ -22,7 +22,7 @@ createRoot(document.getElementById("root")!).render(
           index
           element={
             <App>
-              <Home />
+              <HomePage />
             </App>
           }
         />
@@ -30,15 +30,15 @@ createRoot(document.getElementById("root")!).render(
           path="/about"
           element={
             <App>
-              <About />
+              <AboutPage />
             </App>
           }
         />
         <Route
-          path="/scoreboard"
+          path="/leaderboard"
           element={
             <App>
-              <Scoreboard />
+              <LeaderboardPage />
             </App>
           }
         />
@@ -94,7 +94,7 @@ createRoot(document.getElementById("root")!).render(
           path="*"
           element={
             <App>
-              <Home />
+              <HomePage />
             </App>
           }
         />
