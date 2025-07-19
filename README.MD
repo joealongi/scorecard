@@ -139,7 +139,7 @@ npx expo start
 # TODO:
 
 ###### Mobile friendly scoreboard
-
+```
 // <React.Fragment>
 //   <ul class="avalinginc-theme-container z-0 flex flex-row flex-auto justify-center items-center mt-3">
 //     <li class="flex flex-col flex-auto justify-self-start min-w-[50%] max-w-[50%] p-3 text-xl font-bold text-neutral-300 bg-lime-600 text-left border-1 border-neutral-950 subpixel-antialiased">
@@ -230,6 +230,7 @@ npx expo start
 //     </li>
 //   </ul>
 // </React.Fragment>
+```
 
 ###### Create a leaderboard page that displays the top golfers based on their scores.
 - Need to update java and db

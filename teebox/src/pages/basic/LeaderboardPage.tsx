@@ -65,16 +65,20 @@ export default function LeaderboardPage() {
           and course information.
         </p>
         <LeaderboardComponent />
-        {leaderboard?.map((item, index) => (
-          <LeaderboardItemComponent
-            key={index}
-            userRank={item?.userRank}
-            userName={item?.userName}
-            golfCourse={item?.golfCourse}
-            totalScore={item?.totalScore}
-            userScores={item?.userScores}
-          />
-        ))}
+        {leaderboard?.length > 0 ? (
+          leaderboard.map((item, index) => (
+            <LeaderboardItemComponent
+              key={index}
+              userRank={item?.userRank}
+              userName={item?.userName}
+              golfCourse={item?.golfCourse}
+              totalScore={item?.totalScore}
+              userScores={item?.userScores}
+            />
+          ))
+        ) : (
+          <React.Fragment></React.Fragment>
+        )}
       </section>
     </React.Fragment>
   );

@@ -8,7 +8,6 @@ import HomePage from "./pages/basic/HomePage.tsx";
 import AboutPage from "./pages/basic/AboutPage.tsx";
 import LeaderboardPage from "./pages/basic/LeaderboardPage.tsx";
 import { SignIn } from "./pages/sign-in/SignIn";
-// import { UserInfo } from "./pages/user/UserInfo";
 import { SignUp } from "./pages/sign-up/SignUp";
 import { SignUpChallenge } from "./pages/sign-up/SignUpChallenge";
 import { SignUpCompleted } from "./pages/sign-up/SignUpCompleted";
@@ -82,14 +81,6 @@ createRoot(document.getElementById("root")!).render(
             </App>
           }
         />
-        {/* <Route
-          path="/user"
-          element={
-            <App>
-              <UserInfo />
-            </App>
-          }
-        /> */}
         <Route
           path="*"
           element={
