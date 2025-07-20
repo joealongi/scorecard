@@ -12,7 +12,7 @@ import IntroductionComponent from "../components/IntroductionComponent";
 export const SignUpChallengePage: React.FC = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
-  const { challenge_target_label, continuation_token, code_length } = state;
+  const { continuation_token, code_length } = state;
   const [code, setCode] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [isLoading, setIsloading] = useState<boolean>(false);
