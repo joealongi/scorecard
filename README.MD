@@ -138,7 +138,7 @@ npx expo start
 
 # TODO:
 
-###### Create a leaderboard page that displays the top golfers based on their scores.
+###### Finish the leaderboard page that displays the top golfers based on their scores.
 - Need to update java and db
 - Write algorithm to calculate the leaderboard based on scores overall (par - score)
 - Create ranking table that runs as a result of a job to optimize performance
@@ -152,15 +152,3 @@ npx expo start
 //   scores: number[];
 // };
 ```
-
-###### Create components for pages
-- Create react components for each page
-```
-{/* H1 Todo: Make this a component */}
-{/* H2 Todo: Make this a component */}
-{/* H3 Todo: Make this a component */}
-{/* Intro Todo: Make this a component */}
-{/* P Todo: Make this a component */}
-```
-
-###### Lighten inputs
