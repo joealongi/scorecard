@@ -75,13 +75,13 @@ docker run -p 8080:8080 pinpointscore.azurecr.io/pinpointscore/pinpointscore/clu
 
 ## Clubhouse - Database
 
-Add user to the database:
+Add a user to the database:
 ```sql
-INSERT INTO dbo.user_entity (submitted, updated, user_id, user_name, user_first_name, user_last_name, user_email, user_country, user_city, user_course, user_handicap) 
-VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, 'pinpointscore', 'Pinpoint', 'Score', 'pinpointscore@example.com', 'USA', 'Buffalo', 'Country Club of Internet', 0);
+INSERT INTO dbo.user_entity (submitted, updated, user_id, user_name, user_first_name, user_last_name, user_email, user_country, user_city, user_course, user_handicap, user_rank) 
+VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, 'pinpointscore', 'Pinpoint', 'Score', 'pinpointscore@example.com', 'USA', 'Buffalo', 'Country Club of Internet', 0, 1);
 ```
 
-Search users in the database:
+Search a users in the database by userId:
 ```sql
 SELECT TOP 10 * 
 FROM dbo.user_entity
@@ -93,27 +93,27 @@ Delete a user from the database:
 DELETE FROM dbo.user_entity
 WHERE user_id = 1;
 ```
-
-Add scorecards to the database:
+This makes the submission unserializable, needs to be fixed, use the API
+<!-- Add a scorecard to the database:
 ```sql
-INSERT INTO dbo.scorecard_entity (submitted, updated, user_id, golf_course, golf_course_par, holes_played, total_score, hole_one_score, hole_two_score, hole_three_score, hole_four_score, hole_five_score, hole_six_score, hole_seven_score, hole_eight_score, hole_nine_score, hole_ten_score, hole_eleven_score, hole_twelve_score, hole_thirteen_score, hole_fourteen_score, hole_fifteen_score, hole_sixteen_score, hole_seventeen_score, hole_eighteen_score) 
-VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, 'Country Club of Internet', 72, 18, 72, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4);
-```
+INSERT INTO dbo.scorecard_entity (submitted, updated, user_id, user_scores, golf_course, golf_course_pars) 
+VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, CONVERT(VARBINARY(MAX), '["4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4"]'), 'Country Club of Internet', CONVERT(VARBINARY(MAX), '["4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4"]'));
+``` -->
 
-Search scorecards in the database:
+Search scorecards in the database by userId:
 ```sql
 SELECT TOP 10 * 
 FROM dbo.scorecard_entity
 ORDER BY user_id DESC;
 ```
 
-Delete score card from the database:
+Delete a scorecard from the database by userId and submitted timestamp:
 ```sql
 DELETE FROM dbo.scorecard_entity
 WHERE user_id = 1 AND submitted = '1901-01-01 00:00:00.000000';
 ```
 
-Delete all score cards from the database:
+Delete all scorecards from the database by userId:
 ```sql
 DELETE FROM dbo.scorecard_entity
 WHERE user_id = 1;

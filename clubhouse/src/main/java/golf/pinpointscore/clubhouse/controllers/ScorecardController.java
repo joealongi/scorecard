@@ -50,6 +50,9 @@ public class ScorecardController {
     @PostMapping("/")
     ScorecardEntity newScorecard(@RequestBody ScorecardEntity newScorecard) {
 
+        newScorecard.setSubmitted(new Timestamp(System.currentTimeMillis()));
+        newScorecard.setUpdated(new Timestamp(System.currentTimeMillis()));
+
         return scorecardRepository.save(newScorecard);
 
     }
@@ -60,7 +63,17 @@ public class ScorecardController {
 
         return scorecardRepository.findById(userId).map(scorecard -> {
 
-            updateScorecardFields(scorecard, newScorecard);
+            scorecard.setUpdated(new Timestamp(System.currentTimeMillis()));
+            if (newScorecard.getUserScores() != null) {
+                scorecard.setUserScores(newScorecard.getUserScores());
+            }
+            if (newScorecard.getGolfCourse() != null) {
+                scorecard.setGolfCourse(newScorecard.getGolfCourse());
+            }
+            if (newScorecard.getGolfCoursePars() != null) {
+                scorecard.setGolfCoursePars(newScorecard.getGolfCoursePars());
+            }
+
             return scorecardRepository.save(scorecard);
 
         })
@@ -76,89 +89,4 @@ public class ScorecardController {
         return null;
 
     }
-
-    // Helper method to update scorecard fields
-    private void updateScorecardFields(ScorecardEntity scorecard, ScorecardEntity newScorecard) {
-        if (newScorecard.getGolfCourse() != null) {
-            scorecard.setGolfCourse(newScorecard.getGolfCourse());
-        }
-        if (newScorecard.getGolfCoursePar() != 0) {
-            scorecard.setGolfCoursePar(newScorecard.getGolfCoursePar());
-        }
-        if (newScorecard.getHolesPlayed() != 0) {
-            scorecard.setHolesPlayed(newScorecard.getHolesPlayed());
-        }
-        if (newScorecard.getTotalScore() != 0) {
-            scorecard.setTotalScore(newScorecard.getTotalScore());
-        }
-
-        updateHoleScore(scorecard, newScorecard, 1);
-        updateHoleScore(scorecard, newScorecard, 2);
-        updateHoleScore(scorecard, newScorecard, 3);
-        updateHoleScore(scorecard, newScorecard, 4);
-        updateHoleScore(scorecard, newScorecard, 5);
-        updateHoleScore(scorecard, newScorecard, 6);
-        updateHoleScore(scorecard, newScorecard, 7);
-        updateHoleScore(scorecard, newScorecard, 8);
-        updateHoleScore(scorecard, newScorecard, 9);
-        updateHoleScore(scorecard, newScorecard, 10);
-        updateHoleScore(scorecard, newScorecard, 11);
-        updateHoleScore(scorecard, newScorecard, 12);
-        updateHoleScore(scorecard, newScorecard, 13);
-        updateHoleScore(scorecard, newScorecard, 14);
-        updateHoleScore(scorecard, newScorecard, 15);
-        updateHoleScore(scorecard, newScorecard, 16);
-        updateHoleScore(scorecard, newScorecard, 17);
-        updateHoleScore(scorecard, newScorecard, 18);
-    }
-
-    // Helper to update hole scores by number
-    private void updateHoleScore(ScorecardEntity scorecard, ScorecardEntity newScorecard, int holeNumber) {
-        int newScore = 0;
-        switch (holeNumber) {
-            case 1: newScore = newScorecard.getHoleOneScore(); break;
-            case 2: newScore = newScorecard.getHoleTwoScore(); break;
-            case 3: newScore = newScorecard.getHoleThreeScore(); break;
-            case 4: newScore = newScorecard.getHoleFourScore(); break;
-            case 5: newScore = newScorecard.getHoleFiveScore(); break;
-            case 6: newScore = newScorecard.getHoleSixScore(); break;
-            case 7: newScore = newScorecard.getHoleSevenScore(); break;
-            case 8: newScore = newScorecard.getHoleEightScore(); break;
-            case 9: newScore = newScorecard.getHoleNineScore(); break;
-            case 10: newScore = newScorecard.getHoleTenScore(); break;
-            case 11: newScore = newScorecard.getHoleElevenScore(); break;
-            case 12: newScore = newScorecard.getHoleTwelveScore(); break;
-            case 13: newScore = newScorecard.getHoleThirteenScore(); break;
-            case 14: newScore = newScorecard.getHoleFourteenScore(); break;
-            case 15: newScore = newScorecard.getHoleFifteenScore(); break;
-            case 16: newScore = newScorecard.getHoleSixteenScore(); break;
-            case 17: newScore = newScorecard.getHoleSeventeenScore(); break;
-            case 18: newScore = newScorecard.getHoleEighteenScore(); break;
-            default: break;
-        }
-        if (newScore != 0) {
-            switch (holeNumber) {
-                case 1: scorecard.setHoleOneScore(newScore); break;
-                case 2: scorecard.setHoleTwoScore(newScore); break;
-                case 3: scorecard.setHoleThreeScore(newScore); break;
-                case 4: scorecard.setHoleFourScore(newScore); break;
-                case 5: scorecard.setHoleFiveScore(newScore); break;
-                case 6: scorecard.setHoleSixScore(newScore); break;
-                case 7: scorecard.setHoleSevenScore(newScore); break;
-                case 8: scorecard.setHoleEightScore(newScore); break;
-                case 9: scorecard.setHoleNineScore(newScore); break;
-                case 10: scorecard.setHoleTenScore(newScore); break;
-                case 11: scorecard.setHoleElevenScore(newScore); break;
-                case 12: scorecard.setHoleTwelveScore(newScore); break;
-                case 13: scorecard.setHoleThirteenScore(newScore); break;
-                case 14: scorecard.setHoleFourteenScore(newScore); break;
-                case 15: scorecard.setHoleFifteenScore(newScore); break;
-                case 16: scorecard.setHoleSixteenScore(newScore); break;
-                case 17: scorecard.setHoleSeventeenScore(newScore); break;
-                case 18: scorecard.setHoleEighteenScore(newScore); break;
-                default: break;
-            }
-        }
-    }
-    
 }

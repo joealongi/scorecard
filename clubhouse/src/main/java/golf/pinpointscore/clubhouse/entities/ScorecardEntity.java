@@ -1,6 +1,7 @@
 package golf.pinpointscore.clubhouse.entities;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -23,38 +24,17 @@ public class ScorecardEntity {
     private Long id;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(updatable = false)
+    @Column(nullable = false, updatable = false)
     private Timestamp submitted;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(updatable = true)
+    @Column(nullable = false, updatable = true)
     private Timestamp updated;
 
     @Column(nullable = false)
     private int userId;
+    private List<Integer> userScores;
     private String golfCourse;
-    private int golfCoursePar;
-    private int holesPlayed;
-    private int totalScore;
-
-    @Column(nullable = true)
-    private int holeOneScore;
-    private int holeTwoScore;
-    private int holeThreeScore;
-    private int holeFourScore;
-    private int holeFiveScore;
-    private int holeSixScore;
-    private int holeSevenScore;
-    private int holeEightScore;
-    private int holeNineScore;
-    private int holeTenScore;
-    private int holeElevenScore;
-    private int holeTwelveScore;
-    private int holeThirteenScore;
-    private int holeFourteenScore;
-    private int holeFifteenScore;
-    private int holeSixteenScore;
-    private int holeSeventeenScore;
-    private int holeEighteenScore;
+    private List<Integer> golfCoursePars;
     
 }

@@ -10,33 +10,22 @@ import HeadingOneComponent from "../components/HeadingOneComponent";
 import IntroductionComponent from "../components/IntroductionComponent";
 
 type LeaderboardRow = {
-  userId: number;
   submitted: string;
-  userName: string;
-  userHandicap: number;
-  golfCourse: string;
-  holesPlayed: number;
-  totalScore: number;
-  scoreboardScore: number;
-};
-
-type LeaderboardRowAdjusted = {
+  updated: string;
   userId: number;
   userName: string;
   userRank: number;
   userHandicap: number;
-  userTotalScore: number;
   userScores: number[];
+  userTotalScore: number;
   golfCourse: string;
   golfCoursePars: number[];
+  golfCourseTotalPar: number;
   golfCourseHolesPlayed: number;
-  submitted: string;
 };
 
 export default function LeaderboardPage() {
-  const [leaderboard, setLeaderboard] = React.useState<
-    LeaderboardRowAdjusted[]
-  >([]);
+  const [leaderboard, setLeaderboard] = React.useState<LeaderboardRow[]>([]);
 
   // Handle leaderboard
   const handleLeaderboard = async () => {
@@ -44,33 +33,23 @@ export default function LeaderboardPage() {
       // Request initial
       const initial = initialLeaderboardData;
 
+      // Set initial leaderboard
+      if (initial?.length > 0) {
+        setLeaderboard(initial);
+      }
+
       // Set base url
       const base = import.meta.env.VITE_CLUBHOUSE_BASE_API_URL ?? "";
 
       // Request response
-      const response = await getRequest(base, `/scoreboard/`);
+      const response = await getRequest(base, `/leaderboard/`);
       if (initial?.length > 0 && response?.length > 0) {
         // Create leaderboard rows
         response.forEach((item: LeaderboardRow, index: number) => {
           // Create temporary row
-          const row: LeaderboardRowAdjusted = {
-            userRank: 0,
-            userTotalScore: 0,
-            userScores: [],
-            golfCoursePars: [],
-            golfCourseHolesPlayed: 0,
+          const row: LeaderboardRow = {
             ...item,
           };
-
-          // Fake user scores
-          row.userScores = [
-            4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,
-          ];
-
-          // Fake golf course pars
-          row.golfCoursePars = [
-            4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,
-          ];
 
           // Update row if less than or equal to 10 or add a new row if greater than 10 rows
           if (initial?.[index]) {

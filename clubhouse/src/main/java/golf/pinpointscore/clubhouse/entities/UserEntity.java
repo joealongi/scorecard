@@ -40,5 +40,6 @@ public class UserEntity {
     private String userCity;
     private String userCourse;
     private int userHandicap;
+    private int userRank;
     
 }
