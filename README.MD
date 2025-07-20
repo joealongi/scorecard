@@ -152,3 +152,5 @@ npx expo start
 //   scores: number[];
 // };
 ```
+
+###### Add loader
