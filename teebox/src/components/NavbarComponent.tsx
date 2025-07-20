@@ -18,7 +18,7 @@ export default function NavbarComponent() {
     const authentication = false;
 
     // Close the menu when clicking or moving the mouse outside of it
-    const main = document?.querySelector("#main");
+    const main = document?.getElementById("main");
     if (main) {
       // Desktop
       main.addEventListener("mouseenter", () => {
@@ -29,6 +29,22 @@ export default function NavbarComponent() {
       });
       // Mobile
       main.addEventListener("touchmove", () => {
+        setOpen(false);
+      });
+    }
+
+    // Close the menu when clicking or moving the mouse outside of the menu button
+    const menuButton = document?.getElementById("menu-button");
+    if (menuButton) {
+      // Desktop
+      menuButton.addEventListener("mouseenter", () => {
+        setOpen(false);
+      });
+      menuButton.addEventListener("click", () => {
+        setOpen(false);
+      });
+      // Mobile
+      menuButton.addEventListener("touchmove", () => {
         setOpen(false);
       });
     }
@@ -60,7 +76,7 @@ export default function NavbarComponent() {
       </nav>
       <nav className="z-30 relative block md:hidden visible md:invisible my-[9vh] md:my-0">
         <ul className="flex flex-row justify-center items-center self-center">
-          <li className="flex flex-col flex-auto justify-self-start">
+          <li className="z-60 flex flex-col flex-auto justify-self-start">
             <NavLink rel="noopener noreferrer" target="_self" to="/">
               <img
                 src={Pinpointscore}
@@ -71,12 +87,15 @@ export default function NavbarComponent() {
               />
             </NavLink>
           </li>
-          <li className="flex flex-col justify-self-end bg-neutral-950">
+          <li
+            id="menu-button"
+            className="z-60 flex flex-col justify-self-end bg-neutral-950 hover:bg-neutral-900"
+          >
             <NavLink
               rel="noopener noreferrer"
               target="_self"
               to="#"
-              onClick={handleOpen}
+              onClick={() => handleOpen()}
             >
               <img
                 className="m-1 p-1"
@@ -90,10 +109,7 @@ export default function NavbarComponent() {
         </ul>
         <div id="menu-wrapper" className="block relative">
           {open ? (
-            <div
-              id="menu"
-              className="z-30 absolute h-auto w-full mt-3 py-3 px-3 bg-neutral-950 shadow-xl transition-all"
-            >
+            <div className="z-30 absolute h-auto w-full mt-3 py-3 px-3 bg-neutral-950 shadow-xl transition-all">
               <ul className="flex flex-col space-y-3 mx-auto">
                 <NavList
                   authenticated={authenticated}
