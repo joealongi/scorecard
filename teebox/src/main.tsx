@@ -4,14 +4,14 @@ import { BrowserRouter, Routes, Route } from "react-router";
 import "./index.css";
 
 import App from "./App.tsx";
-import HomePage from "./pages/basic/HomePage.tsx";
-import AboutPage from "./pages/basic/AboutPage.tsx";
-import LeaderboardPage from "./pages/basic/LeaderboardPage.tsx";
-import { SignIn } from "./pages/sign-in/SignIn";
-import { SignUp } from "./pages/sign-up/SignUp";
-import { SignUpChallenge } from "./pages/sign-up/SignUpChallenge";
-import { SignUpCompleted } from "./pages/sign-up/SignUpCompleted";
-import { ResetPassword } from "./pages/reset-password/ResetPassword";
+import HomePage from "./pages/HomePage.tsx";
+import AboutPage from "./pages/AboutPage.tsx";
+import LeaderboardPage from "./pages/LeaderboardPage.tsx";
+import { SignInPage } from "./pages/SignInPage.tsx";
+import { SignUpPage } from "./pages/SignUpPage.tsx";
+import { SignUpChallengePage } from "./pages/SignUpChallengePage.tsx";
+import { SignUpCompletedPage } from "./pages/SignUpCompletedPage.tsx";
+import { ResetPasswordPage } from "./pages/ResetPasswordPage.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -45,7 +45,7 @@ createRoot(document.getElementById("root")!).render(
           path="/signin"
           element={
             <App>
-              <SignIn />
+              <SignInPage />
             </App>
           }
         />
@@ -53,7 +53,7 @@ createRoot(document.getElementById("root")!).render(
           path="/signup"
           element={
             <App>
-              <SignUp />
+              <SignUpPage />
             </App>
           }
         />
@@ -61,7 +61,7 @@ createRoot(document.getElementById("root")!).render(
           path="/signup/challenge"
           element={
             <App>
-              <SignUpChallenge />
+              <SignUpChallengePage />
             </App>
           }
         />
@@ -69,7 +69,7 @@ createRoot(document.getElementById("root")!).render(
           path="/signup/completed"
           element={
             <App>
-              <SignUpCompleted />
+              <SignUpCompletedPage />
             </App>
           }
         />
@@ -77,7 +77,7 @@ createRoot(document.getElementById("root")!).render(
           path="/reset"
           element={
             <App>
-              <ResetPassword />
+              <ResetPasswordPage />
             </App>
           }
         />

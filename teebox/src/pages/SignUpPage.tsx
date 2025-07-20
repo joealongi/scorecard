@@ -2,12 +2,14 @@ import React, { useState } from "react";
 
 import { useNavigate } from "react-router";
 
-import { signupChallenge, signupStart } from "../../client/SignUpService";
+import { signupChallenge, signupStart } from "../client/SignUpService";
 
 import { Field, Fieldset, Input, Label, Button } from "@headlessui/react";
 import clsx from "clsx";
+import HeadingOneComponent from "../components/HeadingOneComponent";
+import IntroductionComponent from "../components/IntroductionComponent";
 
-export const SignUp: React.FC = () => {
+export const SignUpPage: React.FC = () => {
   const [username, setUsername] = useState<string>("");
   const [name, setName] = useState<string>("");
   const [surname, setSurname] = useState<string>("");
@@ -65,12 +67,8 @@ export const SignUp: React.FC = () => {
   return (
     <>
       <section className="sign-up-form">
-        <h1 className="mx-auto text-3xl md:text-6xl font-bold subpixel-antialiased text-neutral-300 text-neutral-300">
-          Sign Up
-        </h1>
-        <h3 className="my-3 md:my-9 mx-auto text-xl md:text-3xl font-light subpixel-antialiased">
-          Get started with your account!
-        </h3>
+        <HeadingOneComponent text={"Sign Up"} />
+        <IntroductionComponent text={"Get started with your account!"} />
         <form onSubmit={handleSubmit}>
           <div className="my-3 md:my-9 mx-auto">
             <Fieldset className="space-y-6">

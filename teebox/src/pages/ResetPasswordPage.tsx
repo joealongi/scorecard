@@ -7,17 +7,19 @@ import {
   resetStart,
   resetSubmitNewPassword,
   resetSubmitOTP,
-} from "../../client/ResetPasswordService";
+} from "../client/ResetPasswordService";
 import type {
   ChallengeResetResponse,
   ChallengeResponse,
   ErrorResponseType,
-} from "../../client/ResponseTypes";
+} from "../client/ResponseTypes";
 
 import { Field, Fieldset, Input, Label, Button } from "@headlessui/react";
 import clsx from "clsx";
+import HeadingOneComponent from "../components/HeadingOneComponent";
+import IntroductionComponent from "../components/IntroductionComponent";
 
-export const ResetPassword: React.FC = () => {
+export const ResetPasswordPage: React.FC = () => {
   const [username, setUsername] = useState<string>("");
   const [otp, setOTP] = useState<string>("");
   const [newPassword, setNewPassword] = useState<string>("");
@@ -118,12 +120,10 @@ export const ResetPassword: React.FC = () => {
         {/* Collect username to initiate password reset flow */}
         {step === 1 && (
           <section className="reset-password-form">
-            <h1 className="mx-auto text-3xl md:text-6xl font-bold subpixel-antialiased text-neutral-300">
-              Reset Password
-            </h1>
-            <h3 className="my-3 md:my-9 mx-auto text-xl md:text-3xl font-light subpixel-antialiased">
-              Enter your username to regain access to your account.
-            </h3>
+            <HeadingOneComponent text={"Reset Password"} />
+            <IntroductionComponent
+              text={"Enter your username to regain access to your account."}
+            />
             <form onSubmit={handleResetPassword}>
               <div className="my-3 md:my-9 mx-auto">
                 <Fieldset className="space-y-6">
@@ -160,13 +160,10 @@ export const ResetPassword: React.FC = () => {
         {/* Collect OTP */}
         {step === 2 && (
           <section className="reset-password-form">
-            <h1 className="mx-auto text-3xl md:text-6xl font-bold subpixel-antialiased text-neutral-300">
-              Reset Password
-            </h1>
-            <h3 className="my-3 md:my-9 mx-auto text-xl md:text-3xl font-light subpixel-antialiased">
-              Submit your one time code received via email at{" "}
-              {tokenRes.challenge_target_label} .
-            </h3>
+            <HeadingOneComponent text={"Reset Password"} />
+            <IntroductionComponent
+              text={"Enter the one time one time code you received via email."}
+            />
             <form onSubmit={handleSubmitCode}>
               <div className="my-3 md:my-9 mx-auto">
                 <Fieldset className="space-y-6">
@@ -204,12 +201,10 @@ export const ResetPassword: React.FC = () => {
         {/* Collect new password */}
         {step === 3 && (
           <section className="reset-password-form">
-            <h1 className="mx-auto text-3xl md:text-6xl font-bold subpixel-antialiased text-neutral-300">
-              Reset Password
-            </h1>
-            <h3 className="my-3 md:my-9 mx-auto text-xl md:text-3xl font-light subpixel-antialiased">
-              Create a new password for your account.
-            </h3>
+            <HeadingOneComponent text={"Reset Password"} />
+            <IntroductionComponent
+              text={"Create a new password for your account."}
+            />
             <form onSubmit={handleSubmitNewPassword}>
               <div className="my-3 md:my-9 mx-auto">
                 <Fieldset className="space-y-6">
@@ -246,12 +241,10 @@ export const ResetPassword: React.FC = () => {
         {/* Report success after password reset is successful */}
         {step === 4 && (
           <section className="sign-up-form">
-            <h1 className="mx-auto text-3xl md:text-6xl font-bold subpixel-antialiased text-neutral-300">
-              Reset Password
-            </h1>
-            <h3 className="my-3 md:my-9 mx-auto text-xl md:text-3xl font-light subpixel-antialiased">
-              Your password has been successfully reset!
-            </h3>
+            <HeadingOneComponent text={"Reset Password"} />
+            <IntroductionComponent
+              text={"Your password has been successfully reset!"}
+            />
             <div className="my-3 md:my-9 mx-auto">
               <NavLink
                 rel="noopener noreferrer"

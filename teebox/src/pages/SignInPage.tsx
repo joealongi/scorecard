@@ -6,12 +6,14 @@ import {
   signInStart,
   signInChallenge,
   signInTokenRequest,
-} from "../../client/SignInService";
+} from "../client/SignInService";
 
 import { Field, Fieldset, Input, Label, Button } from "@headlessui/react";
 import clsx from "clsx";
+import HeadingOneComponent from "../components/HeadingOneComponent";
+import IntroductionComponent from "../components/IntroductionComponent";
 
-export const SignIn: React.FC = () => {
+export const SignInPage: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string>("");
@@ -64,12 +66,10 @@ export const SignIn: React.FC = () => {
   return (
     <>
       <section className="sign-in-form">
-        <h1 className="mx-auto text-3xl md:text-6xl font-bold subpixel-antialiased text-neutral-300 text-neutral-300">
-          Sign In
-        </h1>
-        <h3 className="my-3 md:my-9 mx-auto text-xl md:text-3xl font-light subpixel-antialiased">
-          Welcome back! Sign in to your account.
-        </h3>
+        <HeadingOneComponent text={"Sign In"} />
+        <IntroductionComponent
+          text={"Welcome back! Sign in to your account."}
+        />
         <form onSubmit={handleSubmit}>
           <div className="my-3 md:my-9 mx-auto">
             <Fieldset className="space-y-6">

@@ -1,17 +1,17 @@
 import React from "react";
 
 import { NavLink } from "react-router";
+import HeadingOneComponent from "../components/HeadingOneComponent";
+import IntroductionComponent from "../components/IntroductionComponent";
 
-export const SignUpCompleted: React.FC = () => {
+export const SignUpCompletedPage: React.FC = () => {
   return (
     <>
       <section className="sign-up-form">
-        <h1 className="mx-auto text-lg font-medium subpixel-antialiased text-neutral-300">
-          Sign Up Completed
-        </h1>
-        <h3 className="my-3 md:my-9 mx-auto text-xl md:text-3xl font-light subpixel-antialiased">
-          Your account has been successfully created!
-        </h3>
+        <HeadingOneComponent text={"Sign Up Completed"} />
+        <IntroductionComponent
+          text={"Your account has been successfully created!"}
+        />
         <div className="my-3 md:my-9 mx-auto">
           <NavLink
             rel="noopener noreferrer"

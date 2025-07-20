@@ -1,9 +1,9 @@
 // User.tsx
 import React from "react";
 import { useLocation } from "react-router";
-import { parseJwt } from "../../client/Utils";
+import { parseJwt } from "../client/Utils";
 
-export const UserInfo: React.FC = () => {
+export const UserInfoPage: React.FC = () => {
   const { state } = useLocation();
   const decodedToken = parseJwt(state.access_token);
   const { given_name, family_name, unique_name: email } = decodedToken;

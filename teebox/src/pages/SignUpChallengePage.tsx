@@ -2,12 +2,14 @@ import React, { useState } from "react";
 
 import { useLocation, useNavigate } from "react-router";
 
-import { signUpSubmitOTP } from "../../client/SignUpService";
+import { signUpSubmitOTP } from "../client/SignUpService";
 
 import { Field, Fieldset, Input, Label, Button } from "@headlessui/react";
 import clsx from "clsx";
+import HeadingOneComponent from "../components/HeadingOneComponent";
+import IntroductionComponent from "../components/IntroductionComponent";
 
-export const SignUpChallenge: React.FC = () => {
+export const SignUpChallengePage: React.FC = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
   const { challenge_target_label, continuation_token, code_length } = state;
@@ -38,12 +40,10 @@ export const SignUpChallenge: React.FC = () => {
   return (
     <>
       <section className="sign-up-form">
-        <h1 className="mx-auto text-3xl md:text-6xl font-bold subpixel-antialiased text-neutral-300 text-neutral-300">
-          Sign Up Challenge
-        </h1>
-        <h3 className="my-3 md:my-9 mx-auto text-xl md:text-3xl font-light subpixel-antialiased">
-          Insert your one time code received at {challenge_target_label} .
-        </h3>
+        <HeadingOneComponent text={"Sign Up Challenge"} />
+        <IntroductionComponent
+          text={"Enter the one time one time code you received via email."}
+        />
         <form onSubmit={handleSubmit}>
           <div className="my-3 md:my-9 mx-auto">
             <Fieldset className="space-y-6">

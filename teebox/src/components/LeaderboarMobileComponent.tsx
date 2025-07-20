@@ -3,19 +3,21 @@ import * as React from "react";
 import { NavLink } from "react-router";
 
 interface LeaderboardComponentProps {
-  userRank: number;
   userName: string;
-  golfCourse: string;
-  totalScore: number;
+  userRank: number;
   userScores: number[];
+  userTotalScore: number;
+  golfCourse: string;
+  golfCoursePars: number[];
 }
 
 export default function LeaderboardMobileComponent({
-  userRank,
   userName,
-  golfCourse,
-  totalScore,
+  userRank,
   userScores,
+  userTotalScore,
+  golfCourse,
+  golfCoursePars,
 }: Readonly<LeaderboardComponentProps>) {
   const [expand, setExpand] = React.useState<boolean>(false);
 
@@ -25,7 +27,7 @@ export default function LeaderboardMobileComponent({
 
   return (
     <React.Fragment>
-      <section className="block lg:hidden visible lg:invisible my-1 border-1 border-neutral-950">
+      <div className="border-1 border-neutral-950">
         <ul className="flex flex-row flex-auto justify-center content-evenly items-stretch">
           <li className="flex flex-col flex-1 justify-self-center self-stretch min-w-[50%] max-w-[50%] p-3 text-base font-bold text-neutral-950 bg-lime-600 text-left border-b-1 border-neutral-950 subpixel-antialiased">
             Rank
@@ -55,7 +57,7 @@ export default function LeaderboardMobileComponent({
             Total
           </li>
           <li className="flex flex-col flex-1 justify-self-center self-stretch min-w-[50%] max-w-[50%] p-3 text-base text-neutral-950 bg-neutral-300 text-left border-b-1 border-neutral-950 subpixel-antialiased">
-            {totalScore}
+            {userTotalScore}
           </li>
         </ul>
         <ul className="flex flex-row flex-auto justify-center content-evenly items-stretch">
@@ -74,35 +76,47 @@ export default function LeaderboardMobileComponent({
             </NavLink>
           </li>
         </ul>
-      </section>
+      </div>
       {expand ? (
         <React.Fragment>
-          <section className="border-1 border-neutral-950">
+          <div className="border-1 border-neutral-950">
             <ul className="flex flex-row flex-auto justify-center content-evenly items-stretch">
-              <li className="flex flex-col flex-1 justify-self-center self-stretch min-w-[50%] max-w-[50%] p-3 text-base font-bold text-neutral-950 bg-lime-600 text-left border-b-1 border-neutral-950 subpixel-antialiased">
-                Holes
+              <li className="flex flex-col flex-1 justify-self-center self-stretch min-w-[1/3] max-w-[1/3] p-3 text-base font-bold text-neutral-950 bg-lime-600 text-left border-b-1 border-neutral-950 subpixel-antialiased">
+                Hole
               </li>
-              <li className="flex flex-col flex-1 justify-self-center self-stretch min-w-[50%] max-w-[50%] p-3 text-base font-bold text-neutral-950 bg-neutral-300 text-left border-b-1 border-neutral-950 subpixel-antialiased">
+              <li className="flex flex-col flex-1 justify-self-center self-stretch min-w-[1/3] max-w-[1/3] p-3 text-base font-bold text-neutral-950 bg-neutral-400  text-left border-b-1 border-neutral-950 subpixel-antialiased">
+                Par
+              </li>
+              <li className="flex flex-col flex-1 justify-self-center self-stretch min-w-[1/3] max-w-[1/3] p-3 text-base font-bold text-neutral-950 bg-neutral-300 text-left border-b-1 border-neutral-950 subpixel-antialiased">
                 Score
               </li>
             </ul>
             {userScores?.map((item, index) => (
-              <ul className="flex flex-row flex-auto justify-center content-evenly items-stretch">
+              <ul
+                key={`row-${item}-${index}`}
+                className="flex flex-row flex-auto justify-center content-evenly items-stretch"
+              >
                 <li
                   key={`hole-${item}-${index}`}
-                  className="flex flex-col flex-1 justify-self-center self-stretch min-w-[50%] max-w-[50%] p-3 text-base font-bold text-neutral-950 bg-lime-600 text-left border-b-1 border-neutral-950 subpixel-antialiased"
+                  className="flex flex-col flex-1 justify-self-center self-stretch min-w-[1/3] max-w-[1/3] p-3 text-base font-bold text-neutral-950 bg-lime-600 text-left border-b-1 border-neutral-950 subpixel-antialiased"
                 >
                   {index + 1}
                 </li>
                 <li
+                  key={`par-${item}-${index}`}
+                  className="flex flex-col flex-1 justify-self-center self-stretch min-w-[1/3] max-w-[1/3] p-3 text-base font-bold text-neutral-950 bg-neutral-400 text-left border-b-1 border-neutral-950 subpixel-antialiased"
+                >
+                  {golfCoursePars?.[index] ? golfCoursePars[index] : 0}
+                </li>
+                <li
                   key={`score-${item}-${index}`}
-                  className="flex flex-col flex-1 justify-self-center self-stretch min-w-[50%] max-w-[50%] p-3 text-base text-neutral-950 bg-neutral-300 text-left border-b-1 border-neutral-950 subpixel-antialiased"
+                  className="flex flex-col flex-1 justify-self-center self-stretch min-w-[1/3] max-w-[1/3] p-3 text-base font-bold text-neutral-950 bg-neutral-300 text-left border-b-1 border-neutral-950 subpixel-antialiased"
                 >
                   {item}
                 </li>
               </ul>
             ))}
-          </section>
+          </div>
         </React.Fragment>
       ) : (
         <React.Fragment></React.Fragment>
