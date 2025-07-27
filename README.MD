@@ -151,3 +151,4 @@ npx expo start
 ###### Add sitemap / page for footer
 ###### Make scorecard editor component look more like scorecard / leaderboard
 ###### Authenticated routing
+###### Fix select chevron

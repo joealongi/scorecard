@@ -45,7 +45,7 @@ export default function ScorecardPage() {
           // Handle successful response
           console.log("Scorecard added successfully");
         }
-      } else if (activity === "update ") {
+      } else if (activity === "update") {
         // Handle updating a scorecard
         const response = await patchRequest(
           import.meta.env.VITE_CLUBHOUSE_BASE_API_URL ?? "",
