@@ -1,13 +1,10 @@
 import React, { useState } from "react";
-
 import { useNavigate } from "react-router";
-
-import { signupChallenge, signupStart } from "../client/SignUpService";
-
-import { Field, Fieldset, Input, Label, Button } from "@headlessui/react";
 import clsx from "clsx";
+import { Field, Fieldset, Input, Label, Button } from "@headlessui/react";
 import HeadingOneComponent from "../components/HeadingOneComponent";
 import IntroductionComponent from "../components/IntroductionComponent";
+import { signupChallenge, signupStart } from "../client/SignUpService";
 
 export const SignUpPage: React.FC = () => {
   const [username, setUsername] = useState<string>("");
@@ -63,7 +60,6 @@ export const SignUpPage: React.FC = () => {
       return err;
     }
   };
-
   return (
     <>
       <section className="sign-up-form">

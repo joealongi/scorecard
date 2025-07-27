@@ -52,6 +52,8 @@ public class ScorecardController {
 
         newScorecard.setSubmitted(new Timestamp(System.currentTimeMillis()));
         newScorecard.setUpdated(new Timestamp(System.currentTimeMillis()));
+        
+        // Get golfCourse pars from the golfCourse
 
         return scorecardRepository.save(newScorecard);
 

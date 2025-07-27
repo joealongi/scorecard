@@ -11,7 +11,6 @@ export const UserInfoPage: React.FC = () => {
   const givenName = given_name;
   const tokenExpireTime = state.expires_in;
   const scopes = state.scope;
-
   return (
     <div className="user-info">
       <h2>User Information</h2>

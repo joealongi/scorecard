@@ -3,13 +3,13 @@ import * as React from "react";
 import HeadingOneComponent from "../components/HeadingOneComponent";
 import IntroductionComponent from "../components/IntroductionComponent";
 
-export default function HomePage() {
+export default function CoursePage() {
   return (
     <React.Fragment>
       <section>
-        <HeadingOneComponent text={"Pinpointscore"} />
+        <HeadingOneComponent text={"Course"} />
         <IntroductionComponent
-          text={"Tee box to green, track your golf game with ease."}
+          text={"Add your golf course and track your rounds."}
         />
       </section>
     </React.Fragment>

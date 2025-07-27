@@ -24,13 +24,13 @@ export const signupStart = async (payload: SignUpFormPassword) => {
     payloadExt as unknown as {
       [key: string]: unknown;
       continuation_token?: string;
-    }
+    },
   );
 };
 
 //handle selecting an authentication method
 export const signupChallenge = async (
-  payload: ChallengeForm
+  payload: ChallengeForm,
 ): Promise<ChallengeResponse> => {
   const payloadExt: SignUpChallengeRequest = {
     client_id: import.meta.env.VITE_CLIENT_ID ?? "",
@@ -42,7 +42,7 @@ export const signupChallenge = async (
     payloadExt as unknown as {
       [key: string]: unknown;
       continuation_token?: string;
-    }
+    },
   );
 };
 

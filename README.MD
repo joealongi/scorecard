@@ -138,19 +138,16 @@ npx expo start
 
 # TODO:
 
-###### Finish the leaderboard page that displays the top golfers based on their scores.
-- Need to update java and db
-- Write algorithm to calculate the leaderboard based on scores overall (par - score)
-- Create ranking table that runs as a result of a job to optimize performance
-```
-// TODO: Sort the leaderboard by rank
-// type LeaderboardItem = {
-//   rank: number;
-//   username: string;
-//   course: string;
-//   total: number;
-//   scores: number[];
-// };
-```
-
-###### Add loader
+###### Add loader for leaderboard + scorecard pages
+###### Simplify leaderboard and remove scorecard, their total is their seasonal score over par
+###### Filter leaderboard by season
+###### Write algorithm to calculate the leaderboard based on scores overall (par - score)
+###### Create ranking table that runs as a result of a job to optimize performance
+###### Create tournament leaderboard using current leaderboard and create a table for tournaments linking players and scorecards to tournament
+###### Create handicap calculator that calculates the handicap based on the scores and the course par
+###### Create a course table and input method to add courses
+###### Create handicap calculator that calculates the handicap based on the scores and the course par
+###### Replace custom SVGS with Icon Library
+###### Add sitemap / page for footer
+###### Make scorecard editor component look more like scorecard / leaderboard
+###### Authenticated routing

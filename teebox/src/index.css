@@ -1,6 +1,46 @@
 @import "tailwindcss";
-body,
+* {
+  box-sizing: border-box;
+}
+*:before,
+*:after {
+  box-sizing: border-box;
+}
 html {
+  font-display: auto;
+  font-style: normal;
+  -webkit-font-smoothing: auto;
+  -moz-font-smoothing: auto;
+  -ms-font-smoothing: auto;
+  -o-font-smoothing: auto;
+}
+body {
+  width: 100vw;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+html,
+body {
+  display: block;
+  position: relative;
+  z-index: 100;
+  width: 100vw;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  -webkit-scroll-behavior: smooth;
+  -moz-scroll-behavior: smooth;
+  -ms-scroll-behavior: smooth;
+  -o-scroll-behavior: smooth;
+  scroll-behavior: smooth;
+  -webkit-scrollbar-width: thin;
+  -moz-scrollbar-width: thin;
+  -ms-scrollbar-width: thin;
+  -o-scrollbar-width: thin;
+  scrollbar-width: thin;
+  appearance: none;
   color: oklch(64.8% 0.2 131.684);
   background-color: oklch(14.5% 0 0);
   font-family: "Titillium Web", sans-serif;

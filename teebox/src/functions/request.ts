@@ -29,7 +29,7 @@ export const getRequest = async (base: string, endpoint: string) => {
     );
     return data;
   } catch (error) {
-    console.log("Error posting request");
+    console.log("Error with GET request");
     return error;
   }
 };
@@ -66,7 +66,81 @@ export const postRequest = async (
     );
     return data;
   } catch (error) {
-    console.log("Error posting request");
+    console.log("Error with POST request");
+    return error;
+  }
+};
+
+export const patchRequest = async (
+  base: string,
+  endpoint: string,
+  body: object
+) => {
+  try {
+    const obj = {
+      payload: {
+        base: base,
+        endpoint: endpoint,
+        body: body,
+      },
+    };
+    const encrypted = await encrypt(obj?.payload);
+    if (!encrypted) {
+      throw new Error("Encryption failed: encrypted payload is undefined.");
+    }
+    const packaged = await envelope(encrypted);
+    const proxy = import.meta.env.VITE_PROXY_POST_URL ?? "";
+    const { data } = await axios.post(
+      proxy,
+      {
+        packaged: packaged,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return data;
+  } catch (error) {
+    console.log("Error with POST request");
+    return error;
+  }
+};
+
+export const deleteRequest = async (
+  base: string,
+  endpoint: string,
+  body: object
+) => {
+  try {
+    const obj = {
+      payload: {
+        base: base,
+        endpoint: endpoint,
+        body: body,
+      },
+    };
+    const encrypted = await encrypt(obj?.payload);
+    if (!encrypted) {
+      throw new Error("Encryption failed: encrypted payload is undefined.");
+    }
+    const packaged = await envelope(encrypted);
+    const proxy = import.meta.env.VITE_PROXY_POST_URL ?? "";
+    const { data } = await axios.post(
+      proxy,
+      {
+        packaged: packaged,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return data;
+  } catch (error) {
+    console.log("Error with POST request");
     return error;
   }
 };
@@ -108,7 +182,7 @@ export const idpRequest = async (
     );
     return data;
   } catch (error) {
-    console.log("Error posting request");
+    console.log("Error with IDP request");
     return error;
   }
 };

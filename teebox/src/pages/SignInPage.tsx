@@ -1,17 +1,14 @@
 import React, { useState } from "react";
-
 import { useNavigate } from "react-router";
-
+import clsx from "clsx";
+import { Field, Fieldset, Input, Label, Button } from "@headlessui/react";
+import HeadingOneComponent from "../components/HeadingOneComponent";
+import IntroductionComponent from "../components/IntroductionComponent";
 import {
   signInStart,
   signInChallenge,
   signInTokenRequest,
 } from "../client/SignInService";
-
-import { Field, Fieldset, Input, Label, Button } from "@headlessui/react";
-import clsx from "clsx";
-import HeadingOneComponent from "../components/HeadingOneComponent";
-import IntroductionComponent from "../components/IntroductionComponent";
 
 export const SignInPage: React.FC = () => {
   const [email, setEmail] = useState<string>("");
@@ -23,7 +20,6 @@ export const SignInPage: React.FC = () => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(String(email).toLowerCase());
   };
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     try {
       e.preventDefault();
@@ -62,7 +58,6 @@ export const SignInPage: React.FC = () => {
       return err;
     }
   };
-
   return (
     <>
       <section className="sign-in-form">

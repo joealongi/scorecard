@@ -1,5 +1,4 @@
 import * as React from "react";
-
 import { Link } from "react-router";
 
 export default function CopyrightComponent() {
@@ -10,6 +9,17 @@ export default function CopyrightComponent() {
           <span>
             © {new Date()?.getFullYear()} Availing Inc. All rights
             reserved.{" "}
+          </span>
+          <span className="mx-3 invisible md:visible">|</span>
+          <span>
+            <Link
+              className="hover:text-neutral-600 transition-all"
+              rel="noopener noreferrer"
+              target="_self"
+              to="/about"
+            >
+              About
+            </Link>
           </span>
           <span className="mx-3 invisible md:visible">|</span>
           <span>

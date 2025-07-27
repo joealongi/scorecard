@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-
 import { NavLink } from "react-router";
-
+import clsx from "clsx";
+import { Field, Fieldset, Input, Label, Button } from "@headlessui/react";
+import HeadingOneComponent from "../components/HeadingOneComponent";
+import IntroductionComponent from "../components/IntroductionComponent";
 import {
   resetChallenge,
   resetStart,
@@ -13,11 +15,6 @@ import type {
   ChallengeResponse,
   ErrorResponseType,
 } from "../client/ResponseTypes";
-
-import { Field, Fieldset, Input, Label, Button } from "@headlessui/react";
-import clsx from "clsx";
-import HeadingOneComponent from "../components/HeadingOneComponent";
-import IntroductionComponent from "../components/IntroductionComponent";
 
 export const ResetPasswordPage: React.FC = () => {
   const [username, setUsername] = useState<string>("");

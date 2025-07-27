@@ -15,7 +15,7 @@ export const signInStart = async (username: string) => {
   };
   return await idpRequest(
     `/oauth2/v2.0/initiate`,
-    payloadExt as unknown as { [key: string]: unknown }
+    payloadExt as unknown as { [key: string]: unknown },
   );
 };
 
@@ -30,12 +30,12 @@ export const signInChallenge = async (continuation_token: string) => {
     payloadExt as unknown as {
       [key: string]: unknown;
       continuation_token?: string;
-    }
+    },
   );
 };
 
 export const signInTokenRequest = async (
-  request: TokenSignInType
+  request: TokenSignInType,
 ): Promise<TokenResponseType> => {
   const payloadExt: TokenRequestType = {
     ...request,
@@ -54,6 +54,6 @@ export const signInTokenRequest = async (
     payloadExt as unknown as {
       [key: string]: unknown;
       continuation_token?: string;
-    }
+    },
   );
 };

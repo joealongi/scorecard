@@ -2,23 +2,14 @@ import * as React from "react";
 
 import { NavLink } from "react-router";
 
-interface LeaderboardComponentProps {
-  userName: string;
-  userRank: number;
-  userScores: number[];
-  userTotalScore: number;
-  golfCourse: string;
-  golfCoursePars: number[];
-}
+import type { Scorecard } from "../types/ScorecardTypes";
 
-export default function LeaderboardMobileComponent({
-  userName,
-  userRank,
+export default function ScorecardMobileComponent({
   userScores,
   userTotalScore,
-  golfCourse,
+  golfCourseName,
   golfCoursePars,
-}: Readonly<LeaderboardComponentProps>) {
+}: Readonly<Scorecard>) {
   const [expand, setExpand] = React.useState<boolean>(false);
 
   const handleExpand = () => {
@@ -30,26 +21,10 @@ export default function LeaderboardMobileComponent({
       <div className="border-1 border-neutral-950">
         <ul className="flex flex-row flex-auto justify-center content-evenly items-stretch">
           <li className="flex flex-col flex-1 justify-self-center self-stretch min-w-[50%] max-w-[50%] p-3 text-base font-bold text-neutral-950 bg-lime-600 text-left border-b-1 border-neutral-950 subpixel-antialiased">
-            Rank
-          </li>
-          <li className="flex flex-col flex-1 justify-self-center self-stretch min-w-[50%] max-w-[50%] p-3 text-base text-neutral-950 bg-neutral-300 text-left border-b-1 border-neutral-950 subpixel-antialiased">
-            {userRank}
-          </li>
-        </ul>
-        <ul className="flex flex-row flex-auto justify-center content-evenly items-stretch">
-          <li className="flex flex-col flex-1 justify-self-center self-stretch min-w-[50%] max-w-[50%] p-3 text-base font-bold text-neutral-950 bg-lime-600 text-left border-b-1 border-neutral-950 subpixel-antialiased">
-            Username
-          </li>
-          <li className="flex flex-col flex-1 justify-self-center self-stretch min-w-[50%] max-w-[50%] p-3 text-base text-neutral-950 bg-neutral-300 text-left border-b-1 border-neutral-950 subpixel-antialiased">
-            {userName}
-          </li>
-        </ul>
-        <ul className="flex flex-row flex-auto justify-center content-evenly items-stretch">
-          <li className="flex flex-col flex-1 justify-self-center self-stretch min-w-[50%] max-w-[50%] p-3 text-base font-bold text-neutral-950 bg-lime-600 text-left border-b-1 border-neutral-950 subpixel-antialiased">
             Course
           </li>
           <li className="flex flex-col flex-1 justify-self-center self-stretch min-w-[50%] max-w-[50%] p-3 text-base text-neutral-950 bg-neutral-300 text-left border-b-1 border-neutral-950 subpixel-antialiased">
-            {golfCourse}
+            {golfCourseName}
           </li>
         </ul>
         <ul className="flex flex-row flex-auto justify-center content-evenly items-stretch">

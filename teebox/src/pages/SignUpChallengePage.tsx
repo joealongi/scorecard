@@ -1,13 +1,10 @@
 import React, { useState } from "react";
-
 import { useLocation, useNavigate } from "react-router";
-
-import { signUpSubmitOTP } from "../client/SignUpService";
-
-import { Field, Fieldset, Input, Label, Button } from "@headlessui/react";
 import clsx from "clsx";
+import { Field, Fieldset, Input, Label, Button } from "@headlessui/react";
 import HeadingOneComponent from "../components/HeadingOneComponent";
 import IntroductionComponent from "../components/IntroductionComponent";
+import { signUpSubmitOTP } from "../client/SignUpService";
 
 export const SignUpChallengePage: React.FC = () => {
   const { state } = useLocation();
@@ -36,7 +33,6 @@ export const SignUpChallengePage: React.FC = () => {
       return err;
     }
   };
-
   return (
     <>
       <section className="sign-up-form">

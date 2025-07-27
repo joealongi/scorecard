@@ -1,72 +1,43 @@
 import * as React from "react";
 
-import LeaderboardComponent from "../components/LeaderboardComponent";
-import LeaderboardMobileComponent from "../components/LeaderboarMobileComponent";
+import HeadingOneComponent from "../components/HeadingOneComponent";
+import IntroductionComponent from "../components/IntroductionComponent";
+import LeaderboardDesktopComponent from "../components/LeaderboardDesktopComponent";
+import LeaderboardMobileComponent from "../components/LeaderboardMobileComponent";
+
+import type { Leaderboard } from "../types/LeaderboardTypes";
+import initialLeaderboardData from "../configurations/leaderboard.json";
 
 import { getRequest } from "../functions/request";
 
-import initialLeaderboardData from "../data/leaderboard.json";
-import HeadingOneComponent from "../components/HeadingOneComponent";
-import IntroductionComponent from "../components/IntroductionComponent";
-
-type LeaderboardRow = {
-  submitted: string;
-  updated: string;
-  userId: number;
-  userName: string;
-  userRank: number;
-  userHandicap: number;
-  userScores: number[];
-  userTotalScore: number;
-  golfCourse: string;
-  golfCoursePars: number[];
-  golfCourseTotalPar: number;
-  golfCourseHolesPlayed: number;
-};
-
 export default function LeaderboardPage() {
-  const [leaderboard, setLeaderboard] = React.useState<LeaderboardRow[]>([]);
+  const [leaderboard, setLeaderboard] = React.useState<Leaderboard[]>([]);
 
-  // Handle leaderboard
-  const handleLeaderboard = async () => {
+  const handleLoadLeaderboard = async () => {
     try {
-      // Request initial
-      const initial = initialLeaderboardData;
-
-      // Set initial leaderboard
+      const initial = initialLeaderboardData as Leaderboard[];
       if (initial?.length > 0) {
         setLeaderboard(initial);
       }
-
-      // Set base url
-      const base = import.meta.env.VITE_CLUBHOUSE_BASE_API_URL ?? "";
-
-      // Request response
-      const response = await getRequest(base, `/leaderboard/`);
-      if (initial?.length > 0 && response?.length > 0) {
-        // Create leaderboard rows
-        response.forEach((item: LeaderboardRow, index: number) => {
-          // Create temporary row
-          const row: LeaderboardRow = {
-            ...item,
-          };
-
-          // Update row if less than or equal to 10 or add a new row if greater than 10 rows
+      const response = await getRequest(
+        import.meta.env.VITE_CLUBHOUSE_BASE_API_URL ?? "",
+        `/leaderboard/`
+      );
+      if (response?.length > 0) {
+        response.forEach((item: Leaderboard, index: number) => {
           if (initial?.[index]) {
-            initial[index] = row;
+            initial[index] = item;
           } else {
-            initial.push(row);
+            initial.push(item);
           }
         });
       }
-
-      // Sort the leaderboard by userRank
-      const sorted = initial.slice().sort((a, b) => a.userRank - b.userRank);
+      const sorted = initial
+        .slice()
+        .sort((a, b) => (a?.userRank ?? 0) - (b?.userRank ?? 0));
       if (sorted?.length > 0) {
-        // Set the leaderboard
         setLeaderboard(sorted);
       } else if (initial?.length > 0) {
-        // Set the placeholder leaderboard
         setLeaderboard(initial);
       }
     } catch (error) {
@@ -77,7 +48,7 @@ export default function LeaderboardPage() {
 
   React.useEffect(() => {
     const loadLeaderboard = async () => {
-      await handleLeaderboard();
+      await handleLoadLeaderboard();
     };
     loadLeaderboard();
     return () => {};
@@ -87,38 +58,34 @@ export default function LeaderboardPage() {
     <React.Fragment>
       <section>
         <HeadingOneComponent text="Leaderboard" />
-        <IntroductionComponent text="Our leaderboard displays the top users based on their scores. Check out the rankings and see how you stack up against others!" />
+        <IntroductionComponent text="Our leaderboard displays the top users based on their scores. Check out the leaderboard and see how you stack up against others!" />
       </section>
       <section className="invisible lg:visible hidden lg:block">
         <div className="border-1 border-neutral-950">
           <ul className="z-0 flex flex-row flex-auto justify-center content-evenly items-stretch">
-            <li className="flex flex-col flex-1 justify-self-center self-stretch min-w-[10%] max-w-[10%] p-3 text-xl font-bold text-neutral-950 bg-lime-600 text-left subpixel-antialiased">
+            <li className="flex flex-col flex-1 justify-self-center self-stretch min-w-[1/4] max-w-[1/4] p-3 text-xl font-bold text-neutral-950 bg-lime-600 text-left subpixel-antialiased">
               Rank
             </li>
-            <li className="flex flex-col flex-1 justify-self-center self-stretch min-w-[26.6666666667%] max-w-[26.6666666667%] p-3 text-xl font-bold text-neutral-950 bg-lime-600 text-left border-l-1 border-neutral-950 subpixel-antialiased">
+            <li className="flex flex-col flex-1 justify-self-center self-stretch min-w-[1/4] max-w-[1/4] p-3 text-xl font-bold text-neutral-950 bg-lime-600 text-left border-l-1 border-neutral-950 subpixel-antialiased">
               Username
             </li>
-            <li className="flex flex-col flex-1 justify-self-center self-stretch min-w-[26.6666666667%] max-w-[26.6666666667%] p-3 text-xl font-bold text-neutral-950 bg-lime-600 text-left border-l-1 border-neutral-950 subpixel-antialiased">
+            <li className="flex flex-col flex-1 justify-self-center self-stretch min-w-[1/4] max-w-[1/4] p-3 text-xl font-bold text-neutral-950 bg-lime-600 text-left border-l-1 border-neutral-950 subpixel-antialiased">
               Course
             </li>
-            <li className="flex flex-col flex-1 justify-self-center self-stretch min-w-[26.6666666667%] max-w-[26.6666666667%] p-3 text-xl font-bold text-neutral-950 bg-lime-600 text-left border-l-1 border-neutral-950 subpixel-antialiased">
+            <li className="flex flex-col flex-1 justify-self-center self-stretch min-w-[1/4] max-w-[1/4] p-3 text-xl font-bold text-neutral-950 bg-lime-600 text-left border-l-1 border-neutral-950 subpixel-antialiased">
               Total
-            </li>
-            <li className="flex flex-col flex-1 justify-self-center self-stretch min-w-[10%] max-w-[10%] p-3 text-xl font-bold text-neutral-950 bg-lime-600 text-center border-l-1 border-neutral-950 subpixel-antialiased">
-              +
             </li>
           </ul>
         </div>
         {leaderboard?.length > 0 ? (
           leaderboard.map((item, index) => (
-            <LeaderboardComponent
-              key={`leaderboard-${item?.userId}-${index}`}
+            <LeaderboardDesktopComponent
+              key={`leaderboard-${item?.userName}-${index}`}
               userName={item?.userName}
               userRank={item?.userRank}
-              userScores={item?.userScores}
               userTotalScore={item?.userTotalScore}
-              golfCourse={item?.golfCourse}
-              golfCoursePars={item?.golfCoursePars}
+              golfCourseName={item?.golfCourseName}
+              golfCourseTotalPar={item?.golfCourseTotalPar}
             />
           ))
         ) : (
@@ -129,13 +96,12 @@ export default function LeaderboardPage() {
         {leaderboard?.length > 0 ? (
           leaderboard.map((item, index) => (
             <LeaderboardMobileComponent
-              key={`leaderboard-${item?.userId}-${index}`}
+              key={`leaderboard-${item?.userName}-${index}`}
               userName={item?.userName}
               userRank={item?.userRank}
-              userScores={item?.userScores}
               userTotalScore={item?.userTotalScore}
-              golfCourse={item?.golfCourse}
-              golfCoursePars={item?.golfCoursePars}
+              golfCourseName={item?.golfCourseName}
+              golfCourseTotalPar={item?.golfCourseTotalPar}
             />
           ))
         ) : (
