@@ -77,8 +77,8 @@ docker run -p 8080:8080 pinpointscore.azurecr.io/pinpointscore/pinpointscore/clu
 
 Add a user to the database:
 ```sql
-INSERT INTO dbo.user_entity (submitted, updated, user_id, user_name, user_first_name, user_last_name, user_email, user_country, user_city, user_course, user_handicap, user_rank) 
-VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, 'pinpointscore', 'Pinpoint', 'Score', 'pinpointscore@example.com', 'USA', 'Buffalo', 'Country Club of Internet', 0, 1);
+INSERT INTO dbo.user_entity (submitted, updated, user_id, user_name, user_first_name, user_last_name, user_email, user_country, user_city, user_course_id, user_course_name, user_handicap, user_rank) 
+VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, 'pinpointscore', 'Pinpoint', 'Score', 'pinpointscore@example.com', 'USA', 'Buffalo', 1, 'Country Club of Internet', 0, 1);
 ```
 
 Search a users in the database by userId:
@@ -139,7 +139,7 @@ npx expo start
 # TODO:
 
 ###### Add loader for leaderboard + scorecard pages
-###### Simplify leaderboard and remove scorecard, their total is their seasonal score over par
+###### Simplify leaderboard by total is their seasonal score over par
 ###### Filter leaderboard by season
 ###### Write algorithm to calculate the leaderboard based on scores overall (par - score)
 ###### Create ranking table that runs as a result of a job to optimize performance

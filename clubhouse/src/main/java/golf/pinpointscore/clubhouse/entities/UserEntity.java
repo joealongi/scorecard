@@ -38,7 +38,8 @@ public class UserEntity {
     private String userEmail;
     private String userCountry;
     private String userCity;
-    private String userCourse;
+    private int userCourseId;
+    private String userCourseName;
     private int userHandicap;
     private int userRank;
     

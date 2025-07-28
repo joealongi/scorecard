@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import golf.pinpointscore.clubhouse.entities.ScorecardEntity;
+import golf.pinpointscore.clubhouse.models.ScorecardModel;
 import golf.pinpointscore.clubhouse.repositories.ScorecardRepository;
 import golf.pinpointscore.clubhouse.services.ScorecardService;
 
@@ -32,9 +33,9 @@ public class ScorecardController {
 
     // Get all scorecards by userId
     @RequestMapping("/{userId}")
-    public List<ScorecardEntity> getScorecardsByUserId(@PathVariable int userId) {
+    public List<ScorecardModel> getScorecardsByUserId(@PathVariable int userId) {
 
-        return scorecardRepository.findByUserId(userId);
+        return scorecardService.getScorecardsByUserId(userId);
 
     }
 
@@ -52,8 +53,11 @@ public class ScorecardController {
 
         newScorecard.setSubmitted(new Timestamp(System.currentTimeMillis()));
         newScorecard.setUpdated(new Timestamp(System.currentTimeMillis()));
-        
-        // Get golfCourse pars from the golfCourse
+        newScorecard.setGolfCourseName(newScorecard.getGolfCourseName() != null ? newScorecard.getGolfCourseName() : "Unknown Course");
+        newScorecard.setGolfCoursePars(newScorecard.getGolfCoursePars() != null ? newScorecard.getGolfCoursePars() : List.of(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0));
+
+        // TODO: Get golfCourse name from the golfCourse
+        // TODO: Get golfCourse pars from the golfCourse
 
         return scorecardRepository.save(newScorecard);
 
@@ -69,8 +73,11 @@ public class ScorecardController {
             if (newScorecard.getUserScores() != null) {
                 scorecard.setUserScores(newScorecard.getUserScores());
             }
-            if (newScorecard.getGolfCourse() != null) {
-                scorecard.setGolfCourse(newScorecard.getGolfCourse());
+            if (newScorecard.getGolfCourseId() != 0) {
+                scorecard.setGolfCourseId(newScorecard.getGolfCourseId());
+            }
+            if (newScorecard.getGolfCourseName() != null) {
+                scorecard.setGolfCourseName(newScorecard.getGolfCourseName());
             }
             if (newScorecard.getGolfCoursePars() != null) {
                 scorecard.setGolfCoursePars(newScorecard.getGolfCoursePars());

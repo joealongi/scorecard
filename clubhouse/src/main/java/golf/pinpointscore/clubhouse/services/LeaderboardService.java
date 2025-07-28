@@ -47,7 +47,8 @@ public class LeaderboardService {
             Integer userTotalScore = userScores.stream()
                 .mapToInt(Integer::intValue)
                 .sum();
-            String golfCourse = scorecard.getGolfCourse();
+            int golfCourseId = scorecard.getGolfCourseId();
+            String golfCourseName = scorecard.getGolfCourseName();
             List<Integer> golfCoursePars = scorecard.getGolfCoursePars();
             Integer golfCourseTotalPar = golfCoursePars.stream()
                 .mapToInt(Integer::intValue)
@@ -64,7 +65,8 @@ public class LeaderboardService {
                 userHandicap,
                 userScores,
                 userTotalScore,
-                golfCourse,
+                golfCourseId,
+                golfCourseName,
                 golfCoursePars,
                 golfCourseTotalPar,
                 golfCourseHolesPlayed

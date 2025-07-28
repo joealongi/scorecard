@@ -34,7 +34,8 @@ public class ScorecardEntity {
     @Column(nullable = false)
     private int userId;
     private List<Integer> userScores;
-    private String golfCourse;
+    private int golfCourseId;
+    private String golfCourseName;
     private List<Integer> golfCoursePars;
     
 }

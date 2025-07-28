@@ -94,8 +94,11 @@ public class UserController {
         if(newUser.getUserCity() != null) {
             user.setUserCity(newUser.getUserCity());
         }
-        if(newUser.getUserCourse() != null) {
-            user.setUserCourse(newUser.getUserCourse());
+        if(newUser.getUserCourseId() != 0) {
+            user.setUserCourseId(newUser.getUserCourseId());
+        }
+        if(newUser.getUserCourseName() != null) {
+            user.setUserCourseName(newUser.getUserCourseName());
         }
         if(userHandicap != null) {
             user.setUserHandicap(newUser.getUserHandicap());

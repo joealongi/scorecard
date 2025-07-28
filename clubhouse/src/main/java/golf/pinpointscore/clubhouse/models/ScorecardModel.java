@@ -7,7 +7,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class LeaderboardModel {
+public class ScorecardModel {
 
     private java.sql.Timestamp submitted;
     private java.sql.Timestamp updated;

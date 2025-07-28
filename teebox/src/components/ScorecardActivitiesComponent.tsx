@@ -4,22 +4,25 @@ import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
 
 import HeadingThreeComponent from "./HeadingThreeComponent";
 import ParagraphComponent from "./ParagraphComponent";
-import ScorecardActivitiesAddComponent from "./ScorecardEditorComponent";
+import ScorecardActivitiesAddComponent from "./ScorecardActivitiesAddComponent";
 import ScorecardActivitiesUpdateComponent from "./ScorecardActivitiesUpdateComponent";
 import ScorecardActivitiesDeleteComponent from "./ScorecardActivitiesDeleteComponent";
 
 import type { Scorecard, SubmitScorecard } from "../types/ScorecardTypes";
+import type { GolfCourse } from "../types/GolfCourseTypes";
 
 export default function ScorecardActivitiesComponent({
   handleSubmitScorecard,
   userId,
   scorecards,
+  golfCourses,
 }: Readonly<{
   handleSubmitScorecard?: (
     submitScorecard: SubmitScorecard
   ) => Promise<unknown>;
   userId: number;
   scorecards?: Scorecard[];
+  golfCourses?: GolfCourse[];
 }>) {
   return (
     <React.Fragment>
@@ -44,6 +47,7 @@ export default function ScorecardActivitiesComponent({
               activity={"add"}
               text={"Add scorecard"}
               userId={userId}
+              golfCourses={golfCourses}
             />
           </TabPanel>
           <TabPanel className="">

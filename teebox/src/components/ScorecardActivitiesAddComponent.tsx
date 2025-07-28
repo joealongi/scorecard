@@ -5,73 +5,33 @@ import ScorecardEditorComponent from "./ScorecardEditorComponent";
 
 import type { SubmitScorecard } from "../types/ScorecardTypes";
 import type { GolfCourse } from "../types/GolfCourseTypes";
-import { endpoints } from "../configurations/constants";
-import initialGolfCourseData from "../configurations/golfcourse.json";
-
-import { getRequest } from "../functions/request";
 
 export default function ScorecardActivitiesAddComponent({
   handleSubmitScorecard,
   activity,
   text,
   userId,
+  golfCourses,
 }: Readonly<{
-  handleSubmitScorecard?: (submitScorecard: SubmitScorecard) => Promise<void>;
+  handleSubmitScorecard?: (
+    submitScorecard: SubmitScorecard
+  ) => Promise<unknown>;
   activity?: string;
   text?: string;
   userId?: number;
+  golfCourses?: GolfCourse[];
 }>) {
-  const [golfcourses, setGolfCourses] = React.useState<GolfCourse[]>([]);
   const [selectedGolfCourse, setSelectedGolfCourse] =
-    React.useState<GolfCourse>(golfcourses?.[0] ?? {});
+    React.useState<GolfCourse>(golfCourses?.[0] ?? {});
 
   const handleSelectGolfCourse = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
-    const selectedGolfCourse = golfcourses?.[parseInt(event?.target?.value)];
+    const selectedGolfCourse = golfCourses?.[parseInt(event?.target?.value)];
     if (selectedGolfCourse) {
       setSelectedGolfCourse(selectedGolfCourse);
     }
   };
-
-  const handleLoadGolfCourses = async () => {
-    try {
-      const initial = initialGolfCourseData as GolfCourse[];
-      if (initial?.length > 0) {
-        setGolfCourses(initial);
-      }
-      const response = await getRequest(
-        import.meta.env.VITE_CLUBHOUSE_BASE_API_URL ?? "",
-        endpoints.GOLFCOURSE
-      );
-      if (response?.length > 0) {
-        response.forEach((item: GolfCourse, index: number) => {
-          const golfCourse: GolfCourse = {
-            ...item,
-          };
-          if (initial?.[index]) {
-            initial[index] = golfCourse;
-          } else {
-            initial.push(golfCourse);
-          }
-        });
-      }
-      if (initial?.length > 0) {
-        setGolfCourses(initial);
-      }
-    } catch (error) {
-      console.error("Error loading leaderboard");
-      return error;
-    }
-  };
-
-  React.useEffect(() => {
-    const loadGolfCourses = async () => {
-      await handleLoadGolfCourses();
-    };
-    loadGolfCourses();
-    return () => {};
-  }, []);
 
   return (
     <React.Fragment>
@@ -81,8 +41,8 @@ export default function ScorecardActivitiesAddComponent({
         aria-label="List of golf courses"
         onChange={handleSelectGolfCourse}
       >
-        {Array?.isArray(golfcourses) && golfcourses?.length > 0 ? (
-          golfcourses.map((item, index) => (
+        {Array?.isArray(golfCourses) && golfCourses?.length > 0 ? (
+          golfCourses.map((item, index) => (
             <option
               key={`scorecard-${item?.golfCourseId}-${index}`}
               value={index}

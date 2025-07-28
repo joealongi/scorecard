@@ -9,8 +9,10 @@ import ScorecardMobileComponent from "../components/ScorecardMobileComponent";
 import ScorecardActivitiesComponent from "../components/ScorecardActivitiesComponent";
 
 import type { Scorecard, SubmitScorecard } from "../types/ScorecardTypes";
+import type { GolfCourse } from "../types/GolfCourseTypes";
 import { endpoints } from "../configurations/constants";
 import initialScorecardData from "../configurations/scorecard.json";
+import initialGolfCourseData from "../configurations/golfcourse.json";
 
 import {
   getRequest,
@@ -21,9 +23,8 @@ import {
 
 export default function ScorecardPage() {
   const [scorecards, setScorecards] = React.useState<Scorecard[]>([]);
+  const [golfCourses, setGolfCourses] = React.useState<GolfCourse[]>([]);
 
-  // Make sure to import the SubmitScorecard type if not already imported
-  // import type { SubmitScorecard } from "../types/ScorecardTypes";
   const handleSubmitScorecard = async (submitScorecard: SubmitScorecard) => {
     const { activity, userId, userScores, golfCourseId } = submitScorecard;
     try {
@@ -75,36 +76,58 @@ export default function ScorecardPage() {
   const handleLoadScorecards = async () => {
     try {
       const initial = initialScorecardData as Scorecard[];
-      if (initial?.length > 0) {
-        setScorecards(initial);
-      }
-      const userId = 1; // Replace with actual user ID logic
+      const primary = [] as Scorecard[];
+      const userId = 1; // TODO: Replace with actual user ID logic
+      // TODO: Split request to handle missing data / 500 / 400
       const response = await getRequest(
         import.meta.env.VITE_CLUBHOUSE_BASE_API_URL ?? "",
         endpoints.SCORECARD + userId
       );
       if (response?.length > 0) {
-        response.forEach((item: Scorecard, index: number) => {
-          const scorecard: Scorecard = {
+        response.forEach((item: Scorecard) => {
+          primary.push({
             ...item,
-          };
-          if (initial?.[index]) {
-            initial[index] = scorecard;
-          } else {
-            initial.push(scorecard);
-          }
+          });
         });
+        setScorecards(primary);
       }
-      const sorted = initial
-        .slice()
-        .sort((a, b) => (a?.userRank ?? 0) - (b?.userRank ?? 0));
-      if (sorted?.length > 0) {
-        setScorecards(sorted);
-      } else if (initial?.length > 0) {
+      if (primary?.length === 0 && initial?.length > 0) {
         setScorecards(initial);
       }
+      const sorted = scorecards
+        ?.slice()
+        ?.sort((a, b) => (a?.userRank ?? 0) - (b?.userRank ?? 0));
+      if (sorted?.length > 0) {
+        setScorecards(sorted);
+      }
     } catch (error) {
-      console.error("Error loading leaderboard");
+      console.error("Error loading scorecards");
+      return error;
+    }
+  };
+
+  const handleLoadGolfCourses = async () => {
+    try {
+      const initial = initialGolfCourseData as GolfCourse[];
+      const primary = [] as GolfCourse[];
+      // TODO: Split request to handle missing data / 500 / 400
+      const response = await getRequest(
+        import.meta.env.VITE_CLUBHOUSE_BASE_API_URL ?? "",
+        endpoints.GOLFCOURSE
+      );
+      if (response?.length > 0) {
+        response.forEach((item: GolfCourse) => {
+          primary.push({
+            ...item,
+          });
+        });
+        setGolfCourses(primary);
+      }
+      if (primary?.length === 0 && initial?.length > 0) {
+        setGolfCourses(initial);
+      }
+    } catch (error) {
+      console.error("Error loading golf courses");
       return error;
     }
   };
@@ -112,6 +135,7 @@ export default function ScorecardPage() {
   React.useEffect(() => {
     const loadScorecard = async () => {
       await handleLoadScorecards();
+      await handleLoadGolfCourses();
     };
     loadScorecard();
     return () => {};
@@ -175,6 +199,7 @@ export default function ScorecardPage() {
           handleSubmitScorecard={handleSubmitScorecard}
           userId={1} // Replace with actual user ID logic
           scorecards={scorecards}
+          golfCourses={golfCourses}
         />
       </section>
     </React.Fragment>
