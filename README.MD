@@ -152,3 +152,4 @@ npx expo start
 ###### Make scorecard editor component look more like scorecard / leaderboard
 ###### Authenticated routing
 ###### Fix select chevron
+###### Optimize backend models to only return and accept what is needed
