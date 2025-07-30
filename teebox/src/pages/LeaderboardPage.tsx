@@ -36,7 +36,7 @@ export default function LeaderboardPage() {
           updated: "",
           userId: 0,
           userName: "TBD",
-          userRank: 0,
+          userRank: 10,
           userHandicap: 0,
           userScores: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
           userTotalScore: 0,
@@ -53,16 +53,14 @@ export default function LeaderboardPage() {
       const leaders = [...leaderboard];
       if (response?.length > 0) {
         response.forEach((item: Leaderboard, index: number) => {
-          leaders.splice(index, 1, item);
+          leaderboard.splice(index, 1, item);
         });
-        setLeaderboard(leaders);
       }
+      if (leaders?.length > 0) setLeaderboard(leaders);
       const sorted = leaderboard
         .slice()
         .sort((a, b) => (a?.userRank ?? 0) - (b?.userRank ?? 0));
-      if (sorted?.length === leaderboard?.length) {
-        setLeaderboard(sorted);
-      }
+      if (sorted?.length === leaderboard?.length) setLeaderboard(sorted);
     } catch (error) {
       console.error("Error loading leaderboard");
       return error;

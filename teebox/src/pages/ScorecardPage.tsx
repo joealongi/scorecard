@@ -132,10 +132,10 @@ export default function ScorecardPage() {
       const cards = [...scorecards];
       if (response?.length > 0) {
         response.forEach((item: Scorecard, index: number) => {
-          cards.splice(index, 1, item);
+          scorecards.splice(index, 1, item);
         });
-        setScorecards(cards);
       }
+      if (cards?.length > 0) setScorecards(cards);
     } catch (error) {
       console.error("Error loading scorecards");
       return error;
@@ -175,10 +175,10 @@ export default function ScorecardPage() {
       const response = await getGolfCourses();
       if (response?.length > 0) {
         response.forEach((item: GolfCourse, index: number) => {
-          courses.splice(index, 1, item);
+          golfCourses.splice(index, 1, item);
         });
-        setGolfCourses(courses);
       }
+      if (courses?.length > 0) setGolfCourses(courses);
     } catch (error) {
       console.error("Error loading golf courses");
       return error;

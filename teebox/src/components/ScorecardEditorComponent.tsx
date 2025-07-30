@@ -123,7 +123,7 @@ export default function ScorecardEditorComponent({
     };
     load();
     return () => {};
-  }, [userScores]);
+  }, []);
 
   return (
     <React.Fragment>
