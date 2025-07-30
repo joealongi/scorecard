@@ -39,9 +39,9 @@ export default function ScorecardMobileComponent({
           <li className="flex flex-col flex-1 justify-self-center self-stretch min-w-[50%] max-w-[50%] p-3 text-base font-bold text-neutral-950 bg-lime-600 text-left border-b-1 border-neutral-950 subpixel-antialiased">
             +
           </li>
-          <li className="flex flex-col flex-1 justify-self-center self-stretch min-w-[50%] max-w-[50%] text-base text-neutral-950 bg-neutral-300 text-left border-b-1 border-neutral-950 subpixel-antialiased">
+          <li className="flex flex-col flex-1 justify-self-center self-stretch min-w-[50%] max-w-[50%] text-base text-neutral-950 bg-neutral-300 text-left border-b-1 border-neutral-950 subpixel-antialiased cursor-pointer">
             <NavLink
-              className="p-3 text-base font-bold text-neutral-950 bg-neutral-300 hover:bg-lime-600 text-left subpixel-antialiased transition-all cursor-pointer"
+              className="p-3 text-base font-bold text-neutral-950 bg-neutral-300 hover:bg-lime-600 text-left subpixel-antialiased transition-all"
               rel="noopener noreferrer"
               target="_self"
               to="#"

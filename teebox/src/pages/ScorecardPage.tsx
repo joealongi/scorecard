@@ -4,7 +4,7 @@ import HeadingOneComponent from "../components/HeadingOneComponent";
 import HeadingTwoComponent from "../components/HeadingTwoComponent";
 import IntroductionComponent from "../components/IntroductionComponent";
 import ParagraphComponent from "../components/ParagraphComponent";
-import ScorecardComponent from "../components/ScorecardDesktopComponent";
+import ScorecardDesktopComponent from "../components/ScorecardDesktopComponent";
 import ScorecardMobileComponent from "../components/ScorecardMobileComponent";
 import ScorecardActivitiesComponent from "../components/ScorecardActivitiesComponent";
 
@@ -242,7 +242,7 @@ export default function ScorecardPage() {
         </div>
         {Array?.isArray(scorecards) && scorecards?.length > 0 ? (
           scorecards?.map((item, index) => (
-            <ScorecardComponent
+            <ScorecardDesktopComponent
               key={`scorecard-${item?.userId}-${index}`}
               userScores={item?.userScores}
               userTotalScore={item?.userTotalScore}
