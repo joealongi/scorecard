@@ -139,8 +139,8 @@ npx expo start
 # TODO:
 
 ###### Add loader for leaderboard + scorecard pages
-###### Simplify leaderboard by total is their seasonal score over par
-###### Filter leaderboard by season
+###### Simplify leaderboard by total is their seasonal score over par, potentially seed rankings of default data instead of all 10
+###### Filter leaderboard by season with calendar selector
 ###### Write algorithm to calculate the leaderboard based on scores overall (par - score)
 ###### Create ranking table that runs as a result of a job to optimize performance
 ###### Create tournament leaderboard using current leaderboard and create a table for tournaments linking players and scorecards to tournament
@@ -149,7 +149,5 @@ npx expo start
 ###### Create handicap calculator that calculates the handicap based on the scores and the course par
 ###### Replace custom SVGS with Icon Library
 ###### Add sitemap / page for footer
-###### Make scorecard editor component look more like scorecard / leaderboard
 ###### Authenticated routing
-###### Fix select chevron
 ###### Optimize backend models to only return and accept what is needed
