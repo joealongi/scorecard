@@ -6,40 +6,64 @@ import LeaderboardDesktopComponent from "../components/LeaderboardDesktopCompone
 import LeaderboardMobileComponent from "../components/LeaderboardMobileComponent";
 
 import type { Leaderboard } from "../types/LeaderboardTypes";
-import initialLeaderboardData from "../configurations/leaderboard.json";
 
 import { getRequest } from "../functions/request";
 
 export default function LeaderboardPage() {
   const [leaderboard, setLeaderboard] = React.useState<Leaderboard[]>([]);
 
-  const handleLoadLeaderboard = async () => {
+  // Get Leaderboard from API
+  const getLeaderboard = async () => {
     try {
-      const initial = initialLeaderboardData as Leaderboard[];
-      if (initial?.length > 0) {
-        setLeaderboard(initial);
-      }
       const response = await getRequest(
         import.meta.env.VITE_CLUBHOUSE_BASE_API_URL ?? "",
         `/leaderboard/`
       );
+      if (response) return response;
+      else return null;
+    } catch (error) {
+      console.error("Error getting leaderboard");
+      return error;
+    }
+  };
+
+  // Handle loading ten blank leaderboard entries or results +/- leaderboard entries
+  const handleLoadingLeaderboard = async () => {
+    try {
+      while (leaderboard.length < 10) {
+        leaderboard.push({
+          submitted: "",
+          updated: "",
+          userId: 0,
+          userName: "TBD",
+          userRank: 0,
+          userHandicap: 0,
+          userScores: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          userTotalScore: 0,
+          golfCourseId: 0,
+          golfCourseName: "TBD",
+          golfCoursePars: [
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          ],
+          golfCourseTotalPar: 0,
+          golfCourseHolesPlayed: 0,
+        });
+      }
+      const response = await getLeaderboard();
+      const leaders = [...leaderboard];
       if (response?.length > 0) {
         response.forEach((item: Leaderboard, index: number) => {
-          if (initial?.[index]) {
-            initial[index] = item;
-          } else {
-            initial.push(item);
-          }
+          leaders[index] = {
+            ...item,
+          };
         });
-        // TODO: If length is less than 10, add placeholder data but filter it for the selects and make placeholder data empty
+        setLeaderboard(leaders);
       }
-      const sorted = initial
+      const sorted = leaderboard
         .slice()
         .sort((a, b) => (a?.userRank ?? 0) - (b?.userRank ?? 0));
-      if (sorted?.length > 0) {
+      if (sorted?.length === leaderboard?.length) {
         setLeaderboard(sorted);
-      } else if (initial?.length > 0) {
-        setLeaderboard(initial);
       }
     } catch (error) {
       console.error("Error loading leaderboard");
@@ -47,11 +71,12 @@ export default function LeaderboardPage() {
     }
   };
 
+  // Load on refresh / reload
   React.useEffect(() => {
-    const loadLeaderboard = async () => {
-      await handleLoadLeaderboard();
+    const load = async () => {
+      await handleLoadingLeaderboard();
     };
-    loadLeaderboard();
+    load();
     return () => {};
   }, []);
 

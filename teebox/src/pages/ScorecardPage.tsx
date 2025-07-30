@@ -64,9 +64,6 @@ export default function ScorecardPage() {
   const handleSubmitScorecard = async (submitScorecard: SubmitScorecard) => {
     const { activity, userId, userScores, golfCourseId } = submitScorecard;
     try {
-      console.log("Activity for scorecard:", activity);
-      console.log("Activity for scorecard with userScores:", userScores);
-      console.log("Activity for scorecard with golfCourseId:", golfCourseId);
       if (activity === "add") {
         // Handle adding a new scorecard
         const response = await postRequest(

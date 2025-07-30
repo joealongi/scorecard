@@ -13,3 +13,7 @@ export type GolfCourse = {
   golfCourseTotalPar?: number;
   golfCourseHolesPlayed?: number;
 };
+
+export type GolfCourseHole = {
+  hole?: string;
+};
