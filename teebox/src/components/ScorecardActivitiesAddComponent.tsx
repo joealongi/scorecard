@@ -11,7 +11,7 @@ export default function ScorecardActivitiesAddComponent({
   activity,
   text,
   userId,
-  golfCourses,
+  selectableGolfCourses,
 }: Readonly<{
   handleSubmitScorecard?: (
     submitScorecard: SubmitScorecard
@@ -19,15 +19,17 @@ export default function ScorecardActivitiesAddComponent({
   activity?: string;
   text?: string;
   userId?: number;
-  golfCourses?: GolfCourse[];
+  selectableGolfCourses?: GolfCourse[];
 }>) {
   const [selectedGolfCourse, setSelectedGolfCourse] =
-    React.useState<GolfCourse>(golfCourses?.[0] ?? {});
+    React.useState<GolfCourse>(selectableGolfCourses?.[0] ?? {});
 
-  const handleSelectGolfCourse = (
+  // Handle selecting golf course from the list
+  const handleSelectingGolfCourse = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
-    const selectedGolfCourse = golfCourses?.[parseInt(event?.target?.value)];
+    const selectedGolfCourse =
+      selectableGolfCourses?.[parseInt(event?.target?.value)];
     if (selectedGolfCourse) {
       setSelectedGolfCourse(selectedGolfCourse);
     }
@@ -39,10 +41,11 @@ export default function ScorecardActivitiesAddComponent({
         className="h-auto w-full p-3 text-xl font-bold text-neutral-950 bg-neutral-300 text-center subpixel-antialiased"
         name="golfcourses"
         aria-label="List of golf courses"
-        onChange={handleSelectGolfCourse}
+        onChange={handleSelectingGolfCourse}
       >
-        {Array?.isArray(golfCourses) && golfCourses?.length > 0 ? (
-          golfCourses.map((item, index) => (
+        {Array?.isArray(selectableGolfCourses) &&
+        selectableGolfCourses?.length > 0 ? (
+          selectableGolfCourses.map((item, index) => (
             <option
               key={`scorecard-${item?.golfCourseId}-${index}`}
               value={index}

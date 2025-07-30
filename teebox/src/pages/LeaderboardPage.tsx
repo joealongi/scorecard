@@ -31,6 +31,7 @@ export default function LeaderboardPage() {
             initial.push(item);
           }
         });
+        // TODO: If length is less than 10, add placeholder data but filter it for the selects and make placeholder data empty
       }
       const sorted = initial
         .slice()

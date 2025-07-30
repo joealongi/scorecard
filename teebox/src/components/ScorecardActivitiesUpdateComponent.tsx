@@ -12,7 +12,7 @@ export default function ScorecardActivitiesUpdateComponent({
   activity,
   text,
   userId,
-  scorecards,
+  selectableScorecards,
 }: Readonly<{
   handleSubmitScorecard?: (
     submitScorecard: SubmitScorecard
@@ -20,18 +20,20 @@ export default function ScorecardActivitiesUpdateComponent({
   activity?: string;
   text?: string;
   userId?: number;
-  scorecards?: Scorecard[];
+  selectableScorecards?: Scorecard[];
 }>) {
-  const [selectedScorecardScores, setSelectedScorecardScores] = React.useState<
-    number[]
-  >(scorecards?.[0]?.userScores ?? []);
+  const [selectedScorecard, setSelectedScorecard] = React.useState<
+    Scorecard | undefined
+  >(selectableScorecards?.[0]);
 
+  // Handle selecting scorecards from the list
   const handleSelectScorecard = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
-    const selectedScorecard = scorecards?.[parseInt(event?.target?.value)];
+    const selectedScorecard =
+      selectableScorecards?.[parseInt(event?.target?.value)];
     if (selectedScorecard) {
-      setSelectedScorecardScores(selectedScorecard?.userScores ?? []);
+      setSelectedScorecard(selectedScorecard);
     }
   };
 
@@ -43,8 +45,9 @@ export default function ScorecardActivitiesUpdateComponent({
         aria-label="List of user scorecards"
         onChange={handleSelectScorecard}
       >
-        {Array?.isArray(scorecards) && scorecards?.length > 0 ? (
-          scorecards.map((item, index) => (
+        {Array?.isArray(selectableScorecards) &&
+        selectableScorecards?.length > 0 ? (
+          selectableScorecards.map((item, index) => (
             <option key={`scorecard-${item?.userId}-${index}`} value={index}>
               {dayjs(item?.updated)
                 .format("MM/DD/YYYY - hh:mm:ss A")
@@ -60,7 +63,7 @@ export default function ScorecardActivitiesUpdateComponent({
         activity={activity}
         text={text}
         userId={userId}
-        userScores={selectedScorecardScores}
+        userScores={selectedScorecard?.userScores}
       />
     </React.Fragment>
   );

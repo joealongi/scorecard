@@ -14,15 +14,15 @@ import type { GolfCourse } from "../types/GolfCourseTypes";
 export default function ScorecardActivitiesComponent({
   handleSubmitScorecard,
   userId,
-  scorecards,
-  golfCourses,
+  selectableScorecards,
+  selectableGolfCourses,
 }: Readonly<{
   handleSubmitScorecard?: (
     submitScorecard: SubmitScorecard
   ) => Promise<unknown>;
   userId: number;
-  scorecards?: Scorecard[];
-  golfCourses?: GolfCourse[];
+  selectableScorecards?: Scorecard[];
+  selectableGolfCourses?: GolfCourse[];
 }>) {
   return (
     <React.Fragment>
@@ -47,7 +47,7 @@ export default function ScorecardActivitiesComponent({
               activity={"add"}
               text={"Add scorecard"}
               userId={userId}
-              golfCourses={golfCourses}
+              selectableGolfCourses={selectableGolfCourses}
             />
           </TabPanel>
           <TabPanel className="">
@@ -58,7 +58,7 @@ export default function ScorecardActivitiesComponent({
               activity={"update"}
               text={"Update scorecard"}
               userId={userId}
-              scorecards={scorecards}
+              selectableScorecards={selectableScorecards}
             />
           </TabPanel>
           <TabPanel className="">
@@ -69,7 +69,7 @@ export default function ScorecardActivitiesComponent({
               activity={"delete"}
               text={"Delete scorecard"}
               userId={userId}
-              scorecards={scorecards}
+              selectableScorecards={selectableScorecards}
             />
           </TabPanel>
         </TabPanels>

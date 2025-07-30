@@ -11,8 +11,6 @@ import ScorecardActivitiesComponent from "../components/ScorecardActivitiesCompo
 import type { Scorecard, SubmitScorecard } from "../types/ScorecardTypes";
 import type { GolfCourse } from "../types/GolfCourseTypes";
 import { endpoints } from "../configurations/constants";
-import initialScorecardData from "../configurations/scorecard.json";
-import initialGolfCourseData from "../configurations/golfcourse.json";
 
 import {
   getRequest,
@@ -23,8 +21,46 @@ import {
 
 export default function ScorecardPage() {
   const [scorecards, setScorecards] = React.useState<Scorecard[]>([]);
+  const [selectableScorecards, setSelectableScorecards] = React.useState<
+    Scorecard[]
+  >([]);
   const [golfCourses, setGolfCourses] = React.useState<GolfCourse[]>([]);
+  const [selectableGolfCourses, setSelectableGolfCourses] = React.useState<
+    GolfCourse[]
+  >([]);
 
+  // Get Scorecards from API
+  const getScorecards = async () => {
+    try {
+      const userId = 1; // TODO: Replace with actual user ID logic
+      const response = await getRequest(
+        import.meta.env.VITE_CLUBHOUSE_BASE_API_URL ?? "",
+        endpoints.SCORECARD + userId
+      );
+      if (response) return response;
+      else return null;
+    } catch (error) {
+      console.error("Error getting scorecards");
+      return error;
+    }
+  };
+
+  // Get Golf Courses from API
+  const getGolfCourses = async () => {
+    try {
+      const response = await getRequest(
+        import.meta.env.VITE_CLUBHOUSE_BASE_API_URL ?? "",
+        endpoints.GOLFCOURSE
+      );
+      if (response) return response;
+      else return null;
+    } catch (error) {
+      console.error("Error getting golf courses");
+      return error;
+    }
+  };
+
+  // Handle submission of scorecards and type of activity
   const handleSubmitScorecard = async (submitScorecard: SubmitScorecard) => {
     const { activity, userId, userScores, golfCourseId } = submitScorecard;
     try {
@@ -73,32 +109,37 @@ export default function ScorecardPage() {
     }
   };
 
-  const handleLoadScorecards = async () => {
+  // Handle loading ten blank scorecards or results +/- scorecards
+  const handleLoadingScorecards = async () => {
     try {
-      const initial = initialScorecardData as Scorecard[];
-      const primary = [] as Scorecard[];
-      const userId = 1; // TODO: Replace with actual user ID logic
-      // TODO: Split request to handle missing data / 500 / 400
-      const response = await getRequest(
-        import.meta.env.VITE_CLUBHOUSE_BASE_API_URL ?? "",
-        endpoints.SCORECARD + userId
-      );
-      if (response?.length > 0) {
-        response.forEach((item: Scorecard) => {
-          primary.push({
-            ...item,
-          });
+      while (scorecards.length < 10) {
+        scorecards.push({
+          submitted: "",
+          updated: "",
+          userId: 0,
+          userName: "TBD",
+          userRank: 0,
+          userHandicap: 0,
+          userScores: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          userTotalScore: 0,
+          golfCourseId: 0,
+          golfCourseName: "TBD",
+          golfCoursePars: [
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          ],
+          golfCourseTotalPar: 0,
+          golfCourseHolesPlayed: 0,
         });
-        setScorecards(primary);
       }
-      if (primary?.length === 0 && initial?.length > 0) {
-        setScorecards(initial);
-      }
-      const sorted = scorecards
-        ?.slice()
-        ?.sort((a, b) => (a?.userRank ?? 0) - (b?.userRank ?? 0));
-      if (sorted?.length > 0) {
-        setScorecards(sorted);
+      const response = await getScorecards();
+      const cards = [...scorecards];
+      if (response?.length > 0) {
+        response.forEach((item: Scorecard, index: number) => {
+          cards[index] = {
+            ...item,
+          };
+        });
+        setScorecards(cards);
       }
     } catch (error) {
       console.error("Error loading scorecards");
@@ -106,25 +147,44 @@ export default function ScorecardPage() {
     }
   };
 
-  const handleLoadGolfCourses = async () => {
+  // Handle filtering scorecards of the results versus ten blank scorecards
+  const handleFilteringSelectableScorecards = () => {
     try {
-      const initial = initialGolfCourseData as GolfCourse[];
-      const primary = [] as GolfCourse[];
-      // TODO: Split request to handle missing data / 500 / 400
-      const response = await getRequest(
-        import.meta.env.VITE_CLUBHOUSE_BASE_API_URL ?? "",
-        endpoints.GOLFCOURSE
-      );
-      if (response?.length > 0) {
-        response.forEach((item: GolfCourse) => {
-          primary.push({
-            ...item,
-          });
+      const scores = [] as Scorecard[];
+      scorecards?.forEach((item) => {
+        if (item?.userId && item?.updated) {
+          scores.push(item);
+        }
+      });
+      setSelectableScorecards(scores);
+    } catch (error) {
+      console.error("Error filtering selectable scorecards");
+      return error;
+    }
+  };
+
+  // Handle loading ten blank golf courses or results +/- golf courses
+  const handleLoadingGolfCourses = async () => {
+    try {
+      while (golfCourses.length < 10) {
+        golfCourses.push({
+          golfCourseId: 0,
+          golfCourseName: "TBD",
+          golfCoursePars: [
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          ],
+          golfCourseTotalPar: 0,
         });
-        setGolfCourses(primary);
       }
-      if (primary?.length === 0 && initial?.length > 0) {
-        setGolfCourses(initial);
+      const courses = [...golfCourses];
+      const response = await getGolfCourses();
+      if (response?.length > 0) {
+        response.forEach((item: GolfCourse, index: number) => {
+          courses[index] = {
+            ...item,
+          };
+        });
+        setGolfCourses(courses);
       }
     } catch (error) {
       console.error("Error loading golf courses");
@@ -132,12 +192,31 @@ export default function ScorecardPage() {
     }
   };
 
+  // Handle filtering golf courses of the results versus ten blank golf courses
+  const handleFilteringSelectableGolfCourses = () => {
+    try {
+      const courses = [] as GolfCourse[];
+      golfCourses?.forEach((item) => {
+        if (item?.golfCourseId && item?.golfCourseName) {
+          courses.push(item);
+        }
+      });
+      setSelectableGolfCourses(courses);
+    } catch (error) {
+      console.error("Error filtering selectable golf courses");
+      return error;
+    }
+  };
+
+  // Load on refresh / reload
   React.useEffect(() => {
-    const loadScorecard = async () => {
-      await handleLoadScorecards();
-      await handleLoadGolfCourses();
+    const load = async () => {
+      await handleLoadingScorecards();
+      await handleFilteringSelectableScorecards();
+      await handleLoadingGolfCourses();
+      await handleFilteringSelectableGolfCourses();
     };
-    loadScorecard();
+    load();
     return () => {};
   }, []);
 
@@ -198,8 +277,8 @@ export default function ScorecardPage() {
         <ScorecardActivitiesComponent
           handleSubmitScorecard={handleSubmitScorecard}
           userId={1} // Replace with actual user ID logic
-          scorecards={scorecards}
-          golfCourses={golfCourses}
+          selectableScorecards={selectableScorecards}
+          selectableGolfCourses={selectableGolfCourses}
         />
       </section>
     </React.Fragment>

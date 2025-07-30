@@ -11,7 +11,7 @@ export default function ScorecardActivitiesDeleteComponent({
   activity,
   text,
   userId,
-  scorecards,
+  selectableScorecards,
 }: Readonly<{
   handleSubmitScorecard?: (
     submitScorecard: SubmitScorecard
@@ -19,18 +19,20 @@ export default function ScorecardActivitiesDeleteComponent({
   activity?: string;
   text?: string;
   userId?: number;
-  scorecards?: Scorecard[];
+  selectableScorecards?: Scorecard[];
 }>) {
-  const [userScores, setUserScores] = React.useState<number[]>(
-    scorecards?.[0]?.userScores ?? []
-  );
+  const [selectedScorecard, setSelectedScorecard] = React.useState<
+    Scorecard | undefined
+  >(selectableScorecards?.[0]);
 
+  // Handle selecting scorecards from the list
   const handleSelectScorecard = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
-    const selectedScorecard = scorecards?.[parseInt(event?.target?.value)];
+    const selectedScorecard =
+      selectableScorecards?.[parseInt(event?.target?.value)];
     if (selectedScorecard) {
-      setUserScores(selectedScorecard?.userScores ?? []);
+      setSelectedScorecard(selectedScorecard);
     }
   };
 
@@ -42,8 +44,9 @@ export default function ScorecardActivitiesDeleteComponent({
         aria-label="List of user scorecards"
         onChange={handleSelectScorecard}
       >
-        {Array?.isArray(scorecards) && scorecards?.length > 0 ? (
-          scorecards.map((item, index) => (
+        {Array?.isArray(selectableScorecards) &&
+        selectableScorecards?.length > 0 ? (
+          selectableScorecards.map((item, index) => (
             <option key={`scorecard-${item?.userId}-${index}`} value={index}>
               {dayjs(item?.updated)
                 .format("MM/DD/YYYY - hh:mm:ss A")
@@ -59,7 +62,7 @@ export default function ScorecardActivitiesDeleteComponent({
         activity={activity}
         text={text}
         userId={userId}
-        userScores={userScores}
+        userScores={selectedScorecard?.userScores}
       />
     </React.Fragment>
   );
