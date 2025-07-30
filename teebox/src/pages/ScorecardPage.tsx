@@ -211,7 +211,7 @@ export default function ScorecardPage() {
     };
     load();
     return () => {};
-  }, [scorecards, golfCourses]);
+  }, []);
 
   return (
     <React.Fragment>

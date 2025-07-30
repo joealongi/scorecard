@@ -76,7 +76,7 @@ export default function LeaderboardPage() {
     };
     load();
     return () => {};
-  }, [leaderboard]);
+  }, []);
 
   return (
     <React.Fragment>
