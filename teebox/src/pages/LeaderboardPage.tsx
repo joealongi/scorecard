@@ -53,9 +53,7 @@ export default function LeaderboardPage() {
       const leaders = [...leaderboard];
       if (response?.length > 0) {
         response.forEach((item: Leaderboard, index: number) => {
-          leaders[index] = {
-            ...item,
-          };
+          leaders.splice(index, 1, item);
         });
         setLeaderboard(leaders);
       }
@@ -78,7 +76,7 @@ export default function LeaderboardPage() {
     };
     load();
     return () => {};
-  }, []);
+  }, [leaderboard]);
 
   return (
     <React.Fragment>
