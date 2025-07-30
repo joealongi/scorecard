@@ -132,9 +132,7 @@ export default function ScorecardPage() {
       const cards = [...scorecards];
       if (response?.length > 0) {
         response.forEach((item: Scorecard, index: number) => {
-          cards[index] = {
-            ...item,
-          };
+          cards.splice(index, 1, item);
         });
         setScorecards(cards);
       }
@@ -177,9 +175,7 @@ export default function ScorecardPage() {
       const response = await getGolfCourses();
       if (response?.length > 0) {
         response.forEach((item: GolfCourse, index: number) => {
-          courses[index] = {
-            ...item,
-          };
+          courses.splice(index, 1, item);
         });
         setGolfCourses(courses);
       }
@@ -209,13 +205,13 @@ export default function ScorecardPage() {
   React.useEffect(() => {
     const load = async () => {
       await handleLoadingScorecards();
-      await handleFilteringSelectableScorecards();
       await handleLoadingGolfCourses();
+      await handleFilteringSelectableScorecards();
       await handleFilteringSelectableGolfCourses();
     };
     load();
     return () => {};
-  }, []);
+  }, [scorecards, golfCourses]);
 
   return (
     <React.Fragment>
