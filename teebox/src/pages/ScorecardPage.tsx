@@ -109,7 +109,7 @@ export default function ScorecardPage() {
   // Handle loading ten blank scorecards or results +/- scorecards
   const handleLoadingScorecards = async () => {
     try {
-      while (scorecards.length < 10) {
+      while (scorecards?.length < 10) {
         scorecards.push({
           submitted: "",
           updated: "",
@@ -129,13 +129,12 @@ export default function ScorecardPage() {
         });
       }
       const response = await getScorecards();
-      const cards = [...scorecards];
       if (response?.length > 0) {
         response.forEach((item: Scorecard, index: number) => {
           scorecards.splice(index, 1, item);
         });
       }
-      if (cards?.length > 0) setScorecards(cards);
+      if (scorecards?.length > 0) setScorecards([...scorecards]);
     } catch (error) {
       console.error("Error loading scorecards");
       return error;
@@ -171,14 +170,13 @@ export default function ScorecardPage() {
           golfCourseTotalPar: 0,
         });
       }
-      const courses = [...golfCourses];
       const response = await getGolfCourses();
       if (response?.length > 0) {
         response.forEach((item: GolfCourse, index: number) => {
           golfCourses.splice(index, 1, item);
         });
       }
-      if (courses?.length > 0) setGolfCourses(courses);
+      if (golfCourses?.length > 0) setGolfCourses([...golfCourses]);
     } catch (error) {
       console.error("Error loading golf courses");
       return error;
