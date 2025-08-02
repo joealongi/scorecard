@@ -1,4 +1,8 @@
-# Teebox
+# Scorecard
+
+Work in progress, tread lightly, copy carefully.
+
+## Teebox
 ###### React web application for Pinpointscore.
 
 Remove files in gitignore that you want to keep in the repository:
@@ -18,7 +22,7 @@ npm run dev
 
 ---
 
-# Course
+## Course
 ###### TypeScript Node proxy server for Pinpointscore.
 
 Start the application:
@@ -42,7 +46,7 @@ docker run -d -p 8080:8080 pinpointscore.azurecr.io/pinpointscore/pinpointscore/
 
 ---
 
-# Clubhouse
+## Clubhouse
 ###### Spring Boot Java backend application for Pinpointscore.
 
 https://learn.microsoft.com/en-us/java/openjdk/download#openjdk-21
@@ -73,7 +77,7 @@ docker push pinpointscore.azurecr.io/pinpointscore/pinpointscore/clubhouse:lates
 docker run -p 8080:8080 pinpointscore.azurecr.io/pinpointscore/pinpointscore/clubhouse:latest
 ```
 
-## Clubhouse - Database
+### Clubhouse - Database
 
 Add a user to the database:
 ```sql
@@ -121,7 +125,7 @@ WHERE user_id = 1;
 
 ---
 
-# Caddy
+## Caddy
 ###### React Native mobile application for Pinpointscore.
 
 Start the app
@@ -136,7 +140,7 @@ Start the app:
 npx expo start
 ```
 
-# TODO:
+## TODO:
 
 ###### Add loader for leaderboard + scorecard pages
 ###### Simplify leaderboard by total is their seasonal score over par, potentially seed rankings of default data instead of all 10
