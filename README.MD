@@ -170,6 +170,6 @@ For any inquiries, please contact us via,
 - Find more projects like this on our [GitHub](https://github.com/availinginc)
 
 ## License
-This project is licensed under the Mozilla Public License Version 2.0. For more details, see the [LICENSE.md](LICENSE.md).
+This project is licensed under the Mozilla Public License Version 2.0. For more details, see the [LICENSE.md](LICENSE).
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Favailinginc%2Fscorecard.svg?type=large&issueType=license)](https://app.fossa.com/projects/git%2Bgithub.com%2Favailinginc%2Fscorecard?ref=badge_large&issueType=license)
