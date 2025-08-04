@@ -155,3 +155,21 @@ npx expo start
 ###### Add sitemap / page for footer
 ###### Authenticated routing
 ###### Optimize backend models to only return and accept what is needed
+###### Dropdowns for menu items
+
+# Acknowledgements
+
+## Authors
+- [heyitsjoealongi](https://github.com/heyitsjoealongi)
+
+## Contact
+For any inquiries, please contact us via,
+- Email: [contact@availing.io](mailto:contact@availing.io)
+- Website: [availing.io](https://availing.io)
+- Follow us on [X](https://x.com/availinginc/), [LinkedIn](https://www.linkedin.com/company/availinginc/), and [Instagram](https://www.instagram.com/availinginc/)
+- Find more projects like this on our [GitHub](https://github.com/availinginc)
+
+## License
+This project is licensed under the Mozilla Public License Version 2.0. For more details, see the [LICENSE.md](LICENSE.md).
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Favailinginc%2Fscorecard.svg?type=large&issueType=license)](https://app.fossa.com/projects/git%2Bgithub.com%2Favailinginc%2Fscorecard?ref=badge_large&issueType=license)
