@@ -1,4 +1,6 @@
 # Scorecard
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Favailinginc%2Fscorecard.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Favailinginc%2Fscorecard?ref=badge_shield)
+
 
 Work in progress, tread lightly, copy carefully.
 
@@ -155,6 +157,7 @@ npx expo start
 ###### Add sitemap / page for footer
 ###### Authenticated routing
 ###### Optimize backend models to only return and accept what is needed
+
 ###### Dropdowns for menu items
 
 # Acknowledgements
@@ -172,4 +175,4 @@ For any inquiries, please contact us via,
 ## License
 This project is licensed under the Mozilla Public License Version 2.0. For more details, see the [LICENSE.md](LICENSE).
 
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Favailinginc%2Fscorecard.svg?type=large&issueType=license)](https://app.fossa.com/projects/git%2Bgithub.com%2Favailinginc%2Fscorecard?ref=badge_large&issueType=license)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Favailinginc%2Fscorecard.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Favailinginc%2Fscorecard?ref=badge_large)
