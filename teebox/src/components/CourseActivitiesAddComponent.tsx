@@ -5,7 +5,7 @@ import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import ScorecardEditorComponent from "./ScorecardEditorComponent";
 
 import type { SubmitScorecard } from "../types/ScorecardTypes";
-import type { Coursecard } from "../types/CoursecardTypes";
+import type { GolfCourse } from "../types/GolfCourseTypes";
 
 export default function ScorecardActivitiesAddComponent({
   handleSubmitScorecard,
@@ -20,10 +20,10 @@ export default function ScorecardActivitiesAddComponent({
   activity?: string;
   text?: string;
   userId?: number;
-  selectableGolfCourses?: Coursecard[];
+  selectableGolfCourses?: GolfCourse[];
 }>) {
   const [selectedGolfCourse, setSelectedGolfCourse] =
-    React.useState<Coursecard>(selectableGolfCourses?.[0] ?? {});
+    React.useState<GolfCourse>(selectableGolfCourses?.[0] ?? {});
 
   // Handle selecting golf course from the list
   const handleSelectingGolfCourse = (

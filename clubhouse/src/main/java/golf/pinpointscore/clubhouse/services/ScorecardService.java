@@ -83,10 +83,12 @@ public class ScorecardService {
 
     // Fetch all scorecards by userId and timestamp
     public List<ScorecardEntity> getScorecardsByUserIdAndTimestamp(int userId, Timestamp timestamp) {
+
         return scorecardRepository.findByUserId(userId)
             .stream()
             .filter(scorecard -> scorecard.getSubmitted().equals(timestamp))
             .toList();
+            
     }
 
 }

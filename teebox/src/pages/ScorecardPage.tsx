@@ -262,7 +262,7 @@ export default function ScorecardPage() {
       </section>
       <section className="active my-3 border-1 border-neutral-950">
         <div className="my-3">
-          <HeadingTwoComponent text=" Scorecard activities" />
+          <HeadingTwoComponent text="Scorecard activities" />
           <ParagraphComponent text="Manage your scorecards effectively by using the options below." />
         </div>
         <ScorecardActivitiesComponent

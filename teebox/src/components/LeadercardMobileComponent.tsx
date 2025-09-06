@@ -1,14 +1,14 @@
 import * as React from "react";
 
-import type { Leaderboard } from "../types/LeaderboardTypes";
+import type { Leadercard } from "../types/LeadercardTypes";
 
-export default function LeaderboardMobileComponent({
+export default function LeadercardMobileComponent({
   userName,
   userRank,
   userTotalScore,
   golfCourseName,
   golfCourseTotalPar,
-}: Readonly<Leaderboard>) {
+}: Readonly<Leadercard>) {
   return (
     <React.Fragment>
       <div className="border-1 border-neutral-950">

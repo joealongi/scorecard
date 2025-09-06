@@ -7,25 +7,25 @@ import org.springframework.stereotype.Service;
 
 import golf.pinpointscore.clubhouse.entities.ScorecardEntity;
 import golf.pinpointscore.clubhouse.entities.UserEntity;
-import golf.pinpointscore.clubhouse.models.LeaderboardModel;
+import golf.pinpointscore.clubhouse.models.LeadercardModel;
 import golf.pinpointscore.clubhouse.repositories.ScorecardRepository;
 import golf.pinpointscore.clubhouse.repositories.UserRepository;
 
 @Service
-public class LeaderboardService {
+public class LeadercardService {
 
     private final ScorecardRepository scorecardRepository;
     private final UserRepository userRepository;
 
-    public LeaderboardService(ScorecardRepository scorecardRepository, UserRepository userRepository) {
+    public LeadercardService(ScorecardRepository scorecardRepository, UserRepository userRepository) {
         this.scorecardRepository = scorecardRepository;
         this.userRepository = userRepository;
     }
 
-    public List<LeaderboardModel> getLeaderboard(){
+    public List<LeadercardModel> getLeadercard(){
         
-        // Initialize an empty list to hold the leaderboard models
-        List<LeaderboardModel> leaderboard = new ArrayList<>();
+        // Initialize an empty list to hold the leadercard models
+        List<LeadercardModel> leadercard = new ArrayList<>();
 
         // Fetch all scorecards from the repository
         Iterable<ScorecardEntity> scorecards = scorecardRepository.findAll();
@@ -36,7 +36,7 @@ public class LeaderboardService {
             // Fetch the user associated with the scorecard
             UserEntity user = userRepository.findByUserId(scorecard.getUserId());
 
-            // For each scorecard, create a LeaderboardModel entry
+            // For each scorecard, create a LeadercardModel entry
             java.sql.Timestamp submitted = scorecard.getSubmitted();
             java.sql.Timestamp updated = scorecard.getSubmitted();
             int userId = scorecard.getUserId();
@@ -55,8 +55,8 @@ public class LeaderboardService {
                 .sum();
             Integer golfCourseHolesPlayed = scorecard.getUserScores().size();
 
-            // Create a new LeaderboardModel instance with the calculated values
-            LeaderboardModel leaderboardEntry = new LeaderboardModel(
+            // Create a new LeadercardModel instance with the calculated values
+            LeadercardModel leadercardEntry = new LeadercardModel(
                 submitted,
                 updated,
                 userId,
@@ -72,29 +72,29 @@ public class LeaderboardService {
                 golfCourseHolesPlayed
             );
 
-            // Add the new leaderboard entry to the leaderboard list
-            leaderboard.add(leaderboardEntry);
+            // Add the new leadercard entry to the leadercard list
+            leadercard.add(leadercardEntry);
 
         });
 
-        return leaderboard;
+        return leadercard;
 
     }
 
-	public List<LeaderboardModel> getLeaderboardLimited(int amount) {
+	public List<LeadercardModel> getLeadercardLimited(int amount) {
 
-        // Get the full leaderboard
-        List<LeaderboardModel> leaderboard = this.getLeaderboard();
+        // Get the full leadercard
+        List<LeadercardModel> leadercard = this.getLeadercard();
 
-        // Sort the leaderboard by user rank in ascending order
-        leaderboard.sort((a, b) -> Integer.compare(a.getUserRank(), b.getUserRank()));
+        // Sort the leadercard by user rank in ascending order
+        leadercard.sort((a, b) -> Integer.compare(a.getUserRank(), b.getUserRank()));
 
-        // If the leaderboard has more entries than the specified amount, limit it to that amount
-        if (leaderboard.size() > amount) {
-            return leaderboard.subList(0, amount);
+        // If the leadercard has more entries than the specified amount, limit it to that amount
+        if (leadercard.size() > amount) {
+            return leadercard.subList(0, amount);
         }
 
-        return leaderboard;
+        return leadercard;
 
 	}
 

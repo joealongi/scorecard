@@ -6,88 +6,91 @@ import * as yup from "yup";
 
 import { Field, Fieldset, Input, Label, Button } from "@headlessui/react";
 
-import type { Scorecard, SubmitScorecard } from "../types/ScorecardTypes";
-import type { CoursecardHole } from "../types/CoursecardTypes";
+import type {
+  SubmitCoursecard,
+  CoursecardHole,
+  Coursecard,
+} from "../types/CoursecardTypes";
 
 const validationSchema = yup.object({
-  userScores: yup.array().of(yup.number().min(0).required()),
+  golfCoursePars: yup.array().of(yup.number().min(0).required()),
 });
 
-export default function ScorecardEditorComponent({
-  handleSubmitScorecard,
+export default function CoursecardEditorComponent({
+  handleSubmitCoursecard,
   activity,
   text,
-  userId,
-  userScores,
   golfCourseId,
+  golfCourseName,
+  golfCoursePars,
 }: Readonly<{
-  activity?: string;
-  handleSubmitScorecard?: (
-    submitScorecard: SubmitScorecard
+  handleSubmitCoursecard?: (
+    submitCoursecard: SubmitCoursecard
   ) => Promise<unknown>;
+  activity?: string;
   text?: string;
-  userId?: number;
-  userScores?: number[];
   golfCourseId?: number;
+  golfCourseName?: string;
+  golfCoursePars?: number[];
 }>) {
   const [holesPlayed, setHolesPlayed] = React.useState<CoursecardHole[]>();
 
   // Form validation and submission
-  const formik = useFormik<Scorecard>({
+  const formik = useFormik<Coursecard>({
     initialValues: {
-      userScores: userScores ?? [
+      golfCoursePars: golfCoursePars ?? [
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
       ],
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       try {
-        if (handleSubmitScorecard) {
-          await handleSubmitScorecard({
+        if (handleSubmitCoursecard) {
+          await handleSubmitCoursecard({
             activity: activity ?? "",
-            userId,
-            userScores: values?.userScores,
-            golfCourseId,
+            golfCourseId: golfCourseId ?? 0,
+            golfCourseName: golfCourseName ?? "",
+            golfCoursePars: values?.golfCoursePars,
           });
         }
       } catch (error) {
-        console.log("Error adding new scorecard");
+        console.log("Error adding new coursecard");
         return error;
       }
     },
   });
 
-  // Handle adding to score (increment)
-  const handleIncrementScore = (
+  // Handle adding to par (increment)
+  const handleIncrementPar = (
     index: number,
-    formik: FormikProps<Scorecard>
+    formik: FormikProps<Coursecard>
   ) => {
-    const userScores = [...(formik?.values?.userScores ?? [])];
-    const score = userScores?.[index];
+    const golfCoursePars = [...(formik?.values?.golfCoursePars ?? [])];
+    const score = golfCoursePars?.[index];
     if (!isNaN(score)) {
-      userScores[index] = Math.abs(score + 1);
+      golfCoursePars[index] = Math.abs(score + 1);
     }
-    formik.setFieldValue("userScores", userScores);
+    formik.setFieldValue("golfCoursePars", golfCoursePars);
   };
 
-  // Handle subtracting from score (decrement)
-  const handleDecrementScore = (
+  // Handle subtracting from par (decrement)
+  const handleDecrementPar = (
     index: number,
-    formik: FormikProps<Scorecard>
+    formik: FormikProps<Coursecard>
   ) => {
-    const userScores = [...(formik?.values?.userScores ?? [])];
-    const score = userScores?.[index];
+    const golfCoursePars = [...(formik?.values?.golfCoursePars ?? [])];
+    const score = golfCoursePars?.[index];
     if (!isNaN(score)) {
-      userScores[index] = Math.abs(score - 1);
+      golfCoursePars[index] = Math.abs(score - 1);
     }
-    formik.setFieldValue("userScores", userScores);
+    formik.setFieldValue("golfCoursePars", golfCoursePars);
   };
 
-  // Handle loading user scores for scorecard
-  const handleLoadingUserScores = async () => {
+  // Handle loading golf course pars for coursecard
+  const handleLoadingGolfCoursePars = async () => {
     try {
-      if (Array.isArray(userScores) && userScores?.length > 0) {
-        formik.setFieldValue("userScores", userScores);
+      if (Array.isArray(golfCoursePars) && golfCoursePars?.length > 0) {
+        formik.setFieldValue("golfCoursePars", golfCoursePars);
       }
     } catch (error) {
       console.error("Error loading user scores");
@@ -98,7 +101,7 @@ export default function ScorecardEditorComponent({
   // Load on refresh / reload
   React.useEffect(() => {
     const load = async () => {
-      await handleLoadingUserScores();
+      await handleLoadingGolfCoursePars();
       // Default eighteen holes
       setHolesPlayed([
         { hole: "Hole One (1)" },
@@ -138,17 +141,17 @@ export default function ScorecardEditorComponent({
                 <div className="flex flex-row flex-auto justify-center content-evenly items-stretch">
                   <Button
                     className="flex flex-col flex-1 justify-self-center self-stretch min-w-[1/3] max-w-[1/3] p-3 text-xl font-bold text-neutral-950 bg-neutral-400 hover:bg-lime-600 text-center border-1 border-l-0 border-neutral-950 subpixel-antialiased cursor-pointer"
-                    onClick={() => handleDecrementScore(index, formik)}
+                    onClick={() => handleDecrementPar(index, formik)}
                     disabled={activity === "delete"}
                   >
                     -
                   </Button>
                   <Input
                     className="flex flex-col flex-1 justify-self-center self-stretch min-w-[1/3] max-w-[1/3] p-3 text-xl font-bold text-neutral-950 bg-neutral-300 text-center border-t-1 border-b-1 border-neutral-950 subpixel-antialiased"
-                    value={formik?.values?.userScores?.[index]}
+                    value={formik?.values?.golfCoursePars?.[index]}
                     onChange={(e) =>
                       formik.setFieldValue(
-                        `userScores[${index}]`,
+                        `golfCoursePars[${index}]`,
                         e?.target?.value
                       )
                     }
@@ -158,7 +161,7 @@ export default function ScorecardEditorComponent({
                   />
                   <Button
                     className="flex flex-col flex-1 justify-self-center self-stretch min-w-[1/3] max-w-[1/3] p-3 text-xl font-bold text-neutral-950 bg-neutral-400 bg-lime-950 hover:bg-lime-600 text-center border-1 border-r-0 border-neutral-950 subpixel-antialiased cursor-pointer"
-                    onClick={() => handleIncrementScore(index, formik)}
+                    onClick={() => handleIncrementPar(index, formik)}
                     disabled={activity === "delete"}
                   >
                     +

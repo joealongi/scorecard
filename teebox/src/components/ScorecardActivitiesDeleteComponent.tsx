@@ -5,6 +5,7 @@ import dayjs from "dayjs";
 import { Field, Select } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import ScorecardEditorComponent from "./ScorecardEditorComponent";
+
 import type { Scorecard, SubmitScorecard } from "../types/ScorecardTypes";
 
 export default function ScorecardActivitiesDeleteComponent({

@@ -69,7 +69,7 @@ export default function NavbarComponent() {
               />
             </NavLink>
           </li>
-          <li>
+          {/* <li>
             <NavLink
               className="block md:flex md:flex-col md:flex-auto md:justify-self-start w-full mx-auto p-3 text-xl text-neutral-300 hover:text-lime-600 text-center subpixel-antialiased transition-all"
               rel="noopener noreferrer"
@@ -79,7 +79,7 @@ export default function NavbarComponent() {
             >
               Home
             </NavLink>
-          </li>
+          </li> */}
           {authenticated ? (
             <React.Fragment></React.Fragment>
           ) : (
@@ -89,10 +89,10 @@ export default function NavbarComponent() {
                   className="block md:flex md:flex-col md:flex-auto md:justify-self-start w-full mx-auto p-3 text-xl text-neutral-300 hover:text-lime-600 text-center subpixel-antialiased transition-all"
                   rel="noopener noreferrer"
                   target="_self"
-                  to="/course"
+                  to="/coursecard"
                   onClick={() => handleOpenMenu()}
                 >
-                  Course
+                  Coursecard
                 </NavLink>
               </li>
             </React.Fragment>
@@ -123,15 +123,15 @@ export default function NavbarComponent() {
                   className="block md:flex md:flex-col md:flex-auto md:justify-self-start w-full mx-auto p-3 text-xl text-neutral-300 hover:text-lime-600 text-center subpixel-antialiased transition-all"
                   rel="noopener noreferrer"
                   target="_self"
-                  to="/leaderboard"
+                  to="/leadercard"
                   onClick={() => handleOpenMenu()}
                 >
-                  Leaderboard
+                  Leadercard
                 </NavLink>
               </li>
             </React.Fragment>
           )}
-          <li>
+          {/* <li>
             <NavLink
               className="block md:flex md:flex-col md:flex-auto md:justify-self-start w-full mx-auto p-3 text-xl text-neutral-300 hover:text-lime-600 text-center subpixel-antialiased transition-all"
               rel="noopener noreferrer"
@@ -141,8 +141,8 @@ export default function NavbarComponent() {
             >
               Handicap
             </NavLink>
-          </li>
-          <li>
+          </li> */}
+          {/* <li>
             <NavLink
               className="block md:flex md:flex-col md:flex-auto md:justify-self-start w-full mx-auto p-3 text-xl text-neutral-300 hover:text-lime-600 text-center subpixel-antialiased transition-all"
               rel="noopener noreferrer"
@@ -152,7 +152,7 @@ export default function NavbarComponent() {
             >
               Proshop
             </NavLink>
-          </li>
+          </li> */}
           <li className="flex flex-col flex-auto justify-self-end"></li>
           {authenticated ? (
             <React.Fragment>
@@ -233,7 +233,7 @@ export default function NavbarComponent() {
           {open ? (
             <div className="z-30 absolute h-auto w-full mt-3 py-3 px-3 bg-neutral-950 shadow-xl transition-all">
               <ul className="flex flex-col space-y-3 mx-auto">
-                <li>
+                {/* <li>
                   <NavLink
                     className="block md:flex md:flex-col md:flex-auto md:justify-self-start w-full mx-auto p-3 text-xl text-neutral-300 hover:text-lime-600 text-center subpixel-antialiased transition-all"
                     rel="noopener noreferrer"
@@ -243,7 +243,7 @@ export default function NavbarComponent() {
                   >
                     Home
                   </NavLink>
-                </li>
+                </li> */}
                 {authenticated ? (
                   <React.Fragment></React.Fragment>
                 ) : (
@@ -253,10 +253,10 @@ export default function NavbarComponent() {
                         className="block md:flex md:flex-col md:flex-auto md:justify-self-start w-full mx-auto p-3 text-xl text-neutral-300 hover:text-lime-600 text-center subpixel-antialiased transition-all"
                         rel="noopener noreferrer"
                         target="_self"
-                        to="/course"
+                        to="/coursecard"
                         onClick={() => handleOpenMenu()}
                       >
-                        Course
+                        Coursecard
                       </NavLink>
                     </li>
                   </React.Fragment>
@@ -287,15 +287,15 @@ export default function NavbarComponent() {
                         className="block md:flex md:flex-col md:flex-auto md:justify-self-start w-full mx-auto p-3 text-xl text-neutral-300 hover:text-lime-600 text-center subpixel-antialiased transition-all"
                         rel="noopener noreferrer"
                         target="_self"
-                        to="/leaderboard"
+                        to="/leadercard"
                         onClick={() => handleOpenMenu()}
                       >
-                        Leaderboard
+                        Leadercard
                       </NavLink>
                     </li>
                   </React.Fragment>
                 )}
-                <li>
+                {/* <li>
                   <NavLink
                     className="block md:flex md:flex-col md:flex-auto md:justify-self-start w-full mx-auto p-3 text-xl text-neutral-300 hover:text-lime-600 text-center subpixel-antialiased transition-all"
                     rel="noopener noreferrer"
@@ -305,8 +305,8 @@ export default function NavbarComponent() {
                   >
                     Handicap
                   </NavLink>
-                </li>
-                <li>
+                </li> */}
+                {/* <li>
                   <NavLink
                     className="block md:flex md:flex-col md:flex-auto md:justify-self-start w-full mx-auto p-3 text-xl text-neutral-300 hover:text-lime-600 text-center subpixel-antialiased transition-all"
                     rel="noopener noreferrer"
@@ -316,7 +316,7 @@ export default function NavbarComponent() {
                   >
                     Proshop
                   </NavLink>
-                </li>
+                </li> */}
                 <li className="flex flex-col flex-auto justify-self-end"></li>
                 {authenticated ? (
                   <React.Fragment>

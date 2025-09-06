@@ -2,36 +2,37 @@ import * as React from "react";
 
 import HeadingOneComponent from "../components/HeadingOneComponent";
 import IntroductionComponent from "../components/IntroductionComponent";
-import LeaderboardDesktopComponent from "../components/LeaderboardDesktopComponent";
-import LeaderboardMobileComponent from "../components/LeaderboardMobileComponent";
+import LeadercardDesktopComponent from "../components/LeadercardDesktopComponent";
+import LeadercardMobileComponent from "../components/LeadercardMobileComponent";
 
-import type { Leaderboard } from "../types/LeaderboardTypes";
+import type { Leadercard } from "../types/LeadercardTypes";
 
 import { getRequest } from "../functions/request";
+import { endpoints } from "../configurations/constants";
 
-export default function LeaderboardPage() {
-  const [leaderboard, setLeaderboard] = React.useState<Leaderboard[]>([]);
+export default function LeadercardPage() {
+  const [leadercard, setLeadercard] = React.useState<Leadercard[]>([]);
 
-  // Get Leaderboard from API
+  // Get Leadercard from API
   const getLeaderboard = async () => {
     try {
       const response = await getRequest(
         import.meta.env.VITE_CLUBHOUSE_BASE_API_URL ?? "",
-        `/leaderboard/`
+        endpoints.LEADERCARD
       );
       if (response) return response;
       else return null;
     } catch (error) {
-      console.error("Error getting leaderboard");
+      console.error("Error getting leadercard");
       return error;
     }
   };
 
-  // Handle loading ten blank leaderboard entries or results +/- leaderboard entries
-  const handleLoadingLeaderboard = async () => {
+  // Handle loading ten blank leadercard entries or results +/- leadercard entries
+  const handleLoadingLeadercard = async () => {
     try {
-      while (leaderboard.length < 10) {
-        leaderboard.push({
+      while (leadercard.length < 10) {
+        leadercard.push({
           submitted: "",
           updated: "",
           userId: 0,
@@ -50,19 +51,19 @@ export default function LeaderboardPage() {
         });
       }
       const response = await getLeaderboard();
-      const leaders = [...leaderboard];
+      const leaders = [...leadercard];
       if (response?.length > 0) {
-        response.forEach((item: Leaderboard, index: number) => {
-          leaderboard.splice(index, 1, item);
+        response.forEach((item: Leadercard, index: number) => {
+          leadercard.splice(index, 1, item);
         });
       }
-      if (leaders?.length > 0) setLeaderboard(leaders);
-      const sorted = leaderboard
+      if (leaders?.length > 0) setLeadercard(leaders);
+      const sorted = leadercard
         .slice()
         .sort((a, b) => (a?.userRank ?? 0) - (b?.userRank ?? 0));
-      if (sorted?.length === leaderboard?.length) setLeaderboard(sorted);
+      if (sorted?.length === leadercard?.length) setLeadercard(sorted);
     } catch (error) {
-      console.error("Error loading leaderboard");
+      console.error("Error loading leadercard");
       return error;
     }
   };
@@ -70,7 +71,7 @@ export default function LeaderboardPage() {
   // Load on refresh / reload
   React.useEffect(() => {
     const load = async () => {
-      await handleLoadingLeaderboard();
+      await handleLoadingLeadercard();
     };
     load();
     return () => {};
@@ -79,8 +80,8 @@ export default function LeaderboardPage() {
   return (
     <React.Fragment>
       <section>
-        <HeadingOneComponent text="Leaderboard" />
-        <IntroductionComponent text="Our leaderboard displays the top users based on their scores. Check out the leaderboard and see how you stack up against others!" />
+        <HeadingOneComponent text="Leadercard" />
+        <IntroductionComponent text="Our leadercard displays the top users based on their scores!" />
       </section>
       <section className="invisible lg:visible hidden lg:block">
         <div className="border-1 border-neutral-950">
@@ -99,10 +100,10 @@ export default function LeaderboardPage() {
             </li>
           </ul>
         </div>
-        {leaderboard?.length > 0 ? (
-          leaderboard.map((item, index) => (
-            <LeaderboardDesktopComponent
-              key={`leaderboard-${item?.userName}-${index}`}
+        {leadercard?.length > 0 ? (
+          leadercard.map((item, index) => (
+            <LeadercardDesktopComponent
+              key={`leadercard-${item?.userName}-${index}`}
               userName={item?.userName}
               userRank={item?.userRank}
               userTotalScore={item?.userTotalScore}
@@ -115,10 +116,10 @@ export default function LeaderboardPage() {
         )}
       </section>
       <section className="block lg:hidden visible lg:invisible my-1 border-1 border-neutral-950">
-        {leaderboard?.length > 0 ? (
-          leaderboard.map((item, index) => (
-            <LeaderboardMobileComponent
-              key={`leaderboard-${item?.userName}-${index}`}
+        {leadercard?.length > 0 ? (
+          leadercard.map((item, index) => (
+            <LeadercardMobileComponent
+              key={`leadercard-${item?.userName}-${index}`}
               userName={item?.userName}
               userRank={item?.userRank}
               userTotalScore={item?.userTotalScore}

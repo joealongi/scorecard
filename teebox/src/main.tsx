@@ -3,9 +3,9 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router";
 import App from "./App.tsx";
 import HomePage from "./pages/HomePage.tsx";
-import CoursePage from "./pages/CoursePage.tsx";
+import CoursecardPage from "./pages/CoursecardPage.tsx";
 import ScorecardPage from "./pages/ScorecardPage.tsx";
-import LeaderboardPage from "./pages/LeaderboardPage.tsx";
+import LeadercardPage from "./pages/LeadercardPage.tsx";
 import HandicapPage from "./pages/HandicapPage.tsx";
 import ProshopPage from "./pages/ProshopPage.tsx";
 import AboutPage from "./pages/AboutPage.tsx";
@@ -29,10 +29,10 @@ createRoot(document.getElementById("root")!).render(
           }
         />
         <Route
-          path="/course"
+          path="/coursecard"
           element={
             <App>
-              <CoursePage />
+              <CoursecardPage />
             </App>
           }
         />
@@ -44,12 +44,11 @@ createRoot(document.getElementById("root")!).render(
             </App>
           }
         />
-
         <Route
-          path="/leaderboard"
+          path="/leadercard"
           element={
             <App>
-              <LeaderboardPage />
+              <LeadercardPage />
             </App>
           }
         />

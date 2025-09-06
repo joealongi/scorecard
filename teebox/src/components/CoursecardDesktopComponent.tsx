@@ -2,16 +2,13 @@ import * as React from "react";
 
 import { NavLink } from "react-router";
 
-import type { Leaderboard } from "../types/LeaderboardTypes";
+import type { Coursecard } from "../types/CoursecardTypes";
 
-export default function LeaderboardComponent({
-  userName,
-  userRank,
-  userScores,
-  userTotalScore,
+export default function CoursecardDesktopComponent({
   golfCourseName,
   golfCoursePars,
-}: Readonly<Leaderboard>) {
+  golfCourseTotalPar,
+}: Readonly<Coursecard>) {
   const [expand, setExpand] = React.useState<boolean>(false);
 
   const handleExpand = () => {
@@ -22,27 +19,21 @@ export default function LeaderboardComponent({
     <React.Fragment>
       <div className="border-1 border-neutral-950">
         <ul className="z-0 flex flex-row flex-auto justify-center content-evenly items-stretch">
-          <li className="flex flex-col flex-1 justify-self-center self-stretch min-w-[10%] max-w-[10%] p-3 text-xl font-bold text-neutral-950 bg-neutral-300 text-center subpixel-antialiased">
-            {userRank}
-          </li>
-          <li className="flex flex-col flex-1 justify-self-center self-stretch min-w-[26.6666666667%] max-w-[26.6666666667%] p-3 text-xl text-neutral-950 bg-neutral-300 text-left border-l-1 border-neutral-950 subpixel-antialiased">
-            {userName}
-          </li>
-          <li className="flex flex-col flex-1 justify-self-center self-stretch min-w-[26.6666666667%] max-w-[26.6666666667%] p-3 text-xl text-neutral-950 bg-neutral-300 text-left border-l-1 border-neutral-950 subpixel-antialiased">
+          <li className="flex flex-col flex-1 justify-self-center self-stretch min-w-[1/3] max-w-[1/3] p-3 text-xl text-neutral-950 bg-neutral-300 text-left border-l-1 border-neutral-950 subpixel-antialiased">
             {golfCourseName}
           </li>
-          <li className="flex flex-col flex-1 justify-self-center self-stretch min-w-[26.6666666667%] max-w-[26.6666666667%] p-3 text-xl text-neutral-950 bg-neutral-300 text-left border-l-1 border-neutral-950 subpixel-antialiased">
-            {userTotalScore}
+          <li className="flex flex-col flex-1 justify-self-center self-stretch min-w-[1/3] max-w-[1/3] p-3 text-xl text-neutral-950 bg-neutral-300 text-left border-l-1 border-neutral-950 subpixel-antialiased">
+            {golfCourseTotalPar}
           </li>
-          <li className="flex flex-col flex-1 justify-self-center self-stretch min-w-[10%] max-w-[10%]">
+          <li className="flex flex-col flex-1 justify-self-center self-stretch min-w-[1/3] max-w-[1/3] p-3 text-xl font-bold text-neutral-950 bg-neutral-300 hover:bg-lime-600 text-center border-l-1 border-neutral-950 subpixel-antialiased cursor-pointer">
             <NavLink
-              className=" p-3 text-xl font-bold text-neutral-950 bg-neutral-300 hover:bg-lime-600 text-center border-l-1 border-neutral-950 subpixel-antialiased transition-all cursor-pointer"
+              className="transition-all"
               rel="noopener noreferrer"
               target="_self"
               to="#"
               onClick={() => handleExpand()}
             >
-              Scorecard
+              Coursecard
             </NavLink>
           </li>
         </ul>
@@ -54,7 +45,7 @@ export default function LeaderboardComponent({
               <li className="flex flex-col flex-1 justify-self-center self-stretch min-w-[10%] max-w-[10%] p-3 text-xl font-bold text-neutral-950 bg-lime-600 text-left border-neutral-950 subpixel-antialiased">
                 Hole
               </li>
-              {userScores?.map((item, index) => (
+              {golfCoursePars?.map((item, index) => (
                 <li
                   key={`hole-${item}-${index}`}
                   className="flex flex-col flex-1 justify-self-center self-stretch min-w-[5%] max-w-[5%] p-3 text-xl font-bold text-neutral-950 bg-lime-600 text-center border-l-1 border-neutral-950 subpixel-antialiased"
@@ -71,19 +62,6 @@ export default function LeaderboardComponent({
                 <li
                   key={`hole-${item}-${index}`}
                   className="flex flex-col flex-1 justify-self-center self-stretch min-w-[5%] max-w-[5%] p-3 text-xl font-bold text-neutral-950 bg-neutral-400 text-center border-l-1 border-neutral-950 subpixel-antialiased"
-                >
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <ul className="z-0 flex flex-row flex-auto justify-center content-evenly items-stretch">
-              <li className="flex flex-col flex-1 justify-self-center self-stretch min-w-[10%] max-w-[10%] p-3 text-xl font-bold text-neutral-950 bg-neutral-300 text-left  subpixel-antialiased">
-                Score
-              </li>
-              {userScores?.map((item, index) => (
-                <li
-                  key={`score-${item}-${index}`}
-                  className="flex flex-col flex-1 justify-self-center self-stretch min-w-[5%] max-w-[5%] p-3 text-xl text-neutral-950 bg-neutral-300 text-center border-l-1 border-neutral-950 subpixel-antialiased"
                 >
                   {item}
                 </li>

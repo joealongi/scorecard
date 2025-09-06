@@ -1,4 +1,4 @@
-export type Leaderboard = {
+export type Leadercard = {
   submitted?: string;
   updated?: string;
   userId?: number;
