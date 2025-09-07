@@ -49,9 +49,9 @@ Docker:
 
 ```bash
 docker build -t scorecard/course .
-docker tag scorecard/course scorecard-<id>.azurecr.io/scorecard/course:latest
-docker push scorecard-<id>.azurecr.io/scorecard/course:latest
-docker run -d -p 8080:8080 scorecard-<id>.azurecr.io/scorecard/course
+docker tag scorecard/course scorecard-d8cgcpg4dkgub9e2.azurecr.io/scorecard/course:latest
+docker push scorecard-d8cgcpg4dkgub9e2.azurecr.io/scorecard/course:latest
+docker run -d -p 8080:8080 scorecard-d8cgcpg4dkgub9e2.azurecr.io/scorecard/course
 ```
 
 ---
@@ -86,10 +86,10 @@ Build:
 Docker:
 
 ```bash
-docker build -t pinpointscore/clubhouse .
-docker tag pinpointscore/clubhouse pinpointscore.azurecr.io/pinpointscore/pinpointscore/clubhouse:latest
-docker push pinpointscore.azurecr.io/pinpointscore/pinpointscore/clubhouse:latest
-docker run -p 8080:8080 pinpointscore.azurecr.io/pinpointscore/pinpointscore/clubhouse:latest
+docker build -t scorecard/clubhouse .
+docker tag scorecard/clubhouse scorecard-d8cgcpg4dkgub9e2.azurecr.io/scorecard/clubhouse:latest
+docker push scorecard-d8cgcpg4dkgub9e2.azurecr.io/scorecard/clubhouse:latest
+docker run -d -p 8080:8080 scorecard-d8cgcpg4dkgub9e2.azurecr.io/scorecard/clubhouse
 ```
 
 ### Clubhouse - Database
