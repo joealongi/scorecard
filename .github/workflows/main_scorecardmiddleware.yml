@@ -34,7 +34,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: scorecard-d8cgcpg4dkgub9e2.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_d9e0324e87c248338204a318a94da24b }}/scorecard/course:${{ github.sha }}
+          tags: scorecard-d8cgcpg4dkgub9e2.azurecr.io/scorecard/course:${{ github.sha }}
           file: ./course/Dockerfile
           context: ./course
 
@@ -53,4 +53,4 @@ jobs:
           app-name: "scorecardmiddleware"
           slot-name: "production"
           publish-profile: ${{ secrets.AzureAppService_PublishProfile_f9f9b599c80344ecb398a1465dab5b23 }}
-          images: "scorecard-d8cgcpg4dkgub9e2.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_d9e0324e87c248338204a318a94da24b }}/scorecard/course:${{ github.sha }}"
+          images: "scorecard-d8cgcpg4dkgub9e2.azurecr.io/scorecard/course:${{ github.sha }}"
