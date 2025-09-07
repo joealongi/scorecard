@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v2
       with:
         registry: https://scorecard-d8cgcpg4dkgub9e2.azurecr.io/
-        username: ${{ secrets.AzureAppService_ContainerUsername_1cf2b15675f246bfa7de7c746ca2f560 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_8d7cf47794ad4919a4cf3f98e2e3fcdf }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_d9e0324e87c248338204a318a94da24b }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_43e3115f046940089950d99ff7458cf2 }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: scorecard-d8cgcpg4dkgub9e2.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_1cf2b15675f246bfa7de7c746ca2f560 }}/scorecard-d8cgcpg4dkgub9e2.azurecr.io/scorecard/course:${{ github.sha }}
+        tags: scorecard-d8cgcpg4dkgub9e2.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_d9e0324e87c248338204a318a94da24b }}/scorecard-d8cgcpg4dkgub9e2.azurecr.io/scorecard/course:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'scorecardmiddleware'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_a4e90e74532c46d096f480a1d5f2ed85 }}
-        images: 'scorecard-d8cgcpg4dkgub9e2.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_1cf2b15675f246bfa7de7c746ca2f560 }}/scorecard-d8cgcpg4dkgub9e2.azurecr.io/scorecard/course:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_f9f9b599c80344ecb398a1465dab5b23 }}
+        images: 'scorecard-d8cgcpg4dkgub9e2.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_d9e0324e87c248338204a318a94da24b }}/scorecard-d8cgcpg4dkgub9e2.azurecr.io/scorecard/course:${{ github.sha }}'
