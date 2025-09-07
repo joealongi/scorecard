@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy Node.js app to Azure Web App - scorecardmiddleware
+name: Build and deploy container app to Azure Web App - scorecardmiddleware
 
 on:
   push:
@@ -11,55 +11,41 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read #This is required for actions/checkout
+    runs-on: 'ubuntu-latest'
 
     steps:
-      - uses: actions/checkout@v4
+    - uses: actions/checkout@v2
 
-      - name: Set up Node.js version
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20.x'
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
 
-      - name: npm install, build, and test
-        run: |
-          npm install
-          npm run build --if-present
-          npm run test --if-present
+    - name: Log in to registry
+      uses: docker/login-action@v2
+      with:
+        registry: https://scorecard-d8cgcpg4dkgub9e2.azurecr.io/
+        username: ${{ secrets.AzureAppService_ContainerUsername_1cf2b15675f246bfa7de7c746ca2f560 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_8d7cf47794ad4919a4cf3f98e2e3fcdf }}
 
-      - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v4
-        with:
-          name: node-app
-          path: .
+    - name: Build and push container image to registry
+      uses: docker/build-push-action@v3
+      with:
+        push: true
+        tags: scorecard-d8cgcpg4dkgub9e2.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_1cf2b15675f246bfa7de7c746ca2f560 }}/scorecard-d8cgcpg4dkgub9e2.azurecr.io/scorecard/course:${{ github.sha }}
+        file: ./Dockerfile
 
   deploy:
     runs-on: ubuntu-latest
     needs: build
-    permissions:
-      id-token: write #This is required for requesting the JWT
-      contents: read #This is required for actions/checkout
+    environment:
+      name: 'production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v4
-        with:
-          name: node-app
-      
-      - name: Login to Azure
-        uses: azure/login@v2
-        with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_7B824C20DCBE4064B9434B7450EF91B0 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_C2B337120D4647E3BD02292FE25D2A83 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_D9B4A43738744BF9B2F536FED7F49976 }}
-
-      - name: 'Deploy to Azure Web App'
-        id: deploy-to-webapp
-        uses: azure/webapps-deploy@v3
-        with:
-          app-name: 'scorecardmiddleware'
-          slot-name: 'Production'
-          package: .
-          
+    - name: Deploy to Azure Web App
+      id: deploy-to-webapp
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'scorecardmiddleware'
+        slot-name: 'production'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_a4e90e74532c46d096f480a1d5f2ed85 }}
+        images: 'scorecard-d8cgcpg4dkgub9e2.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_1cf2b15675f246bfa7de7c746ca2f560 }}/scorecard-d8cgcpg4dkgub9e2.azurecr.io/scorecard/course:${{ github.sha }}'
