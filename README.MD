@@ -182,13 +182,7 @@ npx expo start
 
 ###### Create handicap calculator that calculates the handicap based on the scores and the course par
 
-###### Create a course table and input method to add courses
-
-###### Create handicap calculator that calculates the handicap based on the scores and the course par
-
 ###### Replace custom SVGS with Icon Library
-
-###### Add sitemap / page for footer
 
 ###### Authenticated routing
 

@@ -72,6 +72,9 @@ public class LeadercardService {
                 golfCourseHolesPlayed
             );
 
+            // TODO: Get golfCourse name from the golfCourse
+            // TODO: Get golfCourse pars from the golfCourse
+
             // Add the new leadercard entry to the leadercard list
             leadercard.add(leadercardEntry);
 

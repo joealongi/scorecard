@@ -32,6 +32,8 @@ export default function CoursecardActivitiesUpdateComponent({
     }
   };
 
+  // TODO: Add selectable golfcourses
+
   return (
     <React.Fragment>
       <Field className="relative">
