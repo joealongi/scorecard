@@ -27,18 +27,18 @@ if (process.env.NODE_ENV !== null && process.env.NODE_ENV === "development") {
     })
   );
 } else {
-  // Redirect Middleware
-  app.use((request, response, next) => {
-    if (
-      request?.hostname?.includes("pinpointscore.golf") ||
-      request?.hostname?.includes("course.pinpointscore.golf") ||
-      request?.hostname?.includes("clubhouse.pinpointscore.golf")
-    ) {
-      next();
-    } else {
-      response.status(400).send();
-    }
-  });
+  // // Redirect Middleware
+  // app.use((request, response, next) => {
+  //   if (
+  //     request?.hostname?.includes("pinpointscore.golf") ||
+  //     request?.hostname?.includes("course.pinpointscore.golf") ||
+  //     request?.hostname?.includes("clubhouse.pinpointscore.golf")
+  //   ) {
+  //     next();
+  //   } else {
+  //     response.status(400).send();
+  //   }
+  // });
 
   // CORS Middleware
   app.use(

@@ -10,15 +10,15 @@ export default function App({
   const navigate = useNavigate();
   // Handle redirect
   const handleRedirect = async () => {
-    if (window?.location) {
-      const domain = window?.location?.toString();
-      if (
-        !domain?.includes("localhost") &&
-        !domain?.includes("https://pinpointscore.golf/")
-      ) {
-        window.location.replace("https://pinpointscore.golf/");
-      }
-    }
+    // if (window?.location) {
+    //   const domain = window?.location?.toString();
+    //   if (
+    //     !domain?.includes("localhost") &&
+    //     !domain?.includes("https://pinpointscore.golf/")
+    //   ) {
+    //     window.location.replace("https://pinpointscore.golf/");
+    //   }
+    // }
   };
   // Handle server-side link
   const handleServerSideLink = async () => {
