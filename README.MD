@@ -49,9 +49,9 @@ Docker:
 
 ```bash
 docker build -t scorecard/course .
-docker tag scorecard/course scorecard-d8cgcpg4dkgub9e2.azurecr.io/scorecard/course:latest
-docker push scorecard-d8cgcpg4dkgub9e2.azurecr.io/scorecard/scorecard/course:latest
-docker run -d -p 8080:8080 scorecard-d8cgcpg4dkgub9e2.azurecr.io/scorecard/scorecard/course
+docker tag scorecard/course scorecard-<id>.azurecr.io/scorecard/course:latest
+docker push scorecard-<id>.azurecr.io/scorecard/course:latest
+docker run -d -p 8080:8080 scorecard-<id>.azurecr.io/scorecard/course
 ```
 
 ---
