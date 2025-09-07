@@ -9,7 +9,8 @@ import ScorecardMobileComponent from "../components/ScorecardMobileComponent";
 import ScorecardActivitiesComponent from "../components/ScorecardActivitiesComponent";
 
 import type { Scorecard, SubmitScorecard } from "../types/ScorecardTypes";
-import type { GolfCourse } from "../types/GolfCourseTypes";
+import type { Coursecard } from "../types/CoursecardTypes";
+
 import { endpoints } from "../configurations/constants";
 
 import {
@@ -24,9 +25,9 @@ export default function ScorecardPage() {
   const [selectableScorecards, setSelectableScorecards] = React.useState<
     Scorecard[]
   >([]);
-  const [golfCourses, setGolfCourses] = React.useState<GolfCourse[]>([]);
+  const [golfCourses, setGolfCourses] = React.useState<Coursecard[]>([]);
   const [selectableGolfCourses, setSelectableGolfCourses] = React.useState<
-    GolfCourse[]
+    Coursecard[]
   >([]);
 
   // Get Scorecards from API
@@ -50,7 +51,7 @@ export default function ScorecardPage() {
     try {
       const response = await getRequest(
         import.meta.env.VITE_CLUBHOUSE_BASE_API_URL ?? "",
-        endpoints.GOLFCOURSE
+        endpoints.COURSECARD
       );
       if (response) return response;
       else return null;
@@ -172,7 +173,7 @@ export default function ScorecardPage() {
       }
       const response = await getGolfCourses();
       if (response?.length > 0) {
-        response.forEach((item: GolfCourse, index: number) => {
+        response.forEach((item: Coursecard, index: number) => {
           golfCourses.splice(index, 1, item);
         });
       }
@@ -186,7 +187,7 @@ export default function ScorecardPage() {
   // Handle filtering golf courses of the results versus ten blank golf courses
   const handleFilteringSelectableGolfCourses = () => {
     try {
-      const courses = [] as GolfCourse[];
+      const courses = [] as Coursecard[];
       golfCourses?.forEach((item) => {
         if (item?.golfCourseId && item?.golfCourseName) {
           courses.push(item);

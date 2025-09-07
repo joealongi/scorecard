@@ -1,7 +1,5 @@
 import * as React from "react";
 
-import dayjs from "dayjs";
-
 import { Field, Select } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import CoursecardEditorComponent from "./CoursecardEditorComponent";

@@ -9,7 +9,7 @@ import ScorecardActivitiesUpdateComponent from "./ScorecardActivitiesUpdateCompo
 import ScorecardActivitiesDeleteComponent from "./ScorecardActivitiesDeleteComponent";
 
 import type { Scorecard, SubmitScorecard } from "../types/ScorecardTypes";
-import type { GolfCourse } from "../types/GolfCourseTypes";
+import type { Coursecard } from "../types/CoursecardTypes";
 
 export default function ScorecardActivitiesComponent({
   handleSubmitScorecard,
@@ -22,7 +22,7 @@ export default function ScorecardActivitiesComponent({
   ) => Promise<unknown>;
   userId: number;
   selectableScorecards?: Scorecard[];
-  selectableGolfCourses?: GolfCourse[];
+  selectableGolfCourses?: Coursecard[];
 }>) {
   return (
     <React.Fragment>
