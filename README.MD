@@ -116,13 +116,12 @@ DELETE FROM dbo.user_entity
 WHERE user_id = 1;
 ```
 
-This makes the submission unserializable, needs to be fixed, use the API
+Add a scorecard to the database (This makes the submission unserializable, needs to be fixed, use the API):
 
-<!-- Add a scorecard to the database:
 ```sql
 INSERT INTO dbo.scorecard_entity (submitted, updated, user_id, user_scores, golf_course, golf_course_pars)
 VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, CONVERT(VARBINARY(MAX), '["4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4"]'), 'Country Club of Internet', CONVERT(VARBINARY(MAX), '["4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4"]'));
-``` -->
+```
 
 Search scorecards in the database by userId:
 

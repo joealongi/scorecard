@@ -20,6 +20,9 @@ import {
 
 export default function CoursecardPage() {
   const [coursecards, setCoursecards] = React.useState<Coursecard[]>([]);
+  const [selectableCoursecards, setSelectableCoursecards] = React.useState<
+    Coursecard[]
+  >([]);
 
   // Get Coursecards from API
   const getCoursecards = async () => {
@@ -113,10 +116,27 @@ export default function CoursecardPage() {
     }
   };
 
+  // Handle filtering coursecards of the results versus ten blank coursecards
+  const handleFilteringSelectableCoursecards = () => {
+    try {
+      const scores = [] as Coursecard[];
+      coursecards?.forEach((item) => {
+        if (item?.golfCourseId && item?.updated) {
+          scores.push(item);
+        }
+      });
+      setSelectableCoursecards(scores);
+    } catch (error) {
+      console.error("Error filtering selectable coursecards");
+      return error;
+    }
+  };
+
   // Load on refresh / reload
   React.useEffect(() => {
     const load = async () => {
       await handleLoadingCoursecards();
+      await handleFilteringSelectableCoursecards();
     };
     load();
     return () => {};
@@ -180,7 +200,7 @@ export default function CoursecardPage() {
         </div>
         <CoursecardActivitiesComponent
           handleSubmitCoursecard={handleSubmitCoursecard}
-          coursecards={coursecards}
+          selectableCoursecards={selectableCoursecards}
         />
       </section>
     </React.Fragment>

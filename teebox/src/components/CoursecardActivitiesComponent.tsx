@@ -12,12 +12,12 @@ import type { Coursecard, SubmitCoursecard } from "../types/CoursecardTypes";
 
 export default function CoursecardActivitiesComponent({
   handleSubmitCoursecard,
-  coursecards,
+  selectableCoursecards,
 }: Readonly<{
   handleSubmitCoursecard?: (
     submitCoursecard: SubmitCoursecard
   ) => Promise<unknown>;
-  coursecards?: Coursecard[];
+  selectableCoursecards?: Coursecard[];
 }>) {
   return (
     <React.Fragment>
@@ -50,7 +50,7 @@ export default function CoursecardActivitiesComponent({
               handleSubmitCoursecard={handleSubmitCoursecard}
               activity={"update"}
               text={"Update coursecard"}
-              coursecards={coursecards}
+              selectableCoursecards={selectableCoursecards}
             />
           </TabPanel>
           <TabPanel className="">
@@ -60,7 +60,7 @@ export default function CoursecardActivitiesComponent({
               handleSubmitCoursecard={handleSubmitCoursecard}
               activity={"delete"}
               text={"Delete coursecard"}
-              coursecards={coursecards}
+              selectableCoursecards={selectableCoursecards}
             />
           </TabPanel>
         </TabPanels>

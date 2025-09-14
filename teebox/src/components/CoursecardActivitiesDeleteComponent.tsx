@@ -10,29 +10,29 @@ export default function CoursecardActivitiesDeleteComponent({
   handleSubmitCoursecard,
   activity,
   text,
-  coursecards,
+  selectableCoursecards,
 }: Readonly<{
   handleSubmitCoursecard?: (
     submitCoursecard: SubmitCoursecard
   ) => Promise<unknown>;
   activity?: string;
   text?: string;
-  coursecards?: Coursecard[];
+  selectableCoursecards?: Coursecard[];
 }>) {
   const [selectedCoursecard, setSelectedCoursecard] = React.useState<
     Coursecard | undefined
-  >(coursecards?.[0]);
+  >(selectableCoursecards?.[0]);
 
   // Handle selecting coursecards from the list
   const handleSelectCoursecard = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     if (event?.target?.value) {
-      setSelectedCoursecard(coursecards?.[parseInt(event?.target?.value)]);
+      setSelectedCoursecard(
+        selectableCoursecards?.[parseInt(event?.target?.value)]
+      );
     }
   };
-
-  // TODO: Add selectable golfcourses
 
   return (
     <React.Fragment>
@@ -43,8 +43,9 @@ export default function CoursecardActivitiesDeleteComponent({
           aria-label="List of coursecards"
           onChange={handleSelectCoursecard}
         >
-          {Array?.isArray(coursecards) && coursecards?.length > 0 ? (
-            coursecards.map((item, index) => (
+          {Array?.isArray(selectableCoursecards) &&
+          selectableCoursecards?.length > 0 ? (
+            selectableCoursecards.map((item, index) => (
               <option
                 key={`coursecard-${item?.golfCourseId}-${index}`}
                 value={index}
