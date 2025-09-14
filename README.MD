@@ -190,6 +190,8 @@ npx expo start
 
 ###### Dropdowns for menu items
 
+###### Clean up selection on courses
+
 # Acknowledgements
 
 ## Authors
