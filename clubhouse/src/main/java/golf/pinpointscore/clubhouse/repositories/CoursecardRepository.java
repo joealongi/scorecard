@@ -11,4 +11,6 @@ public interface CoursecardRepository extends CrudRepository<CoursecardEntity, L
     // Find a coursecard by the golf course ID
     CoursecardEntity findByGolfCourseId(int courseId);
 
+    // Find the last created coursecard
+    CoursecardEntity findTopByOrderBySubmittedDesc();
 }

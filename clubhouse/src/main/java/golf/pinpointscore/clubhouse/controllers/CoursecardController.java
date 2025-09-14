@@ -46,6 +46,11 @@ public class CoursecardController {
 
         newCoursecard.setSubmitted(new Timestamp(System.currentTimeMillis()));
         newCoursecard.setUpdated(new Timestamp(System.currentTimeMillis()));
+
+        // Fetch the last created coursecard
+        CoursecardEntity coursecard = coursecardRepository.findTopByOrderBySubmittedDesc();
+
+        newCoursecard.setGolfCourseId(coursecard.getGolfCourseId() != 0 ? coursecard.getGolfCourseId() + 1 : 0);
         newCoursecard.setGolfCourseName(newCoursecard.getGolfCourseName() != null ? newCoursecard.getGolfCourseName() : "Unknown Course");
         newCoursecard.setGolfCoursePars(newCoursecard.getGolfCoursePars() != null ? newCoursecard.getGolfCoursePars() : List.of(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0));
         newCoursecard.setGolfCourseTotalPar(newCoursecard.getGolfCoursePars() != null ? newCoursecard.getGolfCoursePars().stream()
