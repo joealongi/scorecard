@@ -6,9 +6,11 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import golf.pinpointscore.clubhouse.entities.CoursecardEntity;
 import golf.pinpointscore.clubhouse.entities.ScorecardEntity;
 import golf.pinpointscore.clubhouse.entities.UserEntity;
 import golf.pinpointscore.clubhouse.models.ScorecardModel;
+import golf.pinpointscore.clubhouse.repositories.CoursecardRepository;
 import golf.pinpointscore.clubhouse.repositories.ScorecardRepository;
 import golf.pinpointscore.clubhouse.repositories.UserRepository;
 
@@ -17,10 +19,12 @@ public class ScorecardService {
 
     private final ScorecardRepository scorecardRepository;
     private final UserRepository userRepository;
+    private final CoursecardRepository coursecardRepository;
 
-    public ScorecardService(ScorecardRepository scorecardRepository, UserRepository userRepository) {
+    public ScorecardService(ScorecardRepository scorecardRepository, UserRepository userRepository, CoursecardRepository coursecardRepository) {
         this.scorecardRepository = scorecardRepository;
         this.userRepository = userRepository;
+        this.coursecardRepository = coursecardRepository;
     }
 
     public List<ScorecardModel> getScorecardsByUserId(int userId){
@@ -48,8 +52,13 @@ public class ScorecardService {
                 .mapToInt(Integer::intValue)
                 .sum();
             int golfCourseId = scorecard.getGolfCourseId();
-            String golfCourseName = scorecard.getGolfCourseName();
-            List<Integer> golfCoursePars = scorecard.getGolfCoursePars();
+
+            // Fetch the coursecard associated with the scorecard
+            CoursecardEntity coursecard = coursecardRepository.findByGolfCourseId(golfCourseId);
+
+            // If the coursecard is found, use its details; otherwise, use defaults from the scorecard
+            String golfCourseName = coursecard != null ? coursecard.getGolfCourseName() : scorecard.getGolfCourseName();
+            List<Integer> golfCoursePars = coursecard != null ? coursecard.getGolfCoursePars() : scorecard.getGolfCoursePars();
             Integer golfCourseTotalPar = golfCoursePars.stream()
                 .mapToInt(Integer::intValue)
                 .sum();

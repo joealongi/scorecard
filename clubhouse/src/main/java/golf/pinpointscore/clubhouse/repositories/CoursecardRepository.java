@@ -8,5 +8,7 @@ import golf.pinpointscore.clubhouse.entities.CoursecardEntity;
 @Repository
 public interface CoursecardRepository extends CrudRepository<CoursecardEntity, Long> {
 
+    // Find a coursecard by the golf course ID
+    CoursecardEntity findByGolfCourseId(int courseId);
 
 }

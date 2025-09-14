@@ -87,6 +87,7 @@ public class CoursecardController {
     CoursecardEntity deleteCoursecard(@PathVariable Long golfCourseId) {
 
         coursecardRepository.deleteById(golfCourseId);
+        
         return null;
 
     }

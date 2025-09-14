@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import golf.pinpointscore.clubhouse.entities.CoursecardEntity;
 import golf.pinpointscore.clubhouse.entities.ScorecardEntity;
 import golf.pinpointscore.clubhouse.models.ScorecardModel;
+import golf.pinpointscore.clubhouse.repositories.CoursecardRepository;
 import golf.pinpointscore.clubhouse.repositories.ScorecardRepository;
 import golf.pinpointscore.clubhouse.services.ScorecardService;
 
@@ -25,10 +27,12 @@ public class ScorecardController {
 
     private final ScorecardRepository scorecardRepository;
     private final ScorecardService scorecardService;
+    private final CoursecardRepository coursecardRepository;
 
-    ScorecardController(ScorecardRepository scorecardRepository, ScorecardService scorecardService) {
+    ScorecardController(ScorecardRepository scorecardRepository, ScorecardService scorecardService, CoursecardRepository coursecardRepository) {
         this.scorecardRepository = scorecardRepository;
         this.scorecardService = scorecardService;
+        this.coursecardRepository = coursecardRepository;
     }
 
     // Get all scorecards by userId
@@ -53,11 +57,15 @@ public class ScorecardController {
 
         newScorecard.setSubmitted(new Timestamp(System.currentTimeMillis()));
         newScorecard.setUpdated(new Timestamp(System.currentTimeMillis()));
-        newScorecard.setGolfCourseName(newScorecard.getGolfCourseName() != null ? newScorecard.getGolfCourseName() : "Unknown Course");
-        newScorecard.setGolfCoursePars(newScorecard.getGolfCoursePars() != null ? newScorecard.getGolfCoursePars() : List.of(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0));
+        newScorecard.setUserId(newScorecard.getUserId() != 0 ? newScorecard.getUserId() : 0);
+        newScorecard.setUserScores(newScorecard.getUserScores() != null ? newScorecard.getUserScores() : List.of(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0));
+        newScorecard.setGolfCourseId(newScorecard.getGolfCourseId() != 0 ? newScorecard.getGolfCourseId() : 0);
+        
+        // Fetch the coursecard associated with the scorecard
+        CoursecardEntity coursecard = coursecardRepository.findByGolfCourseId(newScorecard.getGolfCourseId());
 
-        // TODO: Get golfCourse name from the golfCourse
-        // TODO: Get golfCourse pars from the golfCourse
+        newScorecard.setGolfCourseName(coursecard != null ? coursecard.getGolfCourseName() : "Unknown Course");
+        newScorecard.setGolfCoursePars(coursecard != null ? coursecard.getGolfCoursePars() : List.of(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0));
 
         return scorecardRepository.save(newScorecard);
 
@@ -75,12 +83,12 @@ public class ScorecardController {
             }
             if (newScorecard.getGolfCourseId() != 0) {
                 scorecard.setGolfCourseId(newScorecard.getGolfCourseId());
-            }
-            if (newScorecard.getGolfCourseName() != null) {
-                scorecard.setGolfCourseName(newScorecard.getGolfCourseName());
-            }
-            if (newScorecard.getGolfCoursePars() != null) {
-                scorecard.setGolfCoursePars(newScorecard.getGolfCoursePars());
+
+                // Fetch the coursecard associated with the scorecard
+                CoursecardEntity coursecard = coursecardRepository.findByGolfCourseId(newScorecard.getGolfCourseId());
+
+                scorecard.setGolfCourseName(coursecard != null ? coursecard.getGolfCourseName() : "Unknown Course");
+                scorecard.setGolfCoursePars(coursecard != null ? coursecard.getGolfCoursePars() : List.of(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0));
             }
 
             return scorecardRepository.save(scorecard);
@@ -95,6 +103,7 @@ public class ScorecardController {
     ScorecardEntity deleteScorecard(@PathVariable Long userId) {
 
         scorecardRepository.deleteById(userId);
+        
         return null;
 
     }
