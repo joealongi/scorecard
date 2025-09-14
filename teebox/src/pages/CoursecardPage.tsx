@@ -103,12 +103,16 @@ export default function CoursecardPage() {
           golfCourseTotalPar: 0,
         });
       }
+      // Placeholder Load
+      if (coursecards?.length > 0) setCoursecards([...coursecards]);
+      // Call API and load data
       const response = await getCoursecards();
       if (response?.length > 0) {
         response.forEach((item: Coursecard, index: number) => {
           coursecards.splice(index, 1, item);
         });
       }
+      // Data Load
       if (coursecards?.length > 0) setCoursecards([...coursecards]);
     } catch (error) {
       console.error("Error loading coursecards");

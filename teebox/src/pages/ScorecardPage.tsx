@@ -129,12 +129,16 @@ export default function ScorecardPage() {
           golfCourseHolesPlayed: 0,
         });
       }
+      // Placeholder Load
+      if (scorecards?.length > 0) setScorecards([...scorecards]);
+      // Call API and load data
       const response = await getScorecards();
       if (response?.length > 0) {
         response.forEach((item: Scorecard, index: number) => {
           scorecards.splice(index, 1, item);
         });
       }
+      // Data Load
       if (scorecards?.length > 0) setScorecards([...scorecards]);
     } catch (error) {
       console.error("Error loading scorecards");
@@ -171,12 +175,16 @@ export default function ScorecardPage() {
           golfCourseTotalPar: 0,
         });
       }
+      // Placeholder Load
+      if (golfCourses?.length > 0) setGolfCourses([...golfCourses]);
+      // Call API and load data
       const response = await getGolfCourses();
       if (response?.length > 0) {
         response.forEach((item: Coursecard, index: number) => {
           golfCourses.splice(index, 1, item);
         });
       }
+      // Data Load
       if (golfCourses?.length > 0) setGolfCourses([...golfCourses]);
     } catch (error) {
       console.error("Error loading golf courses");

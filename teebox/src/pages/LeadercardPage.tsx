@@ -50,6 +50,9 @@ export default function LeadercardPage() {
           golfCourseHolesPlayed: 0,
         });
       }
+      // Placeholder Load
+      if (leadercard?.length > 0) setLeadercard([...leadercard]);
+      // Call API and load data
       const response = await getLeaderboard();
       const leaders = [...leadercard];
       if (response?.length > 0) {
@@ -57,10 +60,12 @@ export default function LeadercardPage() {
           leadercard.splice(index, 1, item);
         });
       }
+      // Data Load
       if (leaders?.length > 0) setLeadercard(leaders);
       const sorted = leadercard
         .slice()
         .sort((a, b) => (a?.userRank ?? 0) - (b?.userRank ?? 0));
+      // Sorted Load
       if (sorted?.length === leadercard?.length) setLeadercard(sorted);
     } catch (error) {
       console.error("Error loading leadercard");
