@@ -7,7 +7,7 @@ import type {
 } from "./RequestTypes";
 import type { ChallengeResponse } from "./ResponseTypes";
 
-//handle start a sign-up flow
+// handle start a sign-up flow
 export const signupStart = async (payload: SignUpFormPassword) => {
   const payloadExt: SignUpStartRequest = {
     attributes: JSON.stringify({
@@ -24,13 +24,13 @@ export const signupStart = async (payload: SignUpFormPassword) => {
     payloadExt as unknown as {
       [key: string]: unknown;
       continuation_token?: string;
-    },
+    }
   );
 };
 
-//handle selecting an authentication method
+// handle selecting an authentication method
 export const signupChallenge = async (
-  payload: ChallengeForm,
+  payload: ChallengeForm
 ): Promise<ChallengeResponse> => {
   const payloadExt: SignUpChallengeRequest = {
     client_id: import.meta.env.VITE_CLIENT_ID ?? "",
@@ -42,11 +42,11 @@ export const signupChallenge = async (
     payloadExt as unknown as {
       [key: string]: unknown;
       continuation_token?: string;
-    },
+    }
   );
 };
 
-//handle submit one-time passcode
+// handle submit one-time passcode
 export const signUpSubmitOTP = async (payload: ChallengeForm) => {
   const payloadExt = {
     client_id: import.meta.env.VITE_CLIENT_ID ?? "",

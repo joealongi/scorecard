@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
-import clsx from "clsx";
 import { Field, Fieldset, Input, Label, Button } from "@headlessui/react";
 import HeadingOneComponent from "../components/HeadingOneComponent";
 import IntroductionComponent from "../components/IntroductionComponent";
@@ -48,6 +47,11 @@ export const SignUpPage: React.FC = () => {
         setIsloading(false);
         return;
       }
+      if (res1?.error && !res1?.continuation_token) {
+        setError("Something went wrong, please try again.");
+        setIsloading(false);
+        return;
+      }
       const res2 = await signupChallenge({
         continuation_token: res1.continuation_token,
       });
@@ -73,10 +77,7 @@ export const SignUpPage: React.FC = () => {
                   Username:
                 </Label>
                 <Input
-                  className={clsx(
-                    "mt-3 block w-full border-none bg-white/5 px-3 py-1.5 text-base text-white",
-                    "focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-white/25"
-                  )}
+                  className="h-auto w-full p-3 text-xl font-bold text-neutral-950 bg-neutral-300 text-left subpixel-antialiased appearance-none"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   required
@@ -87,10 +88,7 @@ export const SignUpPage: React.FC = () => {
                   Email:
                 </Label>
                 <Input
-                  className={clsx(
-                    "mt-3 block w-full border-none bg-white/5 px-3 py-1.5 text-base text-white",
-                    "focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-white/25"
-                  )}
+                  className="h-auto w-full p-3 text-xl font-bold text-neutral-950 bg-neutral-300 text-left subpixel-antialiased appearance-none"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
@@ -101,10 +99,7 @@ export const SignUpPage: React.FC = () => {
                   First Name:
                 </Label>
                 <Input
-                  className={clsx(
-                    "mt-3 block w-full border-none bg-white/5 px-3 py-1.5 text-base text-white",
-                    "focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-white/25"
-                  )}
+                  className="h-auto w-full p-3 text-xl font-bold text-neutral-950 bg-neutral-300 text-left subpixel-antialiased appearance-none"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   required
@@ -115,10 +110,7 @@ export const SignUpPage: React.FC = () => {
                   Last Name:
                 </Label>
                 <Input
-                  className={clsx(
-                    "mt-3 block w-full border-none bg-white/5 px-3 py-1.5 text-base text-white",
-                    "focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-white/25"
-                  )}
+                  className="h-auto w-full p-3 text-xl font-bold text-neutral-950 bg-neutral-300 text-left subpixel-antialiased appearance-none"
                   value={surname}
                   onChange={(e) => setSurname(e.target.value)}
                   required
@@ -129,10 +121,7 @@ export const SignUpPage: React.FC = () => {
                   Password:
                 </Label>
                 <Input
-                  className={clsx(
-                    "mt-3 block w-full border-none bg-white/5 px-3 py-1.5 text-base text-white",
-                    "focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-white/25"
-                  )}
+                  className="h-auto w-full p-3 text-xl font-bold text-neutral-950 bg-neutral-300 text-left subpixel-antialiased appearance-none"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required

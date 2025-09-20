@@ -73,10 +73,7 @@ export const SignInPage: React.FC = () => {
                   Email:
                 </Label>
                 <Input
-                  className={clsx(
-                    "mt-3 block w-full border-none bg-white/5 px-3 py-1.5 text-base text-white",
-                    "focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-white/25"
-                  )}
+                  className="h-auto w-full p-3 text-xl font-bold text-neutral-950 bg-neutral-300 text-left subpixel-antialiased appearance-none"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
@@ -87,10 +84,7 @@ export const SignInPage: React.FC = () => {
                   Password:
                 </Label>
                 <Input
-                  className={clsx(
-                    "mt-3 block w-full border-none bg-white/5 px-3 py-1.5 text-base text-white",
-                    "focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-white/25"
-                  )}
+                  className="h-auto w-full p-3 text-xl font-bold text-neutral-950 bg-neutral-300 text-left subpixel-antialiased appearance-none"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required

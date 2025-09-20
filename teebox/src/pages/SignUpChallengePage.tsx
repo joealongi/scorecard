@@ -48,10 +48,7 @@ export const SignUpChallengePage: React.FC = () => {
                   Code:
                 </Label>
                 <Input
-                  className={clsx(
-                    "mt-3 block w-full rounded-lg border-none bg-white/5 px-3 py-1.5 text-base text-white",
-                    "focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-white/25"
-                  )}
+                  className="h-auto w-full p-3 text-xl font-bold text-neutral-950 bg-neutral-300 text-left subpixel-antialiased appearance-none"
                   maxLength={code_length}
                   type="text"
                   value={code}
