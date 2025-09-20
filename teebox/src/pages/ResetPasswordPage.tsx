@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router";
-import clsx from "clsx";
 import { Field, Fieldset, Input, Label, Button } from "@headlessui/react";
 import HeadingOneComponent from "../components/HeadingOneComponent";
 import IntroductionComponent from "../components/IntroductionComponent";
@@ -129,10 +128,7 @@ export const ResetPasswordPage: React.FC = () => {
                       Username:
                     </Label>
                     <Input
-                      className={clsx(
-                        "mt-3 block w-full border-none bg-white/5 px-3 py-1.5 text-base text-white",
-                        "focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-white/25"
-                      )}
+                      className="block w-full mx-auto p-3 text-xl text-center font-bold text-neutral-950 bg-lime-600 hover:text-neutral-950 hover:bg-neutral-300 transition-all cursor-pointer"
                       type="text"
                       value={username}
                       onChange={(e) => setUsername(e.target.value)}
@@ -169,10 +165,7 @@ export const ResetPasswordPage: React.FC = () => {
                       One Time Code:
                     </Label>
                     <Input
-                      className={clsx(
-                        "mt-3 block w-full border-none bg-white/5 px-3 py-1.5 text-base text-white",
-                        "focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-white/25"
-                      )}
+                      className="block w-full mx-auto p-3 text-xl text-center font-bold text-neutral-950 bg-lime-600 hover:text-neutral-950 hover:bg-neutral-300 transition-all cursor-pointer"
                       type="text"
                       maxLength={tokenRes.code_length}
                       value={otp}
@@ -210,10 +203,7 @@ export const ResetPasswordPage: React.FC = () => {
                       New Password:
                     </Label>
                     <Input
-                      className={clsx(
-                        "mt-3 block w-full border-none bg-white/5 px-3 py-1.5 text-base text-white",
-                        "focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-white/25"
-                      )}
+                      className="block w-full mx-auto p-3 text-xl text-center font-bold text-neutral-950 bg-lime-600 hover:text-neutral-950 hover:bg-neutral-300 transition-all cursor-pointer"
                       type="password"
                       value={newPassword}
                       onChange={(e) => setNewPassword(e.target.value)}
