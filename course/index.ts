@@ -11,49 +11,59 @@ require("@dotenvx/dotenvx").config();
 // Invoke Express Server
 const app = express();
 
-// Redirect Middleware and CORS Middleware for Production
-if (process.env.NODE_ENV !== null && process.env.NODE_ENV === "development") {
-  // CORS Middleware
-  app.use(
-    cors({
-      origin: [
-        "http://localhost:5173",
-        "http://localhost:4000",
-        "http://localhost:8080",
-      ],
-      preflightContinue: false,
-      methods: "GET,POST,OPTIONS",
-      optionsSuccessStatus: 200,
-    })
-  );
-} else {
-  // Redirect Middleware
-  app.use((request, response, next) => {
-    if (
-      request?.hostname?.includes("pinpointscore.golf") ||
-      request?.hostname?.includes("course.pinpointscore.golf") ||
-      request?.hostname?.includes("clubhouse.pinpointscore.golf")
-    ) {
-      next();
-    } else {
-      response.status(400).send();
-    }
-  });
+// // Redirect Middleware and CORS Middleware for Production
+// if (process.env.NODE_ENV !== null && process.env.NODE_ENV === "development") {
+//   // CORS Middleware
+//   app.use(
+//     cors({
+//       origin: [
+//         "http://localhost:5173",
+//         "http://localhost:4000",
+//         "http://localhost:8080",
+//       ],
+//       preflightContinue: false,
+//       methods: "GET,POST,OPTIONS",
+//       optionsSuccessStatus: 200,
+//     })
+//   );
+// } else {
+//   // Redirect Middleware
+//   app.use((request, response, next) => {
+//     if (
+//       request?.hostname?.includes("pinpointscore.golf") ||
+//       request?.hostname?.includes("course.pinpointscore.golf") ||
+//       request?.hostname?.includes("clubhouse.pinpointscore.golf")
+//     ) {
+//       next();
+//     } else {
+//       response.status(400).send();
+//     }
+//   });
 
-  // CORS Middleware
-  app.use(
-    cors({
-      origin: [
-        "https://pinpointscore.golf",
-        "https://course.pinpointscore.golf",
-        "https://clubhouse.pinpointscore.golf",
-      ],
-      preflightContinue: false,
-      methods: "GET,POST,OPTIONS",
-      optionsSuccessStatus: 200,
-    })
-  );
-}
+//   // CORS Middleware
+//   app.use(
+//     cors({
+//       origin: [
+//         "https://pinpointscore.golf",
+//         "https://course.pinpointscore.golf",
+//         "https://clubhouse.pinpointscore.golf",
+//       ],
+//       preflightContinue: false,
+//       methods: "GET,POST,OPTIONS",
+//       optionsSuccessStatus: 200,
+//     })
+//   );
+// }
+
+// CORS Middleware
+app.use(
+  cors({
+    origin: ["*"],
+    preflightContinue: false,
+    methods: "GET,POST,OPTIONS",
+    optionsSuccessStatus: 200,
+  })
+);
 
 // JSON Parsing Middleware
 app.use(express.json());
