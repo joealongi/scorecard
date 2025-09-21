@@ -18,7 +18,7 @@ public class WebSecurityConfiguration {
 
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		http.authorizeHttpRequests((requests) -> requests
+		http.authorizeHttpRequests(requests -> requests
 				.requestMatchers("/").permitAll()
 				.anyRequest().authenticated()
 		    )
@@ -33,11 +33,11 @@ public class WebSecurityConfiguration {
     public CorsConfigurationSource corsConfigurationSource() {
 
         CorsConfiguration configuration = new CorsConfiguration();
-        // if(System.getenv("SPRING_PROFILES_ACTIVE") != null && System.getenv("SPRING_PROFILES_ACTIVE").equals("development")) {
-        //     configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173", "http://localhost:4040", "http://localhost:8080"));
-        // } else {
-        //     configuration.setAllowedOrigins(Arrays.asList("https://pinpointscore.golf", "https://course.pinpointscore.golf", "https://clubhouse.pinpointscore.golf"));
-        // }
+        if(System.getenv("SPRING_PROFILES_ACTIVE") != null && System.getenv("SPRING_PROFILES_ACTIVE").equals("development")) {
+            configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173", "http://localhost:4040", "http://localhost:8080"));
+        } else {
+            configuration.setAllowedOrigins(Arrays.asList("https://pinpointscore.golf", "https://course.pinpointscore.golf", "https://clubhouse.pinpointscore.golf"));
+        }
         configuration.setAllowedOrigins(Arrays.asList("*"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowCredentials(true);
