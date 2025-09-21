@@ -129,8 +129,6 @@ export default function ScorecardPage() {
           golfCourseHolesPlayed: 0,
         });
       }
-      // Placeholder Load
-      if (scorecards?.length > 0) setScorecards([...scorecards]);
       // Call API and load data
       const response = await getScorecards();
       if (response?.length > 0) {
