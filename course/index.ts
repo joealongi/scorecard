@@ -86,8 +86,8 @@ app.post("/get", async (request: Request<any>, response: Response<any>) => {
       process.env.NODE_ENV !== null &&
       process.env.NODE_ENV === "development"
     ) {
-      obj["base"] = await request?.body?.base;
-      obj["endpoint"] = await request?.body?.endpoint;
+      obj["base"] = await request?.body?.payload?.base;
+      obj["endpoint"] = await request?.body?.payload?.endpoint;
     }
     const resp = await get(obj?.base, obj?.endpoint);
     if (resp) {
@@ -122,10 +122,10 @@ app.post("/post", async (request: Request<any>, response: Response<any>) => {
       process.env.NODE_ENV !== null &&
       process.env.NODE_ENV === "development"
     ) {
-      obj["base"] = await request?.body?.base;
-      obj["endpoint"] = await request?.body?.endpoint;
-      obj["body"] = await request?.body?.body;
-      obj["payload"] = { ...obj, ...request?.body?.body };
+      obj["base"] = await request?.body?.payload?.base;
+      obj["endpoint"] = await request?.body?.payload?.endpoint;
+      obj["body"] = await request?.body?.payload?.body;
+      obj["payload"] = { ...obj, ...request?.body?.payload?.body };
     }
     const resp = await post(obj?.base, obj?.endpoint, obj?.payload);
     if (resp) {
@@ -163,10 +163,10 @@ app.post("/idp", async (request: Request<any>, response: Response<any>) => {
       process.env.NODE_ENV !== null &&
       process.env.NODE_ENV === "development"
     ) {
-      obj["base"] = await request?.body?.base;
-      obj["endpoint"] = await request?.body?.endpoint;
-      obj["body"] = await request?.body?.body;
-      obj["payload"] = { ...obj, ...request?.body?.body };
+      obj["base"] = await request?.body?.payload?.base;
+      obj["endpoint"] = await request?.body?.payload?.endpoint;
+      obj["body"] = await request?.body?.payload?.body;
+      obj["payload"] = { ...obj, ...request?.body?.payload?.body };
     }
     const resp = await idp(obj?.base, obj?.endpoint, obj?.payload);
     if (resp) {
