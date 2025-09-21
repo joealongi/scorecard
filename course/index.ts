@@ -1,5 +1,4 @@
 import express, { Request, Response } from "express";
-import dotenv from "dotenv";
 import cors from "cors";
 
 import { get, post, idp } from "./api/proxy";
@@ -11,59 +10,49 @@ require("@dotenvx/dotenvx").config();
 // Invoke Express Server
 const app = express();
 
-// // Redirect Middleware and CORS Middleware for Production
-// if (process.env.NODE_ENV !== null && process.env.NODE_ENV === "development") {
-//   // CORS Middleware
-//   app.use(
-//     cors({
-//       origin: [
-//         "http://localhost:5173",
-//         "http://localhost:4000",
-//         "http://localhost:8080",
-//       ],
-//       preflightContinue: false,
-//       methods: "GET,POST,OPTIONS",
-//       optionsSuccessStatus: 200,
-//     })
-//   );
-// } else {
-//   // Redirect Middleware
-//   app.use((request, response, next) => {
-//     if (
-//       request?.hostname?.includes("pinpointscore.golf") ||
-//       request?.hostname?.includes("course.pinpointscore.golf") ||
-//       request?.hostname?.includes("clubhouse.pinpointscore.golf")
-//     ) {
-//       next();
-//     } else {
-//       response.status(400).send();
-//     }
-//   });
+// Redirect Middleware and CORS Middleware for Production
+if (process.env.NODE_ENV !== null && process.env.NODE_ENV === "development") {
+  // CORS Middleware
+  app.use(
+    cors({
+      origin: [
+        "http://localhost:5173",
+        "http://localhost:4040",
+        "http://localhost:8080",
+      ],
+      preflightContinue: false,
+      methods: "GET,POST,OPTIONS",
+      optionsSuccessStatus: 200,
+    })
+  );
+} else {
+  // Redirect Middleware
+  app.use((request, response, next) => {
+    if (
+      request?.hostname?.includes("pinpointscore.golf") ||
+      request?.hostname?.includes("course.pinpointscore.golf") ||
+      request?.hostname?.includes("clubhouse.pinpointscore.golf")
+    ) {
+      next();
+    } else {
+      response.status(400).send();
+    }
+  });
 
-//   // CORS Middleware
-//   app.use(
-//     cors({
-//       origin: [
-//         "https://pinpointscore.golf",
-//         "https://course.pinpointscore.golf",
-//         "https://clubhouse.pinpointscore.golf",
-//       ],
-//       preflightContinue: false,
-//       methods: "GET,POST,OPTIONS",
-//       optionsSuccessStatus: 200,
-//     })
-//   );
-// }
-
-// CORS Middleware
-app.use(
-  cors({
-    origin: "*",
-    preflightContinue: false,
-    methods: "GET,POST,OPTIONS",
-    optionsSuccessStatus: 200,
-  })
-);
+  // CORS Middleware
+  app.use(
+    cors({
+      origin: [
+        "https://pinpointscore.golf",
+        "https://course.pinpointscore.golf",
+        "https://clubhouse.pinpointscore.golf",
+      ],
+      preflightContinue: false,
+      methods: "GET,POST,OPTIONS",
+      optionsSuccessStatus: 200,
+    })
+  );
+}
 
 // JSON Parsing Middleware
 app.use(express.json());
@@ -92,12 +81,6 @@ app.post("/get", async (request: Request<any>, response: Response<any>) => {
       );
       obj["base"] = await decrypted?.base;
       obj["endpoint"] = await decrypted?.endpoint;
-    } else if (
-      process.env.NODE_ENV !== null &&
-      process.env.NODE_ENV === "development"
-    ) {
-      obj["base"] = await request?.body?.payload?.base;
-      obj["endpoint"] = await request?.body?.payload?.endpoint;
     }
     const resp = await get(obj?.base, obj?.endpoint);
     if (resp) {
@@ -128,14 +111,6 @@ app.post("/post", async (request: Request<any>, response: Response<any>) => {
       obj["endpoint"] = await decrypted?.endpoint;
       obj["body"] = await decrypted?.body;
       obj["payload"] = { ...obj, ...decrypted?.body };
-    } else if (
-      process.env.NODE_ENV !== null &&
-      process.env.NODE_ENV === "development"
-    ) {
-      obj["base"] = await request?.body?.payload?.base;
-      obj["endpoint"] = await request?.body?.payload?.endpoint;
-      obj["body"] = await request?.body?.payload?.body;
-      obj["payload"] = { ...obj, ...request?.body?.payload?.body };
     }
     const resp = await post(obj?.base, obj?.endpoint, obj?.payload);
     if (resp) {
@@ -169,14 +144,6 @@ app.post("/idp", async (request: Request<any>, response: Response<any>) => {
       obj["endpoint"] = await decrypted?.endpoint;
       obj["body"] = await decrypted?.body;
       obj["payload"] = { ...obj, ...decrypted?.body };
-    } else if (
-      process.env.NODE_ENV !== null &&
-      process.env.NODE_ENV === "development"
-    ) {
-      obj["base"] = await request?.body?.payload?.base;
-      obj["endpoint"] = await request?.body?.payload?.endpoint;
-      obj["body"] = await request?.body?.payload?.body;
-      obj["payload"] = { ...obj, ...request?.body?.payload?.body };
     }
     const resp = await idp(obj?.base, obj?.endpoint, obj?.payload);
     if (resp) {
