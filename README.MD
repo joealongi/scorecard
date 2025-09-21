@@ -80,7 +80,7 @@ az acr login --name pinpointscore
 Build:
 
 ```bash
-./gradlew build && java -jar build/libs/pinpointscore-clubhouse.jar
+./gradlew build
 ```
 
 Docker:
