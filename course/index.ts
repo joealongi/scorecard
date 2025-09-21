@@ -58,7 +58,7 @@ const app = express();
 // CORS Middleware
 app.use(
   cors({
-    origin: ["*"],
+    origin: "*",
     preflightContinue: false,
     methods: "GET,POST,OPTIONS",
     optionsSuccessStatus: 200,
