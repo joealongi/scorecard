@@ -7,19 +7,19 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ClubhouseApplication {
 	
 	public static void main(String[] args) {	
-		SpringApplication.run(ClubhouseApplication.class, args);
+		var context = SpringApplication.run(ClubhouseApplication.class, args);
 
-		System.out.println("\nSPRING_APPLICATION_NAME: " + System.getenv("SPRING_APPLICATION_NAME"));
-		System.out.println("\nSPRING_DATASOURCE_URL: " + System.getenv("SPRING_DATASOURCE_URL"));
-		System.out.println("\nSPRING_DATASOURCE_USERNAME: " + System.getenv("SPRING_DATASOURCE_USERNAME"));
-		System.out.println("\nSPRING_DATASOURCE_PASSWORD: " + System.getenv("SPRING_DATASOURCE_PASSWORD"));
-		System.out.println("\nSPRING_JPA_HIBERNATE_DDL_AUTO: " + System.getenv("SPRING_JPA_HIBERNATE_DDL_AUTO"));
-		System.out.println("\nSPRING_DATASOURCE_DRIVER_CLASS_NAME: " + System.getenv("SPRING_DATASOURCE_DRIVER_CLASS_NAME"));
-		System.out.println("\nSPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: " + System.getenv("SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT"));
-		System.out.println("\nSPRING_SECURITY_USER_NAME: " + System.getenv("SPRING_SECURITY_USER_NAME"));
-		System.out.println("\nSPRING_SECURITY_USER_PASSWORD: " + System.getenv("SPRING_SECURITY_USER_PASSWORD"));
-		System.out.println("\nLOGGING_LEVEL_ORG_HIBERNATE_SQL: " + System.getenv("LOGGING_LEVEL_ORG_HIBERNATE_SQL"));
-		System.out.println("\nSERVER_PORT: " + System.getenv("SERVER_PORT"));
+		System.out.println("\nSPRING_APPLICATION_NAME: " + context.getEnvironment().getProperty("spring.application.name"));
+		System.out.println("\nSPRING_DATASOURCE_URL: " + context.getEnvironment().getProperty("spring.datasource.url"));
+		System.out.println("\nSPRING_DATASOURCE_USERNAME: " + context.getEnvironment().getProperty("spring.datasource.username"));
+		System.out.println("\nSPRING_DATASOURCE_PASSWORD: " + context.getEnvironment().getProperty("spring.datasource.password"));
+		System.out.println("\nSPRING_JPA_HIBERNATE_DDL_AUTO: " + context.getEnvironment().getProperty("spring.jpa.hibernate.ddl-auto"));
+		System.out.println("\nSPRING_DATASOURCE_DRIVER_CLASS_NAME: " + context.getEnvironment().getProperty("spring.datasource.driver-class-name"));
+		System.out.println("\nSPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: " + context.getEnvironment().getProperty("spring.jpa.properties.hibernate.dialect"));
+		System.out.println("\nSPRING_SECURITY_USER_NAME: " + context.getEnvironment().getProperty("spring.security.user.name"));
+		System.out.println("\nSPRING_SECURITY_USER_PASSWORD: " + context.getEnvironment().getProperty("spring.security.user.password"));
+		System.out.println("\nLOGGING_LEVEL_ORG_HIBERNATE_SQL: " + context.getEnvironment().getProperty("logging.level.org.hibernate.SQL"));
+		System.out.println("\nSERVER_PORT: " + context.getEnvironment().getProperty("server.port"));
 	}
 	
 }
