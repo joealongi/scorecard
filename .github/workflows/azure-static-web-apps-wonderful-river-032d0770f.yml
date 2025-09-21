@@ -55,6 +55,7 @@ jobs:
           VITE_REDIRECT_URI: ${{ secrets.VITE_REDIRECT_URI }}
           VITE_PUBLIC_KEY: ${{ secrets.VITE_PUBLIC_KEY }}
           VITE_PRIVATE_KEY: ${{ secrets.VITE_PRIVATE_KEY }}
+          NODE_ENV: "development"
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
