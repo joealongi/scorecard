@@ -38,7 +38,6 @@ public class WebSecurityConfiguration {
         } else {
             configuration.setAllowedOrigins(Arrays.asList("https://pinpointscore.golf", "https://course.pinpointscore.golf", "https://clubhouse.pinpointscore.golf"));
         }
-        configuration.setAllowedOrigins(Arrays.asList("*"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowCredentials(true);
         configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
