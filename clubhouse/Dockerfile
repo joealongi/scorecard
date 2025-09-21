@@ -7,4 +7,4 @@ FROM mcr.microsoft.com/openjdk/jdk:21-azurelinux
 RUN mkdir /app
 COPY --from=build /home/gradle/src/build/libs/*.jar /app/pinpointscore-clubhouse.jar
 EXPOSE 8080
-ENTRYPOINT ["java","-Dspring.profiles.active=production","-jar","/app/pinpointscore-clubhouse.jar"]
+ENTRYPOINT ["java","-Dspring.profiles.active=prod","-jar","/app/pinpointscore-clubhouse.jar"]
