@@ -6,13 +6,6 @@ import { decrypt } from "./utils/security";
 
 // ENVX Configuration
 require("@dotenvx/dotenvx").config();
-console.log("Environment Variables:");
-for (const key in process.env) {
-  // You might want to filter out system-level environment variables
-  // if you only want to see those loaded from your .env file.
-  // For simplicity, this example lists all.
-  console.log(`${key}: ${process.env[key]}`);
-}
 
 // Invoke Express Server
 const app = express();

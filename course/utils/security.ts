@@ -1,5 +1,12 @@
 export const decrypt = async (ciphertext: ArrayBuffer): Promise<any> => {
   try {
+    console.log("Environment Variables:");
+    for (const key in process.env) {
+      // You might want to filter out system-level environment variables
+      // if you only want to see those loaded from your .env file.
+      // For simplicity, this example lists all.
+      console.log(`${key}: ${process.env[key]}`);
+    }
     const ppk = process.env.PRIVATE_KEY ?? "";
     const contents = ppk
       .replace("-----BEGIN PRIVATE KEY-----", "")
@@ -25,6 +32,7 @@ export const decrypt = async (ciphertext: ArrayBuffer): Promise<any> => {
     const decoded = decoder?.decode(decrypted);
     return JSON?.parse(decoded);
   } catch (error) {
-    console.error("Error decrypting data", error);
+    console.error("Error decrypting data");
+    return error;
   }
 };

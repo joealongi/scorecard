@@ -88,7 +88,7 @@ export default function LeadercardPage() {
         <HeadingOneComponent text="Leadercard" />
         <IntroductionComponent text="Our leadercard displays the top users based on their scores!" />
       </section>
-      <section className="invisible lg:visible hidden lg:block">
+      <section className="invisible lg:visible hidden lg:block my-3">
         <div className="border-1 border-neutral-950">
           <ul className="z-0 flex flex-row flex-auto justify-center content-evenly items-stretch">
             <li className="flex flex-col flex-1 justify-self-center self-stretch min-w-[1/4] max-w-[1/4] p-3 text-xl font-bold text-neutral-950 bg-lime-600 text-left subpixel-antialiased">
