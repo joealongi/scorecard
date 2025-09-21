@@ -1,5 +1,7 @@
 import axios from "axios";
 
+import { environment } from "../utils/environment";
+
 export const get = async (base: string, endpoint: string) => {
   try {
     const { data } = await axios.get(base + endpoint, {
@@ -7,8 +9,8 @@ export const get = async (base: string, endpoint: string) => {
         "Content-Type": "application/json",
       },
       auth: {
-        username: process.env.SPRING_SECURITY_USER_NAME ?? "",
-        password: process.env.SPRING_SECURITY_USER_PASSWORD ?? "",
+        username: (await environment("SPRING_SECURITY_USER_NAME")) ?? "",
+        password: (await environment("SPRING_SECURITY_USER_PASSWORD")) ?? "",
       },
     });
     if (data) {
@@ -28,8 +30,8 @@ export const post = async (base: string, endpoint: string, body: any) => {
         "Content-Type": "application/json",
       },
       auth: {
-        username: process.env.SPRING_SECURITY_USER_NAME ?? "",
-        password: process.env.SPRING_SECURITY_USER_PASSWORD ?? "",
+        username: (await environment("SPRING_SECURITY_USER_NAME")) ?? "",
+        password: (await environment("SPRING_SECURITY_USER_PASSWORD")) ?? "",
       },
     });
     if (data) {

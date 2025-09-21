@@ -1,13 +1,8 @@
+import { environment } from "./environment";
+
 export const decrypt = async (ciphertext: ArrayBuffer): Promise<any> => {
   try {
-    console.log("Environment Variables:");
-    for (const key in process.env) {
-      // You might want to filter out system-level environment variables
-      // if you only want to see those loaded from your .env file.
-      // For simplicity, this example lists all.
-      console.log(`${key}: ${process.env[key]}`);
-    }
-    const ppk = process.env.PRIVATE_KEY ?? "";
+    const ppk = (await environment("PRIVATE_KEY")) ?? "";
     const contents = ppk
       .replace("-----BEGIN PRIVATE KEY-----", "")
       .replace("-----END PRIVATE KEY-----", "")
