@@ -103,6 +103,8 @@ export default function CoursecardPage() {
           golfCourseTotalPar: 0,
         });
       }
+      // Placeholder Load
+      if (coursecards?.length > 0) setCoursecards([...coursecards]);
       // Call API and load data
       const response = await getCoursecards();
       if (response?.length > 0) {

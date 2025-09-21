@@ -50,6 +50,8 @@ export default function LeadercardPage() {
           golfCourseHolesPlayed: 0,
         });
       }
+      // Placeholder Load
+      if (leadercard?.length > 0) setLeadercard([...leadercard]);
       // Call API and load data
       const response = await getLeaderboard();
       const leaders = [...leadercard];
