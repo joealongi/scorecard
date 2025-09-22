@@ -33,14 +33,11 @@ public class WebSecurityConfiguration {
     public CorsConfigurationSource corsConfigurationSource() {
 
         CorsConfiguration configuration = new CorsConfiguration();
-        // if(System.getenv("SPRING_PROFILES_ACTIVE") != null && System.getenv("SPRING_PROFILES_ACTIVE").equals("development")) {
-        //     configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173", "http://localhost:4040", "http://localhost:8080"));
-        // } else {
-        //     configuration.setAllowedOrigins(Arrays.asList("https://pinpointscore.golf", "https://course.pinpointscore.golf", "https://clubhouse.pinpointscore.golf"));
-        // }
-
-        configuration.setAllowedOrigins(Arrays.asList("*"));
-        
+        if(System.getenv("SPRING_PROFILES_ACTIVE") != null && System.getenv("SPRING_PROFILES_ACTIVE").equals("development")) {
+            configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173", "http://localhost:4040", "http://localhost:8080"));
+        } else {
+            configuration.setAllowedOrigins(Arrays.asList("https://pinpointscore.golf", "https://course.pinpointscore.golf", "https://clubhouse.pinpointscore.golf"));
+        }
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowCredentials(true);
         configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
