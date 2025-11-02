@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import { AuthenticationContext } from "../context/AuthenticationProvider";
+
 import HeadingOneComponent from "../components/HeadingOneComponent";
 import HeadingTwoComponent from "../components/HeadingTwoComponent";
 import IntroductionComponent from "../components/IntroductionComponent";
@@ -30,10 +32,12 @@ export default function ScorecardPage() {
     Coursecard[]
   >([]);
 
+  const { user } = React.useContext(AuthenticationContext);
+
   // Get Scorecards from API
   const getScorecards = async () => {
     try {
-      const userId = 1; // TODO: Replace with actual user ID logic
+      const userId = 1; // TODO: Use UserId from login
       const response = await getRequest(
         import.meta.env.VITE_CLUBHOUSE_BASE_API_URL ?? "",
         endpoints.SCORECARD + userId
@@ -269,18 +273,22 @@ export default function ScorecardPage() {
           <React.Fragment></React.Fragment>
         )}
       </section>
-      <section className="active my-3 border-1 border-neutral-950">
-        <div className="my-3">
-          <HeadingTwoComponent text="Scorecard activities" />
-          <ParagraphComponent text="Manage your scorecards effectively by using the options below." />
-        </div>
-        <ScorecardActivitiesComponent
-          handleSubmitScorecard={handleSubmitScorecard}
-          userId={1} // Replace with actual user ID logic
-          selectableScorecards={selectableScorecards}
-          selectableGolfCourses={selectableGolfCourses}
-        />
-      </section>
+      {user ? (
+        <section className="active my-3 border-1 border-neutral-950">
+          <div className="my-3">
+            <HeadingTwoComponent text="Scorecard activities" />
+            <ParagraphComponent text="Manage your scorecards effectively by using the options below." />
+          </div>
+          <ScorecardActivitiesComponent
+            handleSubmitScorecard={handleSubmitScorecard}
+            userId={1} // Replace with actual user ID logic
+            selectableScorecards={selectableScorecards}
+            selectableGolfCourses={selectableGolfCourses}
+          />
+        </section>
+      ) : (
+        <></>
+      )}
     </React.Fragment>
   );
 }

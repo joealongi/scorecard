@@ -26,6 +26,71 @@ Start the app:
 npm run dev
 ```
 
+State:
+
+```json
+{
+  "access_token": "",
+  "expires_in": 4524,
+  "ext_expires_in": 4524,
+  "id_token": "",
+  "refresh_token": "",
+  "scope": "",
+  "token_type": ""
+}
+```
+
+Token:
+
+````json
+{
+  "acct": 0,
+  "acr": "",
+  "aio": "",
+  "amr": [
+    ""
+  ],
+  "app_displayname": "",
+  "appid": "",
+  "appidacr": "0",
+  "aud": "",
+  "exp": 0,
+  "family_name": "",
+  "iat": 0,
+  "idtyp": "",
+  "ipaddr": "",
+  "iss": "",
+  "name": "",
+  "nbf": 0,
+  "oid": "",
+  "platf": "",
+  "puid": "",
+  "rh": "",
+  "scp": "",
+  "sid": "",
+  "sub": "",
+  "tenant_region_scope": "",
+  "tid": "",
+  "unique_name": "",
+  "upn": "",
+  "uti": "",
+  "ver": "",
+  "wids": [
+    ""
+  ],
+  "xms_acd": 0,
+  "xms_act_fct": "",
+  "xms_ftd": "",
+  "xms_idrel": "",
+  "xms_st": {
+    "sub": ""
+  },
+  "xms_sub_fct": "",
+  "xms_tcdt": 0,
+  "xms_tnt_fct": ""
+}
+```
+
 ---
 
 ## Course
@@ -36,7 +101,7 @@ Start the application:
 
 ```bash
 ts-node index.ts
-```
+````
 
 Azure CR:
 
@@ -190,6 +255,14 @@ npx expo start
 ###### Dropdowns for menu items
 
 ###### Clean up selection on courses
+
+###### Add banner on coursecard and scorecard page to sign/up login for activities
+
+###### Work in useMemo for API calls
+
+###### Add user id from login by email for scorecardpage through authentication system component
+
+###### Encrypt local storage
 
 # Acknowledgements
 

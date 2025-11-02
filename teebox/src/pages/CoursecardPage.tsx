@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import { AuthenticationContext } from "../context/AuthenticationProvider";
+
 import HeadingOneComponent from "../components/HeadingOneComponent";
 import HeadingTwoComponent from "../components/HeadingTwoComponent";
 import IntroductionComponent from "../components/IntroductionComponent";
@@ -23,6 +25,8 @@ export default function CoursecardPage() {
   const [selectableCoursecards, setSelectableCoursecards] = React.useState<
     Coursecard[]
   >([]);
+
+  const { user } = React.useContext(AuthenticationContext);
 
   // Get Coursecards from API
   const getCoursecards = async () => {
@@ -197,16 +201,20 @@ export default function CoursecardPage() {
           <React.Fragment></React.Fragment>
         )}
       </section>
-      <section className="active my-3 border-1 border-neutral-950">
-        <div className="my-3">
-          <HeadingTwoComponent text="Coursecard Activities" />
-          <ParagraphComponent text="Manage your scorecards effectively by using the options below." />
-        </div>
-        <CoursecardActivitiesComponent
-          handleSubmitCoursecard={handleSubmitCoursecard}
-          selectableCoursecards={selectableCoursecards}
-        />
-      </section>
+      {user ? (
+        <section className="active my-3 border-1 border-neutral-950">
+          <div className="my-3">
+            <HeadingTwoComponent text="Coursecard Activities" />
+            <ParagraphComponent text="Manage your scorecards effectively by using the options below." />
+          </div>
+          <CoursecardActivitiesComponent
+            handleSubmitCoursecard={handleSubmitCoursecard}
+            selectableCoursecards={selectableCoursecards}
+          />
+        </section>
+      ) : (
+        <></>
+      )}
     </React.Fragment>
   );
 }

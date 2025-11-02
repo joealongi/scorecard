@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import { Field, Fieldset, Input, Label, Button } from "@headlessui/react";
+
 import HeadingOneComponent from "../components/HeadingOneComponent";
 import IntroductionComponent from "../components/IntroductionComponent";
+
 import { signupChallenge, signupStart } from "../client/SignUpService";
 
 export const SignUpPage: React.FC = () => {
