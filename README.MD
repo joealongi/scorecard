@@ -42,14 +42,12 @@ State:
 
 Token:
 
-````json
+```json
 {
   "acct": 0,
   "acr": "",
   "aio": "",
-  "amr": [
-    ""
-  ],
+  "amr": [""],
   "app_displayname": "",
   "appid": "",
   "appidacr": "0",
@@ -75,9 +73,7 @@ Token:
   "upn": "",
   "uti": "",
   "ver": "",
-  "wids": [
-    ""
-  ],
+  "wids": [""],
   "xms_acd": 0,
   "xms_act_fct": "",
   "xms_ftd": "",
@@ -101,7 +97,7 @@ Start the application:
 
 ```bash
 ts-node index.ts
-````
+```
 
 Azure CR:
 
