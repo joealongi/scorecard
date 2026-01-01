@@ -1,7 +1,5 @@
 # Scorecard
 
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Favailinginc%2Fscorecard.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Favailinginc%2Fscorecard?ref=badge_shield)
-
 Work in progress, tread lightly, copy carefully.
 
 ## Teebox
@@ -264,19 +262,14 @@ npx expo start
 
 ## Authors
 
-- [heyitsjoealongi](https://github.com/heyitsjoealongi)
+- [joealongi](https://github.com/joealongi)
 
 ## Contact
 
-For any inquiries, please contact us via,
+For any inquiries, please reach via,
 
-- Email: [contact@availing.io](mailto:contact@availing.io)
-- Website: [availing.io](https://availing.io)
-- Follow us on [X](https://x.com/availinginc/), [LinkedIn](https://www.linkedin.com/company/availinginc/), and [Instagram](https://www.instagram.com/availinginc/)
-- Find more projects like this on our [GitHub](https://github.com/availinginc)
+- Email: [contact@joealongi.dev](mailto:contact@joealongi.dev)
 
 ## License
 
 This project is licensed under the Mozilla Public License Version 2.0. For more details, see the [LICENSE.md](LICENSE).
-
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Favailinginc%2Fscorecard.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Favailinginc%2Fscorecard?ref=badge_large)
