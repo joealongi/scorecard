@@ -1,10 +1,14 @@
 # Scorecard
 
-Work in progress, tread lightly, copy carefully.
+Scorecard is a golf application through and through, designed to help you keep track of your golf game from tee box to green. Whether you're a seasoned golfer or just starting out, this app is your perfect companion on the course. With its user-friendly interface and powerful features, Scorecard makes it easy to record your scores, analyze your performance, and improve your game. Say goodbye to paper scorecards and hello to a smarter way to play golf!
+
+---
+
+\*Work in progress, tread lightly, copy carefully.
 
 ## Teebox
 
-###### React web application for Pinpointscore.
+###### React web application for Scorecard.
 
 Remove files in gitignore that you want to keep in the repository:
 
@@ -89,7 +93,7 @@ Token:
 
 ## Course
 
-###### TypeScript Node proxy server for Pinpointscore.
+###### TypeScript Node proxy server for Scorecard.
 
 Start the application:
 
@@ -117,7 +121,7 @@ docker run -d -p 8080:8080 scorecard-d8cgcpg4dkgub9e2.azurecr.io/scorecard/cours
 
 ## Clubhouse
 
-###### Spring Boot Java backend application for Pinpointscore.
+###### Spring Boot Java backend application for Scorecard.
 
 https://learn.microsoft.com/en-us/java/openjdk/download#openjdk-21
 
