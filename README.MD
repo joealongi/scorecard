@@ -246,8 +246,6 @@ npx expo start
 
 ###### Replace custom SVGS with Icon Library
 
-###### Authenticated routing
-
 ###### Optimize backend models to only return and accept what is needed
 
 ###### Dropdowns for menu items
@@ -261,6 +259,8 @@ npx expo start
 ###### Add user id from login by email for scorecardpage through authentication system component
 
 ###### Encrypt local storage
+
+###### Authenticated routing (beyond hidden features for non logged in users)
 
 # Acknowledgements
 
