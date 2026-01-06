@@ -1,7 +1,7 @@
 export type Scorecard = {
   submitted?: string;
   updated?: string;
-  userId?: number;
+  userId?: string;
   userName?: string;
   userRank?: number;
   userHandicap?: number;
@@ -16,7 +16,7 @@ export type Scorecard = {
 
 export type SubmitScorecard = {
   activity?: string;
-  userId?: number;
+  userId?: string;
   userScores?: number[];
   golfCourseId?: number;
 };

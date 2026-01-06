@@ -19,7 +19,7 @@ export default function ScorecardActivitiesAddComponent({
   ) => Promise<unknown>;
   activity?: string;
   text?: string;
-  userId?: number;
+  userId?: string;
   selectableGolfCourses?: Coursecard[];
 }>) {
   const [selectedGolfCourse, setSelectedGolfCourse] =

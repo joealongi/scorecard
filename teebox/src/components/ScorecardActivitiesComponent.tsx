@@ -20,7 +20,7 @@ export default function ScorecardActivitiesComponent({
   handleSubmitScorecard?: (
     submitScorecard: SubmitScorecard
   ) => Promise<unknown>;
-  userId: number;
+  userId: string;
   selectableScorecards?: Scorecard[];
   selectableGolfCourses?: Coursecard[];
 }>) {

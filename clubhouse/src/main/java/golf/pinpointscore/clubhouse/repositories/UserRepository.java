@@ -10,6 +10,6 @@ import golf.pinpointscore.clubhouse.entities.UserEntity;
 public interface UserRepository extends CrudRepository<UserEntity, Long> {
 
     // Find a user by their user ID
-    UserEntity findByUserId(int userId);
+    UserEntity findByUserId(String userId);
 
 }

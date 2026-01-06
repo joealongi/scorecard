@@ -44,13 +44,13 @@ public class CoursecardController {
     @PostMapping("/")
     CoursecardEntity newCoursecard(@RequestBody CoursecardEntity newCoursecard) {
 
-        newCoursecard.setSubmitted(new Timestamp(System.currentTimeMillis()));
-        newCoursecard.setUpdated(new Timestamp(System.currentTimeMillis()));
-
         // Fetch the last created coursecard
-        CoursecardEntity coursecard = coursecardRepository.findTopByOrderBySubmittedDesc();
+        CoursecardEntity lastCoursecard = coursecardRepository.findTopByOrderBySubmittedDesc();
+        
+        // Calculate next Id
+        int newCoursecardId = (lastCoursecard != null && lastCoursecard.getGolfCourseId() != 0) ? lastCoursecard.getGolfCourseId() + 1 : 0;
 
-        newCoursecard.setGolfCourseId(coursecard.getGolfCourseId() != 0 ? coursecard.getGolfCourseId() + 1 : 0);
+        newCoursecard.setGolfCourseId(newCoursecardId);
         newCoursecard.setGolfCourseName(newCoursecard.getGolfCourseName() != null ? newCoursecard.getGolfCourseName() : "Unknown Course");
         newCoursecard.setGolfCoursePars(newCoursecard.getGolfCoursePars() != null ? newCoursecard.getGolfCoursePars() : List.of(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0));
         newCoursecard.setGolfCourseTotalPar(newCoursecard.getGolfCoursePars() != null ? newCoursecard.getGolfCoursePars().stream()

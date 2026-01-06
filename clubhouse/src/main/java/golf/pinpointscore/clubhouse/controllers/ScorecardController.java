@@ -37,7 +37,7 @@ public class ScorecardController {
 
     // Get all scorecards by userId
     @RequestMapping("/{userId}")
-    public List<ScorecardModel> getScorecardsByUserId(@PathVariable int userId) {
+    public List<ScorecardModel> getScorecardsByUserId(@PathVariable String userId) {
 
         return scorecardService.getScorecardsByUserId(userId);
 
@@ -45,7 +45,7 @@ public class ScorecardController {
 
     // Get a scorecard by userId and timestamp
     @GetMapping("/{userId}/{timestamp}")
-    List<ScorecardEntity> getScorecardsByUserId(@PathVariable int userId, @PathVariable Timestamp timestamp) {
+    List<ScorecardEntity> getScorecardsByUserId(@PathVariable String userId, @PathVariable Timestamp timestamp) {
 
         return scorecardService.getScorecardsByUserIdAndTimestamp(userId, timestamp);
 
@@ -55,9 +55,7 @@ public class ScorecardController {
     @PostMapping("/")
     ScorecardEntity newScorecard(@RequestBody ScorecardEntity newScorecard) {
 
-        newScorecard.setSubmitted(new Timestamp(System.currentTimeMillis()));
-        newScorecard.setUpdated(new Timestamp(System.currentTimeMillis()));
-        newScorecard.setUserId(newScorecard.getUserId() != 0 ? newScorecard.getUserId() : 0);
+        newScorecard.setUserId((newScorecard.getUserId() != null && newScorecard.getUserId().length() > 0) ? newScorecard.getUserId() : "");
         newScorecard.setUserScores(newScorecard.getUserScores() != null ? newScorecard.getUserScores() : List.of(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0));
         newScorecard.setGolfCourseId(newScorecard.getGolfCourseId() != 0 ? newScorecard.getGolfCourseId() : 0);
         
@@ -77,7 +75,6 @@ public class ScorecardController {
 
         return scorecardRepository.findById(userId).map(scorecard -> {
 
-            scorecard.setUpdated(new Timestamp(System.currentTimeMillis()));
             if (newScorecard.getUserScores() != null) {
                 scorecard.setUserScores(newScorecard.getUserScores());
             }

@@ -35,7 +35,7 @@ export default function LeadercardPage() {
         leadercard.push({
           submitted: "",
           updated: "",
-          userId: 0,
+          userId: "",
           userName: "TBD",
           userRank: 10,
           userHandicap: 0,

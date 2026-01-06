@@ -3,13 +3,7 @@ package golf.pinpointscore.clubhouse.entities;
 import java.sql.Timestamp;
 import java.util.List;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -32,10 +26,32 @@ public class ScorecardEntity {
     private Timestamp updated;
 
     @Column(nullable = false)
-    private int userId;
+    private String userId;
     private List<Integer> userScores;
     private int golfCourseId;
     private String golfCourseName;
     private List<Integer> golfCoursePars;
+
+    // TODO: See if element collection solves binary array and effects other functionality
+    // @ElementCollection
+    // @CollectionTable(name = "scorecard_user_scores", joinColumns = @JoinColumn(name = "scorecard_id"))
+    // @Column(name = "score")  // Each integer stored as a row in this table
+    // private List<Integer> userScores = new ArrayList<>();
+
+    // @ElementCollection
+    // @CollectionTable(name = "scorecard_golf_course_pars", joinColumns = @JoinColumn(name = "scorecard_id"))
+    // @Column(name = "par")
+    // private List<Integer> golfCoursePars = new ArrayList<>();
+
+    @PrePersist
+    protected void onCreate() {
+        this.submitted = new Timestamp(System.currentTimeMillis());
+        this.updated = new Timestamp(System.currentTimeMillis());
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        this.updated = new Timestamp(System.currentTimeMillis());
+    }
     
 }

@@ -28,9 +28,9 @@ public class UserController {
 
     // Get a user by userId
     @GetMapping(path="/{userId}", produces = "application/json")
-    UserEntity getUserById(@PathVariable Long userId) {
+    UserEntity getUserByUserId(@PathVariable String userId) {
 
-        return userRepository.findById(userId).orElse(null);
+        return userRepository.findByUserId(userId);
 
     }
 

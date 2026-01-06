@@ -26,7 +26,7 @@ export default function ScorecardEditorComponent({
     submitScorecard: SubmitScorecard
   ) => Promise<unknown>;
   text?: string;
-  userId?: number;
+  userId?: string;
   userScores?: number[];
   golfCourseId?: number;
 }>) {

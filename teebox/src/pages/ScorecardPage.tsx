@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { AuthenticationContext } from "../context/AuthenticationProvider";
+import { useAuth } from "../hooks/useAuth";
 
 import HeadingOneComponent from "../components/HeadingOneComponent";
 import HeadingTwoComponent from "../components/HeadingTwoComponent";
@@ -32,15 +32,14 @@ export default function ScorecardPage() {
     Coursecard[]
   >([]);
 
-  const { user } = React.useContext(AuthenticationContext);
+  const { user } = useAuth();
 
   // Get Scorecards from API
   const getScorecards = async () => {
     try {
-      const userId = 1; // TODO: Use UserId from login
       const response = await getRequest(
         import.meta.env.VITE_CLUBHOUSE_BASE_API_URL ?? "",
-        endpoints.SCORECARD + userId
+        endpoints.SCORECARD + user?.oid
       );
       if (response) return response;
       else return null;
@@ -118,7 +117,7 @@ export default function ScorecardPage() {
         scorecards.push({
           submitted: "",
           updated: "",
-          userId: 0,
+          userId: "",
           userName: "TBD",
           userRank: 0,
           userHandicap: 0,
@@ -281,7 +280,7 @@ export default function ScorecardPage() {
           </div>
           <ScorecardActivitiesComponent
             handleSubmitScorecard={handleSubmitScorecard}
-            userId={1} // Replace with actual user ID logic
+            userId={user?.oid ? user?.oid : ""}
             selectableScorecards={selectableScorecards}
             selectableGolfCourses={selectableGolfCourses}
           />

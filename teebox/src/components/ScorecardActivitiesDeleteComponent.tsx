@@ -20,7 +20,7 @@ export default function ScorecardActivitiesDeleteComponent({
   ) => Promise<unknown>;
   activity?: string;
   text?: string;
-  userId?: number;
+  userId?: string;
   selectableScorecards?: Scorecard[];
 }>) {
   const [selectedScorecard, setSelectedScorecard] = React.useState<

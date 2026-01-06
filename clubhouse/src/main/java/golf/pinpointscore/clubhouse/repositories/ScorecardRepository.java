@@ -11,6 +11,6 @@ import golf.pinpointscore.clubhouse.entities.ScorecardEntity;
 public interface ScorecardRepository extends CrudRepository<ScorecardEntity, Long> {
 
     // Find all scorecards by userId
-    List<ScorecardEntity> findByUserId(int userId);
+    List<ScorecardEntity> findByUserId(String userId);
 
 }

@@ -39,7 +39,7 @@ public class LeadercardService {
             // For each scorecard, create a LeadercardModel entry
             java.sql.Timestamp submitted = scorecard.getSubmitted();
             java.sql.Timestamp updated = scorecard.getSubmitted();
-            int userId = scorecard.getUserId();
+            String userId = scorecard.getUserId();
             String userName = user.getUserName();
             int userRank = user.getUserRank();
             int userHandicap = user.getUserHandicap();

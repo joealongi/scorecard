@@ -1,9 +1,11 @@
 export interface User {
+  oid?: string;
   idtyp?: string;
   name?: string;
   given_name?: string;
   family_name?: string;
   unique_name?: string;
+  userId?: string;
 }
 
 export interface UserState {

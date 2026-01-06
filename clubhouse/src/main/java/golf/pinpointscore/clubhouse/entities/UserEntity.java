@@ -2,13 +2,7 @@ package golf.pinpointscore.clubhouse.entities;
 
 import java.sql.Timestamp;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -30,8 +24,8 @@ public class UserEntity {
     @Column(updatable = true)
     private Timestamp updated;
 
-    @Column(nullable = false)  
-    private int userId;
+    @Column(nullable = false)
+    private String userId;
     private String userName;
     private String userFirstName;
     private String userLastName;
@@ -42,5 +36,16 @@ public class UserEntity {
     private String userCourseName;
     private int userHandicap;
     private int userRank;
-    
+
+    @PrePersist
+    protected void onCreate() {
+        this.submitted = new Timestamp(System.currentTimeMillis());
+        this.updated = new Timestamp(System.currentTimeMillis());
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        this.updated = new Timestamp(System.currentTimeMillis());
+    }
+
 }

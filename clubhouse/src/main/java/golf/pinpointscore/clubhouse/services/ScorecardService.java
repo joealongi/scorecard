@@ -27,7 +27,7 @@ public class ScorecardService {
         this.coursecardRepository = coursecardRepository;
     }
 
-    public List<ScorecardModel> getScorecardsByUserId(int userId){
+    public List<ScorecardModel> getScorecardsByUserId(String userId){
 
         // Initialize an empty list to hold the scorecard models
         List<ScorecardModel> scorecards = new ArrayList<>();
@@ -91,7 +91,7 @@ public class ScorecardService {
     }
 
     // Fetch all scorecards by userId and timestamp
-    public List<ScorecardEntity> getScorecardsByUserIdAndTimestamp(int userId, Timestamp timestamp) {
+    public List<ScorecardEntity> getScorecardsByUserIdAndTimestamp(String userId, Timestamp timestamp) {
 
         return scorecardRepository.findByUserId(userId)
             .stream()

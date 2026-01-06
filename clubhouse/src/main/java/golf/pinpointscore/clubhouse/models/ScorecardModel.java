@@ -11,7 +11,7 @@ public class ScorecardModel {
 
     private java.sql.Timestamp submitted;
     private java.sql.Timestamp updated;
-    private int userId;
+    private String userId;
     private String userName;
     private int userRank;
     private int userHandicap;

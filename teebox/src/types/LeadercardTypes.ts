@@ -1,7 +1,7 @@
 export type Leadercard = {
   submitted?: string;
   updated?: string;
-  userId?: number;
+  userId?: string;
   userName?: string;
   userRank?: number;
   userHandicap?: number;
