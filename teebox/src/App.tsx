@@ -1,5 +1,4 @@
 import * as React from "react";
-import * as Sentry from "@sentry/react";
 import { useNavigate } from "react-router";
 
 import { AuthenticationProvider } from "./context/AuthenticationProvider";
@@ -41,14 +40,6 @@ export default function App({
     handleServerSideLink();
     return () => {};
   }, []);
-
-  // Handle Sentry Initialization
-  Sentry.init({
-    dsn: "https://bb6199af3206623202735424464e19db@o4509658944438272.ingest.us.sentry.io/4509658951909376",
-    // Setting this option to true will send default PII data to Sentry.
-    // For example, automatic IP address collection on events
-    sendDefaultPii: false,
-  });
 
   return (
     <React.Fragment>
