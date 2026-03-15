@@ -18,6 +18,7 @@ export default function ScorecardEditorComponent({
   activity,
   text,
   userId,
+  scorecardId,
   userScores,
   golfCourseId,
 }: Readonly<{
@@ -27,6 +28,7 @@ export default function ScorecardEditorComponent({
   ) => Promise<unknown>;
   text?: string;
   userId?: string;
+  scorecardId?: string;
   userScores?: number[];
   golfCourseId?: number;
 }>) {
@@ -45,6 +47,7 @@ export default function ScorecardEditorComponent({
         if (handleSubmitScorecard) {
           await handleSubmitScorecard({
             activity: activity ?? "",
+            scorecardId,
             userId,
             userScores: values?.userScores,
             golfCourseId,

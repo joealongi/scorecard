@@ -19,8 +19,8 @@ import golf.pinpointscore.clubhouse.repositories.CoursecardRepository;
 import golf.pinpointscore.clubhouse.services.CoursecardService;
 
 @RestController
-@RequestMapping(path="/coursecard", produces="application/json")
-@CrossOrigin(origins="*")
+@RequestMapping(path = "/coursecard", produces = "application/json")
+@CrossOrigin(origins = "*")
 public class CoursecardController {
 
     private final CoursecardRepository coursecardRepository;
@@ -30,7 +30,6 @@ public class CoursecardController {
         this.coursecardRepository = coursecardRepository;
         this.coursecardService = coursecardService;
     }
-
 
     // Get all coursecards
     @GetMapping("/")
@@ -46,16 +45,21 @@ public class CoursecardController {
 
         // Fetch the last created coursecard
         CoursecardEntity lastCoursecard = coursecardRepository.findTopByOrderBySubmittedDesc();
-        
+
         // Calculate next Id
-        int newCoursecardId = (lastCoursecard != null && lastCoursecard.getGolfCourseId() != 0) ? lastCoursecard.getGolfCourseId() + 1 : 0;
+        int newCoursecardId = (lastCoursecard != null && lastCoursecard.getGolfCourseId() != 0)
+                ? lastCoursecard.getGolfCourseId() + 1
+                : 0;
 
         newCoursecard.setGolfCourseId(newCoursecardId);
-        newCoursecard.setGolfCourseName(newCoursecard.getGolfCourseName() != null ? newCoursecard.getGolfCourseName() : "Unknown Course");
-        newCoursecard.setGolfCoursePars(newCoursecard.getGolfCoursePars() != null ? newCoursecard.getGolfCoursePars() : List.of(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0));
-        newCoursecard.setGolfCourseTotalPar(newCoursecard.getGolfCoursePars() != null ? newCoursecard.getGolfCoursePars().stream()
-                .mapToInt(Integer::intValue)
-                .sum() : 0);
+        newCoursecard.setGolfCourseName(
+                newCoursecard.getGolfCourseName() != null ? newCoursecard.getGolfCourseName() : "Unknown Course");
+        newCoursecard.setGolfCoursePars(newCoursecard.getGolfCoursePars() != null ? newCoursecard.getGolfCoursePars()
+                : List.of(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
+        newCoursecard.setGolfCourseTotalPar(
+                newCoursecard.getGolfCoursePars() != null ? newCoursecard.getGolfCoursePars().stream()
+                        .mapToInt(Integer::intValue)
+                        .sum() : 0);
 
         return coursecardRepository.save(newCoursecard);
 
@@ -76,23 +80,23 @@ public class CoursecardController {
             }
             if (newCoursecard.getGolfCourseTotalPar() != null) {
                 coursecard.setGolfCourseTotalPar(newCoursecard.getGolfCoursePars().stream()
-                .mapToInt(Integer::intValue)
-                .sum());
+                        .mapToInt(Integer::intValue)
+                        .sum());
             }
 
             return coursecardRepository.save(coursecard);
 
         })
-        .orElseGet(() -> coursecardRepository.save(newCoursecard));
+                .orElseGet(() -> coursecardRepository.save(newCoursecard));
 
     }
 
     // Delete a coursecard by golfCourseId
-    @DeleteMapping("/course/{golfCourseId}")
+    @DeleteMapping("/{golfCourseId}")
     CoursecardEntity deleteCoursecard(@PathVariable Long golfCourseId) {
 
         coursecardRepository.deleteById(golfCourseId);
-        
+
         return null;
 
     }

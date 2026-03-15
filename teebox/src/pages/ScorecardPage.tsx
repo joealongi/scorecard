@@ -66,7 +66,7 @@ export default function ScorecardPage() {
 
   // Handle submission of scorecards and type of activity
   const handleSubmitScorecard = async (submitScorecard: SubmitScorecard) => {
-    const { activity, userId, userScores, golfCourseId } = submitScorecard;
+    const { activity, scorecardId, userId, userScores, golfCourseId } = submitScorecard;
     try {
       if (activity === "add") {
         // Handle adding a new scorecard
@@ -87,8 +87,11 @@ export default function ScorecardPage() {
         // Handle updating a scorecard
         const response = await patchRequest(
           import.meta.env.VITE_CLUBHOUSE_BASE_API_URL ?? "",
-          endpoints.SCORECARD,
-          {}
+          endpoints.SCORECARD + scorecardId,
+          {
+            userId,
+            userScores,
+          }
         );
         if (response) {
           console.log("Scorecard updated successfully");
@@ -97,7 +100,7 @@ export default function ScorecardPage() {
         // Handle deleting a scorecard
         const response = await deleteRequest(
           import.meta.env.VITE_CLUBHOUSE_BASE_API_URL ?? "",
-          endpoints.SCORECARD + userId,
+          endpoints.SCORECARD + scorecardId,
           {}
         );
         if (response) {

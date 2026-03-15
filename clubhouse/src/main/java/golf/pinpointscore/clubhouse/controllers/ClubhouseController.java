@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path="/", produces="text/html")
-@CrossOrigin(origins="*")
+@RequestMapping(path = "/", produces = "text/html")
+@CrossOrigin(origins = "*")
 public class ClubhouseController {
 
     @GetMapping("/")

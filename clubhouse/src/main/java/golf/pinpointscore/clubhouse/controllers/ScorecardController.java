@@ -21,15 +21,16 @@ import golf.pinpointscore.clubhouse.repositories.ScorecardRepository;
 import golf.pinpointscore.clubhouse.services.ScorecardService;
 
 @RestController
-@RequestMapping(path="/scorecard", produces="application/json")
-@CrossOrigin(origins="*")
+@RequestMapping(path = "/scorecard", produces = "application/json")
+@CrossOrigin(origins = "*")
 public class ScorecardController {
 
     private final ScorecardRepository scorecardRepository;
     private final ScorecardService scorecardService;
     private final CoursecardRepository coursecardRepository;
 
-    ScorecardController(ScorecardRepository scorecardRepository, ScorecardService scorecardService, CoursecardRepository coursecardRepository) {
+    ScorecardController(ScorecardRepository scorecardRepository, ScorecardService scorecardService,
+            CoursecardRepository coursecardRepository) {
         this.scorecardRepository = scorecardRepository;
         this.scorecardService = scorecardService;
         this.coursecardRepository = coursecardRepository;
@@ -55,25 +56,29 @@ public class ScorecardController {
     @PostMapping("/")
     ScorecardEntity newScorecard(@RequestBody ScorecardEntity newScorecard) {
 
-        newScorecard.setUserId((newScorecard.getUserId() != null && newScorecard.getUserId().length() > 0) ? newScorecard.getUserId() : "");
-        newScorecard.setUserScores(newScorecard.getUserScores() != null ? newScorecard.getUserScores() : List.of(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0));
+        newScorecard.setUserId(
+                (newScorecard.getUserId() != null && newScorecard.getUserId().length() > 0) ? newScorecard.getUserId()
+                        : "");
+        newScorecard.setUserScores(newScorecard.getUserScores() != null ? newScorecard.getUserScores()
+                : List.of(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
         newScorecard.setGolfCourseId(newScorecard.getGolfCourseId() != 0 ? newScorecard.getGolfCourseId() : 0);
-        
+
         // Fetch the coursecard associated with the scorecard
         CoursecardEntity coursecard = coursecardRepository.findByGolfCourseId(newScorecard.getGolfCourseId());
 
         newScorecard.setGolfCourseName(coursecard != null ? coursecard.getGolfCourseName() : "Unknown Course");
-        newScorecard.setGolfCoursePars(coursecard != null ? coursecard.getGolfCoursePars() : List.of(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0));
+        newScorecard.setGolfCoursePars(coursecard != null ? coursecard.getGolfCoursePars()
+                : List.of(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 
         return scorecardRepository.save(newScorecard);
 
     }
 
-    // Update an existing scorecard by userId
-    @PatchMapping("/{userId}")
-    ScorecardEntity updateScorecard(@RequestBody ScorecardEntity newScorecard, @PathVariable Long userId) {
+    // Update an existing scorecard by scorecardId
+    @PatchMapping("/{scorecardId}")
+    ScorecardEntity updateScorecard(@RequestBody ScorecardEntity newScorecard, @PathVariable Long scorecardId) {
 
-        return scorecardRepository.findById(userId).map(scorecard -> {
+        return scorecardRepository.findById(scorecardId).map(scorecard -> {
 
             if (newScorecard.getUserScores() != null) {
                 scorecard.setUserScores(newScorecard.getUserScores());
@@ -85,22 +90,23 @@ public class ScorecardController {
                 CoursecardEntity coursecard = coursecardRepository.findByGolfCourseId(newScorecard.getGolfCourseId());
 
                 scorecard.setGolfCourseName(coursecard != null ? coursecard.getGolfCourseName() : "Unknown Course");
-                scorecard.setGolfCoursePars(coursecard != null ? coursecard.getGolfCoursePars() : List.of(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0));
+                scorecard.setGolfCoursePars(coursecard != null ? coursecard.getGolfCoursePars()
+                        : List.of(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
             }
 
             return scorecardRepository.save(scorecard);
 
         })
-        .orElseGet(() -> scorecardRepository.save(newScorecard));
+                .orElseGet(() -> scorecardRepository.save(newScorecard));
 
     }
 
-    // Delete a scorecard by userId
-    @DeleteMapping("/user/{userId}")
-    ScorecardEntity deleteScorecard(@PathVariable Long userId) {
+    // Delete a scorecard by scorecardId
+    @DeleteMapping("/{scorecardId}")
+    ScorecardEntity deleteScorecard(@PathVariable Long scorecardId) {
 
-        scorecardRepository.deleteById(userId);
-        
+        scorecardRepository.deleteById(scorecardId);
+
         return null;
 
     }

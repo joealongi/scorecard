@@ -13,9 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 import golf.pinpointscore.clubhouse.entities.UserEntity;
 import golf.pinpointscore.clubhouse.repositories.ScorecardRepository;
 import golf.pinpointscore.clubhouse.repositories.UserRepository;
+
 @RestController
-@RequestMapping(path="/user", produces="application/json")
-@CrossOrigin(origins="*")
+@RequestMapping(path = "/user", produces = "application/json")
+@CrossOrigin(origins = "*")
 public class UserController {
 
     private final UserRepository userRepository;
@@ -27,7 +28,7 @@ public class UserController {
     }
 
     // Get a user by userId
-    @GetMapping(path="/{userId}", produces = "application/json")
+    @GetMapping(path = "/{userId}", produces = "application/json")
     UserEntity getUserByUserId(@PathVariable String userId) {
 
         return userRepository.findByUserId(userId);
@@ -35,7 +36,7 @@ public class UserController {
     }
 
     // Create a new user
-    @PostMapping(path="/", produces = "application/json")
+    @PostMapping(path = "/", produces = "application/json")
     UserEntity newUser(@RequestBody UserEntity newUser) {
 
         return userRepository.save(newUser);
@@ -43,27 +44,27 @@ public class UserController {
     }
 
     // Update a user by userId
-    @PatchMapping(path="/{userId}", produces = "application/json")
+    @PatchMapping(path = "/{userId}", produces = "application/json")
     UserEntity updateUser(@RequestBody UserEntity newUser, @PathVariable Long userId) {
 
         return userRepository.findById(userId)
-        .map(user -> {
+                .map(user -> {
 
-            updateUserFields(user, newUser);
-            return userRepository.save(user);
+                    updateUserFields(user, newUser);
+                    return userRepository.save(user);
 
-        })
-        .orElseGet(() -> userRepository.save(newUser));
+                })
+                .orElseGet(() -> userRepository.save(newUser));
 
     }
 
     // Delete a user and their scorecards by userId
-    @DeleteMapping(path="/{userId}", produces = "application/json")
+    @DeleteMapping(path = "/{userId}", produces = "application/json")
     UserEntity deleteUser(@PathVariable Long userId) {
-        
+
         userRepository.deleteById(userId);
         scorecardRepository.deleteById(userId);
-        
+
         return null;
 
     }
@@ -77,33 +78,33 @@ public class UserController {
         // Set the userHandicap based on the newUser object
         userHandicap = newUser.getUserHandicap();
 
-        if(newUser.getUserName() != null) {
+        if (newUser.getUserName() != null) {
             user.setUserName(newUser.getUserName());
         }
-        if(newUser.getUserFirstName() != null) {
+        if (newUser.getUserFirstName() != null) {
             user.setUserFirstName(newUser.getUserFirstName());
         }
-        if(newUser.getUserLastName() != null) {
+        if (newUser.getUserLastName() != null) {
             user.setUserLastName(newUser.getUserLastName());
         }
-        if(newUser.getUserEmail() != null) {
+        if (newUser.getUserEmail() != null) {
             user.setUserEmail(newUser.getUserEmail());
         }
-        if(newUser.getUserCountry() != null) {
+        if (newUser.getUserCountry() != null) {
             user.setUserCountry(newUser.getUserCountry());
         }
-        if(newUser.getUserCity() != null) {
+        if (newUser.getUserCity() != null) {
             user.setUserCity(newUser.getUserCity());
         }
-        if(newUser.getUserCourseId() != 0) {
+        if (newUser.getUserCourseId() != 0) {
             user.setUserCourseId(newUser.getUserCourseId());
         }
-        if(newUser.getUserCourseName() != null) {
+        if (newUser.getUserCourseName() != null) {
             user.setUserCourseName(newUser.getUserCourseName());
         }
-        if(userHandicap != null) {
+        if (userHandicap != null) {
             user.setUserHandicap(newUser.getUserHandicap());
         }
     }
-    
+
 }
