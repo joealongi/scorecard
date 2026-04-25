@@ -35,7 +35,7 @@ export default function ScorecardPage() {
   const { user } = useAuth();
 
   // Get Scorecards from API
-  const getScorecards = async () => {
+  const getScorecards = async (): Promise<Scorecard[]> => {
     try {
       const response: Scorecard[] = [];
       if(!user){
@@ -44,35 +44,36 @@ export default function ScorecardPage() {
           import.meta.env.VITE_CLUBHOUSE_BASE_API_URL ?? "",
           endpoints.SCORECARD
         );
-        response.push(...scorecards);
+        const data = Array.isArray(scorecards) ? scorecards as Scorecard[] : [];
+        response.push(...data);
       } else {
         // Get user's scorecards
         const scorecards = await getRequest(
           import.meta.env.VITE_CLUBHOUSE_BASE_API_URL ?? "",
           endpoints.SCORECARD + user?.oid
         );
-        response.push(...scorecards);
+        const data = Array.isArray(scorecards) ? scorecards as Scorecard[] : [];
+        response.push(...data);
       }
-      if (response?.length > 0) return response;
-      else return null;
+      return response;
     } catch (error) {
       console.error("Error getting scorecards");
-      return error;
+      return [] as Scorecard[];
     }
   };
 
   // Get Coursecards from API
-  const getCoursecards = async () => {
+  const getCoursecards = async (): Promise<Coursecard[]> => {
     try {
       const response = await getRequest(
         import.meta.env.VITE_CLUBHOUSE_BASE_API_URL ?? "",
         endpoints.COURSECARD
       );
-      if (response) return response;
-      else return null;
+      const data = Array.isArray(response) ? response as Coursecard[] : [];
+      return data;
     } catch (error) {
       console.error("Error getting coursecards");
-      return error;
+      return [] as Coursecard[];
     }
   };
 
