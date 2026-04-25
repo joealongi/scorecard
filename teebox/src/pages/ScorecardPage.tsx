@@ -158,23 +158,7 @@ export default function ScorecardPage() {
     }
   };
 
-  // Handle filtering scorecards of the results versus ten blank scorecards
-  const handleFilteringSelectableScorecards = async () => {
-    try {
-      const scores = [] as Scorecard[];
-      scorecards?.forEach((item) => {
-        if (item?.userId && item?.updated) {
-          scores.push(item);
-        }
-      });
-      setSelectableScorecards(scores);
-    } catch (error) {
-      console.error("Error filtering selectable scorecards");
-      return error;
-    }
-  };
-
-  // Handle loading ten blank coursecards or results +/- coursecards
+    // Handle loading ten blank coursecards or results +/- coursecards
   const handleLoadingCoursecards = async () => {
     try {
       while (coursecards.length < 10) {
@@ -206,6 +190,22 @@ export default function ScorecardPage() {
     }
   };
 
+  // Handle filtering scorecards of the results versus ten blank scorecards
+  const handleFilteringSelectableScorecards = async () => {
+    try {
+      const scores = [] as Scorecard[];
+      scorecards?.forEach((item) => {
+        if (item?.userId && item?.updated) {
+          scores.push(item);
+        }
+      });
+      setSelectableScorecards(scores);
+    } catch (error) {
+      console.error("Error filtering selectable scorecards");
+      return error;
+    }
+  };
+
   // Handle filtering coursecards of the results versus ten blank coursecards
   const handleFilteringSelectableCoursecards = async () => {
     try {
@@ -227,8 +227,8 @@ export default function ScorecardPage() {
   React.useEffect(() => {
     const load = async () => {
       await handleLoadingScorecards();
-      await handleFilteringSelectableScorecards();
       await handleLoadingCoursecards();
+      await handleFilteringSelectableScorecards();
       await handleFilteringSelectableCoursecards();
     };
     load();
