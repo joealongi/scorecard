@@ -61,6 +61,8 @@ export default function CoursecardPage() {
         if (response) {
           // Handle successful response
           console.log("Coursecard added successfully");
+          await handleLoadingCoursecards();
+          await handleFilteringSelectableCoursecards();
         }
       } else if (activity === "update") {
         // Handle updating a coursecard
@@ -73,6 +75,8 @@ export default function CoursecardPage() {
         );
         if (response) {
           console.log("Coursecard updated successfully");
+          await handleLoadingCoursecards();
+          await handleFilteringSelectableCoursecards();
         }
       } else if (activity === "delete") {
         // Handle deleting a coursecard
@@ -83,6 +87,8 @@ export default function CoursecardPage() {
         );
         if (response) {
           console.log("Coursecard deleted successfully");
+          await handleLoadingCoursecards();
+          await handleFilteringSelectableCoursecards();
         }
       }
     } catch (error) {

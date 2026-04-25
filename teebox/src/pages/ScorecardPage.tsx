@@ -56,8 +56,10 @@ export default function ScorecardPage() {
         import.meta.env.VITE_CLUBHOUSE_BASE_API_URL ?? "",
         endpoints.COURSECARD
       );
-      if (response) return response;
-      else return null;
+      if (response) {
+        setSelectableGolfCoursesTemp(response);
+        return response;
+      } else return null;
     } catch (error) {
       console.error("Error getting golf courses");
       return error;
@@ -82,6 +84,8 @@ export default function ScorecardPage() {
         if (response) {
           // Handle successful response
           console.log("Scorecard added successfully");
+          await handleLoadingScorecards();
+          await handleFilteringSelectableScorecards();
         }
       } else if (activity === "update") {
         // Handle updating a scorecard
@@ -95,6 +99,8 @@ export default function ScorecardPage() {
         );
         if (response) {
           console.log("Scorecard updated successfully");
+          await handleLoadingScorecards();
+          await handleFilteringSelectableScorecards();
         }
       } else if (activity === "delete") {
         // Handle deleting a scorecard
@@ -105,6 +111,8 @@ export default function ScorecardPage() {
         );
         if (response) {
           console.log("Scorecard deleted successfully");
+          await handleLoadingScorecards();
+          await handleFilteringSelectableScorecards();
         }
       }
     } catch (error) {
@@ -218,7 +226,7 @@ export default function ScorecardPage() {
   React.useEffect(() => {
     const load = async () => {
       await handleLoadingScorecards();
-      await handleLoadingGolfCourses();
+      await getGolfCourses();
       await handleFilteringSelectableScorecards();
       await handleFilteringSelectableGolfCourses();
     };
