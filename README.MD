@@ -228,9 +228,44 @@ Start the app:
 npx expo start
 ```
 
-## TODO:
+## API ROUTES:
 
-###### Add loader for leaderboard + scorecard pages
+### Clubhouse (Spring Boot)
+GET /
+GET /scorecard/{userId}
+GET /scorecard/{userId}/{timestamp}
+POST /scorecard/
+DELETE /scorecard/{scorecardId}
+GET /coursecard/
+POST /coursecard/
+DELETE /coursecard/{golfCourseId}
+GET /user/{userId}
+POST /user/
+DELETE /user/{userId}
+GET /leadercard/
+GET /leadercard/{amount}
+### Course (Express)
+GET /
+POST /get
+POST /post
+POST /idp
+### Teebox (React Router)
+/
+/coursecard
+/scorecard
+/leadercard
+/handicap
+/proshop
+/about
+/signin
+/signup
+/signup/challenge
+/signup/completed
+/reset
+(fallback to /)
+### Caddy (Expo Router)
+/*
+
 
 ###### Simplify leaderboard by total is their seasonal score over par, potentially seed rankings of default data instead of all 10
 

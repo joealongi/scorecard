@@ -37,11 +37,23 @@ export default function ScorecardPage() {
   // Get Scorecards from API
   const getScorecards = async () => {
     try {
-      const response = await getRequest(
-        import.meta.env.VITE_CLUBHOUSE_BASE_API_URL ?? "",
-        endpoints.SCORECARD + user?.oid
-      );
-      if (response) return response;
+      const response: Scorecard[] = [];
+      if(!user){
+        // Get all scorecards
+        const scorecards = await getRequest(
+          import.meta.env.VITE_CLUBHOUSE_BASE_API_URL ?? "",
+          endpoints.SCORECARD
+        );
+        response.push(...scorecards);
+      } else {
+        // Get user's scorecards
+        const scorecards = await getRequest(
+          import.meta.env.VITE_CLUBHOUSE_BASE_API_URL ?? "",
+          endpoints.SCORECARD + user?.oid
+        );
+        response.push(...scorecards);
+      }
+      if (response?.length > 0) return response;
       else return null;
     } catch (error) {
       console.error("Error getting scorecards");
@@ -222,6 +234,18 @@ export default function ScorecardPage() {
     }
   };
 
+
+  // Load on refresh / reload
+  React.useEffect(() => {
+    const load = async () => {
+      await handleLoadingScorecards();
+      await handleLoadingCoursecards();
+      await handleFilteringSelectableScorecards();
+      await handleFilteringSelectableCoursecards();
+    };
+    load();
+    return () => {};
+  }, []);
 
   // Load on refresh / reload
   React.useEffect(() => {
