@@ -98,7 +98,7 @@ Token:
 Start the application:
 
 ```bash
-ts-node index.ts
+npx tsx index.ts
 ```
 
 Azure CR:
