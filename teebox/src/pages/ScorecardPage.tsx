@@ -225,6 +225,7 @@ export default function ScorecardPage() {
 
   // Load on refresh / reload
   React.useEffect(() => {
+    if (!user) return;
     const load = async () => {
       await handleLoadingScorecards();
       await handleLoadingCoursecards();
@@ -233,7 +234,7 @@ export default function ScorecardPage() {
     };
     load();
     return () => {};
-  }, []);
+  }, [user]);
 
   return (
     <React.Fragment>

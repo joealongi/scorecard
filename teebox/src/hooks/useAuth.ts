@@ -6,6 +6,7 @@ export const useAuth = () => {
   const context = React.useContext(AuthenticationContext);
   if (!context) {
     console.error("useAuth must be used within an AuthenticationProvider");
+    return { user: null, setUser: () => {} };
   }
   return context;
 };

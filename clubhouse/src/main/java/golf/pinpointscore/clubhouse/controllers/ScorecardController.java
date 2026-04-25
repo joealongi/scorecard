@@ -2,6 +2,7 @@ package golf.pinpointscore.clubhouse.controllers;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -37,11 +38,10 @@ public class ScorecardController {
     }
 
     // Get all scorecards by userId
-    @RequestMapping("/{userId}")
+    @GetMapping("/{userId}")
     public List<ScorecardModel> getScorecardsByUserId(@PathVariable String userId) {
-
-        return scorecardService.getScorecardsByUserId(userId);
-
+        List<ScorecardModel> scorecards = scorecardService.getScorecardsByUserId(userId);
+        return scorecards;
     }
 
     // Get a scorecard by userId and timestamp
@@ -88,7 +88,8 @@ public class ScorecardController {
                 scorecard.setGolfCourseId(newScorecard.getGolfCourseId());
 
                 // Fetch the coursecard associated with the scorecard
-                CoursecardEntity coursecard = coursecardRepository.findByGolfCourseId(newScorecard.getGolfCourseId());
+                Optional<CoursecardEntity> coursecardOpt = coursecardRepository.findByGolfCourseId(newScorecard.getGolfCourseId());
+                CoursecardEntity coursecard = coursecardOpt.orElse(null);
 
                 scorecard.setGolfCourseName(coursecard != null ? coursecard.getGolfCourseName() : "Unknown Course");
                 scorecard.setGolfCoursePars(coursecard != null ? coursecard.getGolfCoursePars()

@@ -3,6 +3,7 @@ package golf.pinpointscore.clubhouse.services;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -54,7 +55,8 @@ public class ScorecardService {
             int golfCourseId = scorecard.getGolfCourseId();
 
             // Fetch the coursecard associated with the scorecard
-            CoursecardEntity coursecard = coursecardRepository.findByGolfCourseId(golfCourseId);
+            Optional<CoursecardEntity> coursecardOpt = coursecardRepository.findByGolfCourseId(golfCourseId);
+            CoursecardEntity coursecard = coursecardOpt.orElse(null);
 
             // If the coursecard is found, use its details; otherwise, use defaults from the scorecard
             String golfCourseName = coursecard != null ? coursecard.getGolfCourseName() : scorecard.getGolfCourseName();

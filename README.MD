@@ -262,6 +262,8 @@ npx expo start
 
 ###### Authenticated routing (beyond hidden features for non logged in users)
 
+###### User rank should always be greater than 0
+
 # Acknowledgements
 
 ## Authors
