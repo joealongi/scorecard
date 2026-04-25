@@ -31,6 +31,9 @@ export default function ScorecardPage() {
   const [selectableGolfCourses, setSelectableGolfCourses] = React.useState<
     Coursecard[]
   >([]);
+  const [selectableGolfCoursesTemp, setSelectableGolfCoursesTemp] = React.useState<
+    Coursecard[]
+  >([]);
 
   const { user } = useAuth();
 
@@ -172,36 +175,6 @@ export default function ScorecardPage() {
       setSelectableScorecards(scores);
     } catch (error) {
       console.error("Error filtering selectable scorecards");
-      return error;
-    }
-  };
-
-  // Handle loading ten blank golf courses or results +/- golf courses
-  const handleLoadingGolfCourses = async () => {
-    try {
-      while (golfCourses.length < 10) {
-        golfCourses.push({
-          golfCourseId: 0,
-          golfCourseName: "TBD",
-          golfCoursePars: [
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-          ],
-          golfCourseTotalPar: 0,
-        });
-      }
-      // Placeholder Load
-      if (golfCourses?.length > 0) setGolfCourses([...golfCourses]);
-      // Call API and load data
-      const response = await getGolfCourses();
-      if (response?.length > 0) {
-        response.forEach((item: Coursecard, index: number) => {
-          golfCourses.splice(index, 1, item);
-        });
-      }
-      // Data Load
-      if (golfCourses?.length > 0) setGolfCourses([...golfCourses]);
-    } catch (error) {
-      console.error("Error loading golf courses");
       return error;
     }
   };
