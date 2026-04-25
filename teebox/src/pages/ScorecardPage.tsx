@@ -31,9 +31,6 @@ export default function ScorecardPage() {
   const [selectableGolfCourses, setSelectableGolfCourses] = React.useState<
     Coursecard[]
   >([]);
-  const [selectableGolfCoursesTemp, setSelectableGolfCoursesTemp] = React.useState<
-    Coursecard[]
-  >([]);
 
   const { user } = useAuth();
 
@@ -60,7 +57,7 @@ export default function ScorecardPage() {
         endpoints.COURSECARD
       );
       if (response) {
-        setSelectableGolfCoursesTemp(response);
+        setGolfCourses(response);
         return response;
       } else return null;
     } catch (error) {
