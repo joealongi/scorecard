@@ -27,8 +27,8 @@ export default function ScorecardPage() {
   const [selectableScorecards, setSelectableScorecards] = React.useState<
     Scorecard[]
   >([]);
-  const [golfCourses, setGolfCourses] = React.useState<Coursecard[]>([]);
-  const [selectableGolfCourses, setSelectableGolfCourses] = React.useState<
+  const [coursecards, setCoursecards] = React.useState<Coursecard[]>([]);
+  const [selectableCoursecards, setSelectableCoursecards] = React.useState<
     Coursecard[]
   >([]);
 
@@ -49,19 +49,17 @@ export default function ScorecardPage() {
     }
   };
 
-  // Get Golf Courses from API
-  const getGolfCourses = async () => {
+  // Get Coursecards from API
+  const getCoursecards = async () => {
     try {
       const response = await getRequest(
         import.meta.env.VITE_CLUBHOUSE_BASE_API_URL ?? "",
         endpoints.COURSECARD
       );
-      if (response) {
-        setGolfCourses(response);
-        return response;
-      } else return null;
+      if (response) return response;
+      else return null;
     } catch (error) {
-      console.error("Error getting golf courses");
+      console.error("Error getting coursecards");
       return error;
     }
   };
@@ -161,7 +159,7 @@ export default function ScorecardPage() {
   };
 
   // Handle filtering scorecards of the results versus ten blank scorecards
-  const handleFilteringSelectableScorecards = () => {
+  const handleFilteringSelectableScorecards = async () => {
     try {
       const scores = [] as Scorecard[];
       scorecards?.forEach((item) => {
@@ -176,29 +174,62 @@ export default function ScorecardPage() {
     }
   };
 
-  // Handle filtering golf courses of the results versus ten blank golf courses
-  const handleFilteringSelectableGolfCourses = () => {
+  // Handle loading ten blank coursecards or results +/- coursecards
+  const handleLoadingCoursecards = async () => {
     try {
-      const courses = [] as Coursecard[];
-      golfCourses?.forEach((item) => {
-        if (item?.golfCourseId && item?.golfCourseName) {
-          courses.push(item);
-        }
-      });
-      setSelectableGolfCourses(courses);
+      while (coursecards.length < 10) {
+        coursecards.push({
+          submitted: "",
+          updated: "",
+          golfCourseId: 0,
+          golfCourseName: "TBD",
+          golfCoursePars: [
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          ],
+          golfCourseTotalPar: 0,
+        });
+      }
+      // Placeholder Load
+      if (coursecards?.length > 0) setCoursecards([...coursecards]);
+      // Call API and load data
+      const response = await getCoursecards();
+      if (response?.length > 0) {
+        response.forEach((item: Coursecard, index: number) => {
+          coursecards.splice(index, 1, item);
+        });
+      }
+      // Data Load
+      if (coursecards?.length > 0) setCoursecards([...coursecards]);
     } catch (error) {
-      console.error("Error filtering selectable golf courses");
+      console.error("Error loading coursecards");
       return error;
     }
   };
+
+  // Handle filtering coursecards of the results versus ten blank coursecards
+  const handleFilteringSelectableCoursecards = async () => {
+    try {
+      const scores = [] as Coursecard[];
+      coursecards?.forEach((item) => {
+        if (item?.submitted && item?.updated) {
+          scores.push(item);
+        }
+      });
+      setSelectableCoursecards(scores);
+    } catch (error) {
+      console.error("Error filtering selectable coursecards");
+      return error;
+    }
+  };
+
 
   // Load on refresh / reload
   React.useEffect(() => {
     const load = async () => {
       await handleLoadingScorecards();
-      await getGolfCourses();
       await handleFilteringSelectableScorecards();
-      await handleFilteringSelectableGolfCourses();
+      await handleLoadingCoursecards();
+      await handleFilteringSelectableCoursecards();
     };
     load();
     return () => {};
@@ -263,7 +294,7 @@ export default function ScorecardPage() {
             handleSubmitScorecard={handleSubmitScorecard}
             userId={user?.oid ? user?.oid : ""}
             selectableScorecards={selectableScorecards}
-            selectableGolfCourses={selectableGolfCourses}
+            selectableCoursecards={selectableCoursecards}
           />
         </section>
       ) : (

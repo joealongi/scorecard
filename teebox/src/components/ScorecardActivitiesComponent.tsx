@@ -15,14 +15,14 @@ export default function ScorecardActivitiesComponent({
   handleSubmitScorecard,
   userId,
   selectableScorecards,
-  selectableGolfCourses,
+  selectableCoursecards,
 }: Readonly<{
   handleSubmitScorecard?: (
     submitScorecard: SubmitScorecard
   ) => Promise<unknown>;
   userId: string;
   selectableScorecards?: Scorecard[];
-  selectableGolfCourses?: Coursecard[];
+  selectableCoursecards?: Coursecard[];
 }>) {
   return (
     <React.Fragment>
@@ -47,7 +47,7 @@ export default function ScorecardActivitiesComponent({
               activity={"add"}
               text={"Add scorecard"}
               userId={userId}
-              selectableGolfCourses={selectableGolfCourses}
+              selectableCoursecards={selectableCoursecards}
             />
           </TabPanel>
           <TabPanel className="">

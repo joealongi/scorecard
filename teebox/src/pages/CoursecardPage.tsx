@@ -130,11 +130,11 @@ export default function CoursecardPage() {
   };
 
   // Handle filtering coursecards of the results versus ten blank coursecards
-  const handleFilteringSelectableCoursecards = () => {
+  const handleFilteringSelectableCoursecards = async () => {
     try {
       const scores = [] as Coursecard[];
       coursecards?.forEach((item) => {
-        if (item?.golfCourseId && item?.updated) {
+        if (item?.submitted && item?.updated) {
           scores.push(item);
         }
       });
