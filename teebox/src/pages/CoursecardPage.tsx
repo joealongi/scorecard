@@ -66,9 +66,8 @@ export default function CoursecardPage() {
         // Handle updating a coursecard
         const response = await patchRequest(
           import.meta.env.VITE_CLUBHOUSE_BASE_API_URL ?? "",
-          endpoints.COURSECARD,
+          endpoints.COURSECARD + golfCourseId,
           {
-            golfCourseId: golfCourseId,
             golfCoursePars: golfCoursePars,
           }
         );

@@ -12,8 +12,8 @@ import golf.pinpointscore.clubhouse.models.LeadercardModel;
 import golf.pinpointscore.clubhouse.services.LeadercardService;
 
 @RestController
-@RequestMapping(path="/leadercard", produces="application/json")
-@CrossOrigin(origins="*")
+@RequestMapping(path = "/leadercard", produces = "application/json")
+@CrossOrigin(origins = "*")
 public class LeadercardController {
 
     private final LeadercardService leadercardService;
