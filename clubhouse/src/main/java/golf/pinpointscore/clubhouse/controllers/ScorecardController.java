@@ -88,8 +88,8 @@ public class ScorecardController {
                 scorecard.setGolfCourseId(newScorecard.getGolfCourseId());
 
                 // Fetch the coursecard associated with the scorecard
-                Optional<CoursecardEntity> coursecardOpt = coursecardRepository.findByGolfCourseId(newScorecard.getGolfCourseId());
-                CoursecardEntity coursecard = coursecardOpt.orElse(null);
+                List<CoursecardEntity> coursecards = coursecardRepository.findAllByGolfCourseId(newScorecard.getGolfCourseId());
+                CoursecardEntity coursecard = coursecards.isEmpty() ? null : coursecards.get(0);
 
                 scorecard.setGolfCourseName(coursecard != null ? coursecard.getGolfCourseName() : "Unknown Course");
                 scorecard.setGolfCoursePars(coursecard != null ? coursecard.getGolfCoursePars()

@@ -55,8 +55,8 @@ public class ScorecardService {
             int golfCourseId = scorecard.getGolfCourseId();
 
             // Fetch the coursecard associated with the scorecard
-            Optional<CoursecardEntity> coursecardOpt = coursecardRepository.findByGolfCourseId(golfCourseId);
-            CoursecardEntity coursecard = coursecardOpt.orElse(null);
+            List<CoursecardEntity> coursecards = coursecardRepository.findAllByGolfCourseId(golfCourseId);
+            CoursecardEntity coursecard = coursecards.isEmpty() ? null : coursecards.get(0);
 
             // If the coursecard is found, use its details; otherwise, use defaults from the scorecard
             String golfCourseName = coursecard != null ? coursecard.getGolfCourseName() : scorecard.getGolfCourseName();
