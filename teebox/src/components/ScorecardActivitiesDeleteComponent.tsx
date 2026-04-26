@@ -25,7 +25,13 @@ export default function ScorecardActivitiesDeleteComponent({
 }>) {
   const [selectedScorecard, setSelectedScorecard] = React.useState<
     Scorecard | undefined
-  >(selectableScorecards?.[0]);
+  >(undefined);
+
+  React.useEffect(() => {
+    if (selectableScorecards && selectableScorecards.length > 0) {
+      setSelectedScorecard(selectableScorecards[0]);
+    }
+  }, [selectableScorecards]);
 
   // Handle selecting scorecards from the list
   const handleSelectScorecard = (
