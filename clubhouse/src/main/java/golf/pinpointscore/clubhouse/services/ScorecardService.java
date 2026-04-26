@@ -39,6 +39,9 @@ public class ScorecardService {
         // Iterate through each scorecard and calculate the total score
         userScorecards.forEach(scorecard -> {
 
+            // Get the scorecard ID
+            Long id = scorecard.getId();
+
             // Fetch the user associated with the scorecard
             UserEntity user = userRepository.findByUserId(scorecard.getUserId());
 
@@ -68,6 +71,7 @@ public class ScorecardService {
 
             // Create a new ScorecardModel instance with the calculated values
             ScorecardModel scorecardEntry = new ScorecardModel(
+                id,
                 submitted,
                 updated,
                 userId,

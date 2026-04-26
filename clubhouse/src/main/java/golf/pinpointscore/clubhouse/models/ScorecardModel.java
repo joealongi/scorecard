@@ -9,6 +9,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class ScorecardModel {
 
+    private Long scorecardId;
     private java.sql.Timestamp submitted;
     private java.sql.Timestamp updated;
     private String userId;

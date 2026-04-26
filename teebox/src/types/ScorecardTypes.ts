@@ -1,4 +1,5 @@
 export type Scorecard = {
+  id?: number;
   submitted?: string;
   updated?: string;
   scorecardId?: string;
