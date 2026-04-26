@@ -89,7 +89,7 @@ export const patchRequest = async (
       throw new Error("Encryption failed: encrypted payload is undefined.");
     }
     const packaged = await envelope(encrypted);
-    const proxy = import.meta.env.VITE_PROXY_POST_URL ?? "";
+    const proxy = import.meta.env.VITE_PROXY_PATCH_URL ?? "";
     const { data } = await axios.post(
       proxy,
       {
@@ -126,7 +126,7 @@ export const deleteRequest = async (
       throw new Error("Encryption failed: encrypted payload is undefined.");
     }
     const packaged = await envelope(encrypted);
-    const proxy = import.meta.env.VITE_PROXY_POST_URL ?? "";
+    const proxy = import.meta.env.VITE_PROXY_DELETE_URL ?? "";
     const { data } = await axios.post(
       proxy,
       {

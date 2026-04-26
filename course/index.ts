@@ -128,8 +128,8 @@ app.post("/post", async (request: Request<any>, response: Response<any>) => {
   }
 });
 
-// Patch Endpoint
-app.patch("/patch", async (request: Request<any>, response: Response<any>) => {
+// PATCH Endpoint
+app.post("/patch", async (request: Request<any>, response: Response<any>) => {
   try {
     const obj: any = {};
     if (request?.body?.packaged) {
@@ -160,8 +160,8 @@ app.patch("/patch", async (request: Request<any>, response: Response<any>) => {
   }
 });
 
-// Delete Endpoint
-app.delete("/delete", async (request: Request<any>, response: Response<any>) => {
+// DELETE Endpoint
+app.post("/delete", async (request: Request<any>, response: Response<any>) => {
   try {
     const obj: any = {};
     if (request?.body?.packaged) {
