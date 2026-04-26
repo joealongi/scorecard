@@ -2,7 +2,6 @@ package golf.pinpointscore.clubhouse.controllers;
 
 import java.sql.Timestamp;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -99,7 +98,7 @@ public class ScorecardController {
             return scorecardRepository.save(scorecard);
 
         })
-                .orElseGet(() -> scorecardRepository.save(newScorecard));
+                .orElseThrow(() -> new RuntimeException("Scorecard not found"));
 
     }
 

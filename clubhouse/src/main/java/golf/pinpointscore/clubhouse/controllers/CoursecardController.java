@@ -47,9 +47,9 @@ public class CoursecardController {
         CoursecardEntity lastCoursecard = coursecardRepository.findTopByOrderBySubmittedDesc();
 
         // Calculate next Id
-        int newCoursecardId = (lastCoursecard != null && lastCoursecard.getGolfCourseId() != 0)
+        int newCoursecardId = (lastCoursecard != null)
                 ? lastCoursecard.getGolfCourseId() + 1
-                : 0;
+                : 1;
 
         newCoursecard.setGolfCourseId(newCoursecardId);
         newCoursecard.setGolfCourseName(
@@ -67,27 +67,20 @@ public class CoursecardController {
 
     // Update an existing coursecard by golfCourseId
     @PatchMapping("/{golfCourseId}")
-    CoursecardEntity updateCoursecard(@RequestBody CoursecardEntity newCoursecard, @PathVariable Long golfCourseId) {
+    CoursecardEntity updateCoursecard(@RequestBody CoursecardEntity newCoursecard, @PathVariable int golfCourseId) {
 
-        return coursecardRepository.findById(golfCourseId).map(coursecard -> {
-
+        return coursecardRepository.findByGolfCourseId(golfCourseId).map(coursecard -> {
             coursecard.setUpdated(new Timestamp(System.currentTimeMillis()));
-            if (newCoursecard.getGolfCourseName() != null) {
-                coursecard.setGolfCourseName(newCoursecard.getGolfCourseName());
-            }
-            if (newCoursecard.getGolfCoursePars() != null) {
-                coursecard.setGolfCoursePars(newCoursecard.getGolfCoursePars());
-            }
-            if (newCoursecard.getGolfCourseTotalPar() != null) {
-                coursecard.setGolfCourseTotalPar(newCoursecard.getGolfCoursePars().stream()
-                        .mapToInt(Integer::intValue)
-                        .sum());
-            }
+            coursecard.setGolfCoursePars(newCoursecard.getGolfCoursePars());
+            coursecard.setGolfCourseTotalPar(
+                    newCoursecard.getGolfCoursePars().stream()
+                            .mapToInt(Integer::intValue)
+                            .sum());
 
             return coursecardRepository.save(coursecard);
 
         })
-                .orElseGet(() -> coursecardRepository.save(newCoursecard));
+                .orElseThrow(() -> new RuntimeException("Coursecard not found"));
 
     }
 

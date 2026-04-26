@@ -54,8 +54,8 @@ export default function CoursecardPage() {
           import.meta.env.VITE_CLUBHOUSE_BASE_API_URL ?? "",
           endpoints.COURSECARD,
           {
-            golfCourseName: golfCourseName,
-            golfCoursePars: golfCoursePars,
+            golfCourseName: golfCourseName ?? "Golf Course Unknown",
+            golfCoursePars: golfCoursePars ?? [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
           }
         );
         if (response) {
