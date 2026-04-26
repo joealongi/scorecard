@@ -2,20 +2,21 @@ import * as React from "react";
 
 import { NavLink } from "react-router";
 
+import { useAuth } from "../hooks/useAuth";
+
 import Pinpointscore from "../assets/pinpointscore.svg";
 import PinpointscoreMenu from "../assets/pinpointscore-menu.svg";
 
 export default function NavbarComponent() {
-  const [authenticated, setAuthenticated] = React.useState(false);
   const [open, setOpen] = React.useState<boolean>(false);
+
+  const { user } = useAuth();
 
   const handleOpenMenu = () => {
     setOpen(!open);
   };
 
   React.useEffect(() => {
-    const authentication = false;
-
     // Close the menu when clicking or moving the mouse outside of it
     const main = document?.getElementById("main");
     if (main) {
@@ -47,11 +48,7 @@ export default function NavbarComponent() {
         setOpen(false);
       });
     }
-    return () => {
-      if (authentication) {
-        setAuthenticated(true);
-      }
-    };
+    return () => {};
   }, []);
 
   return (
@@ -80,9 +77,6 @@ export default function NavbarComponent() {
               Home
             </NavLink>
           </li> */}
-          {authenticated ? (
-            <React.Fragment></React.Fragment>
-          ) : (
             <React.Fragment>
               <li>
                 <NavLink
@@ -96,10 +90,6 @@ export default function NavbarComponent() {
                 </NavLink>
               </li>
             </React.Fragment>
-          )}
-          {authenticated ? (
-            <React.Fragment></React.Fragment>
-          ) : (
             <React.Fragment>
               <li>
                 <NavLink
@@ -113,10 +103,6 @@ export default function NavbarComponent() {
                 </NavLink>
               </li>
             </React.Fragment>
-          )}
-          {authenticated ? (
-            <React.Fragment></React.Fragment>
-          ) : (
             <React.Fragment>
               <li>
                 <NavLink
@@ -130,31 +116,8 @@ export default function NavbarComponent() {
                 </NavLink>
               </li>
             </React.Fragment>
-          )}
-          {/* <li>
-            <NavLink
-              className="block md:flex md:flex-col md:flex-auto md:justify-self-start w-full mx-auto p-3 text-xl text-neutral-300 hover:text-lime-600 text-center subpixel-antialiased transition-all"
-              rel="noopener noreferrer"
-              target="_self"
-              to="/handicap"
-              onClick={() => handleOpenMenu()}
-            >
-              Handicap
-            </NavLink>
-          </li> */}
-          {/* <li>
-            <NavLink
-              className="block md:flex md:flex-col md:flex-auto md:justify-self-start w-full mx-auto p-3 text-xl text-neutral-300 hover:text-lime-600 text-center subpixel-antialiased transition-all"
-              rel="noopener noreferrer"
-              target="_self"
-              to="/proshop"
-              onClick={() => handleOpenMenu()}
-            >
-              Proshop
-            </NavLink>
-          </li> */}
           <li className="flex flex-col flex-auto justify-self-end"></li>
-          {authenticated ? (
+          {user ? (
             <React.Fragment>
               <li className="flex flex-col justify-self-end">
                 <NavLink
@@ -244,7 +207,7 @@ export default function NavbarComponent() {
                     Home
                   </NavLink>
                 </li> */}
-                {authenticated ? (
+                {user ? (
                   <React.Fragment></React.Fragment>
                 ) : (
                   <React.Fragment>
@@ -261,7 +224,7 @@ export default function NavbarComponent() {
                     </li>
                   </React.Fragment>
                 )}
-                {authenticated ? (
+                {user ? (
                   <React.Fragment></React.Fragment>
                 ) : (
                   <React.Fragment>
@@ -278,7 +241,7 @@ export default function NavbarComponent() {
                     </li>
                   </React.Fragment>
                 )}
-                {authenticated ? (
+                {user ? (
                   <React.Fragment></React.Fragment>
                 ) : (
                   <React.Fragment>
@@ -318,7 +281,7 @@ export default function NavbarComponent() {
                   </NavLink>
                 </li> */}
                 <li className="flex flex-col flex-auto justify-self-end"></li>
-                {authenticated ? (
+                {user ? (
                   <React.Fragment>
                     <li className="flex flex-col justify-self-end">
                       <NavLink
