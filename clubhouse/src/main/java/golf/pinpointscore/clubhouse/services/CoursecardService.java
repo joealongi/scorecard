@@ -30,6 +30,7 @@ public class CoursecardService {
         golfCourses.forEach(golfCourse -> {
 
             // For each golf course, create a CoursecardModel entry
+            Long id = golfCourse.getId();
             java.sql.Timestamp submitted = golfCourse.getSubmitted();
             java.sql.Timestamp updated = golfCourse.getUpdated();
             int golfCourseId = golfCourse.getGolfCourseId();
@@ -41,6 +42,7 @@ public class CoursecardService {
 
             // Create a new CoursecardModel instance with the calculated values
             CoursecardModel coursecardEntry = new CoursecardModel(
+                id,
                 submitted,
                 updated,
                 golfCourseId,

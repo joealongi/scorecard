@@ -86,9 +86,9 @@ public class CoursecardController {
 
     // Delete a coursecard by golfCourseId
     @DeleteMapping("/{golfCourseId}")
-    CoursecardEntity deleteCoursecard(@PathVariable Long golfCourseId) {
+    CoursecardEntity deleteCoursecard(@PathVariable int golfCourseId) {
 
-        coursecardRepository.deleteById(golfCourseId);
+        coursecardRepository.deleteByGolfCourseId(golfCourseId);
 
         return null;
 
