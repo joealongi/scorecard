@@ -29,17 +29,17 @@ export default function CoursecardPage() {
   const { user } = React.useContext(AuthenticationContext);
 
   // Get Coursecards from API
-  const getCoursecards = async () => {
+  const getCoursecards = async (): Promise<Coursecard[]> => {
     try {
       const response = await getRequest(
         import.meta.env.VITE_CLUBHOUSE_BASE_API_URL ?? "",
         endpoints.COURSECARD
       );
-      if (response) return response;
-      else return null;
+      const data = Array.isArray(response) ? response as Coursecard[] : [];
+      return data;
     } catch (error) {
       console.error("Error getting coursecards");
-      return error;
+      return [] as Coursecard[];
     }
   };
 

@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
 
-import { get, post, idp } from "./api/proxy";
+import { getRequest, postRequest, patchRequest, deleteRequest, idpRequest } from "./api/proxy";
 import { decrypt } from "./utils/security";
 
 // ENVX Configuration
@@ -21,7 +21,7 @@ if (process.env.NODE_ENV !== null && process.env.NODE_ENV === "development") {
         "http://localhost:8080",
       ],
       preflightContinue: false,
-      methods: "GET,POST,OPTIONS",
+      methods: "GET,POST,PATCH,DELETE,OPTIONS",
       optionsSuccessStatus: 200,
     })
   );
@@ -48,7 +48,7 @@ if (process.env.NODE_ENV !== null && process.env.NODE_ENV === "development") {
         "https://clubhouse.pinpointscore.golf",
       ],
       preflightContinue: false,
-      methods: "GET,POST,OPTIONS",
+      methods: "GET,POST,PATCH,DELETE,OPTIONS",
       optionsSuccessStatus: 200,
     })
   );
@@ -81,7 +81,7 @@ app.post("/get", async (request: Request<any>, response: Response<any>) => {
       obj["base"] = await decrypted?.base;
       obj["endpoint"] = await decrypted?.endpoint;
     }
-    const resp = await get(obj?.base, obj?.endpoint);
+    const resp = await getRequest(obj?.base, obj?.endpoint);
     if (resp) {
       response.status(200).send(resp);
     } else {
@@ -113,7 +113,69 @@ app.post("/post", async (request: Request<any>, response: Response<any>) => {
       obj["body"] = await decrypted?.body;
       obj["payload"] = { ...obj, ...decrypted?.body };
     }
-    const resp = await post(obj?.base, obj?.endpoint, obj?.payload);
+    const resp = await postRequest(obj?.base, obj?.endpoint, obj?.payload);
+    if (resp) {
+      response.status(200).send(resp);
+    } else {
+      response.status(400).send();
+    }
+  } catch (error: any) {
+    if (error?.response?.data) {
+      response.status(400).send(error?.response?.data);
+    } else {
+      response.status(400).send();
+    }
+  }
+});
+
+// Patch Endpoint
+app.patch("/patch", async (request: Request<any>, response: Response<any>) => {
+  try {
+    const obj: any = {};
+    if (request?.body?.packaged) {
+      const base64 = Buffer.from(request?.body?.packaged, "base64");
+      const decrypted = await decrypt(
+        base64.buffer.slice(
+          base64.byteOffset,
+          base64.byteOffset + base64.byteLength
+        )
+      );
+      obj["base"] = await decrypted?.base;
+      obj["endpoint"] = await decrypted?.endpoint;
+      obj["body"] = await decrypted?.body;
+      obj["payload"] = { ...obj, ...decrypted?.body };
+    }
+    const resp = await patchRequest(obj?.base, obj?.endpoint, obj?.payload);
+    if (resp) {
+      response.status(200).send(resp);
+    } else {
+      response.status(400).send();
+    }
+  } catch (error: any) {
+    if (error?.response?.data) {
+      response.status(400).send(error?.response?.data);
+    } else {
+      response.status(400).send();
+    }
+  }
+});
+
+// Delete Endpoint
+app.delete("/delete", async (request: Request<any>, response: Response<any>) => {
+  try {
+    const obj: any = {};
+    if (request?.body?.packaged) {
+      const base64 = Buffer.from(request?.body?.packaged, "base64");
+      const decrypted = await decrypt(
+        base64.buffer.slice(
+          base64.byteOffset,
+          base64.byteOffset + base64.byteLength
+        )
+      );
+      obj["base"] = await decrypted?.base;
+      obj["endpoint"] = await decrypted?.endpoint;
+    }
+    const resp = await deleteRequest(obj?.base, obj?.endpoint);
     if (resp) {
       response.status(200).send(resp);
     } else {
@@ -148,7 +210,7 @@ app.post("/idp", async (request: Request<any>, response: Response<any>) => {
       obj["body"] = await decrypted?.body;
       obj["payload"] = { ...obj, ...decrypted?.body };
     }
-    const resp = await idp(obj?.base, obj?.endpoint, obj?.payload);
+    const resp = await idpRequest(obj?.base, obj?.endpoint, obj?.payload);
     if (resp) {
       response.status(200).send(resp);
     } else {
