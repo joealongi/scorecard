@@ -291,11 +291,9 @@ POST /idp
 
 ###### Work in useMemo for API calls
 
-###### Add user id from login by email for scorecardpage through authentication system component
-
 ###### Encrypt local storage
 
-###### Authenticated routing (beyond hidden features for non logged in users)
+###### Authenticated routing signout working
 
 ###### User rank should always be greater than 0
 
