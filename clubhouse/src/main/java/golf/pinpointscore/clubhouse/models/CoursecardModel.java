@@ -9,6 +9,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class CoursecardModel {
 
+    private Long coursecardId;
     private java.sql.Timestamp submitted;
     private java.sql.Timestamp updated;
     private int golfCourseId;

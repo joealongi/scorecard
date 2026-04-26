@@ -1,4 +1,5 @@
 export type Coursecard = {
+  id?: number;
   submitted?: string;
   updated?: string;
   golfCourseId?: number;
