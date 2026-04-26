@@ -70,7 +70,7 @@ export default function CoursecardPage() {
           import.meta.env.VITE_CLUBHOUSE_BASE_API_URL ?? "",
           endpoints.COURSECARD + golfCourseId,
           {
-            golfCoursePars: golfCoursePars,
+            golfCoursePars: golfCoursePars ?? [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
           }
         );
         if (response) {
