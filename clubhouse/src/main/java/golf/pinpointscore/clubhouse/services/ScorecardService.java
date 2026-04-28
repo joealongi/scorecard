@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -26,6 +27,74 @@ public class ScorecardService {
         this.scorecardRepository = scorecardRepository;
         this.userRepository = userRepository;
         this.coursecardRepository = coursecardRepository;
+    }
+
+    public List<ScorecardModel> getAllScorecards(){
+        // Initialize an empty list to hold the scorecard models
+        List<ScorecardModel> scorecards = new ArrayList<>();
+
+        // Fetch all scorecards from the repository
+        Iterable<ScorecardEntity> allScorecards = scorecardRepository.findAll();
+
+        allScorecards.forEach(scorecard -> {
+
+            // Get the scorecard ID
+            Long id = scorecard.getId();
+
+            // Fetch the user associated with the scorecard
+            UserEntity user = userRepository.findByUserId(scorecard.getUserId());
+
+            // For each scorecard, create a ScorecardModel entry
+            java.sql.Timestamp submitted = scorecard.getSubmitted();
+            java.sql.Timestamp updated = scorecard.getSubmitted();
+            String userName = user.getUserName();
+            int userRank = user.getUserRank();
+            int userHandicap = user.getUserHandicap();
+            List<Integer> userScores = scorecard.getUserScores();
+            Integer userTotalScore = userScores.stream()
+                .mapToInt(Integer::intValue)
+                .sum();
+            int coursecardId = scorecard.getCoursecardId();
+
+            // Fetch the coursecard associated with the scorecard
+            List<CoursecardEntity> coursecards = coursecardRepository.findAllByCoursecardId(coursecardId);
+            CoursecardEntity coursecard = coursecards.isEmpty() ? null : coursecards.get(0);
+
+            // If the coursecard is found, use its details; otherwise, use defaults from the scorecard
+            String coursecardName = coursecard != null ? coursecard.getCoursecardName() : scorecard.getCoursecardName();
+            List<Integer> coursecardPars = coursecard != null ? coursecard.getCoursecardPars() : scorecard.getCoursecardPars();
+            Integer coursecardTotalPar = coursecardPars.stream()
+                .mapToInt(Integer::intValue)
+                .sum();
+            Integer coursecardHolesPlayed = scorecard.getUserScores().size();
+
+            // Create a new ScorecardModel instance with the calculated values
+            ScorecardModel scorecardEntry = new ScorecardModel(
+                id,
+                submitted,
+                updated,
+                user.getUserId(),
+                userName,
+                userRank,
+                userHandicap,
+                userScores,
+                userTotalScore,
+                coursecardId,
+                coursecardName,
+                coursecardPars,
+                coursecardTotalPar,
+                coursecardHolesPlayed
+            );
+
+            // Add the new scorecard entry to the scorecard list
+            scorecards.add(scorecardEntry);
+        });
+
+        // Sort the scorecards by submitted timestamp in descending order
+        scorecards.sort((a, b) -> b.getSubmitted().compareTo(a.getSubmitted()));
+        List<ScorecardModel> limitedScorecards = scorecards.stream().limit(18).collect(Collectors.toList());
+
+        return limitedScorecards;
     }
 
     public List<ScorecardModel> getScorecardsByUserId(String userId){
@@ -55,19 +124,19 @@ public class ScorecardService {
             Integer userTotalScore = userScores.stream()
                 .mapToInt(Integer::intValue)
                 .sum();
-            int golfCourseId = scorecard.getGolfCourseId();
+            int coursecardId = scorecard.getCoursecardId();
 
             // Fetch the coursecard associated with the scorecard
-            List<CoursecardEntity> coursecards = coursecardRepository.findAllByGolfCourseId(golfCourseId);
+            List<CoursecardEntity> coursecards = coursecardRepository.findAllByCoursecardId(coursecardId);
             CoursecardEntity coursecard = coursecards.isEmpty() ? null : coursecards.get(0);
 
             // If the coursecard is found, use its details; otherwise, use defaults from the scorecard
-            String golfCourseName = coursecard != null ? coursecard.getGolfCourseName() : scorecard.getGolfCourseName();
-            List<Integer> golfCoursePars = coursecard != null ? coursecard.getGolfCoursePars() : scorecard.getGolfCoursePars();
-            Integer golfCourseTotalPar = golfCoursePars.stream()
+            String coursecardName = coursecard != null ? coursecard.getCoursecardName() : scorecard.getCoursecardName();
+            List<Integer> coursecardPars = coursecard != null ? coursecard.getCoursecardPars() : scorecard.getCoursecardPars();
+            Integer coursecardTotalPar = coursecardPars.stream()
                 .mapToInt(Integer::intValue)
                 .sum();
-            Integer golfCourseHolesPlayed = scorecard.getUserScores().size();
+            Integer coursecardHolesPlayed = scorecard.getUserScores().size();
 
             // Create a new ScorecardModel instance with the calculated values
             ScorecardModel scorecardEntry = new ScorecardModel(
@@ -80,11 +149,11 @@ public class ScorecardService {
                 userHandicap,
                 userScores,
                 userTotalScore,
-                golfCourseId,
-                golfCourseName,
-                golfCoursePars,
-                golfCourseTotalPar,
-                golfCourseHolesPlayed
+                coursecardId,
+                coursecardName,
+                coursecardPars,
+                coursecardTotalPar,
+                coursecardHolesPlayed
             );
 
             // Add the new scorecard entry to the scorecard list

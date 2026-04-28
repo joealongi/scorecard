@@ -27,9 +27,9 @@ public class ScorecardEntity {
     @Column(nullable = false)
     private String userId;
     private List<Integer> userScores;
-    private int golfCourseId;
-    private String golfCourseName;
-    private List<Integer> golfCoursePars;
+    private int coursecardId;
+    private String coursecardName;
+    private List<Integer> coursecardPars;
 
     @PrePersist
     protected void onCreate() {

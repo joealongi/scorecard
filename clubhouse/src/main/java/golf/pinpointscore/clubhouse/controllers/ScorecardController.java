@@ -2,6 +2,7 @@ package golf.pinpointscore.clubhouse.controllers;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.stream.Collectors; 
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -34,6 +35,14 @@ public class ScorecardController {
         this.scorecardRepository = scorecardRepository;
         this.scorecardService = scorecardService;
         this.coursecardRepository = coursecardRepository;
+    }
+
+    // Get all scorecards
+    @GetMapping("/")
+    public List<ScorecardModel> getScorecards() {
+
+        return scorecardService.getAllScorecards();
+
     }
 
     // Get all scorecards by userId
@@ -78,6 +87,9 @@ public class ScorecardController {
     @PatchMapping("/{scorecardId}")
     ScorecardEntity updateScorecard(@RequestBody ScorecardEntity newScorecard, @PathVariable Long scorecardId) {
 
+        if (scorecardId == null) {
+            throw new IllegalArgumentException("scorecardId cannot be null");
+        }
         return scorecardRepository.findById(scorecardId).map(scorecard -> {
 
             if (newScorecard.getUserScores() != null) {

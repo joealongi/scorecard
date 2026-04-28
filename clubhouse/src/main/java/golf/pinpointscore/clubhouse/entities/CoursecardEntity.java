@@ -26,10 +26,10 @@ public class CoursecardEntity {
     private Timestamp updated;
 
     @Column(nullable = false)
-    private int golfCourseId;
-    private String golfCourseName;
-    private List<Integer> golfCoursePars;
-    private Integer golfCourseTotalPar;
+    private int coursecardId;
+    private String coursecardName;
+    private List<Integer> coursecardPars;
+    private Integer coursecardTotalPar;
 
     @PrePersist
     protected void onCreate() {

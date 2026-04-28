@@ -47,13 +47,13 @@ public class LeadercardService {
             Integer userTotalScore = userScores.stream()
                 .mapToInt(Integer::intValue)
                 .sum();
-            int golfCourseId = scorecard.getGolfCourseId();
-            String golfCourseName = scorecard.getGolfCourseName();
-            List<Integer> golfCoursePars = scorecard.getGolfCoursePars();
-            Integer golfCourseTotalPar = golfCoursePars.stream()
+            int coursecardId = scorecard.getCoursecardId();
+            String coursecardName = scorecard.getCoursecardName();
+            List<Integer> coursecardPars = scorecard.getCoursecardPars();
+            Integer coursecardTotalPar = coursecardPars.stream()
                 .mapToInt(Integer::intValue)
                 .sum();
-            Integer golfCourseHolesPlayed = scorecard.getUserScores().size();
+            Integer coursecardHolesPlayed = scorecard.getUserScores().size();
 
             // Create a new LeadercardModel instance with the calculated values
             LeadercardModel leadercardEntry = new LeadercardModel(
@@ -65,15 +65,15 @@ public class LeadercardService {
                 userHandicap,
                 userScores,
                 userTotalScore,
-                golfCourseId,
-                golfCourseName,
-                golfCoursePars,
-                golfCourseTotalPar,
-                golfCourseHolesPlayed
+                coursecardId,
+                coursecardName,
+                coursecardPars,
+                coursecardTotalPar,
+                coursecardHolesPlayed
             );
 
-            // TODO: Get golfCourse name from the golfCourse
-            // TODO: Get golfCourse pars from the golfCourse
+            // TODO: Get coursecard name from the coursecard
+            // TODO: Get coursecard pars from the coursecard
 
             // Add the new leadercard entry to the leadercard list
             leadercard.add(leadercardEntry);

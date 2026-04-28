@@ -9,7 +9,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class ScorecardModel {
 
-    private Long scorecardId;
+    private Long id;
     private java.sql.Timestamp submitted;
     private java.sql.Timestamp updated;
     private String userId;
@@ -18,10 +18,10 @@ public class ScorecardModel {
     private int userHandicap;
     private List<Integer> userScores;
     private Integer userTotalScore;
-    private int golfCourseId;
-    private String golfCourseName;
-    private List<Integer> golfCoursePars;
-    private Integer golfCourseTotalPar;
-    private Integer golfCourseHolesPlayed;
+    private int coursecardId;
+    private String coursecardName;
+    private List<Integer> coursecardPars;
+    private Integer coursecardTotalPar;
+    private Integer coursecardHolesPlayed;
 
 }

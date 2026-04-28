@@ -48,16 +48,16 @@ public class CoursecardController {
 
         // Calculate next Id
         int newCoursecardId = (lastCoursecard != null)
-                ? lastCoursecard.getGolfCourseId() + 1
+                ? lastCoursecard.getCoursecardId() + 1
                 : 1;
 
-        newCoursecard.setGolfCourseId(newCoursecardId);
-        newCoursecard.setGolfCourseName(
-                newCoursecard.getGolfCourseName() != null ? newCoursecard.getGolfCourseName() : "Unknown Course");
-        newCoursecard.setGolfCoursePars(newCoursecard.getGolfCoursePars() != null ? newCoursecard.getGolfCoursePars()
+        newCoursecard.setCoursecardId(newCoursecardId);
+        newCoursecard.setCoursecardName(
+                newCoursecard.getCoursecardName() != null ? newCoursecard.getCoursecardName() : "Unknown Course");
+        newCoursecard.setCoursecardPars(newCoursecard.getCoursecardPars() != null ? newCoursecard.getCoursecardPars()
                 : List.of(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
-        newCoursecard.setGolfCourseTotalPar(
-                newCoursecard.getGolfCoursePars() != null ? newCoursecard.getGolfCoursePars().stream()
+        newCoursecard.setCoursecardTotalPar(
+                newCoursecard.getCoursecardPars() != null ? newCoursecard.getCoursecardPars().stream()
                         .mapToInt(Integer::intValue)
                         .sum() : 0);
 
@@ -65,15 +65,15 @@ public class CoursecardController {
 
     }
 
-    // Update an existing coursecard by golfCourseId
-    @PatchMapping("/{golfCourseId}")
-    CoursecardEntity updateCoursecard(@RequestBody CoursecardEntity newCoursecard, @PathVariable int golfCourseId) {
+    // Update an existing coursecard by CoursecardId
+    @PatchMapping("/{CoursecardId}")
+    CoursecardEntity updateCoursecard(@RequestBody CoursecardEntity newCoursecard, @PathVariable int CoursecardId) {
 
-        return coursecardRepository.findByGolfCourseId(golfCourseId).map(coursecard -> {
+        return coursecardRepository.findByCoursecardId(CoursecardId).map(coursecard -> {
             coursecard.setUpdated(new Timestamp(System.currentTimeMillis()));
-            coursecard.setGolfCoursePars(newCoursecard.getGolfCoursePars());
-            coursecard.setGolfCourseTotalPar(
-                    newCoursecard.getGolfCoursePars().stream()
+            coursecard.setCoursecardPars(newCoursecard.getCoursecardPars());
+            coursecard.setCoursecardTotalPar(
+                    newCoursecard.getCoursecardPars().stream()
                             .mapToInt(Integer::intValue)
                             .sum());
 
@@ -84,11 +84,11 @@ public class CoursecardController {
 
     }
 
-    // Delete a coursecard by golfCourseId
-    @DeleteMapping("/{golfCourseId}")
-    CoursecardEntity deleteCoursecard(@PathVariable int golfCourseId) {
+    // Delete a coursecard by CoursecardId
+    @DeleteMapping("/{CoursecardId}")
+    CoursecardEntity deleteCoursecard(@PathVariable int CoursecardId) {
 
-        coursecardRepository.deleteByGolfCourseId(golfCourseId);
+        coursecardRepository.deleteByCoursecardId(CoursecardId);
 
         return null;
 

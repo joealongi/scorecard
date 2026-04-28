@@ -55,6 +55,7 @@ export default function ScorecardPage() {
         const data = Array.isArray(scorecards) ? scorecards as Scorecard[] : [];
         response.push(...data);
       }
+      console.log("response", response);
       return response;
     } catch (error) {
       console.error("Error getting scorecards");
@@ -235,7 +236,6 @@ export default function ScorecardPage() {
     }
   };
 
-
   // Load on refresh / reload
   React.useEffect(() => {
     const load = async () => {
@@ -247,19 +247,6 @@ export default function ScorecardPage() {
     load();
     return () => {};
   }, []);
-
-  // Load on refresh / reload
-  React.useEffect(() => {
-    if (!user) return;
-    const load = async () => {
-      await handleLoadingScorecards();
-      await handleLoadingCoursecards();
-      await handleFilteringSelectableScorecards();
-      await handleFilteringSelectableCoursecards();
-    };
-    load();
-    return () => {};
-  }, [user]);
 
   return (
     <React.Fragment>

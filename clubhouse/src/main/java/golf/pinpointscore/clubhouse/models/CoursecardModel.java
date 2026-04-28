@@ -9,12 +9,12 @@ import lombok.Data;
 @AllArgsConstructor
 public class CoursecardModel {
 
-    private Long coursecardId;
+    private Long id;
+    private int coursecardId;
     private java.sql.Timestamp submitted;
     private java.sql.Timestamp updated;
-    private int golfCourseId;
-    private String golfCourseName;
-    private List<Integer> golfCoursePars;
-    private Integer golfCourseTotalPar;
+    private String coursecardName;
+    private List<Integer> coursecardPars;
+    private Integer coursecardTotalPar;
 
 }

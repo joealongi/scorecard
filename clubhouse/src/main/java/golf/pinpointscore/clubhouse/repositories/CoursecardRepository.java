@@ -10,14 +10,14 @@ import golf.pinpointscore.clubhouse.entities.CoursecardEntity;
 public interface CoursecardRepository extends JpaRepository<CoursecardEntity, Long> {
 
     // Find a coursecard by the golf course ID
-    Optional<CoursecardEntity> findByGolfCourseId(int courseId);
+    Optional<CoursecardEntity> findByCoursecardId(int coursecardId);
 
     // Find all coursecards by the golf course ID
-    List<CoursecardEntity> findAllByGolfCourseId(int courseId);
+    List<CoursecardEntity> findAllByCoursecardId(int coursecardId);
 
     // Find the last created coursecard
     CoursecardEntity findTopByOrderBySubmittedDesc();
 
     // Delete a coursecard by golf course ID
-    void deleteByGolfCourseId(int golfCourseId);
+    void deleteByCoursecardId(int coursecardId);
 }
