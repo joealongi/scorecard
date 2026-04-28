@@ -124,9 +124,9 @@ public class ScorecardController {
 
     // Delete a scorecard by scorecardId
     @DeleteMapping("/{scorecardId}")
-    ScorecardEntity deleteScorecard(@PathVariable Long scorecardId) {
+    ScorecardEntity deleteScorecard(@PathVariable int scorecardId) {
 
-        scorecardRepository.deleteById(scorecardId);
+        scorecardRepository.deleteByScorecardId(scorecardId);
 
         return null;
 

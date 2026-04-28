@@ -66,7 +66,10 @@ export default function CoursecardActivitiesDeleteComponent({
         handleSubmitCoursecard={handleSubmitCoursecard}
         activity={activity}
         text={text}
-        coursecardId={selectedCoursecard?.coursecardId ?? 1}
+        coursecardId={
+          selectedCoursecard?.coursecardId ??
+          selectableCoursecards?.[0]?.coursecardId
+        }
         coursecardName={selectedCoursecard?.coursecardName}
         coursecardPars={selectedCoursecard?.coursecardPars}
       />
