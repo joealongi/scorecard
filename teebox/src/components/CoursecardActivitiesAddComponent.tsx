@@ -16,13 +16,13 @@ export default function CoursecardActivitiesAddComponent({
   activity?: string;
   text?: string;
 }>) {
-  const [golfCourseName, setGolfCourseName] =
-    React.useState<Coursecard["golfCourseName"]>("");
+  const [coursecardName, setCoursecardName] =
+    React.useState<Coursecard["coursecardName"]>("");
 
   // Handle naming golf course for adding a new coursecard
-  const handleGolfCourseName = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCoursecardName = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event?.target?.value) {
-      setGolfCourseName(event.target.value);
+      setCoursecardName(event.target.value);
     }
   };
 
@@ -31,17 +31,17 @@ export default function CoursecardActivitiesAddComponent({
       <Field className="relative">
         <Input
           className="h-auto w-full p-3 text-xl font-bold text-neutral-950 bg-neutral-300 text-center subpixel-antialiased appearance-none"
-          name="golfCourseName"
+          name="coursecardName"
           aria-label="Name of the golf course"
           type="text"
-          onChange={handleGolfCourseName}
+          onChange={handleCoursecardName}
         />
       </Field>
       <CoursecardEditorComponent
         handleSubmitCoursecard={handleSubmitCoursecard}
         activity={activity}
         text={text}
-        golfCourseName={golfCourseName}
+        coursecardName={coursecardName}
       />
     </React.Fragment>
   );

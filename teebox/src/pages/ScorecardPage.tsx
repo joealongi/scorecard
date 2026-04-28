@@ -80,7 +80,7 @@ export default function ScorecardPage() {
 
   // Handle submission of scorecards and type of activity
   const handleSubmitScorecard = async (submitScorecard: SubmitScorecard) => {
-    const { activity, scorecardId, userId, userScores, golfCourseId } = submitScorecard;
+    const { activity, scorecardId, userId, userScores, coursecardId } = submitScorecard;
     try {
       if (activity === "add") {
         // Handle adding a new scorecard
@@ -90,7 +90,7 @@ export default function ScorecardPage() {
           {
             userId: userId,
             userScores: userScores,
-            golfCourseId: golfCourseId,
+            coursecardId: coursecardId,
           }
         );
         if (response) {
@@ -146,13 +146,13 @@ export default function ScorecardPage() {
           userHandicap: 0,
           userScores: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
           userTotalScore: 0,
-          golfCourseId: 0,
-          golfCourseName: "TBD",
-          golfCoursePars: [
+          coursecardId: 0,
+          coursecardName: "TBD",
+          coursecardPars: [
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
           ],
-          golfCourseTotalPar: 0,
-          golfCourseHolesPlayed: 0,
+          coursecardTotalPar: 0,
+          coursecardHolesPlayed: 0,
         });
       }
       // Placeholder Load
@@ -179,12 +179,12 @@ export default function ScorecardPage() {
         coursecards.push({
           submitted: "",
           updated: "",
-          golfCourseId: 0,
-          golfCourseName: "TBD",
-          golfCoursePars: [
+          coursecardId: 0,
+          coursecardName: "TBD",
+          coursecardPars: [
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
           ],
-          golfCourseTotalPar: 0,
+          coursecardTotalPar: 0,
         });
       }
       // Placeholder Load
@@ -274,8 +274,8 @@ export default function ScorecardPage() {
               key={`scorecard-${item?.userId}-${index}`}
               userScores={item?.userScores}
               userTotalScore={item?.userTotalScore}
-              golfCourseName={item?.golfCourseName}
-              golfCoursePars={item?.golfCoursePars}
+              coursecardName={item?.coursecardName}
+              coursecardPars={item?.coursecardPars}
             />
           ))
         ) : (
@@ -289,8 +289,8 @@ export default function ScorecardPage() {
               key={`scorecard-${item?.userId}-${index}`}
               userScores={item?.userScores}
               userTotalScore={item?.userTotalScore}
-              golfCourseName={item?.golfCourseName}
-              golfCoursePars={item?.golfCoursePars}
+              coursecardName={item?.coursecardName}
+              coursecardPars={item?.coursecardPars}
             />
           ))
         ) : (

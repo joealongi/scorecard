@@ -45,7 +45,7 @@ export default function CoursecardPage() {
 
   // Handle submission of coursecards and type of activity
   const handleSubmitCoursecard = async (submitCoursecard: SubmitCoursecard) => {
-    const { activity, golfCourseId, golfCourseName, golfCoursePars } =
+    const { activity, coursecardId, coursecardName, coursecardPars } =
       submitCoursecard;
     try {
       if (activity === "add") {
@@ -54,8 +54,8 @@ export default function CoursecardPage() {
           import.meta.env.VITE_CLUBHOUSE_BASE_API_URL ?? "",
           endpoints.COURSECARD,
           {
-            golfCourseName: golfCourseName ?? "Golf Course Unknown",
-            golfCoursePars: golfCoursePars ?? [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+            coursecardName: coursecardName ?? "Golf Course Unknown",
+            coursecardPars: coursecardPars ?? [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
           }
         );
         if (response) {
@@ -68,9 +68,9 @@ export default function CoursecardPage() {
         // Handle updating a coursecard
         const response = await patchRequest(
           import.meta.env.VITE_CLUBHOUSE_BASE_API_URL ?? "",
-          endpoints.COURSECARD + golfCourseId,
+          endpoints.COURSECARD + coursecardId,
           {
-            golfCoursePars: golfCoursePars ?? [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+            coursecardPars: coursecardPars ?? [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
           }
         );
         if (response) {
@@ -82,7 +82,7 @@ export default function CoursecardPage() {
         // Handle deleting a coursecard
         const response = await deleteRequest(
           import.meta.env.VITE_CLUBHOUSE_BASE_API_URL ?? "",
-          endpoints.COURSECARD + golfCourseId,
+          endpoints.COURSECARD + coursecardId,
           {}
         );
         if (response) {
@@ -104,12 +104,12 @@ export default function CoursecardPage() {
         coursecards.push({
           submitted: "",
           updated: "",
-          golfCourseId: 0,
-          golfCourseName: "TBD",
-          golfCoursePars: [
+          coursecardId: 0,
+          coursecardName: "TBD",
+          coursecardPars: [
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
           ],
-          golfCourseTotalPar: 0,
+          coursecardTotalPar: 0,
         });
       }
       // Placeholder Load
@@ -182,10 +182,10 @@ export default function CoursecardPage() {
         {Array?.isArray(coursecards) && coursecards?.length > 0 ? (
           coursecards?.map((item, index) => (
             <CoursecardDesktopComponent
-              key={`golfcourse-${item?.golfCourseId}-${index}`}
-              golfCourseName={item?.golfCourseName}
-              golfCoursePars={item?.golfCoursePars}
-              golfCourseTotalPar={item?.golfCourseTotalPar}
+              key={`golfcourse-${item?.coursecardId}-${index}`}
+              coursecardName={item?.coursecardName}
+              coursecardPars={item?.coursecardPars}
+              coursecardTotalPar={item?.coursecardTotalPar}
             />
           ))
         ) : (
@@ -196,10 +196,10 @@ export default function CoursecardPage() {
         {Array?.isArray(coursecards) && coursecards?.length > 0 ? (
           coursecards?.map((item, index) => (
             <CoursecardMobileComponent
-              key={`golfcourse-${item?.golfCourseId}-${index}`}
-              golfCourseName={item?.golfCourseName}
-              golfCoursePars={item?.golfCoursePars}
-              golfCourseTotalPar={item?.golfCourseTotalPar}
+              key={`golfcourse-${item?.coursecardId}-${index}`}
+              coursecardName={item?.coursecardName}
+              coursecardPars={item?.coursecardPars}
+              coursecardTotalPar={item?.coursecardTotalPar}
             />
           ))
         ) : (

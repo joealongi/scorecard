@@ -69,14 +69,14 @@ public class ScorecardController {
                         : "");
         newScorecard.setUserScores(newScorecard.getUserScores() != null ? newScorecard.getUserScores()
                 : List.of(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
-        newScorecard.setGolfCourseId(newScorecard.getGolfCourseId() != 0 ? newScorecard.getGolfCourseId() : 0);
+        newScorecard.setCoursecardId(newScorecard.getCoursecardId() != 0 ? newScorecard.getCoursecardId() : 0);
 
         // Fetch the coursecard associated with the scorecard
-        List<CoursecardEntity> coursecards = coursecardRepository.findAllByGolfCourseId(newScorecard.getGolfCourseId());
+        List<CoursecardEntity> coursecards = coursecardRepository.findAllByCoursecardId(newScorecard.getCoursecardId());
         CoursecardEntity coursecard = coursecards.isEmpty() ? null : coursecards.get(0);
 
-        newScorecard.setGolfCourseName(coursecard != null ? coursecard.getGolfCourseName() : "Unknown Course");
-        newScorecard.setGolfCoursePars(coursecard != null ? coursecard.getGolfCoursePars()
+        newScorecard.setCoursecardName(coursecard != null ? coursecard.getCoursecardName() : "Unknown Course");
+        newScorecard.setCoursecardPars(coursecard != null ? coursecard.getCoursecardPars()
                 : List.of(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 
         return scorecardRepository.save(newScorecard);
@@ -95,15 +95,15 @@ public class ScorecardController {
             if (newScorecard.getUserScores() != null) {
                 scorecard.setUserScores(newScorecard.getUserScores());
             }
-            if (newScorecard.getGolfCourseId() != 0) {
-                scorecard.setGolfCourseId(newScorecard.getGolfCourseId());
+            if (newScorecard.getCoursecardId() != 0) {
+                scorecard.setCoursecardId(newScorecard.getCoursecardId());
 
                 // Fetch the coursecard associated with the scorecard
-                List<CoursecardEntity> coursecards = coursecardRepository.findAllByGolfCourseId(newScorecard.getGolfCourseId());
+                List<CoursecardEntity> coursecards = coursecardRepository.findAllByCoursecardId(newScorecard.getCoursecardId());
                 CoursecardEntity coursecard = coursecards.isEmpty() ? null : coursecards.get(0);
 
-                scorecard.setGolfCourseName(coursecard != null ? coursecard.getGolfCourseName() : "Unknown Course");
-                scorecard.setGolfCoursePars(coursecard != null ? coursecard.getGolfCoursePars()
+                scorecard.setCoursecardName(coursecard != null ? coursecard.getCoursecardName() : "Unknown Course");
+                scorecard.setCoursecardPars(coursecard != null ? coursecard.getCoursecardPars()
                         : List.of(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
             }
 

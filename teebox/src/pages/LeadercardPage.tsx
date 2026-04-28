@@ -41,13 +41,13 @@ export default function LeadercardPage() {
           userHandicap: 0,
           userScores: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
           userTotalScore: 0,
-          golfCourseId: 0,
-          golfCourseName: "TBD",
-          golfCoursePars: [
+          coursecardId: 0,
+          coursecardName: "TBD",
+          coursecardPars: [
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
           ],
-          golfCourseTotalPar: 0,
-          golfCourseHolesPlayed: 0,
+          coursecardTotalPar: 0,
+          coursecardHolesPlayed: 0,
         });
       }
       // Placeholder Load
@@ -112,8 +112,8 @@ export default function LeadercardPage() {
               userName={item?.userName}
               userRank={item?.userRank}
               userTotalScore={item?.userTotalScore}
-              golfCourseName={item?.golfCourseName}
-              golfCourseTotalPar={item?.golfCourseTotalPar}
+              coursecardName={item?.coursecardName}
+              coursecardTotalPar={item?.coursecardTotalPar}
             />
           ))
         ) : (
@@ -128,8 +128,8 @@ export default function LeadercardPage() {
               userName={item?.userName}
               userRank={item?.userRank}
               userTotalScore={item?.userTotalScore}
-              golfCourseName={item?.golfCourseName}
-              golfCourseTotalPar={item?.golfCourseTotalPar}
+              coursecardName={item?.coursecardName}
+              coursecardTotalPar={item?.coursecardTotalPar}
             />
           ))
         ) : (

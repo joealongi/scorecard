@@ -47,10 +47,10 @@ export default function CoursecardActivitiesUpdateComponent({
           selectableCoursecards?.length > 0 ? (
             selectableCoursecards.map((item, index) => (
               <option
-                key={`coursecard-${item?.golfCourseId}-${index}`}
+                key={`coursecard-${item?.coursecardId}-${index}`}
                 value={index}
               >
-                {item?.golfCourseName}
+                {item?.coursecardName}
               </option>
             ))
           ) : (
@@ -66,9 +66,9 @@ export default function CoursecardActivitiesUpdateComponent({
         handleSubmitCoursecard={handleSubmitCoursecard}
         activity={activity}
         text={text}
-        golfCourseId={selectedCoursecard?.golfCourseId}
-        golfCourseName={selectedCoursecard?.golfCourseName}
-        golfCoursePars={selectedCoursecard?.golfCoursePars}
+        coursecardId={selectedCoursecard?.coursecardId}
+        coursecardName={selectedCoursecard?.coursecardName}
+        coursecardPars={selectedCoursecard?.coursecardPars}
       />
     </React.Fragment>
   );

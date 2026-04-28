@@ -6,8 +6,8 @@ export default function LeadercardMobileComponent({
   userName,
   userRank,
   userTotalScore,
-  golfCourseName,
-  golfCourseTotalPar,
+  coursecardName,
+  coursecardTotalPar,
 }: Readonly<Leadercard>) {
   return (
     <React.Fragment>
@@ -33,7 +33,7 @@ export default function LeadercardMobileComponent({
             Course
           </li>
           <li className="flex flex-col flex-1 justify-self-center self-stretch min-w-[50%] max-w-[50%] p-3 text-base text-neutral-950 bg-neutral-300 text-left border-b-1 border-neutral-950 subpixel-antialiased">
-            {golfCourseName}
+            {coursecardName}
           </li>
         </ul>
         <ul className="flex flex-row flex-auto justify-center content-evenly items-stretch">
@@ -41,7 +41,7 @@ export default function LeadercardMobileComponent({
             Total
           </li>
           <li className="flex flex-col flex-1 justify-self-center self-stretch min-w-[50%] max-w-[50%] p-3 text-base text-neutral-950 bg-neutral-300 text-left border-b-1 border-neutral-950 subpixel-antialiased">
-            {(userTotalScore ?? 0) - (golfCourseTotalPar ?? 0)}
+            {(userTotalScore ?? 0) - (coursecardTotalPar ?? 0)}
           </li>
         </ul>
       </div>

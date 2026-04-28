@@ -6,8 +6,8 @@ export default function LeadercardDesktopComponent({
   userName,
   userRank,
   userTotalScore,
-  golfCourseName,
-  golfCourseTotalPar,
+  coursecardName,
+  coursecardTotalPar,
 }: Readonly<Leadercard>) {
   return (
     <React.Fragment>
@@ -20,10 +20,10 @@ export default function LeadercardDesktopComponent({
             {userName}
           </li>
           <li className="flex flex-col flex-1 justify-self-center self-stretch min-w-[1/4] max-w-[1/4] p-3 text-xl text-neutral-950 bg-neutral-300 text-left border-l-1 border-neutral-950 subpixel-antialiased">
-            {golfCourseName}
+            {coursecardName}
           </li>
           <li className="flex flex-col flex-1 justify-self-center self-stretch min-w-[1/4] max-w-[1/4] p-3 text-xl text-neutral-950 bg-neutral-300 text-left border-l-1 border-neutral-950 subpixel-antialiased">
-            {(userTotalScore ?? 0) - (golfCourseTotalPar ?? 0)}
+            {(userTotalScore ?? 0) - (coursecardTotalPar ?? 0)}
           </li>
         </ul>
       </div>

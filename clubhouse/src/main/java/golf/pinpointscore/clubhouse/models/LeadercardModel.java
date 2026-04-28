@@ -17,10 +17,10 @@ public class LeadercardModel {
     private int userHandicap;
     private List<Integer> userScores;
     private Integer userTotalScore;
-    private int golfCourseId;
-    private String golfCourseName;
-    private List<Integer> golfCoursePars;
-    private Integer golfCourseTotalPar;
-    private Integer golfCourseHolesPlayed;
+    private int coursecardId;
+    private String coursecardName;
+    private List<Integer> coursecardPars;
+    private Integer coursecardTotalPar;
+    private Integer coursecardHolesPlayed;
 
 }

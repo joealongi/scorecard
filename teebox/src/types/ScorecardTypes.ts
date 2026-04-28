@@ -9,11 +9,11 @@ export type Scorecard = {
   userHandicap?: number;
   userScores?: number[];
   userTotalScore?: number;
-  golfCourseId?: number;
-  golfCourseName?: string;
-  golfCoursePars?: number[];
-  golfCourseTotalPar?: number;
-  golfCourseHolesPlayed?: number;
+  coursecardId?: number;
+  coursecardName?: string;
+  coursecardPars?: number[];
+  coursecardTotalPar?: number;
+  coursecardHolesPlayed?: number;
 };
 
 export type SubmitScorecard = {
@@ -21,5 +21,5 @@ export type SubmitScorecard = {
   scorecardId?: string;
   userId?: string;
   userScores?: number[];
-  golfCourseId?: number;
+  coursecardId?: number;
 };

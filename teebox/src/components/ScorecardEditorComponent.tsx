@@ -20,7 +20,7 @@ export default function ScorecardEditorComponent({
   userId,
   scorecardId,
   userScores,
-  golfCourseId,
+  coursecardId,
 }: Readonly<{
   activity?: string;
   handleSubmitScorecard?: (
@@ -30,7 +30,7 @@ export default function ScorecardEditorComponent({
   userId?: string;
   scorecardId?: string;
   userScores?: number[];
-  golfCourseId?: number;
+  coursecardId?: number;
 }>) {
   const [holesPlayed, setHolesPlayed] = React.useState<CoursecardHole[]>();
 
@@ -50,7 +50,7 @@ export default function ScorecardEditorComponent({
             scorecardId,
             userId,
             userScores: values?.userScores,
-            golfCourseId,
+            coursecardId,
           });
         }
       } catch (error) {

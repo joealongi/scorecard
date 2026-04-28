@@ -22,17 +22,17 @@ export default function ScorecardActivitiesAddComponent({
   userId?: string;
   selectableCoursecards?: Coursecard[];
 }>) {
-  const [selectedGolfCourse, setSelectedGolfCourse] =
+  const [selectedCoursecard, setSelectedCoursecard] =
     React.useState<Coursecard>(selectableCoursecards?.[0] ?? {});
 
   // Handle selecting golf course from the list
-  const handleSelectingGolfCourse = (
+  const handleSelectingCoursecard = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
-    const selectedGolfCourse =
+    const selectedCoursecard =
       selectableCoursecards?.[parseInt(event?.target?.value)];
-    if (selectedGolfCourse) {
-      setSelectedGolfCourse(selectedGolfCourse);
+    if (selectedCoursecard) {
+      setSelectedCoursecard(selectedCoursecard);
     }
   };
 
@@ -43,16 +43,16 @@ export default function ScorecardActivitiesAddComponent({
           className="h-auto w-full p-3 text-xl font-bold text-neutral-950 bg-neutral-300 text-center subpixel-antialiased appearance-none"
           name="scorecards"
           aria-label="List of user scorecards"
-          onChange={handleSelectingGolfCourse}
+          onChange={handleSelectingCoursecard}
         >
           {Array?.isArray(selectableCoursecards) &&
           selectableCoursecards?.length > 0 ? (
             selectableCoursecards.map((item, index) => (
               <option
-                key={`scorecard-${item?.golfCourseId}-${index}`}
+                key={`scorecard-${item?.coursecardId}-${index}`}
                 value={index}
               >
-                {item?.golfCourseName ?? "Golf Course Unknown"}
+                {item?.coursecardName ?? "Golf Course Unknown"}
               </option>
             ))
           ) : (
@@ -69,7 +69,7 @@ export default function ScorecardActivitiesAddComponent({
         activity={activity}
         text={text}
         userId={userId}
-        golfCourseId={selectedGolfCourse?.golfCourseId}
+        coursecardId={selectedCoursecard?.coursecardId}
       />
     </React.Fragment>
   );

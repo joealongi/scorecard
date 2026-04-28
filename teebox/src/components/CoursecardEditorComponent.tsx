@@ -13,32 +13,32 @@ import type {
 } from "../types/CoursecardTypes";
 
 const validationSchema = yup.object({
-  golfCoursePars: yup.array().of(yup.number().min(0).required()),
+  coursecardPars: yup.array().of(yup.number().min(0).required()),
 });
 
 export default function CoursecardEditorComponent({
   handleSubmitCoursecard,
   activity,
   text,
-  golfCourseId,
-  golfCourseName,
-  golfCoursePars,
+  coursecardId,
+  coursecardName,
+  coursecardPars,
 }: Readonly<{
   handleSubmitCoursecard?: (
     submitCoursecard: SubmitCoursecard
   ) => Promise<unknown>;
   activity?: string;
   text?: string;
-  golfCourseId?: number;
-  golfCourseName?: string;
-  golfCoursePars?: number[];
+  coursecardId?: number;
+  coursecardName?: string;
+  coursecardPars?: number[];
 }>) {
   const [holesPlayed, setHolesPlayed] = React.useState<CoursecardHole[]>();
 
   // Form validation and submission
   const formik = useFormik<Coursecard>({
     initialValues: {
-      golfCoursePars: golfCoursePars ?? [
+      coursecardPars: coursecardPars ?? [
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
       ],
     },
@@ -48,9 +48,9 @@ export default function CoursecardEditorComponent({
         if (handleSubmitCoursecard) {
           await handleSubmitCoursecard({
             activity: activity ?? "",
-            golfCourseId: golfCourseId ?? 0,
-            golfCourseName: golfCourseName ?? "",
-            golfCoursePars: values?.golfCoursePars,
+            coursecardId: coursecardId ?? 0,
+            coursecardName: coursecardName ?? "",
+            coursecardPars: values?.coursecardPars,
           });
         }
       } catch (error) {
@@ -65,12 +65,12 @@ export default function CoursecardEditorComponent({
     index: number,
     formik: FormikProps<Coursecard>
   ) => {
-    const golfCoursePars = [...(formik?.values?.golfCoursePars ?? [])];
-    const score = golfCoursePars?.[index];
+    const coursecardPars = [...(formik?.values?.coursecardPars ?? [])];
+    const score = coursecardPars?.[index];
     if (!isNaN(score)) {
-      golfCoursePars[index] = Math.abs(score + 1);
+      coursecardPars[index] = Math.abs(score + 1);
     }
-    formik.setFieldValue("golfCoursePars", golfCoursePars);
+    formik.setFieldValue("coursecardPars", coursecardPars);
   };
 
   // Handle subtracting from par (decrement)
@@ -78,19 +78,19 @@ export default function CoursecardEditorComponent({
     index: number,
     formik: FormikProps<Coursecard>
   ) => {
-    const golfCoursePars = [...(formik?.values?.golfCoursePars ?? [])];
-    const score = golfCoursePars?.[index];
+    const coursecardPars = [...(formik?.values?.coursecardPars ?? [])];
+    const score = coursecardPars?.[index];
     if (!isNaN(score)) {
-      golfCoursePars[index] = Math.abs(score - 1);
+      coursecardPars[index] = Math.abs(score - 1);
     }
-    formik.setFieldValue("golfCoursePars", golfCoursePars);
+    formik.setFieldValue("coursecardPars", coursecardPars);
   };
 
   // Handle loading golf course pars for coursecard
-  const handleLoadingGolfCoursePars = async () => {
+  const handleLoadingCoursecardPars = async () => {
     try {
-      if (Array.isArray(golfCoursePars) && golfCoursePars?.length > 0) {
-        formik.setFieldValue("golfCoursePars", golfCoursePars);
+      if (Array.isArray(coursecardPars) && coursecardPars?.length > 0) {
+        formik.setFieldValue("coursecardPars", coursecardPars);
       }
     } catch (error) {
       console.error("Error loading user scores");
@@ -101,7 +101,7 @@ export default function CoursecardEditorComponent({
   // Load on refresh / reload
   React.useEffect(() => {
     const load = async () => {
-      await handleLoadingGolfCoursePars();
+      await handleLoadingCoursecardPars();
       // Default eighteen holes
       setHolesPlayed([
         { hole: "Hole One (1)" },
@@ -148,10 +148,10 @@ export default function CoursecardEditorComponent({
                   </Button>
                   <Input
                     className="flex flex-col flex-1 justify-self-center self-stretch min-w-[1/3] max-w-[1/3] p-3 text-xl font-bold text-neutral-950 bg-neutral-300 text-center border-t-1 border-b-1 border-neutral-950 subpixel-antialiased"
-                    value={formik?.values?.golfCoursePars?.[index]}
+                    value={formik?.values?.coursecardPars?.[index]}
                     onChange={(e) =>
                       formik.setFieldValue(
-                        `golfCoursePars[${index}]`,
+                        `coursecardPars[${index}]`,
                         e?.target?.value
                       )
                     }

@@ -7,8 +7,8 @@ import type { Scorecard } from "../types/ScorecardTypes";
 export default function ScorecardDesktopComponent({
   userScores,
   userTotalScore,
-  golfCourseName,
-  golfCoursePars,
+  coursecardName,
+  coursecardPars,
 }: Readonly<Scorecard>) {
   const [expand, setExpand] = React.useState<boolean>(false);
 
@@ -21,7 +21,7 @@ export default function ScorecardDesktopComponent({
       <div className="border-1 border-neutral-950">
         <ul className="z-0 flex flex-row flex-auto justify-center content-evenly items-stretch">
           <li className="flex flex-col flex-1 justify-self-center self-stretch min-w-[1/3] max-w-[1/3] p-3 text-xl text-neutral-950 bg-neutral-300 text-left border-l-1 border-neutral-950 subpixel-antialiased">
-            {golfCourseName}
+            {coursecardName}
           </li>
           <li className="flex flex-col flex-1 justify-self-center self-stretch min-w-[1/3] max-w-[1/3] p-3 text-xl text-neutral-950 bg-neutral-300 text-left border-l-1 border-neutral-950 subpixel-antialiased">
             {userTotalScore}
@@ -59,7 +59,7 @@ export default function ScorecardDesktopComponent({
               <li className="flex flex-col flex-1 justify-self-center self-stretch min-w-[10%] max-w-[10%] p-3 text-xl font-bold text-neutral-950 bg-neutral-400 text-left border-neutral-950 subpixel-antialiased">
                 Par
               </li>
-              {golfCoursePars?.map((item, index) => (
+              {coursecardPars?.map((item, index) => (
                 <li
                   key={`hole-${item}-${index}`}
                   className="flex flex-col flex-1 justify-self-center self-stretch min-w-[5%] max-w-[5%] p-3 text-xl font-bold text-neutral-950 bg-neutral-400 text-center border-l-1 border-neutral-950 subpixel-antialiased"

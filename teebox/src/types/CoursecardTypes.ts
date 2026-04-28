@@ -2,17 +2,17 @@ export type Coursecard = {
   id?: number;
   submitted?: string;
   updated?: string;
-  golfCourseId?: number;
-  golfCourseName?: string;
-  golfCoursePars?: number[];
-  golfCourseTotalPar?: number;
+  coursecardId?: number;
+  coursecardName?: string;
+  coursecardPars?: number[];
+  coursecardTotalPar?: number;
 };
 
 export type SubmitCoursecard = {
   activity?: string;
-  golfCourseId?: number;
-  golfCourseName?: string;
-  golfCoursePars?: number[];
+  coursecardId?: number;
+  coursecardName?: string;
+  coursecardPars?: number[];
 };
 
 export type CoursecardHole = {

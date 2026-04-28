@@ -7,9 +7,9 @@ export type Leadercard = {
   userHandicap?: number;
   userScores?: number[];
   userTotalScore?: number;
-  golfCourseId?: number;
-  golfCourseName?: string;
-  golfCoursePars?: number[];
-  golfCourseTotalPar?: number;
-  golfCourseHolesPlayed?: number;
+  coursecardId?: number;
+  coursecardName?: string;
+  coursecardPars?: number[];
+  coursecardTotalPar?: number;
+  coursecardHolesPlayed?: number;
 };

@@ -5,9 +5,9 @@ import { NavLink } from "react-router";
 import type { Coursecard } from "../types/CoursecardTypes";
 
 export default function CoursecardDesktopComponent({
-  golfCourseName,
-  golfCoursePars,
-  golfCourseTotalPar,
+  coursecardName,
+  coursecardPars,
+  coursecardTotalPar,
 }: Readonly<Coursecard>) {
   const [expand, setExpand] = React.useState<boolean>(false);
 
@@ -20,10 +20,10 @@ export default function CoursecardDesktopComponent({
       <div className="border-1 border-neutral-950">
         <ul className="z-0 flex flex-row flex-auto justify-center content-evenly items-stretch">
           <li className="flex flex-col flex-1 justify-self-center self-stretch min-w-[1/3] max-w-[1/3] p-3 text-xl text-neutral-950 bg-neutral-300 text-left border-l-1 border-neutral-950 subpixel-antialiased">
-            {golfCourseName}
+            {coursecardName}
           </li>
           <li className="flex flex-col flex-1 justify-self-center self-stretch min-w-[1/3] max-w-[1/3] p-3 text-xl text-neutral-950 bg-neutral-300 text-left border-l-1 border-neutral-950 subpixel-antialiased">
-            {golfCourseTotalPar}
+            {coursecardTotalPar}
           </li>
           <li className="flex flex-col flex-1 justify-self-center self-stretch min-w-[1/3] max-w-[1/3] p-3 text-xl font-bold text-neutral-950 bg-neutral-300 hover:bg-lime-600 text-center border-l-1 border-neutral-950 subpixel-antialiased cursor-pointer">
             <NavLink
@@ -45,7 +45,7 @@ export default function CoursecardDesktopComponent({
               <li className="flex flex-col flex-1 justify-self-center self-stretch min-w-[10%] max-w-[10%] p-3 text-xl font-bold text-neutral-950 bg-lime-600 text-left border-neutral-950 subpixel-antialiased">
                 Hole
               </li>
-              {golfCoursePars?.map((item, index) => (
+              {coursecardPars?.map((item, index) => (
                 <li
                   key={`hole-${item}-${index}`}
                   className="flex flex-col flex-1 justify-self-center self-stretch min-w-[5%] max-w-[5%] p-3 text-xl font-bold text-neutral-950 bg-lime-600 text-center border-l-1 border-neutral-950 subpixel-antialiased"
@@ -58,7 +58,7 @@ export default function CoursecardDesktopComponent({
               <li className="flex flex-col flex-1 justify-self-center self-stretch min-w-[10%] max-w-[10%] p-3 text-xl font-bold text-neutral-950 bg-neutral-400 text-left border-neutral-950 subpixel-antialiased">
                 Par
               </li>
-              {golfCoursePars?.map((item, index) => (
+              {coursecardPars?.map((item, index) => (
                 <li
                   key={`hole-${item}-${index}`}
                   className="flex flex-col flex-1 justify-self-center self-stretch min-w-[5%] max-w-[5%] p-3 text-xl font-bold text-neutral-950 bg-neutral-400 text-center border-l-1 border-neutral-950 subpixel-antialiased"

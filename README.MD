@@ -238,7 +238,7 @@ POST /scorecard/
 DELETE /scorecard/{scorecardId}
 GET /coursecard/
 POST /coursecard/
-DELETE /coursecard/{golfCourseId}
+DELETE /coursecard/{coursecardId}
 GET /user/{userId}
 POST /user/
 DELETE /user/{userId}
