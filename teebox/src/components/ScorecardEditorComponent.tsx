@@ -28,7 +28,7 @@ export default function ScorecardEditorComponent({
   ) => Promise<unknown>;
   text?: string;
   userId?: string;
-  scorecardId?: string;
+  scorecardId?: number;
   userScores?: number[];
   coursecardId?: number;
 }>) {

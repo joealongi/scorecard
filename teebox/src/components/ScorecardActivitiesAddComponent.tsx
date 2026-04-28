@@ -69,7 +69,7 @@ export default function ScorecardActivitiesAddComponent({
         activity={activity}
         text={text}
         userId={userId}
-        coursecardId={selectedCoursecard?.coursecardId}
+        coursecardId={selectedCoursecard?.coursecardId ?? 1}
       />
     </React.Fragment>
   );

@@ -70,7 +70,7 @@ export default function ScorecardActivitiesUpdateComponent({
         activity={activity}
         text={text}
         userId={userId}
-        scorecardId={selectedScorecard?.scorecardId}
+        scorecardId={selectedScorecard?.scorecardId ?? 1}
         userScores={selectedScorecard?.userScores}
       />
     </React.Fragment>

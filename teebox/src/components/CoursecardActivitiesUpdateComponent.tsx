@@ -66,7 +66,7 @@ export default function CoursecardActivitiesUpdateComponent({
         handleSubmitCoursecard={handleSubmitCoursecard}
         activity={activity}
         text={text}
-        coursecardId={selectedCoursecard?.coursecardId}
+        coursecardId={selectedCoursecard?.coursecardId ?? 1}
         coursecardName={selectedCoursecard?.coursecardName}
         coursecardPars={selectedCoursecard?.coursecardPars}
       />
