@@ -25,6 +25,7 @@ public class ScorecardEntity {
     private Timestamp updated;
 
     @Column(nullable = false)
+    private int scorecardId;
     private String userId;
     private List<Integer> userScores;
     private int coursecardId;

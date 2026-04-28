@@ -10,6 +10,7 @@ import lombok.Data;
 public class ScorecardModel {
 
     private Long id;
+    private int scorecardId;
     private java.sql.Timestamp submitted;
     private java.sql.Timestamp updated;
     private String userId;

@@ -1,8 +1,8 @@
 export type Scorecard = {
   id?: number;
+  scorecardId?: number;
   submitted?: string;
   updated?: string;
-  scorecardId?: string;
   userId?: string;
   userName?: string;
   userRank?: number;
@@ -18,7 +18,7 @@ export type Scorecard = {
 
 export type SubmitScorecard = {
   activity?: string;
-  scorecardId?: string;
+  scorecardId?: number;
   userId?: string;
   userScores?: number[];
   coursecardId?: number;

@@ -223,13 +223,13 @@ export default function ScorecardPage() {
   // Handle filtering coursecards of the results versus ten blank coursecards
   const handleFilteringSelectableCoursecards = async () => {
     try {
-      const scores = [] as Coursecard[];
+      const courses = [] as Coursecard[];
       coursecards?.forEach((item) => {
         if (item?.submitted && item?.updated) {
-          scores.push(item);
+          courses.push(item);
         }
       });
-      setSelectableCoursecards(scores);
+      setSelectableCoursecards(courses);
     } catch (error) {
       console.error("Error filtering selectable coursecards");
       return error;

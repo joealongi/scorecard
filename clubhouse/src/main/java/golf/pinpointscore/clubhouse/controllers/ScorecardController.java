@@ -2,7 +2,6 @@ package golf.pinpointscore.clubhouse.controllers;
 
 import java.sql.Timestamp;
 import java.util.List;
-import java.util.stream.Collectors; 
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -64,6 +63,15 @@ public class ScorecardController {
     @PostMapping("/")
     ScorecardEntity newScorecard(@RequestBody ScorecardEntity newScorecard) {
 
+        // Fetch the last created scorecard
+        ScorecardEntity lastScorecard = scorecardRepository.findTopByOrderBySubmittedDesc();
+
+        // Calculate next Id
+        int newScorecardId = (lastScorecard != null)
+                ? lastScorecard.getScorecardId() + 1
+                : 1;
+
+        newScorecard.setScorecardId(newScorecardId);
         newScorecard.setUserId(
                 (newScorecard.getUserId() != null && newScorecard.getUserId().length() > 0) ? newScorecard.getUserId()
                         : "");

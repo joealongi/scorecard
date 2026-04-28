@@ -40,6 +40,7 @@ public class ScorecardService {
 
             // Get the scorecard ID
             Long id = scorecard.getId();
+            int scorecardId = scorecard.getScorecardId();
 
             // Fetch the user associated with the scorecard
             UserEntity user = userRepository.findByUserId(scorecard.getUserId());
@@ -47,6 +48,7 @@ public class ScorecardService {
             // For each scorecard, create a ScorecardModel entry
             java.sql.Timestamp submitted = scorecard.getSubmitted();
             java.sql.Timestamp updated = scorecard.getSubmitted();
+            
             String userName = user.getUserName();
             int userRank = user.getUserRank();
             int userHandicap = user.getUserHandicap();
@@ -71,6 +73,7 @@ public class ScorecardService {
             // Create a new ScorecardModel instance with the calculated values
             ScorecardModel scorecardEntry = new ScorecardModel(
                 id,
+                scorecardId,
                 submitted,
                 updated,
                 user.getUserId(),
@@ -110,6 +113,7 @@ public class ScorecardService {
 
             // Get the scorecard ID
             Long id = scorecard.getId();
+            int scorecardId = scorecard.getScorecardId();
 
             // Fetch the user associated with the scorecard
             UserEntity user = userRepository.findByUserId(scorecard.getUserId());
@@ -141,8 +145,9 @@ public class ScorecardService {
             // Create a new ScorecardModel instance with the calculated values
             ScorecardModel scorecardEntry = new ScorecardModel(
                 id,
+                scorecardId,
                 submitted,
-                updated,
+                updated, 
                 userId,
                 userName,
                 userRank,

@@ -1,8 +1,8 @@
 export type Coursecard = {
   id?: number;
+  coursecardId?: number;
   submitted?: string;
   updated?: string;
-  coursecardId?: number;
   coursecardName?: string;
   coursecardPars?: number[];
   coursecardTotalPar?: number;

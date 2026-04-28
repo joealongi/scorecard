@@ -13,4 +13,7 @@ public interface ScorecardRepository extends CrudRepository<ScorecardEntity, Lon
     // Find all scorecards by userId
     List<ScorecardEntity> findByUserId(String userId);
 
+    // Find the last created scorecard
+    ScorecardEntity findTopByOrderBySubmittedDesc();
+
 }
