@@ -3,6 +3,7 @@ package golf.pinpointscore.clubhouse.controllers;
 import java.sql.Timestamp;
 import java.util.List;
 
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -116,11 +117,15 @@ public class ScorecardController {
 
     // Delete a scorecard by scorecardId
     @DeleteMapping("/{scorecardId}")
+    @Transactional
     ScorecardEntity deleteScorecard(@PathVariable int scorecardId) {
 
-        scorecardRepository.deleteByScorecardId(scorecardId);
+        ScorecardEntity scorecard = scorecardRepository.findByScorecardId(scorecardId)
+            .orElseThrow(() -> new RuntimeException("Scorecard not found with id: " + scorecardId));
 
-        return null;
+        scorecardRepository.delete(scorecard);
+
+        return scorecard;
 
     }
 }

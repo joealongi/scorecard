@@ -20,6 +20,7 @@ public interface ScorecardRepository extends CrudRepository<ScorecardEntity, Lon
     // Find the last created scorecard
     ScorecardEntity findTopByOrderBySubmittedDesc();
 
-    void deleteByScorecardId(Integer scorecardId);
+    // Delete a scorecard by scorecardId
+    Optional<ScorecardEntity> deleteByScorecardId(Integer scorecardId);
 
 }
