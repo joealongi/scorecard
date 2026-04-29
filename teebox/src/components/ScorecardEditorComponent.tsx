@@ -152,7 +152,7 @@ export default function ScorecardEditorComponent({
                     onChange={(e) =>
                       formik.setFieldValue(
                         `userScores[${index}]`,
-                        e?.target?.value
+                        parseInt(e?.target?.value ?? "0")
                       )
                     }
                     type="number"

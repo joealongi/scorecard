@@ -93,32 +93,24 @@ public class ScorecardController {
 
     // Update an existing scorecard by scorecardId
     @PatchMapping("/{scorecardId}")
-    ScorecardEntity updateScorecard(@RequestBody ScorecardEntity newScorecard, @PathVariable Long scorecardId) {
+    ScorecardEntity updateScorecard(@RequestBody ScorecardEntity newScorecard, @PathVariable int scorecardId) {
 
-        if (scorecardId == null) {
-            throw new IllegalArgumentException("scorecardId cannot be null");
+        System.out.println("updateScorecard " + scorecardId);
+        System.out.println("updateScorecard " + newScorecard);
+
+        if (scorecardId == 0) {
+            throw new IllegalArgumentException("scorecardId cannot be 0");
         }
-        return scorecardRepository.findById(scorecardId).map(scorecard -> {
+        return scorecardRepository.findByScorecardId(scorecardId).map(scorecard -> {
 
             if (newScorecard.getUserScores() != null) {
                 scorecard.setUserScores(newScorecard.getUserScores());
-            }
-            if (newScorecard.getCoursecardId() != 0) {
-                scorecard.setCoursecardId(newScorecard.getCoursecardId());
-
-                // Fetch the coursecard associated with the scorecard
-                List<CoursecardEntity> coursecards = coursecardRepository.findAllByCoursecardId(newScorecard.getCoursecardId());
-                CoursecardEntity coursecard = coursecards.isEmpty() ? null : coursecards.get(0);
-
-                scorecard.setCoursecardName(coursecard != null ? coursecard.getCoursecardName() : "Unknown Course");
-                scorecard.setCoursecardPars(coursecard != null ? coursecard.getCoursecardPars()
-                        : List.of(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
             }
 
             return scorecardRepository.save(scorecard);
 
         })
-                .orElseThrow(() -> new RuntimeException("Scorecard not found"));
+                .orElseThrow(() -> new RuntimeException("Scorecard not found with id: " + scorecardId));
 
     }
 
