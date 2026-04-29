@@ -17,6 +17,7 @@ import golf.pinpointscore.clubhouse.entities.CoursecardEntity;
 import golf.pinpointscore.clubhouse.models.CoursecardModel;
 import golf.pinpointscore.clubhouse.repositories.CoursecardRepository;
 import golf.pinpointscore.clubhouse.services.CoursecardService;
+import jakarta.transaction.Transactional;
 
 @RestController
 @RequestMapping(path = "/coursecard", produces = "application/json")
@@ -86,11 +87,16 @@ public class CoursecardController {
 
     // Delete a coursecard by CoursecardId
     @DeleteMapping("/{CoursecardId}")
+    @Transactional
     CoursecardEntity deleteCoursecard(@PathVariable int CoursecardId) {
 
-        coursecardRepository.deleteByCoursecardId(CoursecardId);
+        CoursecardEntity coursecard = coursecardRepository.findByCoursecardId(CoursecardId)
+            .orElseThrow(() -> new RuntimeException("Coursecard not found with id: " + CoursecardId));
+        
+        coursecardRepository.delete(coursecard);
 
-        return null;
+
+        return coursecard;
 
     }
 }

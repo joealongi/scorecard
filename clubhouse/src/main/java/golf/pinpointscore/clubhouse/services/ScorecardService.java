@@ -59,8 +59,8 @@ public class ScorecardService {
             int coursecardId = scorecard.getCoursecardId();
 
             // Fetch the coursecard associated with the scorecard
-            List<CoursecardEntity> coursecards = coursecardRepository.findAllByCoursecardId(coursecardId);
-            CoursecardEntity coursecard = coursecards.isEmpty() ? null : coursecards.get(0);
+            Optional<CoursecardEntity> coursecardOpt = coursecardRepository.findByCoursecardId(coursecardId);
+            CoursecardEntity coursecard = coursecardOpt.orElse(null);
 
             // If the coursecard is found, use its details; otherwise, use defaults from the scorecard
             String coursecardName = coursecard != null ? coursecard.getCoursecardName() : scorecard.getCoursecardName();
@@ -131,8 +131,8 @@ public class ScorecardService {
             int coursecardId = scorecard.getCoursecardId();
 
             // Fetch the coursecard associated with the scorecard
-            List<CoursecardEntity> coursecards = coursecardRepository.findAllByCoursecardId(coursecardId);
-            CoursecardEntity coursecard = coursecards.isEmpty() ? null : coursecards.get(0);
+            Optional<CoursecardEntity> coursecardOpt = coursecardRepository.findByCoursecardId(coursecardId);
+            CoursecardEntity coursecard = coursecardOpt.orElse(null);
 
             // If the coursecard is found, use its details; otherwise, use defaults from the scorecard
             String coursecardName = coursecard != null ? coursecard.getCoursecardName() : scorecard.getCoursecardName();

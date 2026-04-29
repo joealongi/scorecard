@@ -297,6 +297,8 @@ POST /idp
 
 ###### User rank should always be greater than 0
 
+###### When switching between cards, the data should be cleared
+
 # Acknowledgements
 
 ## Authors
